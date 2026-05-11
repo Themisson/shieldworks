@@ -27,7 +27,7 @@ export default function SistemasPage() {
         </div>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <ButtonLink href="/contato">Solicitar demonstração</ButtonLink>
-          <ButtonLink href="/contato" variant="secondary">Entrar em contato</ButtonLink>
+          <ButtonLink href="/contato" variant="secondary">Contato</ButtonLink>
         </div>
         <div className="mt-12 rounded-2xl border border-slate-200/80 bg-slate-50 p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-graphite-900">Arquitetura futura de subdomínios</h2>

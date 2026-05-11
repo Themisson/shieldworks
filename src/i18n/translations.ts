@@ -15,7 +15,6 @@ export const translations: Record<string, string> = {
   "Assessoria Acadêmica": "Academic Advisory",
   "Contato": "Contact",
   "Acessar sistemas": "Access systems",
-  "Entrar em contato": "Contact",
   "Conhecer soluções": "Explore solutions",
   "Solicitar contato": "Request contact",
   "Vamos conversar": "Let's talk",
