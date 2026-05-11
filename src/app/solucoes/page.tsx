@@ -11,7 +11,17 @@ const solutionBlocks = [
     title: "Engenharia Computacional",
     description:
       "Modelagem numérica computacional aplicada à engenharia, com uso de C++, Python, ABAQUS e métodos numéricos para análise de tensões, deformações, comportamento geomecânico, validação de modelos e apoio à tomada de decisão técnica.",
-    items: ["Modelagem numérica computacional", "Simulações em C++ e Python", "Análises com ABAQUS", "Análise de tensões e deformações", "Geomecânica aplicada", "Validação de modelos numéricos"]
+    items: [
+      "Modelagem numérica computacional",
+      "Modelos numéricos em ABAQUS",
+      "Simulações em C++ e Python",
+      "Scripts de pré e pós-processamento",
+      "Análise de tensões e deformações",
+      "Simulações geomecânicas e estruturais",
+      "Validação de resultados numéricos",
+      "Comparação entre simulação e soluções analíticas",
+      "Relatórios técnicos de modelagem computacional"
+    ]
   },
   {
     title: "Sistemas Institucionais",

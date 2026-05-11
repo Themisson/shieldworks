@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { AcademicLinks } from "@/components/academic-links";
+import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { SectionTitle } from "@/components/section-title";
 import { Badge } from "@/components/badge";
 
 export const metadata: Metadata = {
-  title: "Sobre",
-  description: "Perfil profissional de Themisson dos Santos Vasconcelos e apresentação da ShieldWorks."
+  title: "Sobre | ShieldWorks",
+  description:
+    "Trajetória profissional e acadêmica de Themisson dos Santos Vasconcelos, com atuação em engenharia computacional, geomecânica, segurança operacional, pesquisa aplicada e sistemas institucionais."
 };
 
 const highlights = [
@@ -45,7 +46,7 @@ export default function SobrePage() {
               deformações, comportamento de materiais e validação de modelos numéricos.
             </p>
             <div className="mt-6">
-              <AcademicLinks />
+              <ProfessionalLinks />
             </div>
             <p className="mt-6 text-sm leading-7 text-graphite-700">
               A apresentação neste site tem caráter profissional pessoal. Ela não configura promoção institucional

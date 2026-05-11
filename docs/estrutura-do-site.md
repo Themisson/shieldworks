@@ -68,5 +68,5 @@ Conteúdos reutilizáveis ficam em `src/data/site.ts` para facilitar manutençã
 - Página de demonstrações técnicas.
 - Área restrita de sistemas.
 - Integração com e-mail profissional.
-- Inserção validada de Lattes, ORCID, Google Scholar e currículo em PDF.
+- Inserção validada de perfis acadêmicos e profissionais, como Lattes, ORCID, Google Acadêmico, LinkedIn e GitHub.
 - Publicação de sistemas em subdomínios próprios.

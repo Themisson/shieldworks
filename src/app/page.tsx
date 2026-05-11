@@ -1,4 +1,5 @@
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { Badge } from "@/components/badge";
 import { ButtonLink } from "@/components/button-link";
 import { ServiceCard, SystemCard } from "@/components/card";
@@ -104,10 +105,10 @@ export default function Home() {
               description="A produção científica envolve geomecânica, engenharia de petróleo, estruturas, segurança operacional e tecnologia aplicada à gestão institucional."
             />
             <div className="mt-8">
-              <ButtonLink href={brand.lattes} variant="secondary">Acessar Currículo Lattes</ButtonLink>
+              <ProfessionalLinks />
             </div>
             <p className="mt-4 text-xs text-graphite-500">
-              Espaços futuros: ORCID, Google Scholar, ResearchGate e currículo resumido em PDF.
+              Produção acadêmica, identificação científica e repositórios profissionais.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">

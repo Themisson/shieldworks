@@ -51,7 +51,8 @@ Placeholders preparados:
 - Currículo Lattes
 - ORCID
 - Google Scholar
-- Currículo resumido em PDF
+- LinkedIn
+- GitHub
 - URL pública do site
 
 ## Formulários

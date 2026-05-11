@@ -11,6 +11,13 @@ import {
   ShieldCheck
 } from "lucide-react";
 
+export type ProfessionalLink = {
+  label: string;
+  href: string;
+  tooltip: string;
+  isPlaceholder?: boolean;
+};
+
 export const brand = {
   name: "ShieldWorks",
   tagline: "Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
@@ -19,9 +26,41 @@ export const brand = {
   lattesId: "5757459332162874",
   orcid: "https://orcid.org/0000-0002-1215-3691",
   orcidId: "0000-0002-1215-3691",
-  scholar: "[Inserir Google Scholar]",
-  resume: "[Inserir currículo resumido em PDF]"
+  scholar: "https://scholar.google.com/citations?user=qtuT18cAAAAJ&hl=pt-BR",
+  linkedin: "https://www.linkedin.com/in/themisson-vasconcelos-8a5b05183"
 };
+
+// Substituir pelo usuário real do GitHub quando definido.
+export const githubUrl = "https://github.com/SEU-USUARIO";
+
+export const professionalLinks: ProfessionalLink[] = [
+  {
+    label: "Lattes",
+    href: brand.lattes,
+    tooltip: "Acessar Currículo Lattes"
+  },
+  {
+    label: "ORCID",
+    href: brand.orcid,
+    tooltip: "Acessar perfil ORCID"
+  },
+  {
+    label: "Google Acadêmico",
+    href: brand.scholar,
+    tooltip: "Acessar Google Acadêmico"
+  },
+  {
+    label: "GitHub",
+    href: githubUrl,
+    tooltip: "Acessar GitHub",
+    isPlaceholder: true
+  },
+  {
+    label: "LinkedIn",
+    href: brand.linkedin,
+    tooltip: "Acessar LinkedIn"
+  }
+];
 
 export const navItems = [
   { label: "Início", href: "/" },

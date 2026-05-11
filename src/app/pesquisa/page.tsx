@@ -1,16 +1,36 @@
 import type { Metadata } from "next";
-import { AcademicLinks } from "@/components/academic-links";
+import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { Badge } from "@/components/badge";
 import { SectionTitle } from "@/components/section-title";
 import { researchAreas } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Pesquisa",
-  description: "Pesquisa aplicada em geomecânica, engenharia de petróleo, estruturas e métodos computacionais."
+  title: "Pesquisa | ShieldWorks",
+  description:
+    "Pesquisa aplicada em geomecânica salina, engenharia de poços, modelagem numérica, ABAQUS, C++, Python, Método dos Elementos Finitos, Método dos Elementos de Contorno e métodos computacionais."
 };
 
-const methods = ["BEM", "FEM", "MPM", "FVM", "ABAQUS", "C++", "Python", "Simulação numérica", "Modelagem computacional", "Análise de dados"];
-const applications = ["Geomecânica salina", "Engenharia de poços", "Rochas evaporíticas", "Estruturas", "Segurança operacional", "Gestão institucional"];
+const methods = [
+  "Método dos Elementos Finitos",
+  "Método dos Elementos de Contorno",
+  "Material Point Method",
+  "FVM",
+  "ABAQUS",
+  "C++",
+  "Python",
+  "Simulação numérica",
+  "Modelagem computacional"
+];
+const applications = [
+  "Geomecânica salina",
+  "Engenharia de poços",
+  "Estruturas",
+  "Comportamento de rochas",
+  "Fluência",
+  "Problemas acoplados",
+  "Segurança operacional",
+  "Tecnologia institucional"
+];
 
 export default function PesquisaPage() {
   return (
@@ -50,12 +70,11 @@ export default function PesquisaPage() {
         <div className="mt-10 rounded-lg bg-graphite-50 p-6">
           <h2 className="text-lg font-semibold text-graphite-900">Produção científica resumida</h2>
           <p className="mt-3 text-sm leading-6 text-graphite-600">
-            Este espaço foi preparado para receber uma síntese validada do Currículo Lattes, sem listar artigos
-            completos neste momento e sem criar uma página independente de artigos. A produção completa e atualizada
-            pode ser consultada no Currículo Lattes e no ORCID.
+            A produção científica completa e atualizada pode ser consultada nos perfis acadêmicos oficiais, enquanto
+            os repositórios profissionais reúnem projetos, códigos e soluções técnicas em desenvolvimento.
           </p>
           <div className="mt-6">
-            <AcademicLinks />
+            <ProfessionalLinks />
           </div>
         </div>
       </div>

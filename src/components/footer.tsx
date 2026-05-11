@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AcademicLinks } from "@/components/academic-links";
+import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { Logo } from "@/components/logo";
 import { brand, navItems } from "@/data/site";
 
@@ -18,7 +18,7 @@ export function Footer() {
             representam, por si, sistemas oficiais de qualquer órgão público.
           </p>
           <div className="mt-5">
-            <AcademicLinks compact />
+            <ProfessionalLinks compact />
           </div>
         </div>
         <div>
