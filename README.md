@@ -62,7 +62,7 @@ Os formulários de contato e feedback já enviam dados para rotas internas:
 - `POST /api/contact`
 - `POST /api/feedback`
 
-As rotas fazem validação básica e retornam resposta JSON. Elas ainda não enviam e-mail nem gravam em banco de dados; essa integração deve ser feita em etapa posterior com provedor de e-mail, CRM, banco relacional ou serviço externo.
+As rotas fazem validação básica e retornam resposta JSON. O formulário de contato está preparado para envio por e-mail via Resend quando `RESEND_API_KEY`, `CONTACT_TO_EMAIL` e `CONTACT_FROM_EMAIL` estiverem configuradas no ambiente. Não versionar `.env.local`.
 
 ## GitHub
 
