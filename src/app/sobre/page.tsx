@@ -15,7 +15,7 @@ const highlights = [
   "Experiência com simulação numérica e métodos computacionais",
   "Desenvolvimento em C++ e Python",
   "Atuação docente, acadêmica e em gestão acadêmica",
-  "Instrutor de PCC e Metodologia Científica desde 2019",
+  "Instrutor de TCC e Metodologia Científica desde 2019",
   "Participacao em bancas e acompanhamento de trabalhos acadêmicos",
   "Desenvolvimento de sistemas institucionais e rotinas digitais"
 ];
@@ -67,8 +67,10 @@ export default function SobrePage() {
           <article className="rounded-lg border border-graphite-100 p-6">
             <h2 className="text-lg font-semibold text-graphite-900">Ensino e metodologia</h2>
             <p className="mt-3 text-sm leading-6 text-graphite-600">
-              Desde 2019 atua como instrutor de PCC e Metodologia Científica, acompanhando projetos, TCCs, artigos,
-              relatórios e preparação para bancas.
+              Desde 2019, atua como instrutor de TCC e Metodologia Científica nos cursos do Corpo de Bombeiros
+              Militar de Alagoas, tanto na formação acadêmica quanto na capacitação técnico-profissional,
+              acompanhando projetos, trabalhos de conclusão de curso, artigos científicos, relatórios técnicos e
+              preparação para bancas.
             </p>
           </article>
         </div>
