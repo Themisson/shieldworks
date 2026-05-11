@@ -10,7 +10,11 @@ type FormStatus = {
   message: string;
 };
 
+type ContactFieldErrors = Partial<Record<"name" | "email" | "interest" | "message", string>>;
+
 const initialStatus: FormStatus = { type: "idle", message: "" };
+const requiredContactMessage = "Preencha os campos obrigatórios: nome, e-mail, área de interesse e mensagem.";
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function formDataToObject(form: HTMLFormElement) {
   return Object.fromEntries(new FormData(form).entries());
@@ -50,13 +54,73 @@ function StatusMessage({ status }: { status: FormStatus }) {
   );
 }
 
+function requiredLabel(label: string) {
+  return (
+    <>
+      {label} <span aria-hidden="true">*</span>
+    </>
+  );
+}
+
+function fieldClassName(hasError: boolean) {
+  return `field mt-2 ${hasError ? "border-red-300 bg-red-50/40 focus:border-red-400 focus:ring-red-100" : ""}`;
+}
+
+function FieldError({ id, message }: { id: string; message?: string }) {
+  if (!message) {
+    return null;
+  }
+
+  return (
+    <p id={id} className="mt-1.5 text-xs leading-5 text-red-700">
+      {message}
+    </p>
+  );
+}
+
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>(initialStatus);
+  const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
   const { t } = useLocale();
+
+  function validateRequiredFields(form: HTMLFormElement) {
+    const data = formDataToObject(form) as Record<string, FormDataEntryValue>;
+    const errors: ContactFieldErrors = {};
+
+    if (!String(data.name ?? "").trim()) {
+      errors.name = t("Este campo é obrigatório.");
+    }
+
+    const email = String(data.email ?? "").trim();
+    if (!email) {
+      errors.email = t("Este campo é obrigatório.");
+    } else if (!emailPattern.test(email)) {
+      errors.email = t("Informe um e-mail válido.");
+    }
+
+    if (!String(data.interest ?? "").trim()) {
+      errors.interest = t("Este campo é obrigatório.");
+    }
+
+    if (!String(data.message ?? "").trim()) {
+      errors.message = t("Este campo é obrigatório.");
+    }
+
+    return errors;
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
+    const errors = validateRequiredFields(form);
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setStatus({ type: "error", message: t(requiredContactMessage) });
+      return;
+    }
+
+    setFieldErrors({});
     setStatus({ type: "loading", message: t("Enviando mensagem...") });
 
     try {
@@ -69,36 +133,79 @@ export function ContactForm() {
   }
 
   return (
-    <form className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm" aria-label={t("Formulário de contato")} onSubmit={handleSubmit}>
+    <form
+      className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm"
+      aria-label={t("Formulário de contato")}
+      onSubmit={handleSubmit}
+      noValidate
+    >
+      <p className="mb-5 text-xs leading-5 text-slate-500">{t("Campos marcados com * são obrigatórios.")}</p>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <label className="label" htmlFor="name">{t("Nome")}</label>
-          <input className="field mt-2" id="name" name="name" type="text" autoComplete="name" required />
+          <label className="label" htmlFor="name">{requiredLabel(t("Nome"))}</label>
+          <input
+            className={fieldClassName(Boolean(fieldErrors.name))}
+            id="name"
+            name="name"
+            type="text"
+            autoComplete="name"
+            required
+            aria-invalid={Boolean(fieldErrors.name)}
+            aria-describedby={fieldErrors.name ? "name-error" : undefined}
+          />
+          <FieldError id="name-error" message={fieldErrors.name} />
         </div>
         <div>
-          <label className="label" htmlFor="email">{t("E-mail")}</label>
-          <input className="field mt-2" id="email" name="email" type="email" autoComplete="email" required />
+          <label className="label" htmlFor="email">{requiredLabel(t("E-mail"))}</label>
+          <input
+            className={fieldClassName(Boolean(fieldErrors.email))}
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={fieldErrors.email ? "email-error" : undefined}
+          />
+          <FieldError id="email-error" message={fieldErrors.email} />
         </div>
         <div>
           <label className="label" htmlFor="phone">{t("Telefone/WhatsApp")}</label>
           <input className="field mt-2" id="phone" name="phone" type="tel" autoComplete="tel" />
         </div>
         <div>
-          <label className="label" htmlFor="institution">{t("Instituição, se houver")}</label>
-          <input className="field mt-2" id="institution" name="institution" type="text" />
+          <label className="label" htmlFor="institution">{t("Instituição")}</label>
+          <input className="field mt-2" id="institution" name="institution" type="text" autoComplete="organization" />
         </div>
         <div>
-          <label className="label" htmlFor="interest">{t("Área de interesse")}</label>
-          <select className="field mt-2" id="interest" name="interest" defaultValue="" required>
+          <label className="label" htmlFor="interest">{requiredLabel(t("Área de interesse"))}</label>
+          <select
+            className={fieldClassName(Boolean(fieldErrors.interest))}
+            id="interest"
+            name="interest"
+            defaultValue=""
+            required
+            aria-invalid={Boolean(fieldErrors.interest)}
+            aria-describedby={fieldErrors.interest ? "interest-error" : undefined}
+          >
             <option value="" disabled>{t("Selecione uma área")}</option>
             {interestOptions.map((option) => (
               <option key={option} value={option}>{t(option)}</option>
             ))}
           </select>
+          <FieldError id="interest-error" message={fieldErrors.interest} />
         </div>
         <div className="sm:col-span-2">
-          <label className="label" htmlFor="message">{t("Mensagem")}</label>
-          <textarea className="field mt-2 min-h-36" id="message" name="message" required />
+          <label className="label" htmlFor="message">{requiredLabel(t("Mensagem"))}</label>
+          <textarea
+            className={`${fieldClassName(Boolean(fieldErrors.message))} min-h-36`}
+            id="message"
+            name="message"
+            required
+            aria-invalid={Boolean(fieldErrors.message)}
+            aria-describedby={fieldErrors.message ? "message-error" : undefined}
+          />
+          <FieldError id="message-error" message={fieldErrors.message} />
         </div>
       </div>
       <p className="mt-4 text-xs leading-5 text-graphite-500">

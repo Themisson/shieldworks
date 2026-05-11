@@ -42,8 +42,8 @@ export function validateContactPayload(input: unknown): { data?: ContactPayload;
     message: asString(payload.message)
   };
 
-  if (data.name.length < 3) {
-    return { error: "Informe um nome com pelo menos 3 caracteres." };
+  if (!data.name) {
+    return { error: "Informe o nome." };
   }
 
   if (!emailPattern.test(data.email)) {
@@ -51,11 +51,11 @@ export function validateContactPayload(input: unknown): { data?: ContactPayload;
   }
 
   if (!isKnownInterest(data.interest)) {
-    return { error: "Selecione uma área de interesse valida." };
+    return { error: "Selecione uma área de interesse válida." };
   }
 
-  if (data.message.length < 10) {
-    return { error: "Descreva a demanda com pelo menos 10 caracteres." };
+  if (!data.message) {
+    return { error: "Informe a mensagem." };
   }
 
   return { data };
@@ -86,7 +86,7 @@ export function validateFeedbackPayload(input: unknown): { data?: FeedbackPayloa
   }
 
   if (!isKnownInterest(data.interest)) {
-    return { error: "Selecione uma área de interesse valida." };
+    return { error: "Selecione uma área de interesse válida." };
   }
 
   return { data };

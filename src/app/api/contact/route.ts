@@ -4,6 +4,7 @@ import { validateContactPayload } from "@/lib/form-validation";
 
 const resendEndpoint = "https://api.resend.com/emails";
 const contactSubject = "Novo contato pelo site ShieldWorks";
+const invalidContactMessage = "Preencha os campos obrigatórios: nome, e-mail, área de interesse e mensagem.";
 
 function escapeHtml(value: string) {
   return value
@@ -109,14 +110,14 @@ export async function POST(request: Request) {
 
   if (result.error) {
     return NextResponse.json(
-      { ok: false, message: "Verifique os campos obrigatórios e tente novamente." },
+      { ok: false, message: invalidContactMessage },
       { status: 400 }
     );
   }
 
   if (!result.data) {
     return NextResponse.json(
-      { ok: false, message: "Verifique os campos obrigatórios e tente novamente." },
+      { ok: false, message: invalidContactMessage },
       { status: 400 }
     );
   }
