@@ -67,7 +67,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="rounded-lg border border-graphite-100 bg-white p-6 shadow-sm" aria-label="Formulário de contato" onSubmit={handleSubmit}>
+    <form className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm" aria-label="Formulário de contato" onSubmit={handleSubmit}>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label className="label" htmlFor="name">Nome</label>
@@ -129,7 +129,7 @@ export function FeedbackForm() {
   }
 
   return (
-    <form className="rounded-lg border border-graphite-100 bg-graphite-50 p-6" aria-label="Formulário de opinião" onSubmit={handleSubmit}>
+    <form className="rounded-2xl border border-slate-200/80 bg-slate-50 p-6 shadow-sm" aria-label="Formulário de opinião" onSubmit={handleSubmit}>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="feedback-name">Nome opcional</label>

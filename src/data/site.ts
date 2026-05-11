@@ -1,13 +1,17 @@
 import {
+  Activity,
   BarChart3,
   BookOpenCheck,
   Building2,
+  Code2,
   Cpu,
   FileBadge2,
+  FileText,
   FlaskConical,
   GraduationCap,
   LineChart,
   MonitorCog,
+  PanelsTopLeft,
   ShieldCheck
 } from "lucide-react";
 
@@ -114,13 +118,57 @@ export const practiceAreas = [
 ];
 
 export const featuredSolutions = [
-  "Simulação numérica e modelagem computacional",
-  "Desenvolvimento de sistemas web institucionais",
-  "Gestão acadêmica, documentos e certificados",
-  "Segurança operacional e gestão de riscos",
-  "Apoio metodológico e produção científica",
-  "Capacitação técnica futura"
+  {
+    title: "Engenharia Computacional",
+    description:
+      "Modelagem numérica, simulações em C++, Python e ABAQUS, análise de tensões, deformações e validação de modelos aplicados à engenharia.",
+    tags: ["C++", "Python", "ABAQUS", "Simulação"],
+    icon: Cpu
+  },
+  {
+    title: "Pesquisa Aplicada",
+    description:
+      "Estudos em geomecânica salina, engenharia de poços, estruturas e métodos computacionais aplicados a problemas técnicos complexos.",
+    tags: ["Geomecânica", "BEM", "FEM", "MPM"],
+    icon: FlaskConical
+  },
+  {
+    title: "Sistemas Institucionais",
+    description:
+      "Desenvolvimento de plataformas digitais para gestão acadêmica, automação documental, indicadores e apoio à tomada de decisão.",
+    tags: ["Gestão", "Dashboards", "Documentos"],
+    icon: PanelsTopLeft
+  },
+  {
+    title: "Segurança Operacional",
+    description:
+      "Aplicação de tecnologia, análise de risco, prevenção, monitoramento e soluções digitais voltadas à segurança e resposta operacional.",
+    tags: ["Riscos", "Prevenção", "Operações"],
+    icon: ShieldCheck
+  },
+  {
+    title: "Assessoria Acadêmica",
+    description:
+      "Apoio metodológico para projetos, TCCs, artigos científicos, relatórios técnicos, normalização e preparação para bancas.",
+    tags: ["TCC", "Artigos", "Metodologia"],
+    icon: GraduationCap
+  },
+  {
+    title: "Capacitação Técnica",
+    description:
+      "Frente futura para treinamentos em metodologia científica, segurança operacional, programação aplicada e métodos numéricos.",
+    tags: ["Cursos", "Métodos", "Segurança"],
+    icon: BookOpenCheck
+  }
 ];
+
+export const serviceIcons = {
+  computationalEngineering: Code2,
+  institutionalSystems: PanelsTopLeft,
+  operationalSafety: Activity,
+  academicAdvisory: FileText,
+  technicalTraining: BookOpenCheck
+};
 
 export const digitalProjects = [
   {

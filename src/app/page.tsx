@@ -1,8 +1,8 @@
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { Badge } from "@/components/badge";
 import { ButtonLink } from "@/components/button-link";
-import { ServiceCard, SystemCard } from "@/components/card";
+import { CompactCard, HighlightCard, ServiceCard, SystemCard } from "@/components/card";
 import { CTA } from "@/components/cta";
 import { SectionTitle } from "@/components/section-title";
 import {
@@ -34,11 +34,11 @@ export default function Home() {
               <ButtonLink href="/contato" variant="secondary">Solicitar contato</ButtonLink>
             </div>
           </div>
-          <div className="rounded-lg border border-graphite-100 bg-graphite-50 p-6 shadow-sm">
+          <div className="rounded-2xl border border-slate-200/80 bg-slate-50 p-6 shadow-sm">
             <p className="text-sm font-semibold uppercase tracking-wide text-petroleum-700">Atuação integrada</p>
             <div className="mt-6 space-y-4">
               {authorityAreas.map((area) => (
-                <div key={area} className="flex items-center gap-3 rounded-md bg-white p-4">
+                <div key={area} className="flex items-center gap-3 rounded-xl border border-slate-200/70 bg-white p-4 shadow-sm">
                   <CheckCircle2 className="h-5 w-5 text-signal" aria-hidden="true" />
                   <span className="text-sm font-medium text-graphite-800">{area}</span>
                 </div>
@@ -70,12 +70,9 @@ export default function Home() {
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionTitle eyebrow="Soluções" title="Frentes em destaque" description="Serviços e linhas de desenvolvimento preparados para demandas técnicas, acadêmicas e de gestão." />
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featuredSolutions.map((solution) => (
-              <div key={solution} className="flex items-start gap-3 rounded-lg border border-graphite-100 p-5">
-                <ArrowRight className="mt-0.5 h-5 w-5 shrink-0 text-petroleum-700" aria-hidden="true" />
-                <p className="text-sm font-medium leading-6 text-graphite-800">{solution}</p>
-              </div>
+              <HighlightCard key={solution.title} {...solution} />
             ))}
           </div>
         </div>
@@ -128,12 +125,10 @@ export default function Home() {
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {academicServices.map((service) => (
-              <div key={service} className="rounded-md bg-white p-4 text-sm font-medium text-graphite-700 shadow-sm">
-                {service}
-              </div>
+              <CompactCard key={service} title={service} />
             ))}
           </div>
-          <div className="mt-8 rounded-lg border border-petroleum-100 bg-petroleum-50 p-5 text-sm leading-6 text-petroleum-900">
+          <div className="mt-8 rounded-2xl border border-petroleum-100 bg-petroleum-50 p-5 text-sm leading-6 text-petroleum-900 shadow-sm">
             Os serviços possuem caráter consultivo, orientativo e revisional, respeitando a autoria, a integridade
             acadêmica e as normas das instituições de ensino.
           </div>

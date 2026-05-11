@@ -20,7 +20,7 @@ export default function ContatoPage() {
           <ContactForm />
           <div>
             <FeedbackForm />
-            <div className="mt-6 rounded-lg border border-graphite-100 p-6 text-sm leading-6 text-graphite-600">
+            <div className="mt-6 rounded-2xl border border-slate-200/80 bg-white p-6 text-sm leading-6 text-graphite-600 shadow-sm">
               Para versões futuras, esta página pode ser integrada a e-mail profissional, CRM simples, banco de dados,
               automações de resposta e área restrita de sistemas.
             </div>

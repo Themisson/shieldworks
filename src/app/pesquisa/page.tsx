@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { FlaskConical, Sigma, Target } from "lucide-react";
 import { ProfessionalLinks } from "@/components/ProfessionalLinks";
-import { Badge } from "@/components/badge";
+import { CardShell } from "@/components/card";
 import { SectionTitle } from "@/components/section-title";
 import { researchAreas } from "@/data/site";
 
@@ -41,33 +42,27 @@ export default function PesquisaPage() {
           title="Produção científica e técnica conectada à engenharia e segurança."
           description="A pesquisa aplicada envolve o uso de métodos numéricos e ferramentas computacionais como Método dos Elementos Finitos, Método dos Elementos de Contorno, Material Point Method, FVM, ABAQUS, C++ e Python, com aplicação em geomecânica salina, engenharia de poços, estruturas e segurança operacional."
         />
-        <div className="mt-10 grid gap-8 lg:grid-cols-3">
-          <article className="rounded-lg border border-graphite-100 p-6">
-            <h2 className="text-lg font-semibold text-graphite-900">Áreas de pesquisa</h2>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {researchAreas.map((area) => (
-                <Badge key={area}>{area}</Badge>
-              ))}
-            </div>
-          </article>
-          <article className="rounded-lg border border-graphite-100 p-6">
-            <h2 className="text-lg font-semibold text-graphite-900">Métodos utilizados</h2>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {methods.map((method) => (
-                <Badge key={method}>{method}</Badge>
-              ))}
-            </div>
-          </article>
-          <article className="rounded-lg border border-graphite-100 p-6">
-            <h2 className="text-lg font-semibold text-graphite-900">Aplicações práticas</h2>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {applications.map((application) => (
-                <Badge key={application}>{application}</Badge>
-              ))}
-            </div>
-          </article>
+        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          <CardShell
+            title="Áreas de pesquisa"
+            description="Eixos científicos e técnicos tratados com foco em aplicação, documentação e validação."
+            icon={FlaskConical}
+            tags={researchAreas}
+          />
+          <CardShell
+            title="Métodos utilizados"
+            description="Métodos numéricos, ferramentas computacionais e linguagens aplicadas à modelagem."
+            icon={Sigma}
+            tags={methods}
+          />
+          <CardShell
+            title="Aplicações práticas"
+            description="Problemas de engenharia, comportamento de materiais e segurança operacional."
+            icon={Target}
+            tags={applications}
+          />
         </div>
-        <div className="mt-10 rounded-lg bg-graphite-50 p-6">
+        <div className="mt-10 rounded-2xl border border-slate-200/80 bg-slate-50 p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-graphite-900">Produção científica resumida</h2>
           <p className="mt-3 text-sm leading-6 text-graphite-600">
             A produção científica completa e atualizada pode ser consultada nos perfis acadêmicos oficiais, enquanto

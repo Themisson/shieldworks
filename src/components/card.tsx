@@ -1,44 +1,124 @@
+import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 type CardProps = {
   title: string;
   description: string;
   icon?: LucideIcon;
+  tags?: string[];
+  kicker?: string;
 };
 
-export function ServiceCard({ title, description, icon: Icon }: CardProps) {
+type CardShellProps = CardProps & {
+  children?: ReactNode;
+  actionLabel?: string;
+  className?: string;
+};
+
+function TagList({ tags }: { tags?: string[] }) {
+  if (!tags?.length) {
+    return null;
+  }
+
   return (
-    <article className="rounded-lg border border-graphite-100 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft">
-      {Icon ? (
-        <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-md bg-petroleum-50 text-petroleum-700">
-          <Icon className="h-5 w-5" aria-hidden="true" />
-        </div>
+    <div className="mt-5 flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-600"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export function CardShell({ title, description, icon: Icon, tags, kicker, children, actionLabel, className = "" }: CardShellProps) {
+  return (
+    <article
+      className={`group flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md ${className}`}
+    >
+      <div className="flex items-start justify-between gap-4">
+        {Icon ? (
+          <div className="mb-5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-800 ring-1 ring-slate-200 transition-colors group-hover:bg-slate-900 group-hover:text-white">
+            <Icon className="h-5 w-5" aria-hidden="true" />
+          </div>
+        ) : null}
+        {kicker ? (
+          <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-500">
+            {kicker}
+          </span>
+        ) : null}
+      </div>
+      <h2 className="text-base font-semibold tracking-tight text-slate-950">{title}</h2>
+      <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+      <TagList tags={tags} />
+      {children ? <div className="mt-5">{children}</div> : null}
+      {actionLabel ? (
+        <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-petroleum-900">
+          {actionLabel}
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </span>
       ) : null}
-      <h2 className="text-lg font-semibold text-graphite-900">{title}</h2>
-      <p className="mt-3 text-sm leading-6 text-graphite-600">{description}</p>
     </article>
   );
 }
 
-export function SystemCard({ title, description, icon: Icon }: CardProps) {
+export function ServiceCard(props: CardProps) {
+  return <CardShell {...props} />;
+}
+
+export function HighlightCard(props: CardProps) {
+  return <CardShell {...props} />;
+}
+
+export function SystemCard(props: CardProps) {
+  return <CardShell {...props} actionLabel="Preparado para evolução" />;
+}
+
+export function ListCard({
+  title,
+  description,
+  items,
+  icon: Icon
+}: {
+  title: string;
+  description?: string;
+  items: string[];
+  icon?: LucideIcon;
+}) {
   return (
-    <article className="rounded-lg border border-graphite-100 bg-white p-6 shadow-sm">
-      <div className="flex items-start gap-4">
-        {Icon ? (
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-graphite-50 text-petroleum-700">
-            <Icon className="h-5 w-5" aria-hidden="true" />
-          </div>
-        ) : null}
-        <div>
-          <h2 className="text-base font-semibold text-graphite-900">{title}</h2>
-          <p className="mt-2 text-sm leading-6 text-graphite-600">{description}</p>
+    <CardShell
+      title={title}
+      description={description ?? "Frente estruturada para entregas técnicas, documentação clara e evolução conforme a demanda."}
+      icon={Icon}
+    >
+      <ul className="grid gap-2 sm:grid-cols-2">
+        {items.map((item) => (
+          <li
+            key={item}
+            className="flex items-start gap-2 rounded-xl border border-slate-200/70 bg-slate-50 px-3 py-2.5 text-sm leading-5 text-slate-700"
+          >
+            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-petroleum-700" aria-hidden="true" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </CardShell>
+  );
+}
+
+export function CompactCard({ title, icon: Icon }: { title: string; icon?: LucideIcon }) {
+  return (
+    <article className="group flex h-full items-start gap-3 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
+      {Icon ? (
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-800 ring-1 ring-slate-200 transition-colors group-hover:bg-slate-900 group-hover:text-white">
+          <Icon className="h-4 w-4" aria-hidden="true" />
         </div>
-      </div>
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-petroleum-900">
-        Preparado para evolucao
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
-      </span>
+      ) : null}
+      <h2 className="text-sm font-semibold leading-6 tracking-tight text-slate-900">{title}</h2>
     </article>
   );
 }

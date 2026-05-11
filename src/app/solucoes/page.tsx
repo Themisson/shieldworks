@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { ListCard } from "@/components/card";
 import { SectionTitle } from "@/components/section-title";
+import { serviceIcons } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Soluções",
@@ -21,23 +23,36 @@ const solutionBlocks = [
       "Validação de resultados numéricos",
       "Comparação entre simulação e soluções analíticas",
       "Relatórios técnicos de modelagem computacional"
-    ]
+    ],
+    icon: serviceIcons.computationalEngineering
   },
   {
     title: "Sistemas Institucionais",
-    items: ["Gestão acadêmica", "Emissão de certificados", "Controle de cursos e turmas", "Gestão de instrutores", "Formulários e avaliações", "Dashboards administrativos", "Geração automática de documentos"]
+    description:
+      "Plataformas para rotinas acadêmicas, documentos, indicadores administrativos e organização de dados institucionais.",
+    items: ["Gestão acadêmica", "Emissão de certificados", "Controle de cursos e turmas", "Gestão de instrutores", "Formulários e avaliações", "Dashboards administrativos", "Geração automática de documentos"],
+    icon: serviceIcons.institutionalSystems
   },
   {
     title: "Segurança Operacional e Gestão de Riscos",
-    items: ["Diagnóstico de risco", "Prevenção", "Resposta operacional", "Uso de tecnologia em emergências", "Drones e monitoramento", "Capacitações em segurança"]
+    description:
+      "Apoio técnico à prevenção, análise de riscos, monitoramento e resposta operacional com uso de tecnologia aplicada.",
+    items: ["Diagnóstico de risco", "Prevenção", "Resposta operacional", "Uso de tecnologia em emergências", "Drones e monitoramento", "Capacitações em segurança"],
+    icon: serviceIcons.operationalSafety
   },
   {
     title: "Assessoria Acadêmica e Científica",
-    items: ["Projetos de pesquisa", "TCC", "Artigos científicos", "Relatórios técnicos", "Metodologia", "Normalização", "Análise de dados", "Preparação para bancas"]
+    description:
+      "Acompanhamento consultivo para estruturação, revisão técnica, metodologia, normalização e apresentação de trabalhos.",
+    items: ["Projetos de pesquisa", "TCC", "Artigos científicos", "Relatórios técnicos", "Metodologia", "Normalização", "Análise de dados", "Preparação para bancas"],
+    icon: serviceIcons.academicAdvisory
   },
   {
     title: "Capacitação Técnica",
-    items: ["Metodologia científica", "PCC e TCC", "Segurança operacional", "Primeiros socorros/RCP", "Python para engenharia", "C++ para simulação numérica", "Métodos numéricos aplicados", "Geomecânica aplicada"]
+    description:
+      "Frente futura para cursos e treinamentos técnicos em metodologia, segurança, programação e simulação numérica.",
+    items: ["Metodologia científica", "TCC e trabalhos técnicos", "Segurança operacional", "Primeiros socorros/RCP", "Python para engenharia", "C++ para simulação numérica", "Métodos numéricos aplicados", "Geomecânica aplicada"],
+    icon: serviceIcons.technicalTraining
   }
 ];
 
@@ -52,17 +67,7 @@ export default function SolucoesPage() {
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {solutionBlocks.map((block) => (
-            <article key={block.title} className="rounded-lg border border-graphite-100 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-semibold text-graphite-900">{block.title}</h2>
-              {"description" in block ? <p className="mt-3 text-sm leading-6 text-graphite-600">{block.description}</p> : null}
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                {block.items.map((item) => (
-                  <li key={item} className="rounded-md bg-graphite-50 px-4 py-3 text-sm text-graphite-700">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </article>
+            <ListCard key={block.title} {...block} />
           ))}
         </div>
       </div>

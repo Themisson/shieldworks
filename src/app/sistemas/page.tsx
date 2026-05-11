@@ -29,11 +29,14 @@ export default function SistemasPage() {
           <ButtonLink href="/contato">Solicitar demonstração</ButtonLink>
           <ButtonLink href="/contato" variant="secondary">Entrar em contato</ButtonLink>
         </div>
-        <div className="mt-12 rounded-lg border border-graphite-100 bg-graphite-50 p-6">
+        <div className="mt-12 rounded-2xl border border-slate-200/80 bg-slate-50 p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-graphite-900">Arquitetura futura de subdomínios</h2>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {subdomains.map((domain) => (
-              <code key={domain} className="rounded-md bg-white px-3 py-3 text-sm text-petroleum-900">
+              <code
+                key={domain}
+                className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-medium text-petroleum-900 shadow-sm"
+              >
                 {domain}
               </code>
             ))}
