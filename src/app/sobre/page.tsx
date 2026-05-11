@@ -68,8 +68,8 @@ export default function SobrePage() {
             <h2 className="text-lg font-semibold text-graphite-900">Ensino e metodologia</h2>
             <p className="mt-3 text-sm leading-6 text-graphite-600">
               Desde 2019, atua como instrutor de TCC e Metodologia Científica nos cursos do Corpo de Bombeiros
-              Militar de Alagoas, tanto na formação acadêmica quanto na capacitação técnico-profissional,
-              acompanhando projetos, trabalhos de conclusão de curso, artigos científicos, relatórios técnicos e
+              Militar de Alagoas, contribuindo para a formação acadêmica e técnico-profissional por meio do
+              acompanhamento de projetos, trabalhos de conclusão de curso, artigos científicos, relatórios técnicos e
               preparação para bancas.
             </p>
           </article>
