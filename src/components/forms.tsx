@@ -22,13 +22,13 @@ async function submitForm(endpoint: string, form: HTMLFormElement) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formDataToObject(form))
   });
-  const body = (await response.json().catch(() => null)) as { message?: string } | null;
+  const data = (await response.json().catch(() => null)) as { ok?: boolean; message?: string } | null;
 
   if (!response.ok) {
-    throw new Error(body?.message || "Não foi possível enviar os dados.");
+    throw new Error(data?.message ?? "Não foi possível enviar os dados.");
   }
 
-  return body?.message || "Dados enviados com sucesso.";
+  return data?.message ?? "Dados enviados com sucesso.";
 }
 
 function StatusMessage({ status }: { status: FormStatus }) {

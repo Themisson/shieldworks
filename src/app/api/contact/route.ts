@@ -52,24 +52,29 @@ function buildContactEmail(data: ContactPayload) {
 }
 
 async function sendContactEmail(data: ContactPayload) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL;
+  const { text, html } = buildContactEmail(data);
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const contactToEmail = process.env.CONTACT_TO_EMAIL;
+  const contactFromEmail = process.env.CONTACT_FROM_EMAIL;
 
-  if (!apiKey || !to || !from) {
-    throw new Error("Envio de e-mail não configurado. Defina RESEND_API_KEY, CONTACT_TO_EMAIL e CONTACT_FROM_EMAIL.");
+  if (!resendApiKey || !contactToEmail || !contactFromEmail) {
+    console.error("Contact form: missing environment variables");
+    return {
+      ok: false,
+      status: 500,
+      message: "O envio de mensagens ainda não está configurado corretamente."
+    };
   }
 
-  const { text, html } = buildContactEmail(data);
   const response = await fetch(resendEndpoint, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${apiKey}`,
+      Authorization: `Bearer ${resendApiKey}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      from,
-      to,
+      from: contactFromEmail,
+      to: contactToEmail,
       subject: contactSubject,
       reply_to: data.email,
       text,
@@ -79,8 +84,23 @@ async function sendContactEmail(data: ContactPayload) {
 
   if (!response.ok) {
     const errorBody = (await response.json().catch(() => null)) as { message?: string; error?: string } | null;
-    throw new Error(errorBody?.message || errorBody?.error || "Não foi possível enviar o e-mail de contato.");
+    console.error("Contact form: resend error", {
+      status: response.status,
+      message: errorBody?.message || errorBody?.error || "Resend request failed"
+    });
+
+    return {
+      ok: false,
+      status: 502,
+      message: "Não foi possível enviar a mensagem no momento. Tente novamente mais tarde."
+    };
   }
+
+  return {
+    ok: true,
+    status: 200,
+    message: "Mensagem enviada com sucesso. Obrigado pelo contato."
+  };
 }
 
 export async function POST(request: Request) {
@@ -88,30 +108,36 @@ export async function POST(request: Request) {
   const result = validateContactPayload(payload);
 
   if (result.error) {
-    return NextResponse.json({ ok: false, message: result.error }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, message: "Verifique os campos obrigatórios e tente novamente." },
+      { status: 400 }
+    );
   }
 
   if (!result.data) {
-    return NextResponse.json({ ok: false, message: "Dados inválidos." }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, message: "Verifique os campos obrigatórios e tente novamente." },
+      { status: 400 }
+    );
   }
 
   try {
-    await sendContactEmail(result.data);
+    const emailResult = await sendContactEmail(result.data);
+    return NextResponse.json(
+      {
+        ok: emailResult.ok,
+        message: emailResult.message
+      },
+      { status: emailResult.status }
+    );
   } catch (error) {
+    console.error("Contact form: resend error", error);
     return NextResponse.json(
       {
         ok: false,
-        message: error instanceof Error ? error.message : "Não foi possível enviar a mensagem."
+        message: "Não foi possível enviar a mensagem no momento. Tente novamente mais tarde."
       },
       { status: 502 }
     );
   }
-
-  return NextResponse.json(
-    {
-      ok: true,
-      message: "Mensagem enviada com sucesso. Obrigado pelo contato."
-    },
-    { status: 200 }
-  );
 }
