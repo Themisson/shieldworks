@@ -48,8 +48,7 @@ export default function ContatoPage() {
               </div>
             </div>
             <div className="rounded-2xl border border-petroleum-100 bg-petroleum-50 p-5 text-sm leading-6 text-petroleum-900 shadow-sm">
-              O formulário está conectado a uma rota interna e preparado para integração futura com e-mail profissional,
-              CRM simples, banco de dados ou automações de resposta.
+              Envie sua mensagem. O contato será recebido pelo canal profissional da ShieldWorks.
             </div>
           </aside>
         </div>

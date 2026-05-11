@@ -41,6 +41,11 @@ export function Footer() {
           <Link href="/contato" className="mt-4 inline-flex text-sm font-semibold text-petroleum-900">
             Solicitar contato
           </Link>
+          <div className="mt-5">
+            <Link href="/privacidade" className="text-sm font-medium text-graphite-600 hover:text-petroleum-900">
+              Privacidade
+            </Link>
+          </div>
         </div>
       </div>
       <div className="border-t border-graphite-100 px-4 py-5 text-center text-xs text-graphite-500">
