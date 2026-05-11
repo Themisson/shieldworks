@@ -8,12 +8,12 @@ type CardProps = {
   icon?: LucideIcon;
   tags?: string[];
   kicker?: string;
+  className?: string;
 };
 
 type CardShellProps = CardProps & {
   children?: ReactNode;
   actionLabel?: string;
-  className?: string;
 };
 
 function TagList({ tags }: { tags?: string[] }) {

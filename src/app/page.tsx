@@ -15,6 +15,14 @@ import {
   researchAreas
 } from "@/data/site";
 
+const featuredCardLayout = [
+  "lg:col-span-2",
+  "lg:col-span-2",
+  "lg:col-span-2",
+  "lg:col-span-2 lg:col-start-2",
+  "lg:col-span-2"
+];
+
 export default function Home() {
   return (
     <>
@@ -69,10 +77,18 @@ export default function Home() {
 
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionTitle eyebrow="Soluções" title="Frentes em destaque" description="Serviços e linhas de desenvolvimento preparados para demandas técnicas, acadêmicas e de gestão." />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredSolutions.map((solution) => (
-              <HighlightCard key={solution.title} {...solution} />
+          <SectionTitle
+            eyebrow="Soluções"
+            title="Frentes em destaque"
+            description="Cinco frentes principais organizam a atuação técnica, científica, institucional e acadêmica da ShieldWorks."
+          />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+            {featuredSolutions.map((solution, index) => (
+              <HighlightCard
+                key={solution.title}
+                {...solution}
+                className={`min-h-[285px] ${featuredCardLayout[index] ?? "lg:col-span-2"}`}
+              />
             ))}
           </div>
         </div>

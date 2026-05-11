@@ -152,13 +152,6 @@ export const featuredSolutions = [
       "Apoio metodológico para projetos, TCCs, artigos científicos, relatórios técnicos, normalização e preparação para bancas.",
     tags: ["TCC", "Artigos", "Metodologia"],
     icon: GraduationCap
-  },
-  {
-    title: "Capacitação Técnica",
-    description:
-      "Frente futura para treinamentos em metodologia científica, segurança operacional, programação aplicada e métodos numéricos.",
-    tags: ["Cursos", "Métodos", "Segurança"],
-    icon: BookOpenCheck
   }
 ];
 
