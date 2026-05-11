@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
+import { FloatingFeedback } from "@/components/FloatingFeedback";
 import { Header } from "@/components/header";
 import { LocaleProvider } from "@/i18n/locale-provider";
 import "./globals.css";
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Header />
           <main>{children}</main>
           <Footer />
+          <FloatingFeedback />
         </LocaleProvider>
       </body>
     </html>

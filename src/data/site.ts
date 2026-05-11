@@ -34,8 +34,7 @@ export const brand = {
   linkedin: "https://www.linkedin.com/in/themisson-vasconcelos-8a5b05183"
 };
 
-// Placeholder seguro: substituir pelo usuário real do GitHub quando o perfil público estiver definido.
-export const githubUrl = "https://github.com/SEU-USUARIO";
+export const githubUrl = "https://github.com/Themisson";
 
 export const professionalLinks: ProfessionalLink[] = [
   {
@@ -56,8 +55,7 @@ export const professionalLinks: ProfessionalLink[] = [
   {
     label: "GitHub",
     href: githubUrl,
-    tooltip: "Acessar GitHub",
-    isPlaceholder: true
+    tooltip: "Acessar GitHub"
   },
   {
     label: "LinkedIn",
