@@ -77,7 +77,9 @@ export const translations: Record<string, string> = {
   "Capacitação técnica futura": "Future technical training",
 
   "Perfil técnico-profissional orientado por engenharia, pesquisa aplicada, segurança operacional, desenvolvimento computacional e ensino.": "Technical and professional profile oriented toward engineering, applied research, operational safety, computational development and teaching.",
+  "Competências": "Competencies",
   "Síntese profissional": "Professional summary",
+  "Atuação integrada entre carreira institucional, engenharia, pesquisa aplicada, desenvolvimento computacional, docência e soluções digitais.": "Integrated work spanning institutional career, engineering, applied research, computational development, teaching and digital solutions.",
   "Atuação integrada entre carreira militar, engenharia, pesquisa aplicada, desenvolvimento computacional, docência e soluções institucionais.": "Integrated work spanning military career, engineering, applied research, computational development, teaching and institutional solutions.",
   "Carreira institucional": "Institutional career",
   "Oficial do Corpo de Bombeiros Militar de Alagoas, com experiência operacional, administrativa e acadêmica.": "Officer of the Military Fire Department of Alagoas, with operational, administrative and academic experience.",
