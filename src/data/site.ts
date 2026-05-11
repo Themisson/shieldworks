@@ -165,31 +165,49 @@ export const digitalProjects = [
   {
     title: "Sistema de Gestão Acadêmica",
     description: "Plataforma para gestão de cursos, turmas, instrutores, discentes, matrículas, certificados, documentos e relatórios.",
+    status: "Em desenvolvimento",
+    statusDescription:
+      "Plataforma em evolução para gestão de cursos, turmas, instrutores, discentes, documentos acadêmicos e certificados.",
     icon: GraduationCap
   },
   {
     title: "Painel de Avaliação de Usuários",
     description: "Ferramenta para coleta, análise e visualização de avaliações, feedbacks e indicadores de satisfação.",
+    status: "Protótipo",
+    statusDescription:
+      "Modelo inicial para coleta, organização e análise de feedbacks, avaliações e percepções de usuários.",
     icon: BarChart3
   },
   {
     title: "Gerador de Certificados e Documentos",
     description: "Solução para emissão padronizada de certificados, atas, declarações e relatórios.",
+    status: "Protótipo",
+    statusDescription:
+      "Solução voltada à automação de documentos, certificados, declarações e registros acadêmicos padronizados.",
     icon: FileBadge2
   },
   {
     title: "Dashboard de Indicadores",
     description: "Painéis para acompanhamento de dados acadêmicos, administrativos ou operacionais.",
+    status: "Planejado",
+    statusDescription:
+      "Painéis gerenciais para acompanhamento de dados, indicadores institucionais e apoio à tomada de decisão.",
     icon: LineChart
   },
   {
     title: "Plataforma de Treinamentos",
     description: "Ambiente futuro para cursos, trilhas de capacitação e conteúdos técnicos.",
+    status: "Futuro módulo",
+    statusDescription:
+      "Ambiente previsto para organização de capacitações, trilhas de aprendizagem, materiais e acompanhamento de participação.",
     icon: BookOpenCheck
   },
   {
-    title: "Sistemas personalizados",
+    title: "Sistemas personalizados para instituições",
     description: "Projetos digitais sob medida para instituições, ensino, automação documental e decisão.",
+    status: "Sob demanda",
+    statusDescription:
+      "Desenvolvimento de soluções digitais específicas conforme necessidades operacionais, acadêmicas ou administrativas.",
     icon: MonitorCog
   }
 ];

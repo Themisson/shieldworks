@@ -22,7 +22,7 @@ export default function ContatoPage() {
         <SectionTitle
           eyebrow="Contato"
           title="Entre em contato"
-          description="Envie uma mensagem para tratar de soluções técnicas, sistemas, pesquisa aplicada, assessoria acadêmica ou demandas institucionais."
+          description="Envie sua mensagem para tratar de soluções técnicas, sistemas, pesquisa aplicada, assessoria acadêmica ou demandas institucionais. O contato será recebido pelo canal profissional da ShieldWorks."
         />
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
           <ContactForm />
@@ -48,7 +48,8 @@ export default function ContatoPage() {
               </div>
             </div>
             <div className="rounded-2xl border border-petroleum-100 bg-petroleum-50 p-5 text-sm leading-6 text-petroleum-900 shadow-sm">
-              Envie sua mensagem. O contato será recebido pelo canal profissional da ShieldWorks.
+              Utilize o formulário para apresentar sua necessidade, projeto, dúvida técnica ou proposta de contato.
+              Quanto mais clara for a descrição, melhor será a avaliação inicial da demanda.
             </div>
           </aside>
         </div>

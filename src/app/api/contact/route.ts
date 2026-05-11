@@ -110,7 +110,7 @@ export async function POST(request: Request) {
   return NextResponse.json(
     {
       ok: true,
-      message: "Mensagem enviada com sucesso."
+      message: "Mensagem enviada com sucesso. Obrigado pelo contato."
     },
     { status: 200 }
   );

@@ -18,10 +18,14 @@ export default function SistemasPage() {
         <SectionTitle
           eyebrow="Sistemas e Soluções Digitais"
           title="Plataformas digitais para gestão, ensino, documentos e decisão."
-          description="Desenvolvimento de plataformas digitais voltadas a gestão, ensino, automação documental, análise de dados e apoio à tomada de decisão."
+          description="Projetos digitais em diferentes estágios de maturidade, voltados a gestão, ensino, automação documental, análise de dados e apoio à tomada de decisão."
         />
+        <div className="mt-8 rounded-2xl border border-slate-200/80 bg-slate-50 p-5 text-sm leading-6 text-slate-600 shadow-sm">
+          Os sistemas apresentados são soluções, demonstrações e projetos da ShieldWorks em evolução, sem caracterização
+          como sistemas oficiais do CBMAL ou de qualquer órgão público.
+        </div>
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {digitalProjects.slice(0, 5).map((project) => (
+          {digitalProjects.map((project) => (
             <SystemCard key={project.title} {...project} />
           ))}
         </div>

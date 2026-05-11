@@ -23,15 +23,17 @@ export function Footer() {
         </div>
         <div>
           <h2 className="text-sm font-semibold text-graphite-900">Navegação</h2>
-          <ul className="mt-4 space-y-2 text-sm text-graphite-600">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="hover:text-petroleum-900">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <nav className="mt-4" aria-label="Navegação do rodapé">
+            <ul className="space-y-2 text-sm text-graphite-600">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="hover:text-petroleum-900">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
         <div>
           <h2 className="text-sm font-semibold text-graphite-900">Contato profissional</h2>

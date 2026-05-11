@@ -8,6 +8,8 @@ type CardProps = {
   icon?: LucideIcon;
   tags?: string[];
   kicker?: string;
+  status?: string;
+  statusDescription?: string;
   className?: string;
 };
 
@@ -35,7 +37,34 @@ function TagList({ tags }: { tags?: string[] }) {
   );
 }
 
-export function CardShell({ title, description, icon: Icon, tags, kicker, children, actionLabel, className = "" }: CardShellProps) {
+function statusClassName(status?: string) {
+  if (status === "Em desenvolvimento") {
+    return "border-petroleum-100 bg-petroleum-50 text-petroleum-900";
+  }
+
+  if (status === "Sob demanda") {
+    return "border-slate-300 bg-slate-900 text-white";
+  }
+
+  if (status === "Futuro módulo") {
+    return "border-slate-200 bg-white text-slate-700";
+  }
+
+  return "border-slate-200 bg-slate-50 text-slate-700";
+}
+
+export function CardShell({
+  title,
+  description,
+  icon: Icon,
+  tags,
+  kicker,
+  status,
+  statusDescription,
+  children,
+  actionLabel,
+  className = ""
+}: CardShellProps) {
   return (
     <article
       className={`group flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md ${className}`}
@@ -46,14 +75,19 @@ export function CardShell({ title, description, icon: Icon, tags, kicker, childr
             <Icon className="h-5 w-5" aria-hidden="true" />
           </div>
         ) : null}
-        {kicker ? (
-          <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-500">
-            {kicker}
+        {status || kicker ? (
+          <span className={`rounded-full border px-2.5 py-1 text-xs font-medium ${status ? statusClassName(status) : "border-slate-200 bg-slate-50 text-slate-500"}`}>
+            {status ?? kicker}
           </span>
         ) : null}
       </div>
       <h2 className="text-base font-semibold tracking-tight text-slate-950">{title}</h2>
       <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+      {statusDescription ? (
+        <p className="mt-4 rounded-xl border border-slate-200/70 bg-slate-50 px-3 py-2.5 text-xs leading-5 text-slate-600">
+          {statusDescription}
+        </p>
+      ) : null}
       <TagList tags={tags} />
       {children ? <div className="mt-5">{children}</div> : null}
       {actionLabel ? (
@@ -75,7 +109,7 @@ export function HighlightCard(props: CardProps) {
 }
 
 export function SystemCard(props: CardProps) {
-  return <CardShell {...props} actionLabel="Preparado para evolução" />;
+  return <CardShell {...props} />;
 }
 
 export function ListCard({

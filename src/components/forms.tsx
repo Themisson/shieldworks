@@ -102,7 +102,7 @@ export function ContactForm() {
         </div>
       </div>
       <p className="mt-4 text-xs leading-5 text-graphite-500">
-        {t("Envie sua mensagem. O contato será recebido pelo canal profissional da ShieldWorks.")}
+        {t("As informações enviadas serão utilizadas exclusivamente para análise da demanda e retorno profissional.")}
       </p>
       <StatusMessage status={status} />
       <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-petroleum-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-petroleum-900 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"}>

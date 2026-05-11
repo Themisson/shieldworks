@@ -73,7 +73,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-graphite-100 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Logo />
-        <nav className="hidden items-center gap-1.5 lg:flex" aria-label="Menu principal">
+        <nav className="hidden items-center gap-1.5 lg:flex" aria-label="Navegação principal">
           {navItems.map((item) => (
             <NavLink key={item.href} {...item} pathname={pathname} />
           ))}
@@ -106,50 +106,47 @@ export function Header() {
           {isOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
         </button>
       </div>
-      <div
-        className={`fixed inset-0 top-[73px] z-40 bg-graphite-900/20 backdrop-blur-sm transition-opacity lg:hidden ${
-          isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        aria-hidden={!isOpen}
-        onClick={closeMenu}
-      >
-        <nav
-          id="mobile-navigation"
-          className={`ml-auto h-[calc(100vh-73px)] w-full max-w-sm border-l border-slate-200 bg-white p-5 shadow-soft transition-transform duration-200 ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          aria-label="Menu mobile"
-          onClick={(event) => event.stopPropagation()}
+      {isOpen ? (
+        <div
+          className="fixed inset-0 top-[73px] z-40 bg-graphite-900/20 backdrop-blur-sm lg:hidden"
+          onClick={closeMenu}
         >
-          <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-            <span className="text-sm font-semibold text-graphite-900">Navegação</span>
-            <LanguageToggle />
-          </div>
-          <div className="mt-4 grid gap-1">
-            {navItems.map((item) => (
-              <NavLink key={item.href} {...item} pathname={pathname} variant="mobile" onClick={closeMenu} />
-            ))}
-          </div>
-          <div className="mt-6 grid gap-3 border-t border-slate-200 pt-5">
-            <Link
-              href="/sistemas"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-graphite-700 transition-colors hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-4 focus:ring-petroleum-100"
-              onClick={closeMenu}
-            >
-              Acessar sistemas
-              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-            </Link>
-            <Link
-              href="/contato"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-petroleum-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-petroleum-800 hover:shadow-md focus:outline-none focus:ring-4 focus:ring-petroleum-100"
-              onClick={closeMenu}
-            >
-              Contato
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </nav>
-      </div>
+          <nav
+            id="mobile-navigation"
+            className="ml-auto h-[calc(100vh-73px)] w-full max-w-sm border-l border-slate-200 bg-white p-5 shadow-soft"
+            aria-label="Navegação mobile"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+              <span className="text-sm font-semibold text-graphite-900">Menu</span>
+              <LanguageToggle />
+            </div>
+            <div className="mt-4 grid gap-1">
+              {navItems.map((item) => (
+                <NavLink key={item.href} {...item} pathname={pathname} variant="mobile" onClick={closeMenu} />
+              ))}
+            </div>
+            <div className="mt-6 grid gap-3 border-t border-slate-200 pt-5">
+              <Link
+                href="/sistemas"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-graphite-700 transition-colors hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-4 focus:ring-petroleum-100"
+                onClick={closeMenu}
+              >
+                Acessar sistemas
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/contato"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-petroleum-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-petroleum-800 hover:shadow-md focus:outline-none focus:ring-4 focus:ring-petroleum-100"
+                onClick={closeMenu}
+              >
+                Contato
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }
