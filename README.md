@@ -54,6 +54,15 @@ Placeholders preparados:
 - Currículo resumido em PDF
 - URL pública do site
 
+## Formulários
+
+Os formulários de contato e feedback já enviam dados para rotas internas:
+
+- `POST /api/contact`
+- `POST /api/feedback`
+
+As rotas fazem validação básica e retornam resposta JSON. Elas ainda não enviam e-mail nem gravam em banco de dados; essa integração deve ser feita em etapa posterior com provedor de e-mail, CRM, banco relacional ou serviço externo.
+
 ## GitHub
 
 Se a GitHub CLI estiver autenticada:

@@ -1,9 +1,73 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
 import { Send } from "lucide-react";
 import { interestOptions } from "@/data/site";
 
-export function ContactForm() {
+type FormStatus = {
+  type: "idle" | "loading" | "success" | "error";
+  message: string;
+};
+
+const initialStatus: FormStatus = { type: "idle", message: "" };
+
+function formDataToObject(form: HTMLFormElement) {
+  return Object.fromEntries(new FormData(form).entries());
+}
+
+async function submitForm(endpoint: string, form: HTMLFormElement) {
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formDataToObject(form))
+  });
+  const body = (await response.json().catch(() => null)) as { message?: string } | null;
+
+  if (!response.ok) {
+    throw new Error(body?.message || "Nao foi possivel enviar os dados.");
+  }
+
+  return body?.message || "Dados enviados com sucesso.";
+}
+
+function StatusMessage({ status }: { status: FormStatus }) {
+  if (status.type === "idle") {
+    return null;
+  }
+
+  const className =
+    status.type === "success"
+      ? "border-signal/20 bg-signal/10 text-petroleum-900"
+      : status.type === "error"
+        ? "border-red-200 bg-red-50 text-red-800"
+        : "border-graphite-100 bg-graphite-50 text-graphite-600";
+
   return (
-    <form className="rounded-lg border border-graphite-100 bg-white p-6 shadow-sm" aria-label="Formulario de contato">
+    <div className={`mt-5 rounded-md border px-4 py-3 text-sm ${className}`} aria-live="polite">
+      {status.message}
+    </div>
+  );
+}
+
+export function ContactForm() {
+  const [status, setStatus] = useState<FormStatus>(initialStatus);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setStatus({ type: "loading", message: "Enviando mensagem..." });
+
+    try {
+      const message = await submitForm("/api/contact", form);
+      form.reset();
+      setStatus({ type: "success", message });
+    } catch (error) {
+      setStatus({ type: "error", message: error instanceof Error ? error.message : "Erro inesperado." });
+    }
+  }
+
+  return (
+    <form className="rounded-lg border border-graphite-100 bg-white p-6 shadow-sm" aria-label="Formulario de contato" onSubmit={handleSubmit}>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label className="label" htmlFor="name">Nome</label>
@@ -23,7 +87,7 @@ export function ContactForm() {
         </div>
         <div>
           <label className="label" htmlFor="interest">Area de interesse</label>
-          <select className="field mt-2" id="interest" name="interest" defaultValue="">
+          <select className="field mt-2" id="interest" name="interest" defaultValue="" required>
             <option value="" disabled>Selecione uma area</option>
             {interestOptions.map((option) => (
               <option key={option}>{option}</option>
@@ -36,27 +100,44 @@ export function ContactForm() {
         </div>
       </div>
       <p className="mt-4 text-xs leading-5 text-graphite-500">
-        Formulario preparado para integracao futura com API, e-mail, banco de dados ou plataforma externa.
+        Formulario conectado a uma rota interna, preparado para integracao futura com e-mail, banco de dados ou plataforma externa.
       </p>
-      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-petroleum-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-petroleum-900" type="submit">
+      <StatusMessage status={status} />
+      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-petroleum-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-petroleum-900 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"}>
         <Send className="h-4 w-4" aria-hidden="true" />
-        Enviar mensagem
+        {status.type === "loading" ? "Enviando..." : "Enviar mensagem"}
       </button>
     </form>
   );
 }
 
 export function FeedbackForm() {
+  const [status, setStatus] = useState<FormStatus>(initialStatus);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setStatus({ type: "loading", message: "Registrando feedback..." });
+
+    try {
+      const message = await submitForm("/api/feedback", form);
+      form.reset();
+      setStatus({ type: "success", message });
+    } catch (error) {
+      setStatus({ type: "error", message: error instanceof Error ? error.message : "Erro inesperado." });
+    }
+  }
+
   return (
-    <form className="rounded-lg border border-graphite-100 bg-graphite-50 p-6" aria-label="Formulario de opiniao">
+    <form className="rounded-lg border border-graphite-100 bg-graphite-50 p-6" aria-label="Formulario de opiniao" onSubmit={handleSubmit}>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="feedback-name">Nome opcional</label>
-          <input className="field mt-2" id="feedback-name" name="feedback-name" type="text" />
+          <input className="field mt-2" id="feedback-name" name="name" type="text" />
         </div>
         <div>
           <label className="label" htmlFor="feedback-email">E-mail opcional</label>
-          <input className="field mt-2" id="feedback-email" name="feedback-email" type="email" />
+          <input className="field mt-2" id="feedback-email" name="email" type="email" />
         </div>
         <div>
           <label className="label" htmlFor="rating">Nota de 1 a 5</label>
@@ -68,7 +149,7 @@ export function FeedbackForm() {
         </div>
         <div>
           <label className="label" htmlFor="feedback-interest">Area de interesse</label>
-          <select className="field mt-2" id="feedback-interest" name="feedback-interest" defaultValue="">
+          <select className="field mt-2" id="feedback-interest" name="interest" defaultValue="" required>
             <option value="" disabled>Selecione uma area</option>
             {interestOptions.map((option) => (
               <option key={option}>{option}</option>
@@ -80,8 +161,9 @@ export function FeedbackForm() {
           <textarea className="field mt-2 min-h-28" id="comment" name="comment" />
         </div>
       </div>
-      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md border border-petroleum-700 px-5 py-2.5 text-sm font-semibold text-petroleum-900 transition hover:bg-petroleum-50" type="submit">
-        Registrar feedback
+      <StatusMessage status={status} />
+      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md border border-petroleum-700 px-5 py-2.5 text-sm font-semibold text-petroleum-900 transition hover:bg-petroleum-50 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"}>
+        {status.type === "loading" ? "Registrando..." : "Registrar feedback"}
       </button>
     </form>
   );
