@@ -119,10 +119,19 @@ O repositório pode ser público se não houver dados sensíveis. Caso sejam adi
 
 Documentação:
 
-- `docs/deploy-vercel.md`
+- `docs/DEPLOY-VERCEL.md`
 - `docs/deploy-digitalocean.md`
 - `docs/dominio-e-publicacao.md`
 - `docs/estrutura-do-site.md`
+
+## Documentação interna
+
+- `docs/CONTINUIDADE-DESENVOLVIMENTO.md`
+- `docs/SETUP-LOCAL.md`
+- `docs/VARIAVEIS-AMBIENTE.md`
+- `docs/DEPLOY-VERCEL.md`
+- `docs/INSIGHTS.md`
+- `docs/ROADMAP.md`
 
 ## Segurança
 
