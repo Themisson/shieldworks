@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   return NextResponse.json(
     {
       ok: true,
-      message: "Mensagem recebida. A integracao com e-mail ou banco de dados pode ser ativada na proxima etapa."
+      message: "Mensagem recebida. A integração com e-mail ou banco de dados pode ser ativada na próxima etapa."
     },
     { status: 202 }
   );

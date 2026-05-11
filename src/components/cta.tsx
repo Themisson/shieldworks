@@ -7,8 +7,8 @@ type CTAProps = {
 };
 
 export function CTA({
-  title = "Tem uma demanda tecnica, academica ou institucional que precisa se transformar em uma solucao pratica?",
-  description = "A ShieldWorks foi estruturada para organizar demandas complexas em projetos objetivos, aplicaveis e bem documentados.",
+  title = "Tem uma demanda técnica, acadêmica ou institucional que precisa se transformar em uma solução prática?",
+  description = "A ShieldWorks foi estruturada para organizar demandas complexas em projetos objetivos, aplicáveis e bem documentados.",
   action = "Vamos conversar"
 }: CTAProps) {
   return (

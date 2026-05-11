@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "ShieldWorks",
     short_name: "ShieldWorks",
-    description: "Engenharia, Pesquisa, Seguranca e Tecnologia Aplicada",
+    description: "Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

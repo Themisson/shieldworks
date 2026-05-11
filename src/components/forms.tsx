@@ -24,7 +24,7 @@ async function submitForm(endpoint: string, form: HTMLFormElement) {
   const body = (await response.json().catch(() => null)) as { message?: string } | null;
 
   if (!response.ok) {
-    throw new Error(body?.message || "Nao foi possivel enviar os dados.");
+    throw new Error(body?.message || "Não foi possível enviar os dados.");
   }
 
   return body?.message || "Dados enviados com sucesso.";
@@ -67,7 +67,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="rounded-lg border border-graphite-100 bg-white p-6 shadow-sm" aria-label="Formulario de contato" onSubmit={handleSubmit}>
+    <form className="rounded-lg border border-graphite-100 bg-white p-6 shadow-sm" aria-label="Formulário de contato" onSubmit={handleSubmit}>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label className="label" htmlFor="name">Nome</label>
@@ -82,13 +82,13 @@ export function ContactForm() {
           <input className="field mt-2" id="phone" name="phone" type="tel" autoComplete="tel" />
         </div>
         <div>
-          <label className="label" htmlFor="institution">Instituicao, se houver</label>
+          <label className="label" htmlFor="institution">Instituição, se houver</label>
           <input className="field mt-2" id="institution" name="institution" type="text" />
         </div>
         <div>
-          <label className="label" htmlFor="interest">Area de interesse</label>
+          <label className="label" htmlFor="interest">Área de interesse</label>
           <select className="field mt-2" id="interest" name="interest" defaultValue="" required>
-            <option value="" disabled>Selecione uma area</option>
+            <option value="" disabled>Selecione uma área</option>
             {interestOptions.map((option) => (
               <option key={option}>{option}</option>
             ))}
@@ -100,7 +100,7 @@ export function ContactForm() {
         </div>
       </div>
       <p className="mt-4 text-xs leading-5 text-graphite-500">
-        Formulario conectado a uma rota interna, preparado para integracao futura com e-mail, banco de dados ou plataforma externa.
+        Formulário conectado a uma rota interna, preparado para integração futura com e-mail, banco de dados ou plataforma externa.
       </p>
       <StatusMessage status={status} />
       <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-petroleum-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-petroleum-900 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"}>
@@ -129,7 +129,7 @@ export function FeedbackForm() {
   }
 
   return (
-    <form className="rounded-lg border border-graphite-100 bg-graphite-50 p-6" aria-label="Formulario de opiniao" onSubmit={handleSubmit}>
+    <form className="rounded-lg border border-graphite-100 bg-graphite-50 p-6" aria-label="Formulário de opinião" onSubmit={handleSubmit}>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="feedback-name">Nome opcional</label>
@@ -148,16 +148,16 @@ export function FeedbackForm() {
           </select>
         </div>
         <div>
-          <label className="label" htmlFor="feedback-interest">Area de interesse</label>
+          <label className="label" htmlFor="feedback-interest">Área de interesse</label>
           <select className="field mt-2" id="feedback-interest" name="interest" defaultValue="" required>
-            <option value="" disabled>Selecione uma area</option>
+            <option value="" disabled>Selecione uma área</option>
             {interestOptions.map((option) => (
               <option key={option}>{option}</option>
             ))}
           </select>
         </div>
         <div className="sm:col-span-2">
-          <label className="label" htmlFor="comment">Comentario</label>
+          <label className="label" htmlFor="comment">Comentário</label>
           <textarea className="field mt-2 min-h-28" id="comment" name="comment" />
         </div>
       </div>

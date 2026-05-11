@@ -29,7 +29,7 @@ function isKnownInterest(value: string) {
 
 export function validateContactPayload(input: unknown): { data?: ContactPayload; error?: string } {
   if (!input || typeof input !== "object") {
-    return { error: "Dados invalidos." };
+    return { error: "Dados inválidos." };
   }
 
   const payload = input as Record<string, unknown>;
@@ -47,11 +47,11 @@ export function validateContactPayload(input: unknown): { data?: ContactPayload;
   }
 
   if (!emailPattern.test(data.email)) {
-    return { error: "Informe um e-mail valido." };
+    return { error: "Informe um e-mail válido." };
   }
 
   if (!isKnownInterest(data.interest)) {
-    return { error: "Selecione uma area de interesse valida." };
+    return { error: "Selecione uma área de interesse valida." };
   }
 
   if (data.message.length < 10) {
@@ -63,7 +63,7 @@ export function validateContactPayload(input: unknown): { data?: ContactPayload;
 
 export function validateFeedbackPayload(input: unknown): { data?: FeedbackPayload; error?: string } {
   if (!input || typeof input !== "object") {
-    return { error: "Dados invalidos." };
+    return { error: "Dados inválidos." };
   }
 
   const payload = input as Record<string, unknown>;
@@ -78,7 +78,7 @@ export function validateFeedbackPayload(input: unknown): { data?: FeedbackPayloa
   };
 
   if (email && !emailPattern.test(email)) {
-    return { error: "Informe um e-mail valido ou deixe o campo em branco." };
+    return { error: "Informe um e-mail válido ou deixe o campo em branco." };
   }
 
   if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
@@ -86,7 +86,7 @@ export function validateFeedbackPayload(input: unknown): { data?: FeedbackPayloa
   }
 
   if (!isKnownInterest(data.interest)) {
-    return { error: "Selecione uma area de interesse valida." };
+    return { error: "Selecione uma área de interesse valida." };
   }
 
   return { data };

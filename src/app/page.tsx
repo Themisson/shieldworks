@@ -22,19 +22,19 @@ export default function Home() {
           <div>
             <Badge>{brand.tagline}</Badge>
             <h1 className="mt-7 max-w-4xl text-4xl font-semibold tracking-normal text-graphite-900 sm:text-5xl lg:text-6xl">
-              Engenharia, pesquisa, seguranca e tecnologia para transformar problemas complexos em solucoes aplicaveis.
+              Engenharia, pesquisa, segurança e tecnologia para transformar problemas complexos em soluções aplicáveis.
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-graphite-600">
-              Solucoes em engenharia computacional, geomecanica, seguranca operacional, sistemas institucionais,
-              pesquisa aplicada e assessoria academica.
+              Soluções em engenharia computacional, geomecânica, segurança operacional, sistemas institucionais,
+              pesquisa aplicada e assessoria acadêmica.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/solucoes">Conhecer solucoes</ButtonLink>
+              <ButtonLink href="/solucoes">Conhecer soluções</ButtonLink>
               <ButtonLink href="/contato" variant="secondary">Solicitar contato</ButtonLink>
             </div>
           </div>
           <div className="rounded-lg border border-graphite-100 bg-graphite-50 p-6 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-wide text-petroleum-700">Atuacao integrada</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-petroleum-700">Atuação integrada</p>
             <div className="mt-6 space-y-4">
               {authorityAreas.map((area) => (
                 <div key={area} className="flex items-center gap-3 rounded-md bg-white p-4">
@@ -44,8 +44,8 @@ export default function Home() {
               ))}
             </div>
             <p className="mt-6 text-sm leading-6 text-graphite-600">
-              Uma frente profissional voltada a transformar conhecimento tecnico, pesquisa e desenvolvimento
-              computacional em entregas claras, documentadas e utilizaveis.
+              Uma frente profissional voltada a transformar conhecimento técnico, pesquisa e desenvolvimento
+              computacional em entregas claras, documentadas e utilizáveis.
             </p>
           </div>
         </div>
@@ -54,9 +54,9 @@ export default function Home() {
       <section className="bg-graphite-50 py-18">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <SectionTitle
-            eyebrow="Areas de atuacao"
-            title="Um eixo tecnico com engenharia, pesquisa, seguranca e sistemas."
-            description="A ShieldWorks organiza frentes complementares para projetos tecnicos, academicos e institucionais com escopo bem definido."
+            eyebrow="Áreas de atuação"
+            title="Um eixo técnico com engenharia, pesquisa, segurança e sistemas."
+            description="A ShieldWorks organiza frentes complementares para projetos técnicos, acadêmicos e institucionais com escopo bem definido."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {practiceAreas.map((area) => (
@@ -68,7 +68,7 @@ export default function Home() {
 
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionTitle eyebrow="Solucoes" title="Frentes em destaque" description="Servicos e linhas de desenvolvimento preparados para demandas tecnicas, academicas e de gestao." />
+          <SectionTitle eyebrow="Soluções" title="Frentes em destaque" description="Serviços e linhas de desenvolvimento preparados para demandas técnicas, acadêmicas e de gestão." />
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {featuredSolutions.map((solution) => (
               <div key={solution} className="flex items-start gap-3 rounded-lg border border-graphite-100 p-5">
@@ -83,9 +83,9 @@ export default function Home() {
       <section className="bg-graphite-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            eyebrow="Laboratorio digital"
+            eyebrow="Laboratório digital"
             title="Sistemas e projetos digitais"
-            description="Exemplos de solucoes para gestao, ensino, automacao documental, indicadores e apoio a decisao. Demonstracoes academicas nao devem ser interpretadas como produtos oficiais de orgaos publicos."
+            description="Exemplos de soluções para gestão, ensino, automação documental, indicadores e apoio à decisão. Demonstrações acadêmicas não devem ser interpretadas como produtos oficiais de órgãos públicos."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {digitalProjects.map((project) => (
@@ -100,14 +100,14 @@ export default function Home() {
           <div>
             <SectionTitle
               eyebrow="Pesquisa aplicada"
-              title="Metodos computacionais conectados a problemas reais."
-              description="A producao cientifica envolve geomecanica, engenharia de petroleo, estruturas, seguranca operacional e tecnologia aplicada a gestao institucional."
+              title="Métodos computacionais conectados a problemas reais."
+              description="A produção científica envolve geomecânica, engenharia de petróleo, estruturas, segurança operacional e tecnologia aplicada à gestão institucional."
             />
             <div className="mt-8">
-              <ButtonLink href={brand.lattes} variant="secondary">Acessar Curriculo Lattes</ButtonLink>
+              <ButtonLink href={brand.lattes} variant="secondary">Acessar Currículo Lattes</ButtonLink>
             </div>
             <p className="mt-4 text-xs text-graphite-500">
-              Espacos futuros: ORCID, Google Scholar, ResearchGate e curriculo resumido em PDF.
+              Espaços futuros: ORCID, Google Scholar, ResearchGate e currículo resumido em PDF.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -121,9 +121,9 @@ export default function Home() {
       <section className="bg-graphite-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionTitle
-            eyebrow="Assessoria academica"
-            title="Apoio metodologico e producao cientifica com rigor."
-            description="Atuacao consultiva para estruturar projetos, TCCs, artigos, relatorios tecnicos, apresentacoes e submissao cientifica."
+            eyebrow="Assessoria acadêmica"
+            title="Apoio metodológico e produção científica com rigor."
+            description="Atuação consultiva para estruturar projetos, TCCs, artigos, relatórios técnicos, apresentações e submissão científica."
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {academicServices.map((service) => (
@@ -133,8 +133,8 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-8 rounded-lg border border-petroleum-100 bg-petroleum-50 p-5 text-sm leading-6 text-petroleum-900">
-            Os servicos possuem carater consultivo, orientativo e revisional, respeitando a autoria, a integridade
-            academica e as normas das instituicoes de ensino.
+            Os serviços possuem caráter consultivo, orientativo e revisional, respeitando a autoria, a integridade
+            acadêmica e as normas das instituições de ensino.
           </div>
         </div>
       </section>

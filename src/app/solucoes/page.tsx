@@ -2,30 +2,30 @@ import type { Metadata } from "next";
 import { SectionTitle } from "@/components/section-title";
 
 export const metadata: Metadata = {
-  title: "Solucoes",
-  description: "Solucoes em engenharia computacional, sistemas institucionais, seguranca operacional e assessoria academica."
+  title: "Soluções",
+  description: "Soluções em engenharia computacional, sistemas institucionais, segurança operacional e assessoria acadêmica."
 };
 
 const solutionBlocks = [
   {
     title: "Engenharia Computacional",
-    items: ["Modelagem numerica", "Simulacoes em C++ e Python", "Analise de tensoes e deformacoes", "Geomecanica aplicada", "Automacao de calculos tecnicos", "Validacao de modelos numericos"]
+    items: ["Modelagem numérica", "Simulacoes em C++ e Python", "Análise de tensoes e deformacoes", "Geomecânica aplicada", "Automação de cálculos técnicos", "Validacao de modelos numéricos"]
   },
   {
     title: "Sistemas Institucionais",
-    items: ["Gestao academica", "Emissao de certificados", "Controle de cursos e turmas", "Gestao de instrutores", "Formularios e avaliacoes", "Dashboards administrativos", "Geracao automatica de documentos"]
+    items: ["Gestão acadêmica", "Emissão de certificados", "Controle de cursos e turmas", "Gestão de instrutores", "Formulários e avaliações", "Dashboards administrativos", "Geração automática de documentos"]
   },
   {
-    title: "Seguranca Operacional e Gestao de Riscos",
-    items: ["Diagnostico de risco", "Prevencao", "Resposta operacional", "Uso de tecnologia em emergencias", "Drones e monitoramento", "Capacitacoes em seguranca"]
+    title: "Segurança Operacional e Gestão de Riscos",
+    items: ["Diagnóstico de risco", "Prevenção", "Resposta operacional", "Uso de tecnologia em emergências", "Drones e monitoramento", "Capacitações em segurança"]
   },
   {
-    title: "Assessoria Academica e Cientifica",
-    items: ["Projetos de pesquisa", "TCC", "Artigos cientificos", "Relatorios tecnicos", "Metodologia", "Normalizacao", "Analise de dados", "Preparacao para bancas"]
+    title: "Assessoria Acadêmica e Científica",
+    items: ["Projetos de pesquisa", "TCC", "Artigos científicos", "Relatórios técnicos", "Metodologia", "Normalização", "Análise de dados", "Preparação para bancas"]
   },
   {
-    title: "Capacitacao Tecnica",
-    items: ["Metodologia cientifica", "PCC e TCC", "Seguranca operacional", "Primeiros socorros/RCP", "Python para engenharia", "C++ para simulacao numerica", "Metodos numericos aplicados", "Geomecanica aplicada"]
+    title: "Capacitação Técnica",
+    items: ["Metodologia científica", "PCC e TCC", "Segurança operacional", "Primeiros socorros/RCP", "Python para engenharia", "C++ para simulação numérica", "Métodos numéricos aplicados", "Geomecânica aplicada"]
   }
 ];
 
@@ -34,9 +34,9 @@ export default function SolucoesPage() {
     <section className="bg-white py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          eyebrow="Solucoes"
-          title="Servicos estruturados para demandas tecnicas, digitais e academicas."
-          description="Cada frente pode ser tratada como consultoria, projeto tecnico, demonstracao, prototipo, documento tecnico ou sistema evolutivo."
+          eyebrow="Soluções"
+          title="Serviços estruturados para demandas técnicas, digitais e acadêmicas."
+          description="Cada frente pode ser tratada como consultoria, projeto técnico, demonstração, protótipo, documento técnico ou sistema evolutivo."
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {solutionBlocks.map((block) => (

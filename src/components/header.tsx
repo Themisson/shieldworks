@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { navItems } from "@/data/site";
+import { LanguageToggle } from "@/i18n/locale-provider";
 
 export function Header() {
   return (
@@ -20,6 +21,7 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
+          <LanguageToggle />
           <Link
             href="/sistemas"
             className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-graphite-600 transition hover:bg-graphite-50"
@@ -41,6 +43,7 @@ export function Header() {
             {item.label}
           </Link>
         ))}
+        <LanguageToggle />
       </nav>
     </header>
   );

@@ -13,137 +13,137 @@ import {
 
 export const brand = {
   name: "ShieldWorks",
-  tagline: "Engenharia, Pesquisa, Seguranca e Tecnologia Aplicada",
+  tagline: "Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
   owner: "Themisson dos Santos Vasconcelos",
-  lattes: "[Inserir link do Curriculo Lattes]",
+  lattes: "[Inserir link do Currículo Lattes]",
   orcid: "[Inserir ORCID]",
   scholar: "[Inserir Google Scholar]",
-  resume: "[Inserir curriculo resumido em PDF]"
+  resume: "[Inserir currículo resumido em PDF]"
 };
 
 export const navItems = [
-  { label: "Inicio", href: "/" },
+  { label: "Início", href: "/" },
   { label: "Sobre", href: "/sobre" },
-  { label: "Solucoes", href: "/solucoes" },
+  { label: "Soluções", href: "/solucoes" },
   { label: "Sistemas", href: "/sistemas" },
   { label: "Pesquisa", href: "/pesquisa" },
-  { label: "Assessoria Academica", href: "/assessoria-academica" },
+  { label: "Assessoria Acadêmica", href: "/assessoria-academica" },
   { label: "Contato", href: "/contato" }
 ];
 
 export const authorityAreas = [
   "Engenharia",
   "Pesquisa aplicada",
-  "Seguranca operacional",
-  "Desenvolvimento tecnologico",
-  "Ensino e metodologia cientifica"
+  "Segurança operacional",
+  "Desenvolvimento tecnológico",
+  "Ensino e metodologia científica"
 ];
 
 export const practiceAreas = [
   {
     title: "Engenharia Computacional",
-    description: "Modelagem, simulacao numerica, automacao de calculos tecnicos e validacao de modelos.",
+    description: "Modelagem, simulação numérica, automação de cálculos técnicos e validação de modelos.",
     icon: Cpu
   },
   {
-    title: "Geomecanica e Petroleo",
-    description: "Estudos aplicados a geomecanica salina, engenharia de pocos e comportamento de rochas.",
+    title: "Geomecânica e Petróleo",
+    description: "Estudos aplicados à geomecânica salina, engenharia de poços e comportamento de rochas.",
     icon: FlaskConical
   },
   {
-    title: "Seguranca Operacional",
-    description: "Diagnostico, prevencao, resposta operacional, gestao de riscos e apoio tecnologico.",
+    title: "Segurança Operacional",
+    description: "Diagnóstico, prevenção, resposta operacional, gestão de riscos e apoio tecnológico.",
     icon: ShieldCheck
   },
   {
     title: "Sistemas Institucionais",
-    description: "Plataformas para gestao academica, documentos, indicadores e rotinas administrativas.",
+    description: "Plataformas para gestão acadêmica, documentos, indicadores e rotinas administrativas.",
     icon: Building2
   },
   {
     title: "Pesquisa Aplicada",
-    description: "Conexao entre rigor cientifico, metodos computacionais e problemas tecnicos reais.",
+    description: "Conexão entre rigor científico, métodos computacionais e problemas técnicos reais.",
     icon: LineChart
   },
   {
-    title: "Assessoria Academica e Cientifica",
-    description: "Apoio consultivo para projetos, TCCs, artigos, relatorios, dados e bancas.",
+    title: "Assessoria Acadêmica e Científica",
+    description: "Apoio consultivo para projetos, TCCs, artigos, relatórios, dados e bancas.",
     icon: GraduationCap
   }
 ];
 
 export const featuredSolutions = [
-  "Simulacao numerica e modelagem computacional",
+  "Simulação numérica e modelagem computacional",
   "Desenvolvimento de sistemas web institucionais",
-  "Gestao academica, documentos e certificados",
-  "Seguranca operacional e gestao de riscos",
-  "Apoio metodologico e producao cientifica",
-  "Capacitacao tecnica futura"
+  "Gestão acadêmica, documentos e certificados",
+  "Segurança operacional e gestão de riscos",
+  "Apoio metodológico e produção científica",
+  "Capacitação técnica futura"
 ];
 
 export const digitalProjects = [
   {
-    title: "Sistema de Gestao Academica",
-    description: "Plataforma para gestao de cursos, turmas, instrutores, discentes, matriculas, certificados, documentos e relatorios.",
+    title: "Sistema de Gestão Acadêmica",
+    description: "Plataforma para gestão de cursos, turmas, instrutores, discentes, matrículas, certificados, documentos e relatórios.",
     icon: GraduationCap
   },
   {
-    title: "Painel de Avaliacao de Usuarios",
-    description: "Ferramenta para coleta, analise e visualizacao de avaliacoes, feedbacks e indicadores de satisfacao.",
+    title: "Painel de Avaliação de Usuários",
+    description: "Ferramenta para coleta, análise e visualização de avaliações, feedbacks e indicadores de satisfação.",
     icon: BarChart3
   },
   {
     title: "Gerador de Certificados e Documentos",
-    description: "Solucao para emissao padronizada de certificados, atas, declaracoes e relatorios.",
+    description: "Solução para emissão padronizada de certificados, atas, declarações e relatórios.",
     icon: FileBadge2
   },
   {
     title: "Dashboard de Indicadores",
-    description: "Paineis para acompanhamento de dados academicos, administrativos ou operacionais.",
+    description: "Painéis para acompanhamento de dados acadêmicos, administrativos ou operacionais.",
     icon: LineChart
   },
   {
     title: "Plataforma de Treinamentos",
-    description: "Ambiente futuro para cursos, trilhas de capacitacao e conteudos tecnicos.",
+    description: "Ambiente futuro para cursos, trilhas de capacitação e conteúdos técnicos.",
     icon: BookOpenCheck
   },
   {
     title: "Sistemas personalizados",
-    description: "Projetos digitais sob medida para instituicoes, ensino, automacao documental e decisao.",
+    description: "Projetos digitais sob medida para instituições, ensino, automação documental e decisão.",
     icon: MonitorCog
   }
 ];
 
 export const researchAreas = [
-  "Geomecanica Salina",
-  "Fluencia de rochas evaporiticas",
-  "Engenharia de pocos",
+  "Geomecânica Salina",
+  "Fluência de rochas evaporíticas",
+  "Engenharia de poços",
   "Leak-off test",
-  "Metodos numericos",
+  "Métodos numéricos",
   "BEM, FEM, MPM e FVM",
-  "Simulacao computacional",
-  "Seguranca operacional",
-  "Tecnologia aplicada a gestao institucional"
+  "Simulação computacional",
+  "Segurança operacional",
+  "Tecnologia aplicada à gestão institucional"
 ];
 
 export const academicServices = [
-  "Orientacao metodologica",
-  "Estruturacao de projetos de pesquisa",
-  "Apoio a elaboracao de TCC",
-  "Organizacao de artigos cientificos",
-  "Revisao tecnica e metodologica",
-  "Adequacao as normas ABNT",
-  "Analise e apresentacao de dados",
-  "Preparacao para bancas",
-  "Apoio a submissao de artigos"
+  "Orientação metodológica",
+  "Estruturação de projetos de pesquisa",
+  "Apoio à elaboração de TCC",
+  "Organização de artigos científicos",
+  "Revisão técnica e metodológica",
+  "Adequação às normas ABNT",
+  "Análise e apresentação de dados",
+  "Preparação para bancas",
+  "Apoio à submissão de artigos"
 ];
 
 export const interestOptions = [
   "Engenharia computacional",
   "Sistemas institucionais",
-  "Assessoria academica",
+  "Assessoria acadêmica",
   "Pesquisa aplicada",
-  "Seguranca operacional",
+  "Segurança operacional",
   "Cursos e treinamentos",
   "Outro"
 ];
