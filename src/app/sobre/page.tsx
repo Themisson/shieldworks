@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AcademicLinks } from "@/components/academic-links";
 import { SectionTitle } from "@/components/section-title";
 import { Badge } from "@/components/badge";
 
@@ -12,11 +13,11 @@ const highlights = [
   "Formação em Engenharia de Petróleo",
   "Mestrado e doutorado na área de estruturas e geomecânica",
   "Pesquisa em geomecânica salina e fluência de rochas evaporíticas",
-  "Experiência com simulação numérica e métodos computacionais",
+  "Experiência com simulação numérica, ABAQUS e métodos computacionais",
   "Desenvolvimento em C++ e Python",
   "Atuação docente, acadêmica e em gestão acadêmica",
   "Instrutor de TCC e Metodologia Científica desde 2019",
-  "Participacao em bancas e acompanhamento de trabalhos acadêmicos",
+  "Participação em bancas e acompanhamento de trabalhos acadêmicos",
   "Desenvolvimento de sistemas institucionais e rotinas digitais"
 ];
 
@@ -38,6 +39,15 @@ export default function SobrePage() {
               de soluções digitais.
             </p>
             <p className="mt-5 text-sm leading-7 text-graphite-700">
+              Sua atuação técnica envolve modelagem numérica computacional, geomecânica aplicada, simulação de
+              problemas estruturais e geomecânicos, desenvolvimento de códigos próprios em C++ e Python e utilização
+              de ferramentas consolidadas de análise, incluindo o ABAQUS, para estudos envolvendo tensões,
+              deformações, comportamento de materiais e validação de modelos numéricos.
+            </p>
+            <div className="mt-6">
+              <AcademicLinks />
+            </div>
+            <p className="mt-6 text-sm leading-7 text-graphite-700">
               A apresentação neste site tem caráter profissional pessoal. Ela não configura promoção institucional
               nem declara que eventuais sistemas, demonstrações ou projetos digitais sejam produtos oficiais do CBMAL
               ou de qualquer órgão público.
@@ -53,14 +63,14 @@ export default function SobrePage() {
           <article className="rounded-lg border border-graphite-100 p-6">
             <h2 className="text-lg font-semibold text-graphite-900">Pesquisa e engenharia</h2>
             <p className="mt-3 text-sm leading-6 text-graphite-600">
-              Atuação em geomecânica salina, simulação numérica, engenharia de poços, métodos computacionais e
-              análise técnica de problemas complexos.
+              Atuação em geomecânica salina, simulação numérica, engenharia de poços, ABAQUS, métodos computacionais
+              e análise técnica de problemas complexos.
             </p>
           </article>
           <article className="rounded-lg border border-graphite-100 p-6">
             <h2 className="text-lg font-semibold text-graphite-900">Tecnologia aplicada</h2>
             <p className="mt-3 text-sm leading-6 text-graphite-600">
-              Desenvolvimento de soluções em C++ e Python, sistemas web, automação documental, indicadores e apoio a
+              Desenvolvimento de soluções em C++ e Python, sistemas web, automação documental, indicadores e apoio à
               gestão institucional.
             </p>
           </article>

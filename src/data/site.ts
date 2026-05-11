@@ -15,8 +15,10 @@ export const brand = {
   name: "ShieldWorks",
   tagline: "Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
   owner: "Themisson dos Santos Vasconcelos",
-  lattes: "[Inserir link do Currículo Lattes]",
-  orcid: "[Inserir ORCID]",
+  lattes: "http://lattes.cnpq.br/5757459332162874",
+  lattesId: "5757459332162874",
+  orcid: "https://orcid.org/0000-0002-1215-3691",
+  orcidId: "0000-0002-1215-3691",
   scholar: "[Inserir Google Scholar]",
   resume: "[Inserir currículo resumido em PDF]"
 };
@@ -42,7 +44,7 @@ export const authorityAreas = [
 export const practiceAreas = [
   {
     title: "Engenharia Computacional",
-    description: "Modelagem, simulação numérica, automação de cálculos técnicos e validação de modelos.",
+    description: "Modelagem numérica computacional aplicada à engenharia, com uso de C++, Python, ABAQUS e métodos numéricos para análise de tensões, deformações, comportamento geomecânico, validação de modelos e apoio à tomada de decisão técnica.",
     icon: Cpu
   },
   {
@@ -120,7 +122,7 @@ export const researchAreas = [
   "Engenharia de poços",
   "Leak-off test",
   "Métodos numéricos",
-  "BEM, FEM, MPM e FVM",
+  "BEM, FEM, MPM, FVM e ABAQUS",
   "Simulação computacional",
   "Segurança operacional",
   "Tecnologia aplicada à gestão institucional"

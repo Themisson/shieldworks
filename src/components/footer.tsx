@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AcademicLinks } from "@/components/academic-links";
 import { Logo } from "@/components/logo";
 import { brand, navItems } from "@/data/site";
 
@@ -16,9 +17,12 @@ export function Footer() {
             As soluções e demonstrações apresentadas neste site integram uma iniciativa profissional pessoal e não
             representam, por si, sistemas oficiais de qualquer órgão público.
           </p>
+          <div className="mt-5">
+            <AcademicLinks compact />
+          </div>
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-graphite-900">Navegacao</h2>
+          <h2 className="text-sm font-semibold text-graphite-900">Navegação</h2>
           <ul className="mt-4 space-y-2 text-sm text-graphite-600">
             {navItems.map((item) => (
               <li key={item.href}>
@@ -32,7 +36,7 @@ export function Footer() {
         <div>
           <h2 className="text-sm font-semibold text-graphite-900">Contato profissional</h2>
           <p className="mt-4 text-sm leading-6 text-graphite-600">
-            Use o formulario de contato para demandas técnicas, acadêmicas ou institucionais.
+            Use o formulário de contato para demandas técnicas, acadêmicas ou institucionais.
           </p>
           <Link href="/contato" className="mt-4 inline-flex text-sm font-semibold text-petroleum-900">
             Solicitar contato

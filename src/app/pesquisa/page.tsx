@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
+import { AcademicLinks } from "@/components/academic-links";
 import { Badge } from "@/components/badge";
-import { ButtonLink } from "@/components/button-link";
 import { SectionTitle } from "@/components/section-title";
-import { brand, researchAreas } from "@/data/site";
+import { researchAreas } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Pesquisa",
   description: "Pesquisa aplicada em geomecânica, engenharia de petróleo, estruturas e métodos computacionais."
 };
 
-const methods = ["BEM", "FEM", "MPM", "FVM", "Simulação numérica", "Modelagem computacional", "Análise de dados"];
-const applications = ["Engenharia de poços", "Rochas evaporíticas", "Segurança operacional", "Gestão institucional", "Automação técnica"];
+const methods = ["BEM", "FEM", "MPM", "FVM", "ABAQUS", "C++", "Python", "Simulação numérica", "Modelagem computacional", "Análise de dados"];
+const applications = ["Geomecânica salina", "Engenharia de poços", "Rochas evaporíticas", "Estruturas", "Segurança operacional", "Gestão institucional"];
 
 export default function PesquisaPage() {
   return (
@@ -19,7 +19,7 @@ export default function PesquisaPage() {
         <SectionTitle
           eyebrow="Pesquisa aplicada"
           title="Produção científica e técnica conectada à engenharia e segurança."
-          description="A produção científica envolve trabalhos relacionados à geomecânica, engenharia de petróleo, estruturas, segurança operacional e métodos computacionais aplicados. A lista completa e atualizada de publicações pode ser consultada no Currículo Lattes."
+          description="A pesquisa aplicada envolve o uso de métodos numéricos e ferramentas computacionais como Método dos Elementos Finitos, Método dos Elementos de Contorno, Material Point Method, FVM, ABAQUS, C++ e Python, com aplicação em geomecânica salina, engenharia de poços, estruturas e segurança operacional."
         />
         <div className="mt-10 grid gap-8 lg:grid-cols-3">
           <article className="rounded-lg border border-graphite-100 p-6">
@@ -39,7 +39,7 @@ export default function PesquisaPage() {
             </div>
           </article>
           <article className="rounded-lg border border-graphite-100 p-6">
-            <h2 className="text-lg font-semibold text-graphite-900">Aplicacoes praticas</h2>
+            <h2 className="text-lg font-semibold text-graphite-900">Aplicações práticas</h2>
             <div className="mt-5 flex flex-wrap gap-2">
               {applications.map((application) => (
                 <Badge key={application}>{application}</Badge>
@@ -51,13 +51,11 @@ export default function PesquisaPage() {
           <h2 className="text-lg font-semibold text-graphite-900">Produção científica resumida</h2>
           <p className="mt-3 text-sm leading-6 text-graphite-600">
             Este espaço foi preparado para receber uma síntese validada do Currículo Lattes, sem listar artigos
-            completos neste momento e sem criar uma página independente de artigos.
+            completos neste momento e sem criar uma página independente de artigos. A produção completa e atualizada
+            pode ser consultada no Currículo Lattes e no ORCID.
           </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={brand.lattes} variant="secondary">Acessar Currículo Lattes</ButtonLink>
-            <ButtonLink href={brand.orcid} variant="ghost">ORCID</ButtonLink>
-            <ButtonLink href={brand.scholar} variant="ghost">Google Scholar</ButtonLink>
-            <ButtonLink href={brand.resume} variant="ghost">Currículo PDF</ButtonLink>
+          <div className="mt-6">
+            <AcademicLinks />
           </div>
         </div>
       </div>

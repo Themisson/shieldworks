@@ -67,9 +67,11 @@ export const translations: Record<string, string> = {
   "Pesquisa e engenharia": "Research and engineering",
   "Tecnologia aplicada": "Applied technology",
   "Ensino e metodologia": "Teaching and methodology",
+  "Sua atuação técnica envolve modelagem numérica computacional, geomecânica aplicada, simulação de problemas estruturais e geomecânicos, desenvolvimento de códigos próprios em C++ e Python e utilização de ferramentas consolidadas de análise, incluindo o ABAQUS, para estudos envolvendo tensões, deformações, comportamento de materiais e validação de modelos numéricos.": "His technical work involves computational numerical modeling, applied geomechanics, simulation of structural and geomechanical problems, development of proprietary code in C++ and Python, and use of established analysis tools, including ABAQUS, for studies involving stresses, strains, material behavior and validation of numerical models.",
   "Desde 2019, atua como instrutor de TCC e Metodologia Científica nos cursos do Corpo de Bombeiros Militar de Alagoas, contribuindo para a formação acadêmica e técnico-profissional por meio do acompanhamento de projetos, trabalhos de conclusão de curso, artigos científicos, relatórios técnicos e preparação para bancas.": "Since 2019, he has served as an instructor of undergraduate thesis work and Scientific Methodology in courses of the Military Fire Department of Alagoas, contributing to academic and technical-professional education by supporting projects, final course papers, scientific articles, technical reports and preparation for examination boards.",
 
   "Serviços estruturados para demandas técnicas, digitais e acadêmicas.": "Structured services for technical, digital and academic demands.",
+  "Modelagem numérica computacional aplicada à engenharia, com uso de C++, Python, ABAQUS e métodos numéricos para análise de tensões, deformações, comportamento geomecânico, validação de modelos e apoio à tomada de decisão técnica.": "Computational numerical modeling applied to engineering, using C++, Python, ABAQUS and numerical methods for analysis of stresses, strains, geomechanical behavior, model validation and technical decision support.",
   "Cada frente pode ser tratada como consultoria, projeto técnico, demonstração, protótipo, documento técnico ou sistema evolutivo.": "Each front can be handled as consulting, technical project, demonstration, prototype, technical document or evolving system.",
   "Capacitação Técnica": "Technical Training",
 
@@ -80,11 +82,13 @@ export const translations: Record<string, string> = {
   "Arquitetura futura de subdomínios": "Future subdomain architecture",
 
   "Produção científica e técnica conectada à engenharia e segurança.": "Scientific and technical production connected to engineering and safety.",
+  "A pesquisa aplicada envolve o uso de métodos numéricos e ferramentas computacionais como Método dos Elementos Finitos, Método dos Elementos de Contorno, Material Point Method, FVM, ABAQUS, C++ e Python, com aplicação em geomecânica salina, engenharia de poços, estruturas e segurança operacional.": "Applied research involves the use of numerical methods and computational tools such as the Finite Element Method, Boundary Element Method, Material Point Method, FVM, ABAQUS, C++ and Python, applied to salt geomechanics, well engineering, structures and operational safety.",
   "Áreas de pesquisa": "Research areas",
   "Métodos utilizados": "Methods used",
   "Aplicações práticas": "Practical applications",
   "Produção científica resumida": "Scientific production summary",
   "Currículo PDF": "PDF résumé",
+  "A produção completa e atualizada pode ser consultada no Currículo Lattes e no ORCID.": "The complete and updated production can be consulted on the Lattes résumé and ORCID.",
 
   "Assessoria Acadêmica e Produção Científica": "Academic Advisory and Scientific Production",
   "Apoio técnico e metodológico para trabalhos acadêmicos e científicos.": "Technical and methodological support for academic and scientific work.",

@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 const solutionBlocks = [
   {
     title: "Engenharia Computacional",
-    items: ["Modelagem numérica", "Simulacoes em C++ e Python", "Análise de tensoes e deformacoes", "Geomecânica aplicada", "Automação de cálculos técnicos", "Validacao de modelos numéricos"]
+    description:
+      "Modelagem numérica computacional aplicada à engenharia, com uso de C++, Python, ABAQUS e métodos numéricos para análise de tensões, deformações, comportamento geomecânico, validação de modelos e apoio à tomada de decisão técnica.",
+    items: ["Modelagem numérica computacional", "Simulações em C++ e Python", "Análises com ABAQUS", "Análise de tensões e deformações", "Geomecânica aplicada", "Validação de modelos numéricos"]
   },
   {
     title: "Sistemas Institucionais",
@@ -42,6 +44,7 @@ export default function SolucoesPage() {
           {solutionBlocks.map((block) => (
             <article key={block.title} className="rounded-lg border border-graphite-100 bg-white p-6 shadow-sm">
               <h2 className="text-xl font-semibold text-graphite-900">{block.title}</h2>
+              {"description" in block ? <p className="mt-3 text-sm leading-6 text-graphite-600">{block.description}</p> : null}
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {block.items.map((item) => (
                   <li key={item} className="rounded-md bg-graphite-50 px-4 py-3 text-sm text-graphite-700">
