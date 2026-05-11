@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { Footer } from "@/components/footer";
 import { FloatingFeedback } from "@/components/FloatingFeedback";
 import { Header } from "@/components/header";
+import { brand, githubUrl } from "@/data/site";
 import { LocaleProvider } from "@/i18n/locale-provider";
 import "./globals.css";
 
@@ -22,11 +24,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://www.shieldworks.com.br",
+    url: "https://www.shieldworks.com.br/",
     siteName: "ShieldWorks",
     title: "ShieldWorks | Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
     description:
-      "Engenharia, pesquisa, segurança e tecnologia aplicada para transformar problemas complexos em soluções práticas.",
+      "Engenharia computacional, pesquisa aplicada, segurança operacional, sistemas institucionais e assessoria acadêmica.",
     images: [
       {
         url: "/og-image.png",
@@ -49,16 +51,49 @@ export const metadata: Metadata = {
   }
 };
 
+const siteUrl = "https://www.shieldworks.com.br";
+const sameAs = [brand.lattes, brand.orcid, brand.scholar, brand.linkedin, githubUrl];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "ShieldWorks",
+    url: siteUrl,
+    description:
+      "Engenharia computacional, pesquisa aplicada, segurança operacional, sistemas institucionais e assessoria acadêmica."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: brand.owner,
+    url: siteUrl,
+    sameAs
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "ShieldWorks",
+    url: siteUrl,
+    sameAs
+  }
+];
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className="min-h-screen bg-white text-graphite-900 antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <LocaleProvider>
           <Header />
           <main>{children}</main>
           <Footer />
           <FloatingFeedback />
         </LocaleProvider>
+        <Analytics />
       </body>
     </html>
   );

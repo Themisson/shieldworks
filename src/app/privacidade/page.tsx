@@ -16,22 +16,27 @@ const privacySections = [
   {
     title: "Finalidade do contato",
     description:
-      "Os dados são utilizados para compreender a demanda enviada, responder solicitações profissionais, tratar assuntos técnicos, acadêmicos ou institucionais e organizar o retorno adequado."
+      "Os dados são utilizados para compreender a demanda enviada, responder solicitações profissionais, tratar assuntos técnicos, acadêmicos ou institucionais, analisar o contexto informado e organizar o retorno adequado."
   },
   {
     title: "Uso dos dados",
     description:
-      "As informações são usadas apenas para retorno profissional relacionado à mensagem enviada. A ShieldWorks não vende, aluga ou comercializa dados pessoais."
+      "As informações são usadas apenas para retorno profissional, análise de demanda e melhoria da experiência do site. A ShieldWorks não vende, aluga ou comercializa dados pessoais."
+  },
+  {
+    title: "Provedores técnicos",
+    description:
+      "O site pode utilizar provedores técnicos necessários ao funcionamento da aplicação, como Vercel para hospedagem, analytics e infraestrutura, e Resend para envio de mensagens por e-mail. Esses serviços podem processar dados estritamente necessários à operação técnica."
   },
   {
     title: "Solicitação de exclusão",
     description:
-      "O titular pode solicitar correção ou exclusão de dados enviados pelo site usando o próprio formulário de contato ou o canal profissional informado pela ShieldWorks."
+      "Nos termos da Lei Geral de Proteção de Dados Pessoais (LGPD), o titular pode solicitar correção ou exclusão de dados enviados pelo site usando o próprio formulário de contato ou o canal profissional informado pela ShieldWorks."
   },
   {
-    title: "Analytics e melhorias futuras",
+    title: "Analytics e melhorias",
     description:
-      "O site pode adotar, futuramente, ferramentas de analytics para compreender uso, desempenho e navegação. Caso isso ocorra, a coleta deverá ser limitada a métricas de acesso e melhoria da experiência."
+      "O site pode utilizar analytics para compreender uso, desempenho e navegação. A coleta deve ser limitada a métricas de acesso e melhoria da experiência, sem registrar conteúdos sensíveis enviados pelos formulários."
   }
 ];
 
@@ -49,6 +54,7 @@ export default function PrivacidadePage() {
             Esta política se aplica aos dados enviados voluntariamente pelos formulários do site. O objetivo é manter
             transparência sobre a coleta e o uso das informações necessárias para retorno profissional.
           </p>
+          <p className="mt-4 text-xs font-medium text-slate-500">Última atualização: 11 de maio de 2026.</p>
         </div>
         <div className="mt-6 grid gap-4">
           {privacySections.map((section) => (

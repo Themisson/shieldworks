@@ -70,6 +70,7 @@ export const navItems = [
   { label: "Soluções", href: "/solucoes" },
   { label: "Sistemas", href: "/sistemas" },
   { label: "Pesquisa", href: "/pesquisa" },
+  { label: "Insights", href: "/insights" },
   { label: "Assessoria Acadêmica", href: "/assessoria-academica" },
   { label: "Contato", href: "/contato" }
 ];

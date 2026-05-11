@@ -4,7 +4,9 @@ import { Badge } from "@/components/badge";
 import { ButtonLink } from "@/components/button-link";
 import { CompactCard, HighlightCard, ServiceCard, SystemCard } from "@/components/card";
 import { CTA } from "@/components/cta";
+import { InsightCard } from "@/components/insight-card";
 import { SectionTitle } from "@/components/section-title";
+import { getRecentInsights } from "@/data/insights";
 import {
   academicServices,
   authorityAreas,
@@ -24,6 +26,8 @@ const featuredCardLayout = [
 ];
 
 export default function Home() {
+  const recentInsights = getRecentInsights();
+
   return (
     <>
       <section className="bg-white">
@@ -94,7 +98,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-graphite-50 py-16">
+      <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionTitle
             eyebrow="Laboratório digital"
@@ -133,6 +137,26 @@ export default function Home() {
       </section>
 
       <section className="bg-graphite-50 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <SectionTitle
+              eyebrow="Insights"
+              title="Insights e atualizações"
+              description="Publicações técnicas e reflexões sobre engenharia computacional, pesquisa aplicada, sistemas institucionais, segurança operacional e produção acadêmica."
+            />
+            <div className="shrink-0">
+              <ButtonLink href="/insights" variant="secondary">Ver todos os insights</ButtonLink>
+            </div>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {recentInsights.map((insight) => (
+              <InsightCard key={insight.slug} insight={insight} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionTitle
             eyebrow="Assessoria acadêmica"

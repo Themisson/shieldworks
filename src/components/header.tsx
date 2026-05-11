@@ -73,12 +73,12 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-graphite-100 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Logo />
-        <nav className="hidden items-center gap-1.5 lg:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-1 xl:flex" aria-label="Navegação principal">
           {navItems.map((item) => (
             <NavLink key={item.href} {...item} pathname={pathname} />
           ))}
         </nav>
-        <div className="hidden items-center gap-2.5 lg:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <LanguageToggle />
           <Link
             href="/sistemas"
@@ -97,7 +97,7 @@ export function Header() {
         </div>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-graphite-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-petroleum-100 lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-graphite-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-petroleum-100 xl:hidden"
           aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
@@ -108,7 +108,7 @@ export function Header() {
       </div>
       {isOpen ? (
         <div
-          className="fixed inset-0 top-[73px] z-40 bg-graphite-900/20 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 top-[73px] z-40 bg-graphite-900/20 backdrop-blur-sm xl:hidden"
           onClick={closeMenu}
         >
           <nav

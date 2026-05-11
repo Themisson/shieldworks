@@ -64,6 +64,35 @@ Os formulários de contato e feedback já enviam dados para rotas internas:
 
 As rotas fazem validação básica e retornam resposta JSON. O formulário de contato está preparado para envio por e-mail via Resend quando `RESEND_API_KEY`, `CONTACT_TO_EMAIL` e `CONTACT_FROM_EMAIL` estiverem configuradas no ambiente. Não versionar `.env.local`.
 
+## Como adicionar um novo Insight
+
+Nesta fase, a seção Insights usa conteúdo local versionado no código. O site não possui CMS, painel administrativo, login ou banco de dados para publicações.
+
+Para adicionar uma nova publicação:
+
+1. Abra `src/data/insights.ts`.
+2. Adicione um novo objeto no array `insights` com:
+   - `slug`
+   - `title`
+   - `description`
+   - `date`
+   - `category`
+   - `tags`
+   - `published`
+   - `content`
+3. Use `published: true` para exibir o conteúdo no site e no sitemap.
+4. Rode:
+
+```bash
+npm run build
+```
+
+5. Publique um novo deploy.
+
+## Analytics
+
+O projeto está preparado com Vercel Analytics usando o pacote oficial `@vercel/analytics`. A coleta deve permanecer restrita a métricas de uso e desempenho, sem envio de dados sensíveis dos formulários.
+
 ## GitHub
 
 Se a GitHub CLI estiver autenticada:
