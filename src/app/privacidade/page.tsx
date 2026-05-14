@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { SectionTitle } from "@/components/section-title";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Privacidade",
   description:
-    "Política de privacidade do site ShieldWorks, com informações sobre dados coletados nos formulários e uso para retorno profissional."
+    "Política de privacidade do site ShieldWorks, com informações sobre dados coletados nos formulários e uso para retorno profissional.",
+  alternates: {
+    canonical: canonicalUrl("/privacidade")
+  }
 };
 
 const privacySections = [

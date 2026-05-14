@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import { ListCard } from "@/components/card";
 import { SectionTitle } from "@/components/section-title";
 import { serviceIcons } from "@/data/site";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Soluções",
-  description: "Soluções em engenharia computacional, sistemas institucionais, segurança operacional e assessoria acadêmica."
+  description: "Soluções em engenharia computacional, sistemas institucionais, segurança operacional e assessoria acadêmica.",
+  alternates: {
+    canonical: canonicalUrl("/solucoes")
+  }
 };
 
 const solutionBlocks = [

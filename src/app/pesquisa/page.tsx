@@ -4,11 +4,15 @@ import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { CardShell } from "@/components/card";
 import { SectionTitle } from "@/components/section-title";
 import { researchAreas } from "@/data/site";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Pesquisa | ShieldWorks",
   description:
-    "Pesquisa aplicada em geomecânica salina, engenharia de poços, modelagem numérica, ABAQUS, C++, Python, Método dos Elementos Finitos, Método dos Elementos de Contorno e métodos computacionais."
+    "Pesquisa aplicada em geomecânica salina, engenharia de poços, modelagem numérica, ABAQUS, C++, Python, Método dos Elementos Finitos, Método dos Elementos de Contorno e métodos computacionais.",
+  alternates: {
+    canonical: canonicalUrl("/pesquisa")
+  }
 };
 
 const methods = [

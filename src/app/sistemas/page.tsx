@@ -3,10 +3,14 @@ import { ButtonLink } from "@/components/button-link";
 import { SystemCard } from "@/components/card";
 import { SectionTitle } from "@/components/section-title";
 import { digitalProjects } from "@/data/site";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Sistemas",
-  description: "Sistemas e soluções digitais para gestão, ensino, automação documental e indicadores."
+  description: "Sistemas e soluções digitais para gestão, ensino, automação documental e indicadores.",
+  alternates: {
+    canonical: canonicalUrl("/sistemas")
+  }
 };
 
 const subdomains = ["app.shieldworks.com.br", "demo.shieldworks.com.br", "monitor.shieldworks.com.br", "academy.shieldworks.com.br"];

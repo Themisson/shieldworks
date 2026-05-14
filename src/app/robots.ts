@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { canonicalUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/"
     },
-    sitemap: "https://www.shieldworks.com.br/sitemap.xml"
+    sitemap: canonicalUrl("/sitemap.xml")
   };
 }

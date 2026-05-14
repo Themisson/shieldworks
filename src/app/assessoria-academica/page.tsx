@@ -13,10 +13,14 @@ import {
 } from "lucide-react";
 import { CardShell } from "@/components/card";
 import { SectionTitle } from "@/components/section-title";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Assessoria Acadêmica",
-  description: "Apoio metodológico para projetos, TCCs, artigos científicos, relatórios técnicos e bancas."
+  description: "Apoio metodológico para projetos, TCCs, artigos científicos, relatórios técnicos e bancas.",
+  alternates: {
+    canonical: canonicalUrl("/assessoria-academica")
+  }
 };
 
 const advisoryServices = [

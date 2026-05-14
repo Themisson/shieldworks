@@ -2,16 +2,20 @@ import type { Metadata } from "next";
 import { InsightCard } from "@/components/insight-card";
 import { SectionTitle } from "@/components/section-title";
 import { getPublishedInsights } from "@/data/insights";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Insights",
   description:
     "Publicações técnicas e reflexões sobre engenharia computacional, pesquisa aplicada, sistemas institucionais, segurança operacional e produção acadêmica.",
+  alternates: {
+    canonical: canonicalUrl("/insights")
+  },
   openGraph: {
     title: "Insights | ShieldWorks",
     description:
       "Publicações técnicas e reflexões sobre engenharia computacional, pesquisa aplicada, sistemas institucionais, segurança operacional e produção acadêmica.",
-    url: "https://www.shieldworks.com.br/insights"
+    url: canonicalUrl("/insights")
   }
 };
 

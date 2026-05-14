@@ -4,8 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { brand } from "@/data/site";
 import { getInsightBySlug, getPublishedInsights } from "@/data/insights";
-
-const siteUrl = "https://www.shieldworks.com.br";
+import { SITE_URL, canonicalUrl } from "@/lib/seo";
 
 type InsightPageProps = {
   params: Promise<{
@@ -35,13 +34,17 @@ export async function generateMetadata({ params }: InsightPageProps): Promise<Me
     return {};
   }
 
-  const url = `${siteUrl}/insights/${insight.slug}`;
+  const path = `/insights/${insight.slug}`;
+  const url = canonicalUrl(path);
 
   return {
     title: {
       absolute: `${insight.title} | ShieldWorks`
     },
     description: insight.description,
+    alternates: {
+      canonical: url
+    },
     openGraph: {
       type: "article",
       title: insight.title,
@@ -76,7 +79,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
     notFound();
   }
 
-  const url = `${siteUrl}/insights/${insight.slug}`;
+  const url = canonicalUrl(`/insights/${insight.slug}`);
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -90,7 +93,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
     publisher: {
       "@type": "Organization",
       name: "ShieldWorks",
-      url: siteUrl
+      url: SITE_URL
     },
     url
   };

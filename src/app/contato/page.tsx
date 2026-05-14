@@ -3,10 +3,14 @@ import { CheckCircle2 } from "lucide-react";
 import { ContactForm } from "@/components/forms";
 import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { SectionTitle } from "@/components/section-title";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Contato",
-  description: "Contato profissional para demandas técnicas, acadêmicas, institucionais e digitais."
+  description: "Contato profissional para demandas técnicas, acadêmicas, institucionais e digitais.",
+  alternates: {
+    canonical: canonicalUrl("/contato")
+  }
 };
 
 export default function ContatoPage() {

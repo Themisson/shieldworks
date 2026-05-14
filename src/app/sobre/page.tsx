@@ -4,11 +4,15 @@ import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { ProfileHighlights } from "@/components/ProfileHighlights";
 import { CardShell } from "@/components/card";
 import { SectionTitle } from "@/components/section-title";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Sobre | ShieldWorks",
   description:
-    "Trajetória profissional e acadêmica de Themisson dos Santos Vasconcelos, com atuação em engenharia computacional, geomecânica, segurança operacional, pesquisa aplicada e sistemas institucionais."
+    "Trajetória profissional e acadêmica de Themisson dos Santos Vasconcelos, com atuação em engenharia computacional, geomecânica, segurança operacional, pesquisa aplicada e sistemas institucionais.",
+  alternates: {
+    canonical: canonicalUrl("/sobre")
+  }
 };
 
 export default function SobrePage() {

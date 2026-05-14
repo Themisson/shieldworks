@@ -5,10 +5,11 @@ import { FloatingFeedback } from "@/components/FloatingFeedback";
 import { Header } from "@/components/header";
 import { brand, githubUrl } from "@/data/site";
 import { LocaleProvider } from "@/i18n/locale-provider";
+import { SITE_URL, canonicalUrl } from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.shieldworks.com.br"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "ShieldWorks | Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
     template: "%s | ShieldWorks"
@@ -21,10 +22,13 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
     apple: "/icon.svg"
   },
+  alternates: {
+    canonical: canonicalUrl("/")
+  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://www.shieldworks.com.br/",
+    url: canonicalUrl("/"),
     siteName: "ShieldWorks",
     title: "ShieldWorks | Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
     description:
@@ -51,7 +55,6 @@ export const metadata: Metadata = {
   }
 };
 
-const siteUrl = "https://www.shieldworks.com.br";
 const sameAs = [brand.lattes, brand.orcid, brand.scholar, brand.linkedin, githubUrl];
 
 const structuredData = [
@@ -59,7 +62,7 @@ const structuredData = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "ShieldWorks",
-    url: siteUrl,
+    url: SITE_URL,
     description:
       "Engenharia computacional, pesquisa aplicada, segurança operacional, sistemas institucionais e assessoria acadêmica."
   },
@@ -67,14 +70,14 @@ const structuredData = [
     "@context": "https://schema.org",
     "@type": "Person",
     name: brand.owner,
-    url: siteUrl,
+    url: SITE_URL,
     sameAs
   },
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "ShieldWorks",
-    url: siteUrl,
+    url: SITE_URL,
     sameAs
   }
 ];
