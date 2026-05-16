@@ -10,6 +10,21 @@ export const metadata: Metadata = {
   description: "Contato profissional para demandas técnicas, acadêmicas, institucionais e digitais.",
   alternates: {
     canonical: canonicalUrl("/contato")
+  },
+  openGraph: {
+    title: "Contato | ShieldWorks",
+    description: "Contato profissional para demandas técnicas, acadêmicas, institucionais e digitais.",
+    url: canonicalUrl("/contato"),
+    siteName: "ShieldWorks",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ShieldWorks - Engenharia, Pesquisa, Segurança e Tecnologia Aplicada" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contato | ShieldWorks",
+    description: "Contato profissional para demandas técnicas, acadêmicas, institucionais e digitais.",
+    images: ["/og-image.png"]
   }
 };
 

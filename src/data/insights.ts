@@ -54,6 +54,51 @@ export const insights: Insight[] = [
       "Projetos, TCCs, artigos e relatórios técnicos precisam apresentar uma linha argumentativa consistente, respeitando a autoria e as normas da instituição.",
       "A assessoria acadêmica deve ter caráter consultivo, orientativo e revisional, contribuindo para que o autor desenvolva seu trabalho com rigor e integridade."
     ]
+  },
+  {
+    slug: "seguranca-operacional-e-gestao-de-riscos",
+    title: "Segurança operacional e gestão de riscos",
+    description:
+      "Como a tecnologia e os métodos de análise de risco podem apoiar a prevenção, o monitoramento e a resposta operacional em ambientes de alto risco.",
+    date: "2026-05-12",
+    category: "Segurança Operacional",
+    tags: ["Riscos", "Prevenção", "Operações"],
+    published: true,
+    content: [
+      "A segurança operacional envolve a antecipação sistemática de falhas, a identificação de vulnerabilidades e a estruturação de respostas eficazes diante de cenários adversos.",
+      "Ferramentas digitais podem ampliar a capacidade de monitoramento, organizar indicadores de risco, apoiar a tomada de decisão em tempo real e documentar ocorrências com rastreabilidade.",
+      "A integração entre engenharia, tecnologia e gestão institucional permite construir ambientes mais seguros e organizações mais resilientes, com protocolos claros, treinamentos atualizados e suporte técnico especializado."
+    ]
+  },
+  {
+    slug: "desenvolvimento-de-sistemas-institucionais",
+    title: "Desenvolvimento de sistemas institucionais",
+    description:
+      "Reflexões sobre o processo de construção de plataformas digitais para gestão acadêmica, automação documental e apoio à tomada de decisão.",
+    date: "2026-05-13",
+    category: "Sistemas Institucionais",
+    tags: ["Gestão Acadêmica", "Automação", "Documentos"],
+    published: true,
+    content: [
+      "Sistemas institucionais bem projetados reduzem retrabalho, aumentam a rastreabilidade e permitem que equipes foquem no que realmente importa: ensinar, pesquisar e tomar decisões informadas.",
+      "O desenvolvimento começa pelo mapeamento dos fluxos reais da instituição — quem faz o quê, quando, com quais documentos e quais aprovações são necessárias. Tecnologia sem esse mapeamento resolve o problema errado.",
+      "Plataformas de gestão acadêmica, emissão de certificados, controle de cursos e geração de relatórios são exemplos de sistemas que, quando bem construídos, eliminam centenas de horas de trabalho manual por ano."
+    ]
+  },
+  {
+    slug: "geomecanica-salina-e-engenharia-de-pocos",
+    title: "Geomecânica salina e engenharia de poços",
+    description:
+      "Uma introdução aos desafios mecânicos do ambiente salino, com foco em fluência de rochas evaporíticas e sua influência na integridade de poços.",
+    date: "2026-05-14",
+    category: "Engenharia Computacional",
+    tags: ["Geomecânica", "Poços", "Simulação"],
+    published: true,
+    content: [
+      "Rochas evaporíticas, como o sal-gema, apresentam comportamento viscoplástico que se manifesta como fluência: deformação contínua ao longo do tempo mesmo sob tensão constante. Esse fenômeno impõe desafios únicos ao projeto e operação de poços em ambientes de pré-sal.",
+      "A modelagem desse comportamento exige métodos numéricos capazes de capturar não linearidades temporais, como o Método dos Elementos Finitos com leis constitutivas de fluência. A calibração dos parâmetros com dados experimentais é etapa crítica para a confiabilidade dos resultados.",
+      "Compreender a interação entre o carregamento geomecânico, as propriedades do sal e o revestimento do poço é fundamental para garantir a integridade estrutural ao longo da vida útil da instalação — tema que conecta pesquisa aplicada e decisão de engenharia."
+    ]
   }
 ];
 

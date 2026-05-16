@@ -20,6 +20,21 @@ export const metadata: Metadata = {
   description: "Apoio metodológico para projetos, TCCs, artigos científicos, relatórios técnicos e bancas.",
   alternates: {
     canonical: canonicalUrl("/assessoria-academica")
+  },
+  openGraph: {
+    title: "Assessoria Acadêmica | ShieldWorks",
+    description: "Apoio metodológico para projetos, TCCs, artigos científicos, relatórios técnicos e bancas.",
+    url: canonicalUrl("/assessoria-academica"),
+    siteName: "ShieldWorks",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ShieldWorks - Engenharia, Pesquisa, Segurança e Tecnologia Aplicada" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Assessoria Acadêmica | ShieldWorks",
+    description: "Apoio metodológico para projetos, TCCs, artigos científicos, relatórios técnicos e bancas.",
+    images: ["/og-image.png"]
   }
 };
 

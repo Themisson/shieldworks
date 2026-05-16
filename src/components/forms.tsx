@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Send } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { interestOptions } from "@/data/site";
 import { useLocale } from "@/i18n/locale-provider";
 
@@ -212,8 +212,10 @@ export function ContactForm() {
         {t("As informações enviadas serão utilizadas exclusivamente para análise da demanda e retorno profissional.")}
       </p>
       <StatusMessage status={status} />
-      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-petroleum-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-petroleum-900 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"}>
-        <Send className="h-4 w-4" aria-hidden="true" />
+      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-petroleum-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-petroleum-900 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"} aria-busy={status.type === "loading"}>
+        {status.type === "loading"
+          ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+          : <Send className="h-4 w-4" aria-hidden="true" />}
         {status.type === "loading" ? t("Enviando...") : t("Enviar mensagem")}
       </button>
     </form>
@@ -282,7 +284,8 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
         </div>
       </div>
       <StatusMessage status={status} />
-      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md border border-petroleum-700 px-5 py-2.5 text-sm font-semibold text-petroleum-900 transition hover:bg-petroleum-50 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"}>
+      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md border border-petroleum-700 px-5 py-2.5 text-sm font-semibold text-petroleum-900 transition hover:bg-petroleum-50 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"} aria-busy={status.type === "loading"}>
+        {status.type === "loading" && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
         {status.type === "loading" ? t("Enviando...") : t("Enviar feedback")}
       </button>
     </form>

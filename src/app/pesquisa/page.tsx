@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { FlaskConical, Sigma, Target } from "lucide-react";
 import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { CardShell } from "@/components/card";
+import { CTA } from "@/components/cta";
 import { SectionTitle } from "@/components/section-title";
 import { researchAreas } from "@/data/site";
 import { canonicalUrl } from "@/lib/seo";
@@ -12,6 +13,23 @@ export const metadata: Metadata = {
     "Pesquisa aplicada em geomecânica salina, engenharia de poços, modelagem numérica, ABAQUS, C++, Python, Método dos Elementos Finitos, Método dos Elementos de Contorno e métodos computacionais.",
   alternates: {
     canonical: canonicalUrl("/pesquisa")
+  },
+  openGraph: {
+    title: "Pesquisa | ShieldWorks",
+    description:
+      "Pesquisa aplicada em geomecânica salina, engenharia de poços, modelagem numérica, ABAQUS, C++, Python, Método dos Elementos Finitos, Método dos Elementos de Contorno e métodos computacionais.",
+    url: canonicalUrl("/pesquisa"),
+    siteName: "ShieldWorks",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ShieldWorks - Engenharia, Pesquisa, Segurança e Tecnologia Aplicada" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pesquisa | ShieldWorks",
+    description:
+      "Pesquisa aplicada em geomecânica salina, engenharia de poços, modelagem numérica, ABAQUS, C++, Python, Método dos Elementos Finitos, Método dos Elementos de Contorno e métodos computacionais.",
+    images: ["/og-image.png"]
   }
 };
 
@@ -39,6 +57,7 @@ const applications = [
 
 export default function PesquisaPage() {
   return (
+    <>
     <section className="bg-white py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
@@ -78,5 +97,7 @@ export default function PesquisaPage() {
         </div>
       </div>
     </section>
+    <CTA />
+    </>
   );
 }

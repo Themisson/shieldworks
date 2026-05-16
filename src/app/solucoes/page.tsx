@@ -9,6 +9,21 @@ export const metadata: Metadata = {
   description: "Soluções em engenharia computacional, sistemas institucionais, segurança operacional e assessoria acadêmica.",
   alternates: {
     canonical: canonicalUrl("/solucoes")
+  },
+  openGraph: {
+    title: "Soluções | ShieldWorks",
+    description: "Soluções em engenharia computacional, sistemas institucionais, segurança operacional e assessoria acadêmica.",
+    url: canonicalUrl("/solucoes"),
+    siteName: "ShieldWorks",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ShieldWorks - Engenharia, Pesquisa, Segurança e Tecnologia Aplicada" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Soluções | ShieldWorks",
+    description: "Soluções em engenharia computacional, sistemas institucionais, segurança operacional e assessoria acadêmica.",
+    images: ["/og-image.png"]
   }
 };
 

@@ -10,6 +10,21 @@ export const metadata: Metadata = {
   description: "Sistemas e soluções digitais para gestão, ensino, automação documental e indicadores.",
   alternates: {
     canonical: canonicalUrl("/sistemas")
+  },
+  openGraph: {
+    title: "Sistemas | ShieldWorks",
+    description: "Sistemas e soluções digitais para gestão, ensino, automação documental e indicadores.",
+    url: canonicalUrl("/sistemas"),
+    siteName: "ShieldWorks",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ShieldWorks - Engenharia, Pesquisa, Segurança e Tecnologia Aplicada" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sistemas | ShieldWorks",
+    description: "Sistemas e soluções digitais para gestão, ensino, automação documental e indicadores.",
+    images: ["/og-image.png"]
   }
 };
 

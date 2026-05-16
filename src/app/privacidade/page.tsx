@@ -8,6 +8,23 @@ export const metadata: Metadata = {
     "Política de privacidade do site ShieldWorks, com informações sobre dados coletados nos formulários e uso para retorno profissional.",
   alternates: {
     canonical: canonicalUrl("/privacidade")
+  },
+  openGraph: {
+    title: "Privacidade | ShieldWorks",
+    description:
+      "Política de privacidade do site ShieldWorks, com informações sobre dados coletados nos formulários e uso para retorno profissional.",
+    url: canonicalUrl("/privacidade"),
+    siteName: "ShieldWorks",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ShieldWorks - Engenharia, Pesquisa, Segurança e Tecnologia Aplicada" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacidade | ShieldWorks",
+    description:
+      "Política de privacidade do site ShieldWorks, com informações sobre dados coletados nos formulários e uso para retorno profissional.",
+    images: ["/og-image.png"]
   }
 };
 

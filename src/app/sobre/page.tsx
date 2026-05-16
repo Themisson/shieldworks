@@ -3,6 +3,7 @@ import { Code2, GraduationCap, SearchCheck } from "lucide-react";
 import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { ProfileHighlights } from "@/components/ProfileHighlights";
 import { CardShell } from "@/components/card";
+import { CTA } from "@/components/cta";
 import { SectionTitle } from "@/components/section-title";
 import { canonicalUrl } from "@/lib/seo";
 
@@ -12,11 +13,29 @@ export const metadata: Metadata = {
     "Trajetória profissional e acadêmica de Themisson dos Santos Vasconcelos, com atuação em engenharia computacional, geomecânica, segurança operacional, pesquisa aplicada e sistemas institucionais.",
   alternates: {
     canonical: canonicalUrl("/sobre")
+  },
+  openGraph: {
+    title: "Sobre | ShieldWorks",
+    description:
+      "Trajetória profissional e acadêmica de Themisson dos Santos Vasconcelos, com atuação em engenharia computacional, geomecânica, segurança operacional, pesquisa aplicada e sistemas institucionais.",
+    url: canonicalUrl("/sobre"),
+    siteName: "ShieldWorks",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ShieldWorks - Engenharia, Pesquisa, Segurança e Tecnologia Aplicada" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sobre | ShieldWorks",
+    description:
+      "Trajetória profissional e acadêmica de Themisson dos Santos Vasconcelos, com atuação em engenharia computacional, geomecânica, segurança operacional, pesquisa aplicada e sistemas institucionais.",
+    images: ["/og-image.png"]
   }
 };
 
 export default function SobrePage() {
   return (
+    <>
     <section className="bg-white py-18">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <SectionTitle
@@ -71,5 +90,7 @@ export default function SobrePage() {
         </div>
       </div>
     </section>
+    <CTA />
+    </>
   );
 }

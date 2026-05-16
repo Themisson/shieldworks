@@ -98,11 +98,24 @@ export default async function InsightPage({ params }: InsightPageProps) {
     url
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Insights", item: canonicalUrl("/insights") },
+      { "@type": "ListItem", position: 2, name: insight.title, item: url }
+    ]
+  };
+
   return (
     <section className="bg-white py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <Link
