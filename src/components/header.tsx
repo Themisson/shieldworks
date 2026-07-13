@@ -8,6 +8,10 @@ import { Logo } from "@/components/logo";
 import { navItems } from "@/data/site";
 import { LanguageToggle } from "@/i18n/locale-provider";
 
+const desktopNavItems = navItems.filter(({ href }) =>
+  ["/sobre", "/solucoes", "/sistemas", "/pesquisa", "/insights"].includes(href)
+);
+
 type NavLinkProps = {
   href: string;
   label: string;
@@ -71,33 +75,26 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-graphite-100 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-[72px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Logo />
-        <nav className="hidden items-center gap-1 xl:flex" aria-label="Navegação principal">
-          {navItems.map((item) => (
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
+          {desktopNavItems.map((item) => (
             <NavLink key={item.href} {...item} pathname={pathname} />
           ))}
         </nav>
-        <div className="hidden items-center gap-2 xl:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <LanguageToggle />
           <Link
-            href="/sistemas"
-            className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium text-graphite-600 transition-colors hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-petroleum-300 focus:ring-offset-2"
-          >
-            Acessar sistemas
-            <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-          </Link>
-          <Link
             href="/contato"
-            className="inline-flex min-h-10 items-center gap-2 rounded-full bg-petroleum-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-petroleum-800 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-petroleum-300 focus:ring-offset-2"
+            className="inline-flex min-h-10 items-center gap-2 rounded-md bg-safety-500 px-4 py-2.5 text-sm font-semibold text-graphite-900 shadow-sm transition-all duration-200 hover:bg-safety-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-safety-500 focus:ring-offset-2"
           >
-            Contato
+            Falar sobre um projeto
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-graphite-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-petroleum-100 xl:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white text-graphite-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-petroleum-100 lg:hidden"
           aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
@@ -108,7 +105,7 @@ export function Header() {
       </div>
       {isOpen ? (
         <div
-          className="fixed inset-0 top-[73px] z-40 bg-graphite-900/20 backdrop-blur-sm xl:hidden"
+          className="fixed inset-0 top-[73px] z-40 bg-graphite-900/20 backdrop-blur-sm lg:hidden"
           onClick={closeMenu}
         >
           <nav

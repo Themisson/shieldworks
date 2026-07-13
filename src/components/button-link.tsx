@@ -8,7 +8,7 @@ type ButtonLinkProps = {
 };
 
 const variants = {
-  primary: "bg-petroleum-700 text-white hover:bg-petroleum-900 focus:ring-petroleum-100",
+  primary: "bg-safety-500 text-graphite-900 hover:bg-safety-600 focus:ring-safety-100",
   secondary: "border border-petroleum-700 bg-white text-petroleum-900 hover:bg-petroleum-50 focus:ring-petroleum-100",
   ghost: "text-petroleum-900 hover:bg-petroleum-50 focus:ring-petroleum-100"
 };

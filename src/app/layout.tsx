@@ -11,11 +11,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "ShieldWorks | Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
+    default: "ShieldWorks | Engenharia e Tecnologia Aplicada",
     template: "%s | ShieldWorks"
   },
   description:
-    "Site profissional de Themisson dos Santos Vasconcelos para engenharia computacional, pesquisa aplicada, segurança operacional, sistemas institucionais e assessoria acadêmica.",
+    "Consultoria técnica e desenvolvimento aplicado em engenharia computacional, pesquisa, segurança operacional, sistemas institucionais e assessoria acadêmica.",
   applicationName: "ShieldWorks",
   manifest: "/manifest.webmanifest",
   icons: {
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: canonicalUrl("/"),
     siteName: "ShieldWorks",
-    title: "ShieldWorks | Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
+    title: "ShieldWorks | Engenharia e Tecnologia Aplicada",
     description:
-      "Engenharia computacional, pesquisa aplicada, segurança operacional, sistemas institucionais e assessoria acadêmica.",
+      "Engenharia e tecnologia para decisões mais seguras, sistemas eficientes e projetos aplicáveis.",
     images: [
       {
         url: "/og-image.png",
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ShieldWorks | Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
+    title: "ShieldWorks | Engenharia e Tecnologia Aplicada",
     description:
-      "Engenharia computacional, pesquisa aplicada, segurança operacional, sistemas institucionais e assessoria acadêmica.",
+      "Engenharia e tecnologia para decisões mais seguras, sistemas eficientes e projetos aplicáveis.",
     images: ["/og-image.png"]
   },
   robots: {

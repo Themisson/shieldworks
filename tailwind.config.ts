@@ -10,11 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         petroleum: {
-          50: "#edf7f8",
-          100: "#d5edef",
-          500: "#1d7580",
-          700: "#14545d",
-          900: "#0b3038"
+          50: "#eef5f7",
+          100: "#d9e7eb",
+          500: "#2f7180",
+          700: "#1e5362",
+          900: "#102f3b"
         },
         graphite: {
           50: "#f5f7f8",
@@ -23,7 +23,14 @@ const config: Config = {
           700: "#39444c",
           900: "#162027"
         },
-        signal: "#2f8f83"
+        signal: "#2f8f83",
+        safety: {
+          50: "#fff8e8",
+          100: "#f7e5b5",
+          500: "#d39a2a",
+          600: "#b77b16",
+          700: "#8e5e0e"
+        }
       },
       boxShadow: {
         soft: "0 18px 48px rgba(22, 32, 39, 0.08)"
