@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Code2, GraduationCap, SearchCheck } from "lucide-react";
 import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { ProfileHighlights } from "@/components/ProfileHighlights";
@@ -44,7 +45,17 @@ export default function SobrePage() {
           description="Perfil técnico-profissional orientado por engenharia, pesquisa aplicada, segurança operacional, desenvolvimento computacional e ensino."
         />
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="rounded-2xl border border-slate-200/80 bg-slate-50 p-6 shadow-sm">
+          <div className="space-y-8">
+            <figure className="relative min-h-[360px] overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-100 shadow-sm sm:min-h-[440px]">
+              <Image
+                src="/image-themisson-framed.webp"
+                alt="Themisson dos Santos Vasconcelos em retrato profissional"
+                fill
+                sizes="(max-width: 1023px) 100vw, 42vw"
+                className="object-cover object-center"
+              />
+            </figure>
+            <div className="rounded-2xl border border-slate-200/80 bg-slate-50 p-6 shadow-sm">
             <p className="text-sm leading-7 text-graphite-700">
               Themisson dos Santos Vasconcelos é Tenente-Coronel do Corpo de Bombeiros Militar de Alagoas,
               engenheiro de petróleo, mestre e doutor na área de estruturas e geomecânica. Sua trajetória integra
@@ -65,6 +76,7 @@ export default function SobrePage() {
               nem declara que eventuais sistemas, demonstrações ou projetos digitais sejam produtos oficiais do CBMAL
               ou de qualquer órgão público.
             </p>
+            </div>
           </div>
           <ProfileHighlights />
         </div>

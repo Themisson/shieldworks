@@ -19,7 +19,9 @@ export const metadata: Metadata = {
   applicationName: "ShieldWorks",
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" }
+    ],
     apple: "/icon.svg"
   },
   alternates: {

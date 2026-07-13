@@ -82,17 +82,17 @@ export default function Home() {
             </ul>
           </div>
 
-          <figure className="relative min-h-[360px] overflow-hidden rounded-lg border border-slate-200 bg-petroleum-900 shadow-soft sm:min-h-[460px]">
+          <figure className="relative order-first min-h-[280px] overflow-hidden rounded-lg border border-slate-200 bg-petroleum-900 shadow-soft sm:min-h-[360px] lg:order-last lg:min-h-[460px]">
             <Image
               src="/engineering-hero.webp"
-              alt="Visualização computacional de tensões em uma estrutura geomecânica"
+              alt="Themisson dos Santos Vasconcelos em retrato profissional"
               fill
               priority
               sizes="(max-width: 1023px) 100vw, 48vw"
-              className="object-cover object-[68%_center]"
+              className="object-cover object-top"
             />
             <div className="absolute inset-x-4 bottom-4 rounded-lg border border-white/20 bg-graphite-900/90 p-4 text-white backdrop-blur sm:inset-x-6 sm:bottom-6 sm:p-5">
-              <p className="text-xs font-semibold uppercase text-petroleum-100">Atuação profissional</p>
+              <p className="text-xs font-semibold uppercase text-safety-100">Engenharia • Tecnologia aplicada</p>
               <p className="mt-2 text-sm leading-6 text-white/90">
                 Themisson dos Santos Vasconcelos, engenheiro, pesquisador e desenvolvedor de soluções técnicas.
               </p>
@@ -155,14 +155,16 @@ export default function Home() {
       <section className="bg-petroleum-900 py-16 text-white sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16 lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase text-petroleum-100">Experiência multidisciplinar</p>
-            <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Profundidade técnica sem perder a visão prática.</h2>
-            <p className="mt-5 text-base leading-7 text-petroleum-100">
-              A ShieldWorks reúne a formação acadêmica, a vivência operacional e o desenvolvimento computacional de
-              Themisson dos Santos Vasconcelos em uma atuação profissional independente.
-            </p>
-            <div className="mt-7">
-              <ProfessionalLinks compact />
+            <div>
+              <p className="text-sm font-semibold uppercase text-petroleum-100">Experiência multidisciplinar</p>
+              <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Profundidade técnica sem perder a visão prática.</h2>
+              <p className="mt-5 text-base leading-7 text-petroleum-100">
+                A ShieldWorks reúne a formação acadêmica, a vivência operacional e o desenvolvimento computacional de
+                Themisson dos Santos Vasconcelos em uma atuação profissional independente.
+              </p>
+              <div className="mt-7">
+                <ProfessionalLinks compact />
+              </div>
             </div>
           </div>
           <ul className="grid gap-px overflow-hidden rounded-lg border border-white/15 bg-white/15 sm:grid-cols-2">

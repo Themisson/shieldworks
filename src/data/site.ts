@@ -20,6 +20,7 @@ export type ProfessionalLink = {
   href: string;
   tooltip: string;
   isPlaceholder?: boolean;
+  isInternal?: boolean;
 };
 
 export const brand = {
@@ -37,6 +38,12 @@ export const brand = {
 export const githubUrl = "https://github.com/Themisson";
 
 export const professionalLinks: ProfessionalLink[] = [
+  {
+    label: "WhatsApp",
+    href: "/whatsapp",
+    tooltip: "Conversar pelo WhatsApp",
+    isInternal: true
+  },
   {
     label: "Lattes",
     href: brand.lattes,
