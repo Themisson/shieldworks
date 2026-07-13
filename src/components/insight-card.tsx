@@ -12,22 +12,22 @@ function formatDate(date: string) {
 
 export function InsightCard({ insight }: { insight: Insight }) {
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
+    <article className="group flex h-full flex-col rounded-2xl border border-graphite-100/80 bg-white p-6 shadow-card transition duration-300 ease-out hover:-translate-y-0.5 hover:border-petroleum-200 hover:shadow-lift">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="inline-flex items-center rounded-full border border-petroleum-100 bg-petroleum-50 px-2.5 py-1 text-xs font-medium text-petroleum-900">
+        <span className="inline-flex items-center rounded-lg border border-petroleum-100 bg-petroleum-50 px-2.5 py-1 text-xs font-medium text-petroleum-800">
           {insight.category}
         </span>
-        <time className="text-xs font-medium text-slate-500" dateTime={insight.date}>
+        <time className="font-mono text-[11px] font-medium tracking-wide text-graphite-500" dateTime={insight.date}>
           {formatDate(insight.date)}
         </time>
       </div>
-      <h2 className="mt-5 text-lg font-semibold tracking-tight text-slate-950">{insight.title}</h2>
-      <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">{insight.description}</p>
+      <h2 className="mt-5 text-lg font-semibold tracking-tight text-graphite-900">{insight.title}</h2>
+      <p className="mt-3 flex-1 text-sm leading-6 text-graphite-600">{insight.description}</p>
       <div className="mt-5 flex flex-wrap gap-2">
         {insight.tags.map((tag) => (
           <span
             key={tag}
-            className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-600"
+            className="inline-flex items-center rounded-lg border border-graphite-100 bg-graphite-50 px-2.5 py-1 text-xs font-medium text-graphite-600"
           >
             {tag}
           </span>
@@ -35,10 +35,13 @@ export function InsightCard({ insight }: { insight: Insight }) {
       </div>
       <Link
         href={`/insights/${insight.slug}`}
-        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-petroleum-900 transition-colors hover:text-petroleum-700 focus:outline-none focus:ring-4 focus:ring-petroleum-100"
+        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-petroleum-800 transition-colors hover:text-petroleum-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100"
       >
         Ler conteúdo
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        <ArrowRight
+          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+          aria-hidden="true"
+        />
       </Link>
     </article>
   );

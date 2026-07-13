@@ -39,12 +39,12 @@ export function ProfessionalLinks({ compact = false }: { compact?: boolean }) {
           const Icon = iconMap[link.label] || ExternalLink;
           const isPlaceholder = link.isPlaceholder;
           const isInternal = link.isInternal;
-          const className = `group relative inline-flex min-h-10 items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition focus:outline-none focus:ring-4 focus:ring-petroleum-100 ${
+          const className = `group relative inline-flex min-h-10 items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 ${
             isPlaceholder
               ? "cursor-not-allowed border-graphite-100 bg-graphite-50 text-graphite-400"
               : link.label === "WhatsApp"
-                ? "border-petroleum-100 bg-petroleum-50 text-petroleum-900 hover:border-petroleum-500 hover:bg-petroleum-100"
-                : "border-graphite-100 bg-white text-graphite-700 hover:border-petroleum-100 hover:bg-petroleum-50 hover:text-petroleum-900"
+                ? "border-petroleum-100 bg-petroleum-50 text-petroleum-900 hover:border-petroleum-400 hover:bg-petroleum-100"
+                : "border-graphite-100 bg-white text-graphite-700 shadow-sm hover:border-petroleum-200 hover:bg-petroleum-50 hover:text-petroleum-900"
           }`;
           const content = (
             <>
@@ -53,7 +53,7 @@ export function ProfessionalLinks({ compact = false }: { compact?: boolean }) {
               {!isPlaceholder && !isInternal ? <ExternalLink className="h-3.5 w-3.5 opacity-60" aria-hidden="true" /> : null}
               <span
                 role="tooltip"
-                className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 hidden max-w-56 -translate-x-1/2 rounded-md bg-graphite-900 px-3 py-2 text-center text-xs font-medium leading-4 text-white shadow-soft group-hover:block group-focus-visible:block"
+                className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 hidden max-w-56 -translate-x-1/2 rounded-xl bg-graphite-900 px-3 py-2 text-center text-xs font-medium leading-4 text-white shadow-soft group-hover:block group-focus-visible:block"
               >
                 {link.tooltip}
               </span>

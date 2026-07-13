@@ -90,13 +90,13 @@ export function LanguageToggle() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <div className="inline-flex rounded-md border border-graphite-100 bg-white p-1" aria-label="Selecionar idioma">
+    <div className="inline-flex rounded-xl border border-graphite-100 bg-white p-1 shadow-sm" aria-label="Selecionar idioma">
       {(["pt", "en"] as Locale[]).map((item) => (
         <button
           key={item}
           type="button"
-          className={`min-h-8 rounded px-2.5 text-xs font-semibold transition ${
-            locale === item ? "bg-petroleum-700 text-white" : "text-graphite-600 hover:bg-graphite-50"
+          className={`min-h-8 rounded-lg px-2.5 text-xs font-semibold transition duration-200 ${
+            locale === item ? "bg-petroleum-800 text-white shadow-sm" : "text-graphite-600 hover:bg-graphite-50"
           }`}
           aria-pressed={locale === item}
           onClick={() => setLocale(item)}

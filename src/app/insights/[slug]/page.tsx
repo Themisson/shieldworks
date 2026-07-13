@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { brand } from "@/data/site";
 import { getInsightBySlug, getPublishedInsights } from "@/data/insights";
+import { Reveal } from "@/components/reveal";
 import { SITE_URL, canonicalUrl } from "@/lib/seo";
 
 type InsightPageProps = {
@@ -108,7 +109,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
   };
 
   return (
-    <section className="bg-white py-16">
+    <section className="page-hero">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -117,42 +118,58 @@ export default async function InsightPage({ params }: InsightPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <Link
-          href="/insights"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-petroleum-900 transition-colors hover:text-petroleum-700 focus:outline-none focus:ring-4 focus:ring-petroleum-100"
-        >
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-          Voltar para Insights
-        </Link>
-        <div className="mt-8 rounded-2xl border border-slate-200/80 bg-slate-50 p-6 shadow-sm">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center rounded-full border border-petroleum-100 bg-petroleum-50 px-2.5 py-1 text-xs font-medium text-petroleum-900">
-              {insight.category}
-            </span>
-            <time className="text-xs font-medium text-slate-500" dateTime={insight.date}>
-              {formatDate(insight.date)}
-            </time>
-          </div>
-          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">{insight.title}</h1>
-          <p className="mt-4 text-base leading-8 text-slate-600">{insight.description}</p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {insight.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600"
-              >
-                {tag}
-              </span>
+      <div className="page-hero-glow" aria-hidden="true" />
+      <div className="section-shell relative py-14 sm:py-16 lg:py-20">
+        <article className="mx-auto max-w-3xl">
+          <Reveal immediate>
+            <Link
+              href="/insights"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-petroleum-800 transition-colors hover:text-petroleum-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              Voltar para Insights
+            </Link>
+          </Reveal>
+
+          <Reveal delay={40}>
+            <div className="panel-muted mt-8 p-6 sm:p-8">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center rounded-lg border border-petroleum-100 bg-white px-2.5 py-1 text-xs font-medium text-petroleum-800">
+                  {insight.category}
+                </span>
+                <time
+                  className="font-mono text-[11px] font-medium tracking-wide text-graphite-500"
+                  dateTime={insight.date}
+                >
+                  {formatDate(insight.date)}
+                </time>
+              </div>
+              <h1 className="mt-5 text-3xl font-semibold tracking-tight text-graphite-900 sm:text-4xl">
+                {insight.title}
+              </h1>
+              <p className="mt-4 text-base leading-8 text-graphite-600">{insight.description}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {insight.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center rounded-lg border border-graphite-100 bg-white px-2.5 py-1 text-xs font-medium text-graphite-600"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-10 space-y-6 text-base leading-8 text-graphite-700">
+            {insight.content.map((paragraph, index) => (
+              <Reveal key={paragraph} delay={Math.min(index, 4) * 40}>
+                <p>{paragraph}</p>
+              </Reveal>
             ))}
           </div>
-        </div>
-        <div className="mt-10 space-y-6 text-base leading-8 text-slate-700">
-          {insight.content.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-      </article>
+        </article>
+      </div>
     </section>
   );
 }

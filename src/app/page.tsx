@@ -14,6 +14,7 @@ import { ButtonLink } from "@/components/button-link";
 import { ServiceCard, SystemCard } from "@/components/card";
 import { CTA } from "@/components/cta";
 import { InsightCard } from "@/components/insight-card";
+import { Reveal } from "@/components/reveal";
 import { SectionTitle } from "@/components/section-title";
 import { getRecentInsights } from "@/data/insights";
 import { digitalProjects, featuredSolutions } from "@/data/site";
@@ -21,24 +22,30 @@ import { digitalProjects, featuredSolutions } from "@/data/site";
 const startingPoints = [
   {
     title: "Empresas e equipes técnicas",
-    description: "Modelagem, simulação, análise de risco e apoio técnico para decisões que exigem método e documentação.",
+    description:
+      "Modelagem, simulação, análise de risco e apoio técnico para decisões que exigem método e documentação.",
     href: "/solucoes",
     action: "Explorar soluções técnicas",
-    icon: Cpu
+    icon: Cpu,
+    featured: true
   },
   {
     title: "Instituições",
-    description: "Sistemas sob medida, automação documental, indicadores e organização de processos acadêmicos ou administrativos.",
+    description:
+      "Sistemas sob medida, automação documental, indicadores e organização de processos acadêmicos ou administrativos.",
     href: "/sistemas",
     action: "Conhecer projetos digitais",
-    icon: Building2
+    icon: Building2,
+    featured: false
   },
   {
     title: "Pesquisadores e estudantes",
-    description: "Apoio metodológico, revisão técnica e estruturação de trabalhos com rigor acadêmico e respeito à autoria.",
+    description:
+      "Apoio metodológico, revisão técnica e estruturação de trabalhos com rigor acadêmico e respeito à autoria.",
     href: "/assessoria-academica",
     action: "Ver assessoria acadêmica",
-    icon: GraduationCap
+    icon: GraduationCap,
+    featured: false
   }
 ];
 
@@ -51,180 +58,303 @@ const credentials = [
 
 export default function Home() {
   const recentInsights = getRecentInsights();
+  const [primarySolution, ...otherSolutions] = featuredSolutions;
+  const PrimaryIcon = primarySolution?.icon;
 
   return (
     <>
-      <section className="overflow-hidden border-b border-slate-200 bg-graphite-50">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:px-8 lg:py-20">
-          <div className="max-w-3xl">
+      <section className="relative overflow-hidden border-b border-graphite-100">
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden="true"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(238,245,247,0.9) 0%, rgba(247,249,250,0.4) 45%, transparent 100%)"
+          }}
+        />
+        <div className="section-shell relative grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-20">
+          <Reveal immediate className="max-w-2xl">
             <Badge>Consultoria técnica e desenvolvimento aplicado</Badge>
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-normal text-graphite-900 sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-graphite-900 sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
               Engenharia e tecnologia para decisões mais seguras e projetos que saem do papel.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-graphite-600 sm:text-lg sm:leading-8">
-              Transformo problemas técnicos, científicos e institucionais em análises, sistemas e entregas claras,
-              combinando engenharia computacional, pesquisa aplicada e experiência operacional.
+            <p className="mt-6 max-w-[52ch] text-base leading-7 text-graphite-600 sm:text-lg sm:leading-8">
+              Transformo problemas técnicos, científicos e institucionais em análises, sistemas e entregas
+              claras, combinando engenharia computacional, pesquisa aplicada e experiência operacional.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <ButtonLink href="/contato">
                 Solicitar uma análise inicial
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </ButtonLink>
-              <ButtonLink href="#como-posso-ajudar" variant="secondary">Ver como posso ajudar</ButtonLink>
+              <ButtonLink href="#como-posso-ajudar" variant="secondary">
+                Ver como posso ajudar
+              </ButtonLink>
             </div>
-            <ul className="mt-8 grid gap-3 border-t border-slate-200 pt-6 sm:grid-cols-3" aria-label="Diferenciais">
+            <ul
+              className="mt-9 flex flex-wrap gap-x-6 gap-y-3 border-t border-graphite-100 pt-6"
+              aria-label="Diferenciais"
+            >
               {["Escopo bem definido", "Rigor técnico", "Entrega documentada"].map((item) => (
                 <li key={item} className="flex items-center gap-2 text-sm font-medium text-graphite-700">
-                  <Check className="h-4 w-4 shrink-0 text-signal" aria-hidden="true" />
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-petroleum-50 text-signal ring-1 ring-petroleum-100">
+                    <Check className="h-3 w-3" strokeWidth={2.5} aria-hidden="true" />
+                  </span>
                   {item}
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <figure className="relative order-first min-h-[280px] overflow-hidden rounded-lg border border-slate-200 bg-petroleum-900 shadow-soft sm:min-h-[360px] lg:order-last lg:min-h-[460px]">
-            <Image
-              src="/engineering-hero.webp"
-              alt="Themisson dos Santos Vasconcelos em retrato profissional"
-              fill
-              priority
-              sizes="(max-width: 1023px) 100vw, 48vw"
-              className="object-cover object-top"
-            />
-            <div className="absolute inset-x-4 bottom-4 rounded-lg border border-white/20 bg-graphite-900/90 p-4 text-white backdrop-blur sm:inset-x-6 sm:bottom-6 sm:p-5">
-              <p className="text-xs font-semibold uppercase text-safety-100">Engenharia • Tecnologia aplicada</p>
-              <p className="mt-2 text-sm leading-6 text-white/90">
-                Themisson dos Santos Vasconcelos, engenheiro, pesquisador e desenvolvedor de soluções técnicas.
-              </p>
-            </div>
-          </figure>
+          <Reveal immediate delay={100} className="order-first lg:order-last">
+            <figure className="relative min-h-[300px] overflow-hidden rounded-3xl border border-graphite-100 bg-petroleum-900 shadow-lift sm:min-h-[380px] lg:min-h-[480px]">
+              <Image
+                src="/engineering-hero.webp"
+                alt="Themisson dos Santos Vasconcelos em retrato profissional"
+                fill
+                priority
+                sizes="(max-width: 1023px) 100vw, 48vw"
+                className="object-cover object-top"
+              />
+              <div
+                className="pointer-events-none absolute inset-0"
+                aria-hidden="true"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(10,28,36,0.88) 0%, rgba(10,28,36,0.25) 42%, transparent 70%)"
+                }}
+              />
+              <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/15 bg-petroleum-950/70 p-4 text-white shadow-inset-edge backdrop-blur-md sm:inset-x-6 sm:bottom-6 sm:p-5">
+                <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-safety-100">
+                  Engenharia · Tecnologia aplicada
+                </p>
+                <p className="mt-2 text-sm leading-6 text-white/90">
+                  Themisson dos Santos Vasconcelos, engenheiro, pesquisador e desenvolvedor de soluções técnicas.
+                </p>
+              </div>
+            </figure>
+          </Reveal>
         </div>
       </section>
 
-      <section id="como-posso-ajudar" className="scroll-mt-24 bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionTitle
-            as="h2"
-            eyebrow="Seu ponto de partida"
-            title="Encontre a frente certa para a sua demanda."
-            description="Comece pelo contexto que mais se aproxima do seu desafio. O escopo final é definido após uma avaliação inicial."
-          />
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            {startingPoints.map(({ title, description, href, action, icon: Icon }) => (
-              <Link
-                key={title}
-                href={href}
-                className="group flex min-h-64 flex-col rounded-lg border border-slate-200 bg-white p-6 transition hover:border-petroleum-500 hover:shadow-soft focus:outline-none focus:ring-4 focus:ring-petroleum-100"
-              >
-                <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-petroleum-50 text-petroleum-700 ring-1 ring-petroleum-100">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <h3 className="mt-6 text-lg font-semibold text-graphite-900">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-graphite-600">{description}</p>
-                <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-petroleum-900">
-                  {action}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-graphite-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <section id="como-posso-ajudar" className="scroll-mt-24 py-16 sm:py-20">
+        <div className="section-shell">
+          <Reveal>
             <SectionTitle
               as="h2"
-              eyebrow="Soluções"
-              title="Conhecimento técnico aplicado a entregas concretas."
-              description="Frentes complementares para investigar, desenvolver, documentar e implementar soluções conforme a necessidade do projeto."
+              title="Encontre a frente certa para a sua demanda."
+              description="Comece pelo contexto que mais se aproxima do seu desafio. O escopo final é definido após uma avaliação inicial."
             />
-            <div className="shrink-0">
-              <ButtonLink href="/solucoes" variant="secondary">Ver todas as soluções</ButtonLink>
-            </div>
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredSolutions.map((solution) => (
-              <ServiceCard key={solution.title} {...solution} />
+          </Reveal>
+          <div className="mt-10 grid gap-4 lg:grid-cols-12">
+            {startingPoints.map(({ title, description, href, action, icon: Icon, featured }, index) => (
+              <Reveal
+                key={title}
+                delay={index * 70}
+                className={featured ? "lg:col-span-6" : "lg:col-span-3"}
+              >
+                <Link
+                  href={href}
+                  className={`group flex min-h-56 flex-col rounded-2xl border border-graphite-100/80 bg-white p-6 shadow-card transition duration-300 ease-out hover:-translate-y-0.5 hover:border-petroleum-200 hover:shadow-lift focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 ${
+                    featured ? "lg:min-h-72 lg:p-8" : ""
+                  } ${index === 0 ? "bg-gradient-to-br from-white via-white to-petroleum-50/60" : ""}`}
+                >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-petroleum-50 text-petroleum-700 ring-1 ring-petroleum-100 transition duration-300 group-hover:bg-petroleum-900 group-hover:text-safety-100 group-hover:ring-petroleum-800">
+                    <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
+                  </span>
+                  <h3
+                    className={`mt-5 font-semibold tracking-tight text-graphite-900 ${featured ? "text-xl" : "text-base"}`}
+                  >
+                    {title}
+                  </h3>
+                  <p className={`mt-3 text-sm leading-6 text-graphite-600 ${featured ? "max-w-md" : ""}`}>
+                    {description}
+                  </p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-petroleum-800">
+                    {action}
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-petroleum-900 py-16 text-white sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16 lg:px-8">
-          <div>
-            <div>
-              <p className="text-sm font-semibold uppercase text-petroleum-100">Experiência multidisciplinar</p>
-              <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Profundidade técnica sem perder a visão prática.</h2>
-              <p className="mt-5 text-base leading-7 text-petroleum-100">
-                A ShieldWorks reúne a formação acadêmica, a vivência operacional e o desenvolvimento computacional de
-                Themisson dos Santos Vasconcelos em uma atuação profissional independente.
-              </p>
-              <div className="mt-7">
-                <ProfessionalLinks compact />
+      <section className="border-y border-graphite-100 bg-white py-16 sm:py-20">
+        <div className="section-shell">
+          <Reveal>
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <SectionTitle
+                as="h2"
+                title="Conhecimento técnico aplicado a entregas concretas."
+                description="Frentes complementares para investigar, desenvolver, documentar e implementar soluções conforme a necessidade do projeto."
+              />
+              <div className="shrink-0">
+                <ButtonLink href="/solucoes" variant="secondary">
+                  Ver todas as soluções
+                </ButtonLink>
               </div>
             </div>
-          </div>
-          <ul className="grid gap-px overflow-hidden rounded-lg border border-white/15 bg-white/15 sm:grid-cols-2">
-            {credentials.map((credential) => (
-              <li key={credential} className="flex min-h-28 items-start gap-3 bg-petroleum-900 p-5 text-sm leading-6 text-white">
-                <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-signal" aria-hidden="true" />
-                {credential}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+          </Reveal>
 
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionTitle
-              as="h2"
-              eyebrow="Projetos digitais"
-              title="Sistemas pensados para rotinas reais."
-              description="Soluções para gestão, automação documental, indicadores e apoio à decisão, do protótipo ao desenvolvimento sob demanda."
-            />
-            <div className="shrink-0">
-              <ButtonLink href="/sistemas" variant="secondary">Conhecer o laboratório digital</ButtonLink>
+          <div className="mt-10 grid gap-4 lg:grid-cols-12">
+            {primarySolution ? (
+              <Reveal className="lg:col-span-5">
+                <article className="group relative h-full overflow-hidden rounded-2xl border border-petroleum-800 bg-petroleum-950 p-6 text-white shadow-lift sm:p-8">
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-70"
+                    aria-hidden="true"
+                    style={{
+                      background:
+                        "radial-gradient(500px 240px at 0% 0%, rgba(47,143,131,0.28), transparent 60%)"
+                    }}
+                  />
+                  <div className="relative">
+                    {PrimaryIcon ? (
+                      <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-safety-100 ring-1 ring-white/15">
+                        <PrimaryIcon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
+                      </div>
+                    ) : null}
+                    <h3 className="text-xl font-semibold tracking-tight">{primarySolution.title}</h3>
+                    <p className="mt-3 max-w-md text-sm leading-6 text-petroleum-100/90">
+                      {primarySolution.description}
+                    </p>
+                    {primarySolution.tags?.length ? (
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {primarySolution.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium text-petroleum-100"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
+                    <Link
+                      href="/solucoes"
+                      className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-safety-100 transition-colors hover:text-white"
+                    >
+                      Detalhar esta frente
+                      <ArrowRight
+                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  </div>
+                </article>
+              </Reveal>
+            ) : null}
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+              {otherSolutions.map((solution, index) => (
+                <Reveal key={solution.title} delay={(index % 2) * 70}>
+                  <ServiceCard {...solution} />
+                </Reveal>
+              ))}
             </div>
           </div>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {digitalProjects.slice(0, 3).map((project) => (
-              <SystemCard key={project.title} {...project} />
-            ))}
-          </div>
         </div>
       </section>
 
-      <section className="bg-graphite-50 py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionTitle
-              as="h2"
-              eyebrow="Conteúdo técnico"
-              title="Pesquisa e experiência compartilhadas com clareza."
-              description="Notas sobre engenharia computacional, geomecânica, sistemas e segurança operacional para aproximar conhecimento e aplicação."
-            />
-            <div className="shrink-0">
-              <ButtonLink href="/insights" variant="secondary">Ver todos os insights</ButtonLink>
+      <section className="py-16 sm:py-20">
+        <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+          <Reveal>
+            <p className="eyebrow">Experiência multidisciplinar</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-graphite-900 sm:text-4xl">
+              Profundidade técnica sem perder a visão prática.
+            </h2>
+            <p className="mt-5 max-w-[48ch] text-base leading-7 text-graphite-600">
+              A ShieldWorks reúne a formação acadêmica, a vivência operacional e o desenvolvimento computacional de
+              Themisson dos Santos Vasconcelos em uma atuação profissional independente.
+            </p>
+            <div className="mt-7">
+              <ProfessionalLinks compact />
             </div>
-          </div>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {recentInsights.map((insight) => (
-              <InsightCard key={insight.slug} insight={insight} />
+          </Reveal>
+          <div className="grid gap-3 sm:grid-cols-2" role="list" aria-label="Credenciais">
+            {credentials.map((credential, index) => (
+              <Reveal key={credential} delay={index * 60}>
+                <div
+                  role="listitem"
+                  className={`flex min-h-[7.5rem] items-start gap-3 rounded-2xl border border-graphite-100 bg-white p-5 text-sm leading-6 text-graphite-700 shadow-card ${
+                    index % 2 === 1 ? "sm:mt-6" : ""
+                  }`}
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-petroleum-50 text-petroleum-700 ring-1 ring-petroleum-100">
+                    <ShieldCheck className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
+                  </span>
+                  {credential}
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <CTA
-        title="Tem um desafio técnico, institucional ou acadêmico?"
-        description="Apresente o contexto da sua demanda. A conversa inicial serve para entender o problema, avaliar aderência e definir os próximos passos com objetividade."
-        action="Apresentar minha demanda"
-      />
+      <section className="border-y border-graphite-100 bg-white py-16 sm:py-20">
+        <div className="section-shell">
+          <Reveal>
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <SectionTitle
+                as="h2"
+                title="Sistemas pensados para rotinas reais."
+                description="Soluções para gestão, automação documental, indicadores e apoio à decisão, do protótipo ao desenvolvimento sob demanda."
+              />
+              <div className="shrink-0">
+                <ButtonLink href="/sistemas" variant="secondary">
+                  Conhecer o laboratório digital
+                </ButtonLink>
+              </div>
+            </div>
+          </Reveal>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {digitalProjects.slice(0, 3).map((project, index) => (
+              <Reveal key={project.title} delay={index * 70}>
+                <SystemCard {...project} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20">
+        <div className="section-shell">
+          <Reveal>
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <SectionTitle
+                as="h2"
+                title="Pesquisa e experiência compartilhadas com clareza."
+                description="Notas sobre engenharia computacional, geomecânica, sistemas e segurança operacional para aproximar conhecimento e aplicação."
+              />
+              <div className="shrink-0">
+                <ButtonLink href="/insights" variant="secondary">
+                  Ver todos os insights
+                </ButtonLink>
+              </div>
+            </div>
+          </Reveal>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {recentInsights.map((insight, index) => (
+              <Reveal key={insight.slug} delay={index * 70}>
+                <InsightCard insight={insight} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Reveal>
+        <CTA
+          title="Tem um desafio técnico, institucional ou acadêmico?"
+          description="Apresente o contexto da sua demanda. A conversa inicial serve para entender o problema, avaliar aderência e definir os próximos passos com objetividade."
+          action="Apresentar minha demanda"
+        />
+      </Reveal>
     </>
   );
 }

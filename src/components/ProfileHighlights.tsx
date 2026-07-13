@@ -46,11 +46,11 @@ const profileHighlights: ProfileHighlight[] = [
 
 export function ProfileHighlights() {
   return (
-    <article className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+    <article className="rounded-2xl border border-graphite-100/80 bg-white p-6 shadow-card">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-petroleum-700">Competências</p>
-        <h2 className="mt-2 text-lg font-semibold tracking-tight text-slate-950">Síntese profissional</h2>
-        <p className="mt-2 text-sm leading-6 text-slate-600">
+        <p className="eyebrow">Competências</p>
+        <h2 className="mt-2 text-lg font-semibold tracking-tight text-graphite-900">Síntese profissional</h2>
+        <p className="mt-2 text-sm leading-6 text-graphite-600">
           Atuação integrada entre carreira institucional, engenharia, pesquisa aplicada, desenvolvimento computacional,
           docência e soluções digitais.
         </p>
@@ -63,15 +63,15 @@ export function ProfileHighlights() {
           return (
             <div
               key={item.title}
-              className="group rounded-xl border border-slate-200/70 bg-slate-50 p-4 transition-all duration-200 hover:border-slate-300 hover:bg-white hover:shadow-sm"
+              className="group rounded-xl border border-graphite-100/80 bg-graphite-50/70 p-4 transition duration-300 hover:border-petroleum-200 hover:bg-white hover:shadow-card"
             >
               <div className="flex items-start gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-petroleum-800 ring-1 ring-slate-200 transition-colors group-hover:bg-petroleum-900 group-hover:text-white">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-petroleum-800 ring-1 ring-graphite-100 transition duration-300 group-hover:bg-petroleum-900 group-hover:text-white">
+                  <Icon className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold tracking-tight text-slate-950">{item.title}</h3>
-                  <p className="mt-1 text-xs leading-5 text-slate-600">{item.description}</p>
+                  <h3 className="text-sm font-semibold tracking-tight text-graphite-900">{item.title}</h3>
+                  <p className="mt-1 text-xs leading-5 text-graphite-600">{item.description}</p>
                 </div>
               </div>
             </div>

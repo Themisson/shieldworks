@@ -32,15 +32,15 @@ function NavLink({ href, label, pathname, onClick, variant = "desktop" }: NavLin
   const isActive = isActivePath(pathname, href);
   const className =
     variant === "mobile"
-      ? `rounded-xl px-3.5 py-3 text-sm font-medium transition-colors focus:outline-none focus:ring-4 focus:ring-petroleum-100 ${
+      ? `rounded-xl px-3.5 py-3 text-sm font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 ${
           isActive
-            ? "bg-slate-100 text-slate-950"
-            : "text-graphite-700 hover:bg-petroleum-50 hover:text-petroleum-900"
+            ? "bg-petroleum-50 text-petroleum-900"
+            : "text-graphite-700 hover:bg-graphite-50 hover:text-graphite-900"
         }`
-      : `rounded-full px-3.5 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-petroleum-300 focus:ring-offset-2 ${
+      : `relative rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-petroleum-300 focus-visible:ring-offset-2 ${
           isActive
-            ? "bg-slate-100 text-slate-950"
-            : "text-graphite-600 hover:bg-slate-50 hover:text-slate-950"
+            ? "bg-petroleum-50 text-petroleum-900"
+            : "text-graphite-600 hover:bg-graphite-50 hover:text-graphite-900"
         }`;
 
   return (
@@ -52,7 +52,18 @@ function NavLink({ href, label, pathname, onClick, variant = "desktop" }: NavLin
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 8);
+    }
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -74,10 +85,16 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-graphite-100 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex min-h-[72px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <header
+      className={`sticky top-0 z-50 border-b transition duration-300 ${
+        scrolled
+          ? "border-graphite-100/90 bg-white/85 shadow-soft backdrop-blur-xl"
+          : "border-transparent bg-white/70 backdrop-blur-md"
+      }`}
+    >
+      <div className="section-shell flex min-h-[68px] items-center justify-between gap-4">
         <Logo />
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Navegação principal">
           {desktopNavItems.map((item) => (
             <NavLink key={item.href} {...item} pathname={pathname} />
           ))}
@@ -86,7 +103,7 @@ export function Header() {
           <LanguageToggle />
           <Link
             href="/contato"
-            className="inline-flex min-h-10 items-center gap-2 rounded-md bg-safety-500 px-4 py-2.5 text-sm font-semibold text-graphite-900 shadow-sm transition-all duration-200 hover:bg-safety-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-safety-500 focus:ring-offset-2"
+            className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-safety-500 px-4 py-2.5 text-sm font-semibold text-graphite-900 shadow-sm transition duration-200 ease-out hover:bg-safety-600 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-safety-500 focus-visible:ring-offset-2 active:scale-[0.98]"
           >
             Falar sobre um projeto
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -94,7 +111,7 @@ export function Header() {
         </div>
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-white text-graphite-800 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-petroleum-100 lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-graphite-100 bg-white text-graphite-800 shadow-sm transition hover:bg-graphite-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 lg:hidden"
           aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
@@ -105,16 +122,16 @@ export function Header() {
       </div>
       {isOpen ? (
         <div
-          className="fixed inset-0 top-[73px] z-40 bg-graphite-900/20 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 top-[69px] z-40 bg-graphite-900/25 backdrop-blur-sm lg:hidden"
           onClick={closeMenu}
         >
           <nav
             id="mobile-navigation"
-            className="ml-auto h-[calc(100vh-73px)] w-full max-w-sm border-l border-slate-200 bg-white p-5 shadow-soft"
+            className="ml-auto h-[calc(100dvh-69px)] w-full max-w-sm border-l border-graphite-100 bg-white p-5 shadow-lift"
             aria-label="Navegação mobile"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+            <div className="flex items-center justify-between border-b border-graphite-100 pb-4">
               <span className="text-sm font-semibold text-graphite-900">Menu</span>
               <LanguageToggle />
             </div>
@@ -123,10 +140,10 @@ export function Header() {
                 <NavLink key={item.href} {...item} pathname={pathname} variant="mobile" onClick={closeMenu} />
               ))}
             </div>
-            <div className="mt-6 grid gap-3 border-t border-slate-200 pt-5">
+            <div className="mt-6 grid gap-3 border-t border-graphite-100 pt-5">
               <Link
                 href="/sistemas"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-graphite-700 transition-colors hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-4 focus:ring-petroleum-100"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-graphite-100 px-4 py-2 text-sm font-medium text-graphite-700 transition-colors hover:bg-graphite-50 hover:text-graphite-950 focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100"
                 onClick={closeMenu}
               >
                 Acessar sistemas
@@ -134,7 +151,7 @@ export function Header() {
               </Link>
               <Link
                 href="/contato"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-petroleum-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-petroleum-800 hover:shadow-md focus:outline-none focus:ring-4 focus:ring-petroleum-100"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-petroleum-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition duration-200 hover:bg-petroleum-800 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 active:scale-[0.98]"
                 onClick={closeMenu}
               >
                 Contato

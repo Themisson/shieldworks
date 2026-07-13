@@ -5,29 +5,32 @@ import { brand, navItems } from "@/data/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-graphite-100 bg-graphite-50">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
+    <footer className="border-t border-graphite-100 bg-white">
+      <div className="section-shell grid gap-10 py-14 lg:grid-cols-[1.45fr_1fr_1fr]">
         <div>
           <Logo />
-          <p className="mt-5 max-w-xl text-sm leading-6 text-graphite-600">
+          <p className="mt-5 max-w-md text-sm leading-7 text-graphite-600">
             Site profissional de {brand.owner}, voltado a engenharia computacional, pesquisa aplicada,
             segurança operacional, sistemas institucionais e assessoria acadêmica.
           </p>
-          <p className="mt-4 text-xs leading-5 text-graphite-500">
+          <p className="mt-4 max-w-md text-xs leading-5 text-graphite-500">
             As soluções e demonstrações apresentadas neste site integram uma iniciativa profissional pessoal e não
             representam, por si, sistemas oficiais de qualquer órgão público.
           </p>
-          <div className="mt-5">
+          <div className="mt-6">
             <ProfessionalLinks compact />
           </div>
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-graphite-900">Navegação</h2>
+          <h2 className="text-sm font-semibold tracking-tight text-graphite-900">Navegação</h2>
           <nav className="mt-4" aria-label="Navegação do rodapé">
-            <ul className="space-y-2 text-sm text-graphite-600">
+            <ul className="space-y-2.5 text-sm text-graphite-600">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-petroleum-900">
+                  <Link
+                    href={item.href}
+                    className="transition-colors duration-200 hover:text-petroleum-800"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -36,21 +39,27 @@ export function Footer() {
           </nav>
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-graphite-900">Contato profissional</h2>
-          <p className="mt-4 text-sm leading-6 text-graphite-600">
+          <h2 className="text-sm font-semibold tracking-tight text-graphite-900">Contato profissional</h2>
+          <p className="mt-4 text-sm leading-7 text-graphite-600">
             Use o formulário de contato para demandas técnicas, acadêmicas ou institucionais.
           </p>
-          <Link href="/contato" className="mt-4 inline-flex text-sm font-semibold text-petroleum-900">
+          <Link
+            href="/contato"
+            className="mt-4 inline-flex text-sm font-semibold text-petroleum-800 transition-colors hover:text-petroleum-600"
+          >
             Solicitar contato
           </Link>
           <div className="mt-5">
-            <Link href="/privacidade" className="text-sm font-medium text-graphite-600 hover:text-petroleum-900">
+            <Link
+              href="/privacidade"
+              className="text-sm font-medium text-graphite-500 transition-colors hover:text-petroleum-800"
+            >
               Privacidade
             </Link>
           </div>
         </div>
       </div>
-      <div className="border-t border-graphite-100 px-4 py-5 text-center text-xs text-graphite-500">
+      <div className="border-t border-graphite-100 px-4 py-5 text-center font-mono text-[11px] tracking-wide text-graphite-500">
         © {new Date().getFullYear()} ShieldWorks. Todos os direitos reservados.
       </div>
     </footer>

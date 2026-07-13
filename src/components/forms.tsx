@@ -134,12 +134,12 @@ export function ContactForm() {
 
   return (
     <form
-      className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm"
+      className="rounded-2xl border border-graphite-100/80 bg-white p-6 shadow-card"
       aria-label={t("Formulário de contato")}
       onSubmit={handleSubmit}
       noValidate
     >
-      <p className="mb-5 text-xs leading-5 text-slate-500">{t("Campos marcados com * são obrigatórios.")}</p>
+      <p className="mb-5 text-xs leading-5 text-graphite-500">{t("Campos marcados com * são obrigatórios.")}</p>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label className="label" htmlFor="name">{requiredLabel(t("Nome"))}</label>
@@ -212,7 +212,7 @@ export function ContactForm() {
         {t("As informações enviadas serão utilizadas exclusivamente para análise da demanda e retorno profissional.")}
       </p>
       <StatusMessage status={status} />
-      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-petroleum-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-petroleum-900 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"} aria-busy={status.type === "loading"}>
+      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-petroleum-800 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-petroleum-900 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"} aria-busy={status.type === "loading"}>
         {status.type === "loading"
           ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
           : <Send className="h-4 w-4" aria-hidden="true" />}
@@ -248,7 +248,7 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
 
   return (
     <form
-      className={`rounded-2xl border border-slate-200/80 bg-slate-50 p-6 shadow-sm ${className}`}
+      className={`rounded-2xl border border-graphite-100/80 bg-graphite-50/60 p-6 shadow-card ${className}`}
       aria-label={t("Formulário de opinião")}
       onSubmit={handleSubmit}
     >
@@ -284,7 +284,7 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
         </div>
       </div>
       <StatusMessage status={status} />
-      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md border border-petroleum-700 px-5 py-2.5 text-sm font-semibold text-petroleum-900 transition hover:bg-petroleum-50 disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"} aria-busy={status.type === "loading"}>
+      <button className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl border border-petroleum-200 bg-white px-5 py-2.5 text-sm font-semibold text-petroleum-900 shadow-sm transition duration-200 hover:border-petroleum-400 hover:bg-petroleum-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70" type="submit" disabled={status.type === "loading"} aria-busy={status.type === "loading"}>
         {status.type === "loading" && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
         {status.type === "loading" ? t("Enviando...") : t("Enviar feedback")}
       </button>

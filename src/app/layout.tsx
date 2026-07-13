@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { IBM_Plex_Mono, Outfit } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { FloatingFeedback } from "@/components/FloatingFeedback";
 import { Header } from "@/components/header";
@@ -7,6 +8,19 @@ import { brand, githubUrl } from "@/data/site";
 import { LocaleProvider } from "@/i18n/locale-provider";
 import { SITE_URL, canonicalUrl } from "@/lib/seo";
 import "./globals.css";
+
+const sans = Outfit({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap"
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
+  display: "swap"
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -86,8 +100,8 @@ const structuredData = [
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
-      <body className="min-h-screen bg-white text-graphite-900 antialiased">
+    <html lang="pt-BR" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <body className="min-h-screen font-sans text-graphite-900 antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -95,7 +109,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <LocaleProvider>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-petroleum-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:outline-none"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-petroleum-900 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:outline-none"
           >
             Ir para o conteúdo principal
           </a>
