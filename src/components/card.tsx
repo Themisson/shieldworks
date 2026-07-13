@@ -67,11 +67,11 @@ export function CardShell({
 }: CardShellProps) {
   return (
     <article
-      className={`group flex h-full flex-col rounded-lg border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:border-petroleum-500 hover:shadow-md sm:p-6 ${className}`}
+      className={`group flex h-full flex-col rounded-lg border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:border-safety-500 hover:shadow-md sm:p-6 ${className}`}
     >
       <div className="flex items-start justify-between gap-4">
         {Icon ? (
-          <div className="mb-5 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-petroleum-50 text-petroleum-700 ring-1 ring-petroleum-100 transition-colors group-hover:bg-petroleum-900 group-hover:text-white">
+          <div className="mb-5 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-petroleum-50 text-petroleum-700 ring-1 ring-petroleum-100 transition-colors group-hover:bg-petroleum-900 group-hover:text-safety-500">
             <Icon className="h-5 w-5" aria-hidden="true" />
           </div>
         ) : null}
@@ -146,7 +146,7 @@ export function ListCard({
 
 export function CompactCard({ title, icon: Icon }: { title: string; icon?: LucideIcon }) {
   return (
-    <article className="group flex h-full items-start gap-3 rounded-lg border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:border-petroleum-500 hover:shadow-md">
+    <article className="group flex h-full items-start gap-3 rounded-lg border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:border-safety-500 hover:shadow-md">
       {Icon ? (
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-petroleum-50 text-petroleum-700 ring-1 ring-petroleum-100 transition-colors group-hover:bg-petroleum-900 group-hover:text-white">
           <Icon className="h-4 w-4" aria-hidden="true" />

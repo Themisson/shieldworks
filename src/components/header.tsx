@@ -86,7 +86,7 @@ export function Header() {
           <LanguageToggle />
           <Link
             href="/contato"
-            className="inline-flex min-h-10 items-center gap-2 rounded-md bg-petroleum-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-petroleum-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-petroleum-300 focus:ring-offset-2"
+            className="inline-flex min-h-10 items-center gap-2 rounded-md bg-safety-500 px-4 py-2.5 text-sm font-semibold text-graphite-900 shadow-sm transition-all duration-200 hover:bg-safety-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-safety-500 focus:ring-offset-2"
           >
             Falar sobre um projeto
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
