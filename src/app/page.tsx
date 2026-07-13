@@ -12,11 +12,15 @@ import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { Badge } from "@/components/badge";
 import { ButtonLink } from "@/components/button-link";
 import { ServiceCard, SystemCard } from "@/components/card";
+import { CaseStudyCard } from "@/components/case-study";
 import { CTA } from "@/components/cta";
 import { InsightCard } from "@/components/insight-card";
+import { PublicationsList } from "@/components/publications";
 import { Reveal } from "@/components/reveal";
 import { SectionTitle } from "@/components/section-title";
+import { getFeaturedCase } from "@/data/cases";
 import { getRecentInsights } from "@/data/insights";
+import { getFeaturedPublications } from "@/data/publications";
 import { digitalProjects, featuredSolutions } from "@/data/site";
 
 const startingPoints = [
@@ -60,6 +64,8 @@ export default function Home() {
   const recentInsights = getRecentInsights();
   const [primarySolution, ...otherSolutions] = featuredSolutions;
   const PrimaryIcon = primarySolution?.icon;
+  const featuredCase = getFeaturedCase();
+  const featuredPublications = getFeaturedPublications(5);
 
   return (
     <>
@@ -292,6 +298,51 @@ export default function Home() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {featuredCase ? (
+        <section className="border-y border-graphite-100 bg-white py-16 sm:py-20">
+          <div className="section-shell">
+            <Reveal>
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                <SectionTitle
+                  as="h2"
+                  title="Case técnico documentado."
+                  description="Estrutura problema, método, entrega e impacto - com um case modelo da linha de geomecânica e engenharia de poços."
+                />
+                <div className="shrink-0">
+                  <ButtonLink href="/pesquisa" variant="secondary">
+                    Ver pesquisa aplicada
+                  </ButtonLink>
+                </div>
+              </div>
+            </Reveal>
+            <div className="mt-10">
+              <Reveal>
+                <CaseStudyCard study={featuredCase} />
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="py-16 sm:py-20">
+        <div className="section-shell">
+          <Reveal>
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <SectionTitle
+                as="h2"
+                title="Publicações selecionadas."
+                description="Amostra da produção científica em geomecânica, evaporitos e modelagem termomecânica. Lista completa no Lattes, ORCID e Google Acadêmico."
+              />
+            </div>
+          </Reveal>
+          <div className="mt-10">
+            <Reveal>
+              <PublicationsList items={featuredPublications} />
+            </Reveal>
           </div>
         </div>
       </section>

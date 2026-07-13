@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import { FlaskConical, Sigma, Target } from "lucide-react";
 import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { CardShell } from "@/components/card";
+import { CaseStudyCard } from "@/components/case-study";
 import { CTA } from "@/components/cta";
+import { PublicationsList } from "@/components/publications";
 import { Reveal } from "@/components/reveal";
 import { SectionTitle } from "@/components/section-title";
+import { getFeaturedCase } from "@/data/cases";
+import { getFeaturedPublications } from "@/data/publications";
 import { researchAreas } from "@/data/site";
 import { canonicalUrl } from "@/lib/seo";
 
@@ -86,6 +90,9 @@ const researchCards = [
 ];
 
 export default function PesquisaPage() {
+  const featuredCase = getFeaturedCase();
+  const publications = getFeaturedPublications();
+
   return (
     <>
       <section className="page-hero">
@@ -106,17 +113,48 @@ export default function PesquisaPage() {
             ))}
           </div>
 
-          <Reveal delay={100}>
-            <div className="panel mt-10 overflow-hidden p-0">
+          {featuredCase ? (
+            <div className="mt-14">
+              <Reveal>
+                <SectionTitle
+                  as="h2"
+                  title="Case técnico modelo."
+                  description="Exemplo documentado da linha de trabalho em modelagem termomecânica de poços com evaporitos, organizado em problema, método, entrega e impacto."
+                />
+              </Reveal>
+              <div className="mt-8">
+                <Reveal delay={60}>
+                  <CaseStudyCard study={featuredCase} />
+                </Reveal>
+              </div>
+            </div>
+          ) : null}
+
+          <div className="mt-14">
+            <Reveal>
+              <SectionTitle
+                as="h2"
+                title="Publicações selecionadas."
+                description="Amostra curada da produção científica. Para a lista completa e atualizada, consulte Lattes, ORCID e Google Acadêmico."
+              />
+            </Reveal>
+            <div className="mt-8">
+              <Reveal delay={40}>
+                <PublicationsList items={publications} />
+              </Reveal>
+            </div>
+          </div>
+
+          <Reveal delay={80}>
+            <div className="panel mt-12 overflow-hidden p-0">
               <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
                 <div className="border-b border-graphite-100 p-6 sm:p-7 lg:border-b-0 lg:border-r">
                   <h2 className="text-lg font-semibold tracking-tight text-graphite-900">
-                    Produção científica resumida
+                    Produção científica completa
                   </h2>
                   <p className="mt-3 max-w-[52ch] text-sm leading-7 text-graphite-600">
-                    A produção científica completa e atualizada pode ser consultada nos perfis acadêmicos oficiais,
-                    enquanto os repositórios profissionais reúnem projetos, códigos e soluções técnicas em
-                    desenvolvimento.
+                    A seleção acima é representativa. Artigos, trabalhos de congresso e a produção completa permanecem
+                    nos perfis acadêmicos oficiais e nos repositórios profissionais.
                   </p>
                 </div>
                 <div className="bg-graphite-50/60 p-6 sm:p-7">
