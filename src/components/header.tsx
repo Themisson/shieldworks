@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, ExternalLink, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Logo } from "@/components/logo";
 import { navItems } from "@/data/site";
 import { LanguageToggle } from "@/i18n/locale-provider";
+import { trackEvent } from "@/lib/analytics";
 
 const desktopNavItems = navItems.filter(({ href }) =>
   ["/sobre", "/solucoes", "/sistemas", "/pesquisa", "/insights"].includes(href)
@@ -54,15 +55,30 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const scrolledRef = useRef(false);
 
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 8);
+    let frame = 0;
+
+    function updateScrolled() {
+      const next = window.scrollY > 8;
+      if (next !== scrolledRef.current) {
+        scrolledRef.current = next;
+        setScrolled(next);
+      }
     }
 
-    onScroll();
+    function onScroll() {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateScrolled);
+    }
+
+    updateScrolled();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -104,6 +120,7 @@ export function Header() {
           <Link
             href="/contato"
             className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-safety-500 px-4 py-2.5 text-sm font-semibold text-graphite-900 shadow-sm transition duration-200 ease-out hover:bg-safety-600 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-safety-500 focus-visible:ring-offset-2 active:scale-[0.98]"
+            onClick={() => trackEvent("nav_contact_click", { source: "header_desktop" })}
           >
             Falar sobre um projeto
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -152,7 +169,10 @@ export function Header() {
               <Link
                 href="/contato"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-petroleum-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition duration-200 hover:bg-petroleum-800 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 active:scale-[0.98]"
-                onClick={closeMenu}
+                onClick={() => {
+                  trackEvent("nav_contact_click", { source: "header_mobile" });
+                  closeMenu();
+                }}
               >
                 Contato
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />

@@ -5,11 +5,15 @@ import { MessageSquare, X } from "lucide-react";
 import { FeedbackForm } from "@/components/forms";
 import { useLocale } from "@/i18n/locale-provider";
 
+const FOCUSABLE_SELECTOR =
+  'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 export function FloatingFeedback() {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLocale();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLElement>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function closeModal() {
@@ -33,12 +37,40 @@ export function FloatingFeedback() {
 
     const previousOverflow = document.body.style.overflow;
     const triggerButton = buttonRef.current;
+    const dialog = dialogRef.current;
     document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
+        event.preventDefault();
         closeModal();
+        return;
+      }
+
+      if (event.key !== "Tab" || !dialog) {
+        return;
+      }
+
+      const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
+        (el) => !el.hasAttribute("disabled") && el.tabIndex !== -1 && el.offsetParent !== null
+      );
+
+      if (focusable.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
       }
     }
 
@@ -83,6 +115,7 @@ export function FloatingFeedback() {
           onMouseDown={closeModal}
         >
           <section
+            ref={dialogRef}
             id="feedback-modal"
             role="dialog"
             aria-modal="true"

@@ -1,5 +1,8 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
+import { trackEvent } from "@/lib/analytics";
 
 type CTAProps = {
   title?: string;
@@ -31,7 +34,7 @@ export function CTA({
             {description}
           </p>
         </div>
-        <div className="shrink-0">
+        <div className="shrink-0" onClick={() => trackEvent("cta_contact_click", { source: "cta_section" })}>
           <ButtonLink href="/contato" variant="inverse" className="w-full sm:w-auto">
             {action}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

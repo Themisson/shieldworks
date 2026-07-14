@@ -18,18 +18,39 @@ export type FeedbackPayload = {
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_NAME = 120;
+const MAX_EMAIL = 254;
+const MAX_PHONE = 40;
+const MAX_INSTITUTION = 160;
+const MAX_MESSAGE = 4000;
+const MAX_COMMENT = 2000;
 
 function asString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
 function isKnownInterest(value: string) {
-  return interestOptions.includes(value);
+  return (interestOptions as readonly string[]).includes(value);
+}
+
+/** Honeypot field must be empty (bots often fill hidden fields). */
+export function isHoneypotTripped(input: unknown) {
+  if (!input || typeof input !== "object") {
+    return false;
+  }
+
+  const payload = input as Record<string, unknown>;
+  const honey = asString(payload.website ?? payload.company_url ?? payload.honeypot);
+  return honey.length > 0;
 }
 
 export function validateContactPayload(input: unknown): { data?: ContactPayload; error?: string } {
   if (!input || typeof input !== "object") {
     return { error: "Dados inválidos." };
+  }
+
+  if (isHoneypotTripped(input)) {
+    return { error: "honeypot" };
   }
 
   const payload = input as Record<string, unknown>;
@@ -46,8 +67,20 @@ export function validateContactPayload(input: unknown): { data?: ContactPayload;
     return { error: "Informe o nome." };
   }
 
-  if (!emailPattern.test(data.email)) {
+  if (data.name.length > MAX_NAME) {
+    return { error: "Nome excede o tamanho permitido." };
+  }
+
+  if (!emailPattern.test(data.email) || data.email.length > MAX_EMAIL) {
     return { error: "Informe um e-mail válido." };
+  }
+
+  if (data.phone && data.phone.length > MAX_PHONE) {
+    return { error: "Telefone excede o tamanho permitido." };
+  }
+
+  if (data.institution && data.institution.length > MAX_INSTITUTION) {
+    return { error: "Instituição excede o tamanho permitido." };
   }
 
   if (!isKnownInterest(data.interest)) {
@@ -58,12 +91,20 @@ export function validateContactPayload(input: unknown): { data?: ContactPayload;
     return { error: "Informe a mensagem." };
   }
 
+  if (data.message.length > MAX_MESSAGE) {
+    return { error: "Mensagem excede o tamanho permitido." };
+  }
+
   return { data };
 }
 
 export function validateFeedbackPayload(input: unknown): { data?: FeedbackPayload; error?: string } {
   if (!input || typeof input !== "object") {
     return { error: "Dados inválidos." };
+  }
+
+  if (isHoneypotTripped(input)) {
+    return { error: "honeypot" };
   }
 
   const payload = input as Record<string, unknown>;
@@ -77,7 +118,11 @@ export function validateFeedbackPayload(input: unknown): { data?: FeedbackPayloa
     comment: asString(payload.comment)
   };
 
-  if (email && !emailPattern.test(email)) {
+  if (data.name && data.name.length > MAX_NAME) {
+    return { error: "Nome excede o tamanho permitido." };
+  }
+
+  if (email && (!emailPattern.test(email) || email.length > MAX_EMAIL)) {
     return { error: "Informe um e-mail válido ou deixe o campo em branco." };
   }
 
@@ -87,6 +132,10 @@ export function validateFeedbackPayload(input: unknown): { data?: FeedbackPayloa
 
   if (!isKnownInterest(data.interest)) {
     return { error: "Selecione uma área de interesse válida." };
+  }
+
+  if (data.comment && data.comment.length > MAX_COMMENT) {
+    return { error: "Comentário excede o tamanho permitido." };
   }
 
   return { data };
