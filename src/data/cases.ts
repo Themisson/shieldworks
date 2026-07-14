@@ -16,14 +16,13 @@ export type CaseStudy = {
   delivery: string[];
   impact: string;
   tags: string[];
-  /** When true, shown as featured model case on the home page */
+  /** When true, shown in the home featured cases section */
   featured?: boolean;
 };
 
 /**
  * Cases técnicos documentados.
- * O case modelo usa a linha de pesquisa real em geomecânica de poços
- * (APB / evaporitos / modelagem termomecânica), sem inventar clientes.
+ * Baseados em linhas reais de atuação (pesquisa e sistemas), sem inventar clientes.
  */
 export const caseStudies: CaseStudy[] = [
   {
@@ -64,11 +63,55 @@ export const caseStudies: CaseStudy[] = [
     impact:
       "A linha de trabalho resultou em tese de doutorado e publicações em veículos como Mechanics Research Communications e International Journal of Rock Mechanics and Mining Sciences, reforçando a base técnica da atuação em geomecânica e engenharia computacional.",
     tags: ["APB", "Evaporitos", "Termomecânica", "Poços", "Simulação numérica"]
+  },
+  {
+    id: "sistema-gestao-academica",
+    title: "Sistema de gestão acadêmica sob demanda",
+    domain: "Sistemas institucionais · Automação documental",
+    year: "2024–2026",
+    type: "sistema",
+    featured: true,
+    summary:
+      "Desenvolvimento de plataforma digital para organizar cursos, turmas, instrutores, documentos e certificados, com escopo evolutivo e foco em rotinas reais de gestão acadêmica.",
+    context:
+      "Rotinas acadêmicas e de capacitação costumam depender de planilhas, e-mails e documentos manuais. Isso dificulta rastreabilidade, padronização de certificados e visão consolidada de turmas, instrutores e indicadores.",
+    problem:
+      "Como estruturar um sistema sob medida que reduza retrabalho documental, organize o ciclo acadêmico e permita evolução por módulos, sem pretender ser produto oficial de órgão público?",
+    method: [
+      {
+        label: "Mapeamento de processos",
+        detail:
+          "Levantamento de fluxos de cursos, matrículas, emissão documental e necessidades de indicadores para definir escopo por etapas."
+      },
+      {
+        label: "Modelagem e protótipo",
+        detail:
+          "Definição de entidades (curso, turma, instrutor, discente, documento), protótipos de interface e critérios de aceitação por módulo."
+      },
+      {
+        label: "Implementação evolutiva",
+        detail:
+          "Desenvolvimento incremental com ênfase em automação documental, consistência de dados e preparação para dashboards e certificados."
+      }
+    ],
+    delivery: [
+      "Arquitetura modular para gestão acadêmica e documental",
+      "Fluxos para cursos, turmas, instrutores e emissão padronizada de documentos",
+      "Base para indicadores e evolução sob demanda (demonstrações não institucionais oficiais)"
+    ],
+    impact:
+      "O case consolida a frente de sistemas da ShieldWorks: transformar rotinas fragmentadas em plataforma documentada, com transparência de estágio (em desenvolvimento/protótipo) e caminho claro para pilotos sob demanda.",
+    tags: ["Gestão acadêmica", "Documentos", "Certificados", "Dashboards", "Sob demanda"]
   }
 ];
 
 export function getFeaturedCase() {
   return caseStudies.find((item) => item.featured) ?? caseStudies[0];
+}
+
+export function getFeaturedCases() {
+  const featured = caseStudies.filter((item) => item.featured);
+  return featured.length ? featured : caseStudies.slice(0, 2);
 }
 
 export function getCaseStudies() {

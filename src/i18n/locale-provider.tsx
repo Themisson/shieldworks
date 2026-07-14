@@ -1,12 +1,13 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { localeLabels, translations, type Locale } from "@/i18n/translations";
+import { localeLabels, translate, translations, type Locale } from "@/i18n/translations";
 
 type LocaleContextValue = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (text: string) => string;
+  /** Translate by semantic key (preferred) or Portuguese source text (fallback). */
+  t: (key: string) => string;
 };
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
@@ -41,6 +42,7 @@ function translateDocument(locale: Locale) {
 
     const source = originalText.get(node) || "";
     const trimmed = source.trim();
+    // Server content is Portuguese; map PT -> EN via dictionary built from message keys
     const translated = locale === "en" ? translations[trimmed] : undefined;
 
     node.textContent = translated ? source.replace(trimmed, translated) : source;
@@ -68,8 +70,8 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
         window.localStorage.setItem("shieldworks-locale", nextLocale);
         setLocaleState(nextLocale);
       },
-      t(text) {
-        return locale === "en" ? translations[text] || text : text;
+      t(key) {
+        return translate(key, locale);
       }
     }),
     [locale]
@@ -90,7 +92,10 @@ export function LanguageToggle() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <div className="inline-flex rounded-xl border border-graphite-100 bg-white p-1 shadow-sm" aria-label="Selecionar idioma">
+    <div
+      className="inline-flex rounded-xl border border-graphite-100 bg-white p-1 shadow-sm"
+      aria-label={locale === "en" ? "Select language" : "Selecionar idioma"}
+    >
       {(["pt", "en"] as Locale[]).map((item) => (
         <button
           key={item}

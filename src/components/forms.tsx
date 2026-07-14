@@ -14,7 +14,6 @@ type FormStatus = {
 type ContactFieldErrors = Partial<Record<"name" | "email" | "interest" | "message", string>>;
 
 const initialStatus: FormStatus = { type: "idle", message: "" };
-const requiredContactMessage = "Preencha os campos obrigatórios: nome, e-mail, área de interesse e mensagem.";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function formDataToObject(form: HTMLFormElement) {
@@ -103,22 +102,22 @@ export function ContactForm() {
     const errors: ContactFieldErrors = {};
 
     if (!String(data.name ?? "").trim()) {
-      errors.name = t("Este campo é obrigatório.");
+      errors.name = t("form.required");
     }
 
     const email = String(data.email ?? "").trim();
     if (!email) {
-      errors.email = t("Este campo é obrigatório.");
+      errors.email = t("form.required");
     } else if (!emailPattern.test(email)) {
-      errors.email = t("Informe um e-mail válido.");
+      errors.email = t("form.invalid_email");
     }
 
     if (!String(data.interest ?? "").trim()) {
-      errors.interest = t("Este campo é obrigatório.");
+      errors.interest = t("form.required");
     }
 
     if (!String(data.message ?? "").trim()) {
-      errors.message = t("Este campo é obrigatório.");
+      errors.message = t("form.required");
     }
 
     return errors;
@@ -131,12 +130,12 @@ export function ContactForm() {
 
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
-      setStatus({ type: "error", message: t(requiredContactMessage) });
+      setStatus({ type: "error", message: t("form.required_contact") });
       return;
     }
 
     setFieldErrors({});
-    setStatus({ type: "loading", message: t("Enviando mensagem...") });
+    setStatus({ type: "loading", message: t("form.sending_message") });
     trackEvent("contact_form_submit");
 
     try {
@@ -153,15 +152,15 @@ export function ContactForm() {
   return (
     <form
       className="relative rounded-2xl border border-graphite-100/80 bg-white p-6 shadow-card"
-      aria-label={t("Formulário de contato")}
+      aria-label={t("form.contact_aria")}
       onSubmit={handleSubmit}
       noValidate
     >
       <HoneypotField id="contact-website" />
-      <p className="mb-5 text-xs leading-5 text-graphite-500">{t("Campos marcados com * são obrigatórios.")}</p>
+      <p className="mb-5 text-xs leading-5 text-graphite-500">{t("form.required_hint")}</p>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <label className="label" htmlFor="name">{requiredLabel(t("Nome"))}</label>
+          <label className="label" htmlFor="name">{requiredLabel(t("form.name"))}</label>
           <input
             className={fieldClassName(Boolean(fieldErrors.name))}
             id="name"
@@ -176,7 +175,7 @@ export function ContactForm() {
           <FieldError id="name-error" message={fieldErrors.name} />
         </div>
         <div>
-          <label className="label" htmlFor="email">{requiredLabel(t("E-mail"))}</label>
+          <label className="label" htmlFor="email">{requiredLabel(t("form.email"))}</label>
           <input
             className={fieldClassName(Boolean(fieldErrors.email))}
             id="email"
@@ -191,11 +190,11 @@ export function ContactForm() {
           <FieldError id="email-error" message={fieldErrors.email} />
         </div>
         <div>
-          <label className="label" htmlFor="phone">{t("Telefone/WhatsApp")}</label>
+          <label className="label" htmlFor="phone">{t("form.phone")}</label>
           <input className="field mt-2" id="phone" name="phone" type="tel" autoComplete="tel" maxLength={40} />
         </div>
         <div>
-          <label className="label" htmlFor="institution">{t("Instituição")}</label>
+          <label className="label" htmlFor="institution">{t("form.institution")}</label>
           <input
             className="field mt-2"
             id="institution"
@@ -206,7 +205,7 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label className="label" htmlFor="interest">{requiredLabel(t("Área de interesse"))}</label>
+          <label className="label" htmlFor="interest">{requiredLabel(t("form.interest"))}</label>
           <select
             className={fieldClassName(Boolean(fieldErrors.interest))}
             id="interest"
@@ -216,7 +215,7 @@ export function ContactForm() {
             aria-invalid={Boolean(fieldErrors.interest)}
             aria-describedby={fieldErrors.interest ? "interest-error" : undefined}
           >
-            <option value="" disabled>{t("Selecione uma área")}</option>
+            <option value="" disabled>{t("form.select_area")}</option>
             {interestOptions.map((option) => (
               <option key={option} value={option}>{t(option)}</option>
             ))}
@@ -224,7 +223,7 @@ export function ContactForm() {
           <FieldError id="interest-error" message={fieldErrors.interest} />
         </div>
         <div className="sm:col-span-2">
-          <label className="label" htmlFor="message">{requiredLabel(t("Mensagem"))}</label>
+          <label className="label" htmlFor="message">{requiredLabel(t("form.message"))}</label>
           <textarea
             className={`${fieldClassName(Boolean(fieldErrors.message))} min-h-36`}
             id="message"
@@ -238,7 +237,7 @@ export function ContactForm() {
         </div>
       </div>
       <p className="mt-4 text-xs leading-5 text-graphite-500">
-        {t("As informações enviadas serão utilizadas exclusivamente para análise da demanda e retorno profissional.")}
+        {t("form.privacy_note")}
       </p>
       <StatusMessage status={status} />
       <button
@@ -250,7 +249,7 @@ export function ContactForm() {
         {status.type === "loading"
           ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
           : <Send className="h-4 w-4" aria-hidden="true" />}
-        {status.type === "loading" ? t("Enviando...") : t("Enviar mensagem")}
+        {status.type === "loading" ? t("form.sending") : t("form.send")}
       </button>
     </form>
   );
@@ -268,7 +267,7 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
-    setStatus({ type: "loading", message: t("Registrando feedback...") });
+    setStatus({ type: "loading", message: t("form.sending_feedback") });
     trackEvent("feedback_form_submit");
 
     try {
@@ -286,21 +285,21 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
   return (
     <form
       className={`relative rounded-2xl border border-graphite-100/80 bg-graphite-50/60 p-6 shadow-card ${className}`}
-      aria-label={t("Formulário de opinião")}
+      aria-label={t("form.feedback_aria")}
       onSubmit={handleSubmit}
     >
       <HoneypotField id="feedback-website" />
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className="label" htmlFor="feedback-name">{t("Nome opcional")}</label>
+          <label className="label" htmlFor="feedback-name">{t("form.name_optional")}</label>
           <input className="field mt-2" id="feedback-name" name="name" type="text" maxLength={120} />
         </div>
         <div>
-          <label className="label" htmlFor="feedback-email">{t("E-mail opcional")}</label>
+          <label className="label" htmlFor="feedback-email">{t("form.email_optional")}</label>
           <input className="field mt-2" id="feedback-email" name="email" type="email" maxLength={254} />
         </div>
         <div>
-          <label className="label" htmlFor="rating">{t("Nota de 1 a 5")}</label>
+          <label className="label" htmlFor="rating">{t("form.rating")}</label>
           <select className="field mt-2" id="rating" name="rating" defaultValue="5">
             {[1, 2, 3, 4, 5].map((rating) => (
               <option key={rating} value={rating}>{rating}</option>
@@ -308,16 +307,16 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
           </select>
         </div>
         <div>
-          <label className="label" htmlFor="feedback-interest">{t("Área de interesse")}</label>
+          <label className="label" htmlFor="feedback-interest">{t("form.interest")}</label>
           <select className="field mt-2" id="feedback-interest" name="interest" defaultValue="" required>
-            <option value="" disabled>{t("Selecione uma área")}</option>
+            <option value="" disabled>{t("form.select_area")}</option>
             {interestOptions.map((option) => (
               <option key={option} value={option}>{t(option)}</option>
             ))}
           </select>
         </div>
         <div className="sm:col-span-2">
-          <label className="label" htmlFor="comment">{t("Comentário")}</label>
+          <label className="label" htmlFor="comment">{t("form.comment")}</label>
           <textarea className="field mt-2 min-h-28" id="comment" name="comment" maxLength={2000} />
         </div>
       </div>
@@ -329,7 +328,7 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
         aria-busy={status.type === "loading"}
       >
         {status.type === "loading" && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
-        {status.type === "loading" ? t("Enviando...") : t("Enviar feedback")}
+        {status.type === "loading" ? t("form.sending") : t("form.send_feedback")}
       </button>
     </form>
   );

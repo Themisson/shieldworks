@@ -97,14 +97,14 @@ export function FloatingFeedback() {
         ref={buttonRef}
         type="button"
         className="group fixed bottom-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-petroleum-900 text-white shadow-lift transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-petroleum-800 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-petroleum-400 focus-visible:ring-offset-2 active:scale-[0.98] sm:bottom-6 sm:right-6"
-        aria-label={t("Abrir formulário de feedback")}
+        aria-label={t("feedback.open")}
         aria-expanded={isOpen}
         aria-controls="feedback-modal"
         onClick={() => setIsOpen(true)}
       >
         <MessageSquare className="h-5 w-5" aria-hidden="true" />
         <span className="pointer-events-none absolute bottom-full right-0 mb-3 hidden whitespace-nowrap rounded-xl bg-graphite-900 px-3 py-1.5 text-xs font-medium text-white shadow-sm group-hover:block group-focus-visible:block">
-          {t("Enviar feedback")}
+          {t("form.send_feedback")}
         </span>
       </button>
 
@@ -127,17 +127,17 @@ export function FloatingFeedback() {
             <div className="flex items-start justify-between gap-4 border-b border-graphite-100 pb-4">
               <div>
                 <h2 id="feedback-modal-title" className="text-lg font-semibold tracking-tight text-graphite-900">
-                  {t("Enviar feedback")}
+                  {t("form.send_feedback")}
                 </h2>
                 <p id="feedback-modal-description" className="mt-2 text-sm leading-6 text-graphite-600">
-                  {t("Sua opinião ajuda a melhorar a experiência, os conteúdos e as soluções apresentadas no site.")}
+                  {t("feedback.description")}
                 </p>
               </div>
               <button
                 ref={closeButtonRef}
                 type="button"
                 className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-graphite-100 text-graphite-700 transition hover:bg-graphite-50 hover:text-graphite-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-petroleum-400 focus-visible:ring-offset-2"
-                aria-label={t("Fechar formulário de feedback")}
+                aria-label={t("feedback.close")}
                 onClick={closeModal}
               >
                 <X className="h-4 w-4" aria-hidden="true" />

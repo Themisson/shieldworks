@@ -14,6 +14,7 @@ import { ButtonLink } from "@/components/button-link";
 import { ServiceCard, SystemCard } from "@/components/card";
 import { CaseStudyCard } from "@/components/case-study";
 import { InsightCard } from "@/components/insight-card";
+import { ProfilePortrait } from "@/components/profile-portrait";
 import { PublicationsList } from "@/components/publications";
 import { Reveal } from "@/components/reveal";
 import { SectionTitle } from "@/components/section-title";
@@ -70,10 +71,10 @@ export function HomeHero() {
             "linear-gradient(180deg, rgba(238,245,247,0.9) 0%, rgba(247,249,250,0.4) 45%, transparent 100%)"
         }}
       />
-      <div className="section-shell relative grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-20">
+      <div className="section-shell relative grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-12 lg:py-20">
         <Reveal immediate className="max-w-2xl">
           <Badge>Consultoria técnica e desenvolvimento aplicado</Badge>
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-graphite-900 sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
+          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-graphite-900 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
             Engenharia e tecnologia para decisões mais seguras e projetos que saem do papel.
           </h1>
           <p className="mt-6 max-w-[52ch] text-base leading-7 text-graphite-600 sm:text-lg sm:leading-8">
@@ -105,32 +106,47 @@ export function HomeHero() {
         </Reveal>
 
         <Reveal immediate delay={100} className="order-first lg:order-last">
-          <figure className="relative min-h-[300px] overflow-hidden rounded-3xl border border-graphite-100 bg-petroleum-900 shadow-lift sm:min-h-[380px] lg:min-h-[480px]">
-            <Image
-              src="/engineering-hero.webp"
-              alt="Visualização de modelagem numérica e engenharia computacional aplicada"
-              fill
+          <div className="grid gap-4 sm:grid-cols-[1.15fr_0.85fr] sm:items-end">
+            <ProfilePortrait
               priority
-              sizes="(max-width: 1023px) 100vw, 48vw"
-              className="object-cover object-top"
+              sizes="(max-width: 639px) 100vw, (max-width: 1023px) 55vw, 32vw"
+              caption={
+                <>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-safety-100">
+                    Themisson dos Santos Vasconcelos
+                  </span>
+                  <span className="mt-1 block text-sm leading-6 text-white/92">
+                    Engenheiro · Pesquisador · Desenvolvedor de soluções técnicas
+                  </span>
+                </>
+              }
             />
-            <div
-              className="pointer-events-none absolute inset-0"
-              aria-hidden="true"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(10,28,36,0.88) 0%, rgba(10,28,36,0.25) 42%, transparent 70%)"
-              }}
-            />
-            <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/15 bg-petroleum-950/70 p-4 text-white shadow-inset-edge backdrop-blur-md sm:inset-x-6 sm:bottom-6 sm:p-5">
-              <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-safety-100">
-                Engenharia · Tecnologia aplicada
-              </p>
-              <p className="mt-2 text-sm leading-6 text-white/90">
-                Themisson dos Santos Vasconcelos, engenheiro, pesquisador e desenvolvedor de soluções técnicas.
-              </p>
-            </div>
-          </figure>
+            <figure className="relative hidden min-h-[220px] overflow-hidden rounded-3xl border border-graphite-100 bg-petroleum-900 shadow-lift sm:block sm:min-h-[280px] lg:min-h-[320px]">
+              <Image
+                src="/engineering-hero.webp"
+                alt="Visualização de modelagem numérica e engenharia computacional aplicada"
+                fill
+                sizes="(max-width: 1023px) 40vw, 28vw"
+                className="object-cover object-center"
+              />
+              <div
+                className="pointer-events-none absolute inset-0"
+                aria-hidden="true"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(10,28,36,0.82) 0%, rgba(10,28,36,0.2) 50%, transparent 75%)"
+                }}
+              />
+              <figcaption className="absolute inset-x-3 bottom-3 rounded-xl border border-white/12 bg-petroleum-950/65 px-3 py-2.5 text-white backdrop-blur-md">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-petroleum-100">
+                  Modelagem · Simulação
+                </p>
+                <p className="mt-1 text-xs leading-5 text-white/85">
+                  Engenharia computacional aplicada a problemas reais.
+                </p>
+              </figcaption>
+            </figure>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -307,7 +323,9 @@ export function HomeCredentials() {
   );
 }
 
-export function HomeCase({ study }: { study: CaseStudy }) {
+export function HomeCases({ studies }: { studies: CaseStudy[] }) {
+  const [primary, secondary] = studies;
+
   return (
     <section className="border-y border-graphite-100 bg-white py-16 sm:py-20">
       <div className="section-shell">
@@ -315,8 +333,8 @@ export function HomeCase({ study }: { study: CaseStudy }) {
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <SectionTitle
               as="h2"
-              title="Case técnico documentado."
-              description="Estrutura problema, método, entrega e impacto - com um case modelo da linha de geomecânica e engenharia de poços."
+              title="Cases técnicos documentados."
+              description="Problema, método, entrega e impacto - com exemplos da linha de pesquisa em geomecânica e da frente de sistemas institucionais."
             />
             <div className="shrink-0">
               <ButtonLink href="/pesquisa" variant="secondary">
@@ -325,11 +343,32 @@ export function HomeCase({ study }: { study: CaseStudy }) {
             </div>
           </div>
         </Reveal>
-        <div className="mt-10">
-          <Reveal>
-            <CaseStudyCard study={study} />
-          </Reveal>
-        </div>
+
+        {primary ? (
+          <div className="mt-10">
+            <Reveal>
+              <CaseStudyCard study={primary} />
+            </Reveal>
+          </div>
+        ) : null}
+
+        {secondary ? (
+          <div className="mt-6 grid gap-4 lg:grid-cols-1">
+            <Reveal delay={80}>
+              <CaseStudyCard study={secondary} />
+            </Reveal>
+          </div>
+        ) : null}
+
+        {studies.length > 2 ? (
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {studies.slice(2).map((study, index) => (
+              <Reveal key={study.id} delay={index * 70}>
+                <CaseStudyCard study={study} compact />
+              </Reveal>
+            ))}
+          </div>
+        ) : null}
       </div>
     </section>
   );

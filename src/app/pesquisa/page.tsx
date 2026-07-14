@@ -7,7 +7,7 @@ import { CTA } from "@/components/cta";
 import { PublicationsList } from "@/components/publications";
 import { Reveal } from "@/components/reveal";
 import { SectionTitle } from "@/components/section-title";
-import { getFeaturedCase } from "@/data/cases";
+import { getFeaturedCases } from "@/data/cases";
 import { getFeaturedPublications } from "@/data/publications";
 import { researchAreas } from "@/data/site";
 import { canonicalUrl } from "@/lib/seo";
@@ -90,7 +90,7 @@ const researchCards = [
 ];
 
 export default function PesquisaPage() {
-  const featuredCase = getFeaturedCase();
+  const featuredCases = getFeaturedCases();
   const publications = getFeaturedPublications();
 
   return (
@@ -113,19 +113,21 @@ export default function PesquisaPage() {
             ))}
           </div>
 
-          {featuredCase ? (
+          {featuredCases.length ? (
             <div className="mt-14">
               <Reveal>
                 <SectionTitle
                   as="h2"
-                  title="Case técnico modelo."
-                  description="Exemplo documentado da linha de trabalho em modelagem termomecânica de poços com evaporitos, organizado em problema, método, entrega e impacto."
+                  title="Cases técnicos documentados."
+                  description="Exemplos da linha de geomecânica e da frente de sistemas institucionais, organizados em problema, método, entrega e impacto."
                 />
               </Reveal>
-              <div className="mt-8">
-                <Reveal delay={60}>
-                  <CaseStudyCard study={featuredCase} />
-                </Reveal>
+              <div className="mt-8 grid gap-6">
+                {featuredCases.map((study, index) => (
+                  <Reveal key={study.id} delay={index * 60}>
+                    <CaseStudyCard study={study} />
+                  </Reveal>
+                ))}
               </div>
             </div>
           ) : null}

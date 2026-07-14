@@ -1,5 +1,5 @@
 import {
-  HomeCase,
+  HomeCases,
   HomeCredentials,
   HomeHero,
   HomeInsights,
@@ -10,13 +10,13 @@ import {
 } from "@/components/home/home-sections";
 import { CTA } from "@/components/cta";
 import { Reveal } from "@/components/reveal";
-import { getFeaturedCase } from "@/data/cases";
+import { getFeaturedCases } from "@/data/cases";
 import { getRecentInsights } from "@/data/insights";
 import { getFeaturedPublications } from "@/data/publications";
 
 export default function Home() {
   const recentInsights = getRecentInsights();
-  const featuredCase = getFeaturedCase();
+  const featuredCases = getFeaturedCases();
   const featuredPublications = getFeaturedPublications(5);
 
   return (
@@ -25,7 +25,7 @@ export default function Home() {
       <HomeStartingPoints />
       <HomeSolutions />
       <HomeCredentials />
-      {featuredCase ? <HomeCase study={featuredCase} /> : null}
+      {featuredCases.length ? <HomeCases studies={featuredCases} /> : null}
       <HomePublications items={featuredPublications} />
       <HomeSystems />
       <HomeInsights items={recentInsights} />
