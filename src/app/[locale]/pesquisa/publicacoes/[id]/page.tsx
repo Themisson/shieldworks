@@ -4,7 +4,7 @@ import { featuredPublications } from "@/data/publications";
 import { researchLines } from "@/data/research";
 import { routeLocale } from "@/lib/route-locale";
 import { pageMetadata, jsonLd } from "@/lib/page-metadata";
-import { citation, bibtex } from "@/lib/publication-format";
+import { citation, bibtex, kindLabel } from "@/lib/publication-format";
 import { canonicalUrl } from "@/lib/seo";
 import { localizedPath } from "@/i18n/routing";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -81,7 +81,7 @@ export default async function PublicationPage({ params }: Props) {
       />
       <header className="internal-hero">
         <p className="technical-label">
-          {publication.year} / {publication.kind}
+          {publication.year} / {kindLabel(publication.kind, locale)}
         </p>
         <h1 className="publication-detail-title">{publication.title}</h1>
         <p className="detail-description">{publication.authors}</p>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getFeaturedPublications } from "@/data/publications";
 import { ProfessionalLinks } from "@/components/ProfessionalLinks";
 import { routeLocale } from "@/lib/route-locale";
+import { kindLabel } from "@/lib/publication-format";
 import { pageMetadata } from "@/lib/page-metadata";
 import { localizedPath } from "@/i18n/routing";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -55,7 +56,7 @@ export default async function PublicationsPage({ params }: Props) {
           {getFeaturedPublications().map((publication) => (
             <li key={publication.id}>
               <p className="technical-label">
-                {publication.year} / {publication.kind}
+                {publication.year} / {kindLabel(publication.kind, locale)}
               </p>
               <h2 className="text-2xl font-medium my-3">
                 <Link

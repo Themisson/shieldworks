@@ -5,6 +5,7 @@ import { Text } from "@/i18n/locale-provider";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
+import LocalizedLink from "@/components/localized-link";
 import { SystemCard } from "@/components/card";
 import { CTA } from "@/components/cta";
 import { Reveal } from "@/components/reveal";
@@ -98,9 +99,9 @@ export default function SistemasPage() {
                 {"Explore o catálogo de produtos do ecossistema ShieldWorks."}
               </Text>
             </p>
-            <ButtonLink href="/projetos">
+            <LocalizedLink href="/projetos" className="sw-button">
               <Text>{"Conhecer projetos"}</Text>
-            </ButtonLink>
+            </LocalizedLink>
           </div>
         </div>
       </section>

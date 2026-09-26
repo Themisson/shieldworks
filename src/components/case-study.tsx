@@ -11,11 +11,18 @@ const typeLabels: Record<CaseStudy["type"], string> = {
 };
 
 type CaseStudyCardProps = {
+  /** On the case page the h1 already carries the title. */
+  standalone?: boolean;
   study: CaseStudy;
   compact?: boolean;
 };
 
-export function CaseStudyCard({ study, compact = false }: CaseStudyCardProps) {
+export function CaseStudyCard({
+  study,
+  compact = false,
+  standalone = false,
+}: CaseStudyCardProps) {
+  const Subheading = standalone ? "h2" : "h4";
   if (compact) {
     return (
       <article className="group flex h-full flex-col rounded-2xl border border-graphite-100/80 bg-white p-6 transition-colors hover:border-petroleum-200">
@@ -81,9 +88,11 @@ export function CaseStudyCard({ study, compact = false }: CaseStudyCardProps) {
             <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-petroleum-100/80">
               <Text>{study.domain}</Text>
             </p>
-            <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-[1.65rem] sm:leading-snug">
-              <Text>{study.title}</Text>
-            </h3>
+            {!standalone && (
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-[1.65rem] sm:leading-snug">
+                <Text>{study.title}</Text>
+              </h3>
+            )}
             <p className="mt-4 max-w-[42ch] text-sm leading-7 text-petroleum-100/90">
               <Text>{study.summary}</Text>
             </p>
@@ -103,26 +112,26 @@ export function CaseStudyCard({ study, compact = false }: CaseStudyCardProps) {
         <div className="p-6 sm:p-8">
           <div className="grid gap-6">
             <div>
-              <h4 className="text-sm font-semibold tracking-tight text-graphite-900">
+              <Subheading className="text-sm font-semibold tracking-tight text-graphite-900">
                 <Text>{"Contexto"}</Text>
-              </h4>
+              </Subheading>
               <p className="mt-2 text-sm leading-7 text-graphite-600">
                 <Text>{study.context}</Text>
               </p>
             </div>
             <div>
-              <h4 className="text-sm font-semibold tracking-tight text-graphite-900">
+              <Subheading className="text-sm font-semibold tracking-tight text-graphite-900">
                 <Text>{"Problema"}</Text>
-              </h4>
+              </Subheading>
               <p className="mt-2 text-sm leading-7 text-graphite-600">
                 <Text>{study.problem}</Text>
               </p>
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold tracking-tight text-graphite-900">
+              <Subheading className="text-sm font-semibold tracking-tight text-graphite-900">
                 <Text>{"Método"}</Text>
-              </h4>
+              </Subheading>
               <ol className="mt-3 grid gap-3">
                 {study.method.map((step, index) => (
                   <li
@@ -146,9 +155,9 @@ export function CaseStudyCard({ study, compact = false }: CaseStudyCardProps) {
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold tracking-tight text-graphite-900">
+              <Subheading className="text-sm font-semibold tracking-tight text-graphite-900">
                 <Text>{"Entregas"}</Text>
-              </h4>
+              </Subheading>
               <ul className="mt-3 grid gap-2">
                 {study.delivery.map((item) => (
                   <li
@@ -169,9 +178,9 @@ export function CaseStudyCard({ study, compact = false }: CaseStudyCardProps) {
             </div>
 
             <div className="rounded-2xl border border-petroleum-100 bg-petroleum-50/80 p-4">
-              <h4 className="text-sm font-semibold tracking-tight text-petroleum-900">
+              <Subheading className="text-sm font-semibold tracking-tight text-petroleum-900">
                 <Text>{"Impacto"}</Text>
-              </h4>
+              </Subheading>
               <p className="mt-2 text-sm leading-7 text-petroleum-900/90">
                 <Text>{study.impact}</Text>
               </p>

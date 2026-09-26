@@ -103,7 +103,12 @@ export default async function ContentPage({ params, searchParams }: Props) {
             </button>
           </form>
           {articles.length ? (
-            <ArticleList articles={articles} />
+            <>
+              <h2 className="sr-only">
+                {t("Notas publicadas", "Published notes")}
+              </h2>
+              <ArticleList articles={articles} />
+            </>
           ) : (
             <p role="status">
               {t(

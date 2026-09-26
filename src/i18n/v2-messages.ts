@@ -166,6 +166,7 @@ export const v2Messages: Record<string, string> = {
     "Development of C++ and Python solutions, web systems, document automation, indicators and support for institutional management.",
   "Desde 2019, atua como instrutor de TCC e Metodologia Científica nos cursos do Corpo de Bombeiros Militar de Alagoas, com acompanhamento de projetos, artigos, relatórios e preparação para bancas.":
     "Since 2019, he has taught final-paper preparation and Scientific Methodology in courses at the Alagoas Military Fire Department, supporting projects, articles, reports and examination preparation.",
+  "Conversar pelo WhatsApp": "Chat on WhatsApp",
   "Engenharia · Pesquisa · Segurança · Tecnologia":
     "Engineering · Research · Safety · Technology",
   "Themisson dos Santos Vasconcelos é Tenente-Coronel do Corpo de Bombeiros Militar de Alagoas, engenheiro de petróleo, mestre e doutor na área de estruturas e geomecânica. Sua trajetória integra segurança operacional, pesquisa aplicada, engenharia computacional, gestão acadêmica e desenvolvimento de soluções digitais.":

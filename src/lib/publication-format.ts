@@ -1,4 +1,16 @@
 import type { Publication } from "@/data/publications";
+import type { Locale } from "@/i18n/translations";
+
+const kindLabels: Record<Publication["kind"], [string, string]> = {
+  artigo: ["Artigo científico", "Journal article"],
+  periodico: ["Periódico", "Journal"],
+  congresso: ["Artigo em congresso", "Conference paper"],
+  tese: ["Tese", "Thesis"],
+};
+
+export function kindLabel(kind: Publication["kind"], locale: Locale) {
+  return kindLabels[kind][locale === "en" ? 1 : 0];
+}
 
 export function citation(publication: Publication) {
   return `${publication.authors} (${publication.year}). ${publication.title}. ${publication.venue}.${publication.doi ? ` DOI: ${publication.doi}.` : ""}`;

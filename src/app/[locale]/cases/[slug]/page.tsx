@@ -44,7 +44,7 @@ export default async function CasePage({ params }: Props) {
         </p>
         <h1>{translate(study.title, locale)}</h1>
       </header>
-      <CaseStudyCard study={study} />
+      <CaseStudyCard study={study} standalone />
     </div>
   );
 }
