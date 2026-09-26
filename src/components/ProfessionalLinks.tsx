@@ -1,6 +1,18 @@
+"use client";
+
+import { Text, useLocale } from "@/i18n/locale-provider";
 import type { LucideIcon } from "lucide-react";
-import Link from "next/link";
-import { BadgeCheck, ExternalLink, Github, GraduationCap, Linkedin, MessageCircle, Phone, Search } from "lucide-react";
+import Link from "@/components/localized-link";
+import {
+  BadgeCheck,
+  ExternalLink,
+  Github,
+  GraduationCap,
+  Linkedin,
+  MessageCircle,
+  Phone,
+  Search,
+} from "lucide-react";
 import { professionalLinks } from "@/data/site";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -9,7 +21,7 @@ const iconMap: Record<string, LucideIcon> = {
   ORCID: BadgeCheck,
   "Google Acadêmico": Search,
   GitHub: Github,
-  LinkedIn: Linkedin
+  LinkedIn: Linkedin,
 };
 
 function ProfileIcon({ label, Icon }: { label: string; Icon: LucideIcon }) {
@@ -18,7 +30,10 @@ function ProfileIcon({ label, Icon }: { label: string; Icon: LucideIcon }) {
   }
 
   return (
-    <span className="relative inline-flex h-5 w-5 items-center justify-center text-petroleum-700" aria-hidden="true">
+    <span
+      className="relative inline-flex h-5 w-5 items-center justify-center text-petroleum-700"
+      aria-hidden="true"
+    >
       <MessageCircle className="h-5 w-5" fill="currentColor" strokeWidth={2} />
       <Phone className="absolute h-2.5 w-2.5 stroke-white" strokeWidth={3} />
     </span>
@@ -26,15 +41,22 @@ function ProfileIcon({ label, Icon }: { label: string; Icon: LucideIcon }) {
 }
 
 export function ProfessionalLinks({ compact = false }: { compact?: boolean }) {
+  const { t } = useLocale();
   return (
     <div>
       {!compact ? (
         <p className="mb-3 max-w-2xl text-sm leading-6 text-graphite-600">
-          Perfis acadêmicos e profissionais com produção científica, identificação de pesquisador, networking
-          institucional e repositórios de desenvolvimento técnico.
+          <Text>
+            {
+              "Perfis acadêmicos e profissionais com produção científica, identificação de pesquisador, networking institucional e repositórios de desenvolvimento técnico."
+            }
+          </Text>
         </p>
       ) : null}
-      <nav className="flex flex-wrap gap-2" aria-label="Perfis acadêmicos e profissionais">
+      <nav
+        className="flex flex-wrap gap-2"
+        aria-label={t("Perfis acadêmicos e profissionais")}
+      >
         {professionalLinks.map((link) => {
           const Icon = iconMap[link.label] || ExternalLink;
           const isPlaceholder = link.isPlaceholder;
@@ -49,13 +71,22 @@ export function ProfessionalLinks({ compact = false }: { compact?: boolean }) {
           const content = (
             <>
               <ProfileIcon label={link.label} Icon={Icon} />
-              {!compact ? <span>{link.label}</span> : null}
-              {!isPlaceholder && !isInternal ? <ExternalLink className="h-3.5 w-3.5 opacity-60" aria-hidden="true" /> : null}
+              {!compact ? (
+                <span>
+                  <Text>{link.label}</Text>
+                </span>
+              ) : null}
+              {!isPlaceholder && !isInternal ? (
+                <ExternalLink
+                  className="h-3.5 w-3.5 opacity-60"
+                  aria-hidden="true"
+                />
+              ) : null}
               <span
                 role="tooltip"
                 className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 hidden max-w-56 -translate-x-1/2 rounded-xl bg-graphite-900 px-3 py-2 text-center text-xs font-medium leading-4 text-white shadow-soft group-hover:block group-focus-visible:block"
               >
-                {link.tooltip}
+                <Text>{link.tooltip}</Text>
               </span>
             </>
           );
@@ -81,8 +112,8 @@ export function ProfessionalLinks({ compact = false }: { compact?: boolean }) {
                 key={link.label}
                 href={link.href}
                 className={className}
-                aria-label={link.tooltip}
-                title={link.tooltip}
+                aria-label={t(link.tooltip)}
+                title={t(link.tooltip)}
               >
                 {content}
               </Link>
@@ -96,8 +127,8 @@ export function ProfessionalLinks({ compact = false }: { compact?: boolean }) {
               className={className}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={link.tooltip}
-              title={link.tooltip}
+              aria-label={t(link.tooltip)}
+              title={t(link.tooltip)}
             >
               {content}
             </a>

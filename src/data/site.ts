@@ -73,11 +73,12 @@ export const professionalLinks: ProfessionalLink[] = [
 
 export const navItems = [
   { label: "Início", href: "/" },
-  { label: "Sobre", href: "/sobre" },
   { label: "Soluções", href: "/solucoes" },
+  { label: "Projetos", href: "/projetos" },
   { label: "Sistemas", href: "/sistemas" },
   { label: "Pesquisa", href: "/pesquisa" },
-  { label: "Insights", href: "/insights" },
+  { label: "Conteúdo", href: "/conteudo" },
+  { label: "Sobre", href: "/sobre" },
   { label: "Assessoria Acadêmica", href: "/assessoria-academica" },
   { label: "Contato", href: "/contato" }
 ];

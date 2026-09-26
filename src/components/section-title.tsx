@@ -1,3 +1,5 @@
+
+import { Text } from "@/i18n/locale-provider";
 type SectionTitleProps = {
   eyebrow?: string;
   title: string;
@@ -17,14 +19,14 @@ export function SectionTitle({
 }: SectionTitleProps) {
   return (
     <div className={`${align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"} ${className}`.trim()}>
-      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+      {eyebrow ? <p className="eyebrow"><Text>{eyebrow}</Text></p> : null}
       <Heading
         className={`${eyebrow ? "mt-3" : ""} text-3xl font-semibold tracking-tight text-graphite-900 sm:text-4xl lg:text-[2.5rem] lg:leading-[1.15]`}
       >
-        {title}
+        <Text>{title}</Text>
       </Heading>
       {description ? (
-        <p className="mt-4 max-w-[60ch] text-base leading-7 text-graphite-600">{description}</p>
+        <p className="mt-4 max-w-[60ch] text-base leading-7 text-graphite-600"><Text>{description}</Text></p>
       ) : null}
     </div>
   );

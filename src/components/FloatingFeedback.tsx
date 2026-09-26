@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MessageSquare, X } from "lucide-react";
 import { FeedbackForm } from "@/components/forms";
-import { useLocale } from "@/i18n/locale-provider";
+import { useLocale, Text } from "@/i18n/locale-provider";
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -104,7 +104,7 @@ export function FloatingFeedback() {
       >
         <MessageSquare className="h-5 w-5" aria-hidden="true" />
         <span className="pointer-events-none absolute bottom-full right-0 mb-3 hidden whitespace-nowrap rounded-xl bg-graphite-900 px-3 py-1.5 text-xs font-medium text-white shadow-sm group-hover:block group-focus-visible:block">
-          {t("form.send_feedback")}
+          <Text>{t("form.send_feedback")}</Text>
         </span>
       </button>
 
@@ -127,10 +127,10 @@ export function FloatingFeedback() {
             <div className="flex items-start justify-between gap-4 border-b border-graphite-100 pb-4">
               <div>
                 <h2 id="feedback-modal-title" className="text-lg font-semibold tracking-tight text-graphite-900">
-                  {t("form.send_feedback")}
+                  <Text>{t("form.send_feedback")}</Text>
                 </h2>
                 <p id="feedback-modal-description" className="mt-2 text-sm leading-6 text-graphite-600">
-                  {t("feedback.description")}
+                  <Text>{t("feedback.description")}</Text>
                 </p>
               </div>
               <button

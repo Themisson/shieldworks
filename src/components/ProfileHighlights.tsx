@@ -1,3 +1,5 @@
+
+import { Text } from "@/i18n/locale-provider";
 import type { LucideIcon } from "lucide-react";
 import { BookOpenCheck, Cpu, FlaskConical, GraduationCap, PanelsTopLeft, ShieldCheck } from "lucide-react";
 
@@ -48,12 +50,10 @@ export function ProfileHighlights() {
   return (
     <article className="rounded-2xl border border-graphite-100/80 bg-white p-6 shadow-card">
       <div>
-        <p className="eyebrow">Competências</p>
-        <h2 className="mt-2 text-lg font-semibold tracking-tight text-graphite-900">Síntese profissional</h2>
+        <p className="eyebrow"><Text>{"Competências"}</Text></p>
+        <h2 className="mt-2 text-lg font-semibold tracking-tight text-graphite-900"><Text>{"Síntese profissional"}</Text></h2>
         <p className="mt-2 text-sm leading-6 text-graphite-600">
-          Atuação integrada entre carreira institucional, engenharia, pesquisa aplicada, desenvolvimento computacional,
-          docência e soluções digitais.
-        </p>
+          <Text>{"Atuação integrada entre carreira institucional, engenharia, pesquisa aplicada, desenvolvimento computacional, docência e soluções digitais."}</Text></p>
       </div>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -70,8 +70,8 @@ export function ProfileHighlights() {
                   <Icon className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold tracking-tight text-graphite-900">{item.title}</h3>
-                  <p className="mt-1 text-xs leading-5 text-graphite-600">{item.description}</p>
+                  <h3 className="text-sm font-semibold tracking-tight text-graphite-900"><Text>{item.title}</Text></h3>
+                  <p className="mt-1 text-xs leading-5 text-graphite-600"><Text>{item.description}</Text></p>
                 </div>
               </div>
             </div>

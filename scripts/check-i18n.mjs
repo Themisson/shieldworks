@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import ts from "typescript";
 
 /**
  * Coverage guard for keyed messages: { key: { pt, en } }.
@@ -57,6 +58,20 @@ if (entries.length < 50) {
   issues.push(`Unexpectedly small dictionary size: ${entries.length}`);
 }
 
+// Validate the supplemental React-owned source aliases without executing TypeScript.
+const aliases = ts.createSourceFile("v2-messages.ts", fs.readFileSync("src/i18n/v2-messages.ts","utf8"), ts.ScriptTarget.Latest, true);
+const declaration = aliases.statements.find(node => ts.isVariableStatement(node))?.declarationList.declarations[0];
+const aliasKeys = new Set();
+if(!declaration || !ts.isObjectLiteralExpression(declaration.initializer)) issues.push("Invalid V2 aliases object");
+else for(const property of declaration.initializer.properties) {
+  if(!ts.isPropertyAssignment(property) || !(ts.isStringLiteral(property.name) || ts.isIdentifier(property.name)) || !ts.isStringLiteral(property.initializer)) { issues.push("Aliases must contain literal text pairs"); continue; }
+  const key=property.name.text, value=property.initializer.text;
+  if(aliasKeys.has(key)) issues.push(`Duplicate V2 source: ${key}`);
+  if(!key.trim() || !value.trim()) issues.push(`Empty V2 translation: ${key}`);
+  aliasKeys.add(key);
+}
+if(/TreeWalker|translateDocument|createTreeWalker/.test(fs.readFileSync("src/i18n/locale-provider.tsx","utf8"))) issues.push("DOM translation must not return");
+
 // Preferred semantic keys must exist
 const required = [
   "nav.home",
@@ -78,4 +93,4 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log(`i18n check passed (${entries.length} keyed messages, ${required.length} required keys ok).`);
+console.log(`i18n check passed (${entries.length} keyed messages, ${aliasKeys.size} V2 aliases, ${required.length} required keys ok).`);

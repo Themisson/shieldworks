@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { Loader2, Send } from "lucide-react";
 import { interestOptions } from "@/data/site";
-import { useLocale } from "@/i18n/locale-provider";
+import { useLocale, Text } from "@/i18n/locale-provider";
 import { trackEvent } from "@/lib/analytics";
 
 type FormStatus = {
@@ -49,7 +49,7 @@ function StatusMessage({ status }: { status: FormStatus }) {
 
   return (
     <div className={`mt-5 rounded-md border px-4 py-3 text-sm ${className}`} aria-live="polite">
-      {status.message}
+      <Text>{status.message}</Text>
     </div>
   );
 }
@@ -57,7 +57,7 @@ function StatusMessage({ status }: { status: FormStatus }) {
 function requiredLabel(label: string) {
   return (
     <>
-      {label} <span aria-hidden="true">*</span>
+      <Text>{label}</Text> <span aria-hidden="true">*</span>
     </>
   );
 }
@@ -73,7 +73,7 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 
   return (
     <p id={id} className="mt-1.5 text-xs leading-5 text-red-700">
-      {message}
+      <Text>{message}</Text>
     </p>
   );
 }
@@ -86,7 +86,7 @@ function HoneypotField({ id }: { id: string }) {
       className="absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
       tabIndex={-1}
     >
-      <label htmlFor={id}>Website</label>
+      <label htmlFor={id}><Text>{"Website"}</Text></label>
       <input id={id} name="website" type="text" autoComplete="off" tabIndex={-1} defaultValue="" />
     </div>
   );
@@ -157,7 +157,7 @@ export function ContactForm() {
       noValidate
     >
       <HoneypotField id="contact-website" />
-      <p className="mb-5 text-xs leading-5 text-graphite-500">{t("form.required_hint")}</p>
+      <p className="mb-5 text-xs leading-5 text-graphite-500"><Text>{t("form.required_hint")}</Text></p>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label className="label" htmlFor="name">{requiredLabel(t("form.name"))}</label>
@@ -190,11 +190,11 @@ export function ContactForm() {
           <FieldError id="email-error" message={fieldErrors.email} />
         </div>
         <div>
-          <label className="label" htmlFor="phone">{t("form.phone")}</label>
+          <label className="label" htmlFor="phone"><Text>{t("form.phone")}</Text></label>
           <input className="field mt-2" id="phone" name="phone" type="tel" autoComplete="tel" maxLength={40} />
         </div>
         <div>
-          <label className="label" htmlFor="institution">{t("form.institution")}</label>
+          <label className="label" htmlFor="institution"><Text>{t("form.institution")}</Text></label>
           <input
             className="field mt-2"
             id="institution"
@@ -215,9 +215,9 @@ export function ContactForm() {
             aria-invalid={Boolean(fieldErrors.interest)}
             aria-describedby={fieldErrors.interest ? "interest-error" : undefined}
           >
-            <option value="" disabled>{t("form.select_area")}</option>
+            <option value="" disabled><Text>{t("form.select_area")}</Text></option>
             {interestOptions.map((option) => (
-              <option key={option} value={option}>{t(option)}</option>
+              <option key={option} value={option}><Text>{t(option)}</Text></option>
             ))}
           </select>
           <FieldError id="interest-error" message={fieldErrors.interest} />
@@ -237,7 +237,7 @@ export function ContactForm() {
         </div>
       </div>
       <p className="mt-4 text-xs leading-5 text-graphite-500">
-        {t("form.privacy_note")}
+        <Text>{t("form.privacy_note")}</Text>
       </p>
       <StatusMessage status={status} />
       <button
@@ -249,7 +249,7 @@ export function ContactForm() {
         {status.type === "loading"
           ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
           : <Send className="h-4 w-4" aria-hidden="true" />}
-        {status.type === "loading" ? t("form.sending") : t("form.send")}
+        <Text>{status.type === "loading" ? t("form.sending") : t("form.send")}</Text>
       </button>
     </form>
   );
@@ -291,15 +291,15 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
       <HoneypotField id="feedback-website" />
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className="label" htmlFor="feedback-name">{t("form.name_optional")}</label>
+          <label className="label" htmlFor="feedback-name"><Text>{t("form.name_optional")}</Text></label>
           <input className="field mt-2" id="feedback-name" name="name" type="text" maxLength={120} />
         </div>
         <div>
-          <label className="label" htmlFor="feedback-email">{t("form.email_optional")}</label>
+          <label className="label" htmlFor="feedback-email"><Text>{t("form.email_optional")}</Text></label>
           <input className="field mt-2" id="feedback-email" name="email" type="email" maxLength={254} />
         </div>
         <div>
-          <label className="label" htmlFor="rating">{t("form.rating")}</label>
+          <label className="label" htmlFor="rating"><Text>{t("form.rating")}</Text></label>
           <select className="field mt-2" id="rating" name="rating" defaultValue="5">
             {[1, 2, 3, 4, 5].map((rating) => (
               <option key={rating} value={rating}>{rating}</option>
@@ -307,16 +307,16 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
           </select>
         </div>
         <div>
-          <label className="label" htmlFor="feedback-interest">{t("form.interest")}</label>
+          <label className="label" htmlFor="feedback-interest"><Text>{t("form.interest")}</Text></label>
           <select className="field mt-2" id="feedback-interest" name="interest" defaultValue="" required>
-            <option value="" disabled>{t("form.select_area")}</option>
+            <option value="" disabled><Text>{t("form.select_area")}</Text></option>
             {interestOptions.map((option) => (
-              <option key={option} value={option}>{t(option)}</option>
+              <option key={option} value={option}><Text>{t(option)}</Text></option>
             ))}
           </select>
         </div>
         <div className="sm:col-span-2">
-          <label className="label" htmlFor="comment">{t("form.comment")}</label>
+          <label className="label" htmlFor="comment"><Text>{t("form.comment")}</Text></label>
           <textarea className="field mt-2 min-h-28" id="comment" name="comment" maxLength={2000} />
         </div>
       </div>
@@ -328,7 +328,7 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
         aria-busy={status.type === "loading"}
       >
         {status.type === "loading" && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
-        {status.type === "loading" ? t("form.sending") : t("form.send_feedback")}
+        <Text>{status.type === "loading" ? t("form.sending") : t("form.send_feedback")}</Text>
       </button>
     </form>
   );

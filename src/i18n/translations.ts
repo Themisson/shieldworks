@@ -1,3 +1,5 @@
+import { v2Messages } from "@/i18n/v2-messages";
+
 export type Locale = "pt" | "en";
 
 export const localeLabels: Record<Locale, string> = {
@@ -294,9 +296,9 @@ export const messages = {
 
 export type MessageKey = keyof typeof messages;
 
-/** PT text -> EN (DOM walker for server-rendered Portuguese content) */
+/** PT source text -> EN for React-rendered baseline content. */
 export const translations: Record<string, string> = Object.fromEntries(
-  Object.values(messages).map((entry) => [entry.pt, entry.en])
+  [...Object.values(messages).map((entry) => [entry.pt, entry.en]), ...Object.entries(v2Messages)]
 );
 
 /**

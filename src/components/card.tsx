@@ -1,3 +1,4 @@
+import { Text } from "@/i18n/locale-provider";
 import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
@@ -30,7 +31,7 @@ function TagList({ tags }: { tags?: string[] }) {
           key={tag}
           className="inline-flex items-center rounded-lg border border-graphite-100 bg-graphite-50 px-2.5 py-1 text-xs font-medium text-graphite-600"
         >
-          {tag}
+          <Text>{tag}</Text>
         </span>
       ))}
     </div>
@@ -63,11 +64,11 @@ export function CardShell({
   statusDescription,
   children,
   actionLabel,
-  className = ""
+  className = "",
 }: CardShellProps) {
   return (
     <article
-      className={`group flex h-full flex-col rounded-2xl border border-graphite-100/80 bg-white p-5 shadow-card transition duration-300 ease-out hover:-translate-y-0.5 hover:border-petroleum-200 hover:shadow-lift sm:p-6 ${className}`}
+      className={`group flex h-full flex-col rounded-2xl border border-graphite-100/80 bg-white p-5 transition-colors hover:border-petroleum-200 sm:p-6 ${className}`}
     >
       <div className="flex items-start justify-between gap-4">
         {Icon ? (
@@ -79,22 +80,26 @@ export function CardShell({
           <span
             className={`rounded-lg border px-2.5 py-1 font-mono text-[11px] font-medium tracking-wide ${status ? statusClassName(status) : "border-graphite-100 bg-graphite-50 text-graphite-500"}`}
           >
-            {status ?? kicker}
+            <Text>{status ?? kicker ?? ""}</Text>
           </span>
         ) : null}
       </div>
-      <h2 className="text-base font-semibold tracking-tight text-graphite-900">{title}</h2>
-      <p className="mt-2 text-sm leading-6 text-graphite-600">{description}</p>
+      <h2 className="text-base font-semibold tracking-tight text-graphite-900">
+        <Text>{title}</Text>
+      </h2>
+      <p className="mt-2 text-sm leading-6 text-graphite-600">
+        <Text>{description}</Text>
+      </p>
       {statusDescription ? (
         <p className="mt-4 rounded-xl border border-graphite-100 bg-graphite-50/80 px-3 py-2.5 text-xs leading-5 text-graphite-600">
-          {statusDescription}
+          <Text>{statusDescription}</Text>
         </p>
       ) : null}
       <TagList tags={tags} />
       {children ? <div className="mt-5">{children}</div> : null}
       {actionLabel ? (
         <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-petroleum-800">
-          {actionLabel}
+          <Text>{actionLabel}</Text>
           <ArrowRight
             className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
             aria-hidden="true"
@@ -122,7 +127,7 @@ export function ListCard({
   description,
   items,
   icon: Icon,
-  className
+  className,
 }: {
   title: string;
   description?: string;
@@ -144,10 +149,16 @@ export function ListCard({
         {items.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-2 rounded-xl border border-graphite-100/80 bg-graphite-50/70 px-3 py-2.5 text-sm leading-5 text-graphite-700"
+            className="flex items-start gap-2 border-b border-graphite-100 px-1 py-2.5 text-sm leading-5 text-graphite-700"
           >
-            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-petroleum-600" strokeWidth={1.75} aria-hidden="true" />
-            <span>{item}</span>
+            <CheckCircle2
+              className="mt-0.5 h-4 w-4 shrink-0 text-petroleum-600"
+              strokeWidth={1.75}
+              aria-hidden="true"
+            />
+            <span>
+              <Text>{item}</Text>
+            </span>
           </li>
         ))}
       </ul>
@@ -155,15 +166,23 @@ export function ListCard({
   );
 }
 
-export function CompactCard({ title, icon: Icon }: { title: string; icon?: LucideIcon }) {
+export function CompactCard({
+  title,
+  icon: Icon,
+}: {
+  title: string;
+  icon?: LucideIcon;
+}) {
   return (
-    <article className="group flex h-full items-start gap-3 rounded-2xl border border-graphite-100/80 bg-white p-5 shadow-card transition duration-300 ease-out hover:-translate-y-0.5 hover:border-petroleum-200 hover:shadow-lift">
+    <article className="group flex h-full items-start gap-3 rounded-2xl border border-graphite-100/80 bg-white p-5 transition-colors hover:border-petroleum-200">
       {Icon ? (
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-petroleum-50 text-petroleum-700 ring-1 ring-petroleum-100 transition duration-300 group-hover:bg-petroleum-900 group-hover:text-white">
           <Icon className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
         </div>
       ) : null}
-      <h2 className="text-sm font-semibold leading-6 tracking-tight text-graphite-900">{title}</h2>
+      <h2 className="text-sm font-semibold leading-6 tracking-tight text-graphite-900">
+        <Text>{title}</Text>
+      </h2>
     </article>
   );
 }
