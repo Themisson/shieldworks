@@ -1,5 +1,6 @@
 # Revisão página a página — V2
 
+Publicado em produção em 26/09/2026; as pendências abaixo seguem valendo.
 Revisão de 26/09/2026 sobre o working tree da branch `feat/shieldworks-v2`: leitura do
 código, Playwright em PT/EN a 390 e 1440 px e axe. P1 = corrigir antes de novas features;
 P2 = próxima fase; P3 = refinamento. "Feito" indica o que entrou nesta entrega.

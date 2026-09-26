@@ -1,7 +1,8 @@
 # Revisão de navegação vertical e SVGs
 
 Solicitação do proprietário após a primeira entrega `2e44565`, em 26/09/2026.
-Implementação local na mesma branch `feat/shieldworks-v2`, sem publicação.
+Implementação local na mesma branch `feat/shieldworks-v2`; publicada com a V2 em
+26/09/2026 ([DEPLOYMENT](DEPLOYMENT.md)).
 Código: `138f98e`. Check e 27 E2E finais aprovados (54,7 s).
 
 ## 1. O que foi analisado

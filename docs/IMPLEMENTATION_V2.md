@@ -1,6 +1,7 @@
 # Registro da implementação ShieldWorks 2.0
 
-Branch: `feat/shieldworks-v2`. Início: `c0fc08a`. Trabalho local, sem publicação.
+Branch: `feat/shieldworks-v2`. Início: `c0fc08a`. Desenvolvida localmente; publicada em
+produção em 26/09/2026 (`60eca88`), com autorização do proprietário ([DEPLOYMENT](DEPLOYMENT.md)).
 Auditoria A–M foi apresentada antes de editar arquivos. Referências locais estudadas
 antes das decisões: MDFolio 046ef4a, AcadImprove 447cdb3 e Sursum 40c1013.
 
@@ -69,3 +70,9 @@ Server Components com traço fino, numerais ligados ao texto e sequência pausá
 encaixe mandatory passa a valer nas áreas úteis reais de laptops. Sem remoção de dados,
 rotas, APIs ou analytics. Check, 29 unitários, 29 E2E e inspeção visual aprovados.
 Detalhes e medições em [SCROLL_SVG_REVISION.md](SCROLL_SVG_REVISION.md#segunda-revisão).
+
+## Publicação
+
+26/09/2026: merge fast-forward em `main` e deploy de produção na Vercel (`60eca88`).
+Smoke test em produção aprovado. Em seguida, a CSP passou a permitir o Cloudflare Web
+Analytics injetado pelo proxy e os documentos de produção foram atualizados.

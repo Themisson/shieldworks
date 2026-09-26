@@ -475,3 +475,16 @@ test("landing contact preserves the analytics event without personal data", asyn
     }),
   ]);
 });
+
+test("security headers allow only the analytics the production proxy injects", async ({
+  page,
+}) => {
+  const response = await page.goto("/");
+  const csp = response?.headers()["content-security-policy"] ?? "";
+  const directive = (name: string) =>
+    csp.split(";").map((part) => part.trim()).find((part) => part.startsWith(name)) ?? "";
+  expect(directive("script-src")).toContain("https://static.cloudflareinsights.com");
+  expect(directive("connect-src")).toContain("https://cloudflareinsights.com");
+  expect(directive("script-src")).not.toContain("'unsafe-eval'");
+  expect(directive("frame-ancestors")).toBe("frame-ancestors 'self'");
+});

@@ -2,7 +2,8 @@
 
 Engenharia, pesquisa e software aplicados a problemas reais. Hub profissional e
 científico de Themisson dos Santos Vasconcelos: soluções, produtos, publicações,
-cases e conteúdo técnico. Implementação local para revisão, sem publicação nesta tarefa.
+cases e conteúdo técnico. Em produção em https://www.shieldworks.com.br (Vercel,
+publicado a partir de `main`; histórico em [DEPLOYMENT.md](docs/DEPLOYMENT.md)).
 
 ## Rodar no notebook
 
@@ -71,7 +72,8 @@ Português preserva URLs existentes; inglês usa `/en`. `/insights` redireciona 
 - [SEO](docs/SEO.md), [acessibilidade](docs/ACCESSIBILITY.md), [segurança](docs/SECURITY.md)
 - [Testes](docs/TESTING.md), [registro de fases](docs/IMPLEMENTATION_V2.md), [validação](docs/VALIDATION_V2.md)
 - [Revisão de scroll snap e SVGs](docs/SCROLL_SVG_REVISION.md)
-- [Operação local e futuro](docs/DEPLOYMENT.md), [ADRs](docs/adr)
+- [Operação local, produção e futuro](docs/DEPLOYMENT.md), [ADRs](docs/adr)
+- [Sobre](docs/ABOUT_V2.md) e [revisão página a página](docs/PAGE_REVIEW_V2.md)
 
 Orientações de agentes em [AGENTS.md](AGENTS.md). Documentos V1 estão preservados
 como histórico; prevalecem os documentos V2 acima. Não fazer merge/main, push, tag,

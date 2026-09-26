@@ -1,7 +1,34 @@
-# Ambiente local e publicação futura
+# Ambiente local, produção e futuro
 
-Nenhum deploy, push, merge, tag, release, DNS ou configuração de produção foi feito.
-Branch de revisão: `feat/shieldworks-v2`. Vercel continua o alvo atual; não houve migração.
+## Produção
+
+Site em https://www.shieldworks.com.br, hospedado na Vercel pela integração com o GitHub:
+cada push em `main` gera um deploy de produção. O domínio passa pelo proxy da Cloudflare
+(`Server: cloudflare`); `shieldworks.com.br` redireciona para `www`. Nenhuma alteração de
+DNS, Cloudflare ou painel da Vercel foi feita a partir deste repositório.
+
+Escopo: os cabeçalhos de `next.config.mjs` (CSP inclusive) valem só para respostas deste
+projeto — `www` e o redirecionamento do domínio raiz. `mdfolio.`, `sursum.` e `gabarita.`
+são aplicações separadas, com cabeçalhos próprios. Este repositório não usa HSTS com
+`includeSubDomains`, cookies com `Domain=shieldworks.com.br` nem regras da zona Cloudflare;
+a preferência de tema fica no `localStorage` da própria origem. Antes e depois de cada
+publicação, comparar os cabeçalhos desses subdomínios (`curl -sI https://<sub>.shieldworks.com.br/`).
+
+| Data | Commit | O que entrou |
+|---|---|---|
+| 26/09/2026 | `60eca88` | V2 completa: fast-forward de `feat/shieldworks-v2` sobre `c0fc08a` (19 commits); deploy Vercel "Production" concluído com sucesso |
+| 26/09/2026 | commit seguinte | CSP libera Cloudflare Web Analytics; documentos de produção atualizados |
+
+Verificação após o primeiro deploy (Chromium, só leitura, sem enviar formulários): 15 rotas
+PT/EN com 200, 404 para rota inexistente, encaixe mandatory na home e na Sobre, oito telas
+da Sobre e troca de tema funcionando. O console mostrava o beacon da Cloudflare bloqueado
+pela CSP (já ocorria na V1); a segunda publicação libera esses domínios.
+
+Publicar: autorização explícita do proprietário; `npm run check` e `npm run test:e2e`
+verdes na branch da tarefa; merge fast-forward em `main`; `git push origin main`.
+Acompanhar: `gh api repos/Themisson/shieldworks/commits/<sha>/status` (contexto
+"Vercel") e o link do deploy. Reverter: promover o deploy anterior no painel da Vercel
+ou `git revert` do commit seguido de push em `main`. Variáveis Resend seguem na Vercel.
 
 ## Node no notebook
 
@@ -50,9 +77,9 @@ antiga de feedback como simples 202 sem envio estava incorreta.
 
 ## Revisão Vercel
 
-O CI testa qualidade, E2E e Docker. CI não publica o site. Compatibilidade foi validada
-localmente; nenhum preview remoto foi criado. Publicação futura exige autorização do
-proprietário, revisão dos domínios/canonical, env existentes e revisão de UX no preview.
+O CI testa qualidade, E2E e Docker. CI não publica o site: quem publica é o push em
+`main`, com a integração Vercel. Cada nova publicação exige autorização do proprietário,
+checagem de domínios/canonical e das variáveis de ambiente existentes.
 
 ## Futuro, não implementado
 

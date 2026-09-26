@@ -159,3 +159,11 @@ preservados; os containers de teste estão parados. Deixe Resend vazio durante a
 
 Próxima fase: avaliação local pelo proprietário e ajustes solicitados. Qualquer publicação
 ou alteração externa exige autorização explícita. A implementação desta tarefa termina aqui.
+
+## Produção (26/09/2026)
+
+Após o deploy de `60eca88` em https://www.shieldworks.com.br: 15 rotas principais PT/EN
+com 200, RSS e sitemap com 200, rota inexistente com 404, `shieldworks.com.br` → `www`
+(307), encaixe mandatory na home e na Sobre a 1440×900, oito telas na Sobre e troca de
+tema persistida. Único erro de console: beacon da Cloudflare bloqueado pela CSP, também
+presente na V1; corrigido na publicação seguinte. Nenhum formulário foi enviado.

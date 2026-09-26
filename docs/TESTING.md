@@ -61,3 +61,6 @@ mandatory e telas que cabem em 1280×590 (home, Sobre PT/EN), âncoras exatas a 
 1280×590 e 390×740 e o ciclo armado→entrada→retorno por cima do slide. `theme.spec`
 cobre sistema, troca, persistência, limpeza da chave, rótulos EN, aplicação durante
 `loading` (sem flash) e axe no escuro. `theme.test.ts` executa o script de início.
+
+Cabeçalhos (26/09/2026): 40 E2E. Um teste confirma na CSP apenas as origens de analytics
+que o proxy de produção injeta (Cloudflare Web Analytics) e a ausência de unsafe-eval.
