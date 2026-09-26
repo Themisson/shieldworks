@@ -1,50 +1,139 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useLocale } from "@/i18n/locale-provider";
+import { CompactSceneArtwork, SceneArtwork } from "./scene-artwork";
 
 export type SceneKind =
   | "integrated"
+  | "approach"
+  | "solutions"
   | "research"
-  | "numerical"
+  | "publication"
   | "software"
-  | "safety"
-  | "knowledge";
+  | "cases"
+  | "editorial"
+  | "knowledge"
+  | "trajectory"
+  | "updates"
+  | "contact"
+  | "numerical"
+  | "safety";
 
-const descriptions: Record<SceneKind, { pt: string; en: string }> = {
+const scenes: Record<
+  SceneKind,
+  { title: [string, string]; description: [string, string] }
+> = {
   integrated: {
-    pt: "Esquema conceitual: formação geológica e poço, discretização em malha, processamento e leitura de resultados. Não representa dados de uma simulação.",
-    en: "Conceptual diagram: geological formation and well, mesh discretization, processing and results. It does not represent simulation data.",
+    title: ["CONVERGÊNCIA", "CONVERGENCE"],
+    description: [
+      "Poço em formação salina conectado a uma malha numérica, código, análise e integridade: engenharia, pesquisa, software e segurança aplicados ao mesmo problema.",
+      "A well in a salt formation connected to a numerical mesh, code, analysis and integrity: engineering, research, software and safety applied to the same problem.",
+    ],
+  },
+  approach: {
+    title: ["DO CONTEXTO À ENTREGA", "FROM CONTEXT TO DELIVERY"],
+    description: [
+      "Quatro etapas conectadas: compreender o contexto, investigar hipóteses, desenvolver modelos e documentar a entrega.",
+      "Four connected stages: understand the context, investigate hypotheses, develop models and document delivery.",
+    ],
+  },
+  solutions: {
+    title: ["CAPACIDADES CONECTADAS", "CONNECTED CAPABILITIES"],
+    description: [
+      "Engenharia numérica, software, segurança, pesquisa e assessoria conectados para responder a um problema real.",
+      "Numerical engineering, software, safety, research and advisory work connected to address a real problem.",
+    ],
   },
   research: {
-    pt: "Esquema de poço vertical em estratos geológicos, com camadas de sal e campos termomecânicos conceituais.",
-    en: "Diagram of a vertical well in geological layers, with salt layers and conceptual thermomechanical fields.",
+    title: ["GEOMECÂNICA E POÇOS", "GEOMECHANICS AND WELLS"],
+    description: [
+      "Seção geológica com intervalo salino, poço revestido e campo de tensões, conectada ao modelo termomecânico e à análise.",
+      "Geological cross-section with a salt interval, cased well and stress field, connected to a thermomechanical model and analysis.",
+    ],
   },
-  numerical: {
-    pt: "Malha de elementos conectados a uma curva conceitual de resultados numéricos.",
-    en: "Element mesh connected to a conceptual curve of numerical results.",
+  publication: {
+    title: ["REGISTRO CIENTÍFICO", "SCIENTIFIC RECORD"],
+    description: [
+      "Formação salina, análise do leak-off test e documento da publicação de 2025: da investigação ao registro científico.",
+      "Salt formation, leak-off test analysis and the 2025 publication document: from investigation to scientific record.",
+    ],
   },
   software: {
-    pt: "Fluxo conceitual de dados: entrada, validação, processamento e painel de indicadores.",
-    en: "Conceptual data flow: input, validation, processing and indicator dashboard.",
+    title: ["PRODUTOS DIGITAIS", "DIGITAL PRODUCTS"],
+    description: [
+      "Quatro ferramentas do ecossistema: MDFolio para documentos, AcadImprove para avaliação educacional, Sursum para cifras e Gabarita para leitura de folhas de resposta.",
+      "Four ecosystem tools: MDFolio for documents, AcadImprove for educational assessment, Sursum for chord sheets and Gabarita for answer-sheet reading.",
+    ],
   },
-  safety: {
-    pt: "Camadas de proteção entre um evento e a decisão operacional, com barreiras redundantes.",
-    en: "Layers of protection between an event and an operational decision, with redundant barriers.",
+  cases: {
+    title: ["EVIDÊNCIA E ENTREGA", "EVIDENCE AND DELIVERY"],
+    description: [
+      "Modelagem de poços e implementação de sistemas conectadas a método, validação e documentação dos cases.",
+      "Well modelling and systems implementation connected to method, validation and case documentation.",
+    ],
+  },
+  editorial: {
+    title: ["CONHECIMENTO PUBLICADO", "PUBLISHED KNOWLEDGE"],
+    description: [
+      "Livro, código e nota técnica conectados: ideias, equações, exemplos e referências tornam o conhecimento consultável.",
+      "A book, code and technical note connected: ideas, equations, examples and references make knowledge accessible.",
+    ],
   },
   knowledge: {
-    pt: "Rede conectando pesquisa, métodos, software, publicações e decisão.",
-    en: "Network connecting research, methods, software, publications and decisions.",
+    title: ["ECOSSISTEMA", "ECOSYSTEM"],
+    description: [
+      "Rede da ShieldWorks conectando pesquisa, métodos, software, publicações, segurança e decisão.",
+      "The ShieldWorks network connects research, methods, software, publications, safety and decisions.",
+    ],
+  },
+  trajectory: {
+    title: ["TRAJETÓRIA MULTIDISCIPLINAR", "MULTIDISCIPLINARY BACKGROUND"],
+    description: [
+      "Ensino e pesquisa, engenharia e software, segurança: disciplinas conectadas na trajetória profissional.",
+      "Teaching and research, engineering and software, safety: connected disciplines in a professional career.",
+    ],
+  },
+  updates: {
+    title: ["DISTRIBUIÇÃO ABERTA", "OPEN DISTRIBUTION"],
+    description: [
+      "Um conteúdo publicado se conecta, por RSS, ao leitor de atualizações. Não representa assinatura por e-mail.",
+      "Published content connects to an updates reader through RSS. It does not represent email subscriptions.",
+    ],
+  },
+  contact: {
+    title: ["CONVERSA E ESCOPO", "CONVERSATION AND SCOPE"],
+    description: [
+      "Duas mensagens conectadas: o contexto apresentado orienta o escopo e os próximos passos de uma entrega.",
+      "Two connected messages: the shared context guides scope and the next steps of delivery.",
+    ],
+  },
+  numerical: {
+    title: ["ENGENHARIA COMPUTACIONAL", "COMPUTATIONAL ENGINEERING"],
+    description: [
+      "Malha triangular com nós e condições de contorno, processamento em código e análise conceitual de resultados.",
+      "Triangular mesh with nodes and boundary conditions, code processing and conceptual results analysis.",
+    ],
+  },
+  safety: {
+    title: ["BARREIRAS E INTEGRIDADE", "BARRIERS AND INTEGRITY"],
+    description: [
+      "Quatro barreiras redundantes no caminho entre um risco e a decisão, representando camadas de proteção.",
+      "Four redundant barriers along the path between a risk and a decision, representing layers of protection.",
+    ],
   },
 };
 
-/** Original technical plates; static geometry remains complete without animation or JS. */
+/** Authored conceptual scenes: complete static artwork, optional viewport-aware motion. */
 export function EngineeringScene({
   kind = "integrated",
+  compact = false,
 }: {
   kind?: SceneKind;
+  compact?: boolean;
 }) {
   const ref = useRef<HTMLElement>(null);
+  const id = useId().replace(/:/g, "");
   const [inView, setInView] = useState(false);
   const [paused, setPaused] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -60,6 +149,7 @@ export function EngineeringScene({
     observer.observe(node);
     const visibility = () => setHidden(document.hidden);
     document.addEventListener("visibilitychange", visibility);
+    visibility();
     return () => {
       observer.disconnect();
       delete node.dataset.motionReady;
@@ -67,255 +157,53 @@ export function EngineeringScene({
     };
   }, []);
   const label = (pt: string, en: string) => (locale === "en" ? en : pt);
+  const index = locale === "en" ? 1 : 0;
+  const wide =
+    compact &&
+    [
+      "approach",
+      "solutions",
+      "publication",
+      "software",
+      "cases",
+      "editorial",
+      "trajectory",
+      "updates",
+    ].includes(kind);
   return (
     <figure
       ref={ref}
-      className={`engineering-plate plate-${kind}`}
+      className={`engineering-plate plate-${kind}${wide ? " plate-compact" : ""}`}
+      data-scene-kind={kind}
       data-playing={inView && !paused && !hidden}
     >
       <div className="plate-meta">
-        <span>
-          SW /{" "}
-          {
-            {
-              integrated: label("CONVERGÊNCIA", "CONVERGENCE"),
-              research: label("GEOMECÂNICA", "GEOMECHANICS"),
-              numerical: label("DISCRETIZAÇÃO", "DISCRETIZATION"),
-              software: label("SISTEMAS", "SYSTEMS"),
-              safety: label("BARREIRAS", "BARRIERS"),
-              knowledge: label("CONHECIMENTO", "KNOWLEDGE"),
-            }[kind]
-          }
-        </span>
+        <span>SW / {scenes[kind].title[index]}</span>
         <span>{label("ESTUDO CONCEITUAL", "CONCEPTUAL STUDY")}</span>
       </div>
       <svg
-        viewBox="0 0 760 560"
+        viewBox={wide ? "0 0 900 320" : "0 0 900 560"}
         fill="none"
         role="img"
-        aria-label={descriptions[kind][locale]}
+        aria-label={scenes[kind].description[index]}
       >
-        <g className="plate-grid" stroke="currentColor" strokeWidth="0.6">
-          {Array.from({ length: 15 }, (_, i) => (
-            <path key={`x${i}`} d={`M${30 + i * 50} 35V525`} />
-          ))}
-          {Array.from({ length: 10 }, (_, i) => (
-            <path key={`y${i}`} d={`M30 ${50 + i * 50}H730`} />
-          ))}
-        </g>
-        {(kind === "integrated" || kind === "research") && (
-          <g>
-            <path d="M70 235 175 180 380 237 265 296Z" className="strata-top" />
-            <path d="M70 235 265 296V466L70 405Z" className="strata-side" />
-            <path d="M265 296 380 237V407L265 466Z" className="strata-front" />
-            <g stroke="currentColor" className="strata-lines">
-              <path d="m70 275 195 61 115-59m-310 40 195 61 115-59m-310 40 195 61 115-59m-310 40 195 61 115-59" />
-              <path
-                d="m70 310 195 61 115-59"
-                strokeWidth="12"
-                className="salt-layer"
-              />
-            </g>
-            <path
-              d="M224 123v294m14-294v294"
-              className="well-casing"
-              strokeWidth="4"
-            />
-            <path d="M231 112v316" className="well-core" strokeWidth="3" />
-            <path
-              d="M202 120h60m-49-9h39m-34 322h26"
-              className="well-core"
-              strokeWidth="2"
-            />
-            <g className="stress-field" strokeWidth="1.3">
-              <ellipse cx="231" cy="343" rx="42" ry="20" />
-              <ellipse cx="231" cy="343" rx="70" ry="34" />
-              <ellipse cx="231" cy="343" rx="96" ry="47" />
-            </g>
-            <path
-              d="M90 460v30h165m-165 0 8-5m-8 5 8 5"
-              className="plate-rule"
-            />
-            <text x="72" y="513">
-              {label("FORMAÇÃO / POÇO", "FORMATION / WELL")}
-            </text>
-            <text x="115" y="320" className="salt-label">
-              {label("SAL", "SALT")}
-            </text>
-          </g>
+        <defs>
+          <linearGradient id={`${id}-salt`} x1="0" y1="0" x2="0" y2="1">
+            <stop stopColor="#6fae9b" stopOpacity=".42" />
+            <stop offset="1" stopColor="#bdcdad" stopOpacity=".23" />
+          </linearGradient>
+        </defs>
+        {wide ? (
+          <CompactSceneArtwork kind={kind} label={label} id={id} />
+        ) : (
+          <SceneArtwork kind={kind} label={label} id={id} />
         )}
-        {(kind === "integrated" || kind === "numerical") && (
-          <g
-            transform={
-              kind === "numerical" ? "translate(-200 50) scale(1.5)" : undefined
-            }
-          >
-            <g className="mesh" strokeWidth="1">
-              {Array.from({ length: 6 }, (_, i) => (
-                <path
-                  key={`m${i}`}
-                  d={`M${390 + i * 34} ${190 - i * 7}l-58 118M390 ${190 + i * 22}l170-35`}
-                />
-              ))}
-              {Array.from({ length: 4 }, (_, i) => (
-                <path
-                  key={`d${i}`}
-                  d={`M${390 + i * 34} ${190 - i * 7}l${112 - i * 18} 73`}
-                />
-              ))}
-              {Array.from({ length: 16 }, (_, i) => (
-                <circle
-                  key={`n${i}`}
-                  cx={398 + (i % 4) * 38 - Math.floor(i / 4) * 10}
-                  cy={196 + Math.floor(i / 4) * 24 - (i % 4) * 7}
-                  r="2.3"
-                />
-              ))}
-            </g>
-            <text x="392" y="142">
-              {label("DISCRETIZAÇÃO", "DISCRETIZATION")}
-            </text>
-          </g>
-        )}
-        {(kind === "integrated" ||
-          kind === "software" ||
-          kind === "numerical") && (
-          <g>
-            <rect
-              x="435"
-              y="345"
-              width="258"
-              height="140"
-              rx="5"
-              className="dashboard-plane"
-            />
-            <path d="M435 370h258m-239 17v76h215" className="plate-rule" />
-            <path
-              d="m462 449 31-8 28 9 32-38 25 12 31-29 28 9 23-17"
-              pathLength="1"
-              className="result-curve scene-draw"
-            />
-            <path d="M473 360h28m12 0h18m12 0h18" className="plate-rule" />
-            <text x="450" y="511">
-              {label("DADOS / DECISÃO", "DATA / DECISION")}
-            </text>
-          </g>
-        )}
-        {kind === "integrated" && (
-          <g className="flow-line">
-            <path d="M298 166h61v90h36m150 37v31h47v20" strokeDasharray="4 7" />
-            <circle cx="359" cy="210" r="4" className="scene-signal" />
-          </g>
-        )}
-        {kind === "software" && (
-          <g>
-            {[0, 1, 2].map((i) => (
-              <g
-                key={i}
-                transform={`translate(${75 + i * 115} ${150 + i * 25})`}
-              >
-                <rect
-                  width="90"
-                  height="105"
-                  rx="6"
-                  className="dashboard-plane"
-                />
-                <path
-                  d="M15 24h60M15 43h40m-40 20h52m-52 20h30"
-                  className="plate-rule"
-                />
-                <text x="16" y="-18">
-                  {
-                    [
-                      label("DADOS", "DATA"),
-                      "API",
-                      label("PROCESSO", "PROCESS"),
-                    ][i]
-                  }
-                </text>
-              </g>
-            ))}
-            <path
-              d="M165 195h25m90 25h25m90 27h70v95"
-              className="flow-line scene-draw"
-              pathLength="1"
-            />
-          </g>
-        )}
-        {kind === "safety" && (
-          <g>
-            {[0, 1, 2, 3].map((i) => (
-              <g
-                key={i}
-                transform={`translate(${160 + i * 115} ${160 + i * 20})`}
-              >
-                <path d="m0 0 72-25v150l-72 25Z" className="barrier" />
-                <path
-                  d="m15 50 16 16 28-45"
-                  className="well-core"
-                  strokeWidth="3"
-                />
-              </g>
-            ))}
-            <path
-              d="M75 290h530"
-              strokeDasharray="6 10"
-              className="flow-line"
-            />
-            <text x="75" y="400">
-              {label(
-                "EVENTO → BARREIRAS → DECISÃO",
-                "EVENT → BARRIERS → DECISION",
-              )}
-            </text>
-          </g>
-        )}
-        {kind === "knowledge" && (
-          <g>
-            <g className="flow-line">
-              <path d="M380 275 200 150m180 125 180-125m-180 125-210 100m210-100 210 100m-210-100v180" />
-            </g>
-            {[
-              [380, 275],
-              [200, 150],
-              [560, 150],
-              [170, 375],
-              [590, 375],
-              [380, 455],
-            ].map(([x, y], i) => (
-              <g key={i}>
-                <circle
-                  cx={x}
-                  cy={y}
-                  r={i === 0 ? 45 : 30}
-                  className="network-node"
-                />
-                <text x={x} y={y + 5} textAnchor="middle">
-                  {
-                    [
-                      "SW",
-                      label("PESQUISA", "RESEARCH"),
-                      label("MÉTODOS", "METHODS"),
-                      "SOFTWARE",
-                      label("PUBLICAÇÃO", "PUBLISHING"),
-                      label("DECISÃO", "DECISION"),
-                    ][i]
-                  }
-                </text>
-              </g>
-            ))}
-          </g>
-        )}
-        <path
-          d="M30 70V35h35m630 0h35v35M30 490v35h35m630 0h35v-35"
-          className="plate-rule"
-        />
       </svg>
       <figcaption className="plate-caption">
         <span>
           {label(
-            "Representação esquemática, sem escala.",
-            "Schematic representation, not to scale.",
+            "Esquema conceitual, sem dados de simulação.",
+            "Conceptual diagram, without simulation data.",
           )}
         </span>
         <button

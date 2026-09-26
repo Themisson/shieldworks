@@ -94,6 +94,10 @@ for (const [width, height] of viewports) {
       expect(geometry.width).toBeGreaterThanOrEqual(width - 1);
       if (route === "/") {
         await expect(page.locator(".landing-screen")).toHaveCount(12);
+        await expect(
+          page.locator(".landing-screen .engineering-plate"),
+        ).toHaveCount(12);
+        await expect(page.locator(".section-advance a")).toHaveCount(12);
         const sections = await page
           .locator(".landing-screen")
           .evaluateAll((nodes) =>
@@ -105,6 +109,9 @@ for (const [width, height] of viewports) {
         expect(
           sections.every((section) => section.scroll <= section.height + 2),
         ).toBe(true);
+        expect(sections.every((section) => section.height >= height - 73)).toBe(
+          true,
+        );
         await page.screenshot({
           path: info.outputPath(`home-${width}.png`),
           fullPage: true,
@@ -239,12 +246,13 @@ test("sections, anchors, snap, motion and keyboard scroll", async ({
     "false",
   );
   await page.getByRole("button", { name: "Retomar movimento" }).first().click();
-  // Chromium serializes the default proximity keyword as simply "y".
-  expect(
-    await page.evaluate(
-      () => getComputedStyle(document.documentElement).scrollSnapType,
-    ),
-  ).toBe("y");
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => getComputedStyle(document.documentElement).scrollSnapType,
+      ),
+    )
+    .toBe("y mandatory");
   await indicator
     .getByRole("link", { name: "04 / Pesquisa", exact: true })
     .click();

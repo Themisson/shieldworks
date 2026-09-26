@@ -65,6 +65,7 @@ try {
         return {
           width,
           ...window.reviewMetrics,
+          lcp: window.reviewMetrics.lcp > 0 ? window.reviewMetrics.lcp : null,
           fcp: performance.getEntriesByName("first-contentful-paint")[0]
             ?.startTime,
           resources: entries.length,
@@ -135,7 +136,7 @@ try {
       {
         date: "2026-09-26",
         method:
-          "Chromium headless, local standalone, cold browser contexts, no CPU/network throttling; synthetic measurements, not field CWV or Lighthouse",
+          "Chromium headless, local standalone, cold browser contexts, no CPU/network throttling; synthetic measurements, not field CWV or Lighthouse; null LCP means the observer did not receive a candidate",
         measurements,
       },
       null,

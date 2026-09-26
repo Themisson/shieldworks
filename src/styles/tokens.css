@@ -5,6 +5,7 @@
   --form-measure: 48rem;
   --header-height: 4.5rem;
   --section-space: clamp(3rem, 7dvh, 7rem);
+  --landing-space: clamp(1.5rem, 4dvh, 4rem);
   --composition-gap: clamp(1.5rem, 4vw, 5rem);
   --ink: #142f36;
   --ink-muted: #4e6368;

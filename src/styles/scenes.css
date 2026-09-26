@@ -1,0 +1,60 @@
+/* Original SVG language: geological sections, meshes, documents and connected systems. */
+.engineering-plate { color: var(--on-night); background: var(--night-deep); border: 1px solid #36545a; border-radius: var(--radius-panel); padding: var(--space-3); width: 100%; }
+.engineering-plate svg { display: block; width: 100%; height: auto; max-height: min(45dvh, 33rem); }
+.engineering-plate text { fill: var(--on-night-muted); font-family: var(--font-mono), monospace; font-size: 14px; letter-spacing: .025em; }
+.engineering-plate .art-heading { fill: var(--on-night); font-size: 17px; letter-spacing: .065em; }
+.engineering-plate .art-label-strong { fill: var(--on-night); font-size: 15px; }
+.engineering-plate .art-code { fill: var(--signal-light); font-size: 16px; }
+.plate-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-1); font-family: var(--font-mono), monospace; font-size: .6rem; line-height: 1.6; color: var(--on-night-muted); }
+.plate-caption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-1); font-size: .65rem; line-height: 1.5; color: var(--on-night-muted); }
+.motion-control { padding: .5rem; min-height: 2.75rem; text-decoration: underline; text-underline-offset: .25em; }
+.art-rock { fill: #234852; stroke: #779e9c; stroke-width: 1.5; }
+.art-stratum { fill: #34575b; stroke: #91aaa0; }
+.art-salt { stroke: var(--signal-light); stroke-width: 1.5; }
+.art-rock-deep { fill: #1c3943; stroke: #779e9c; }
+.art-contours { stroke: #b9cfca; stroke-width: 1; opacity: .5; }
+.art-casing { stroke: var(--on-night); stroke-width: 4; }
+.art-well { stroke: var(--amber); stroke-width: 3; }
+.art-stress { stroke: var(--signal-light); stroke-width: 1.7; }
+.art-mesh { stroke: #8fd9bb; stroke-width: 1.5; }
+.art-mesh circle, .art-node { fill: var(--signal-light); stroke: none; }
+.art-mesh .art-boundary { stroke: var(--amber); stroke-width: 3; }
+.art-panel { fill: #173b45; stroke: #7da89f; stroke-width: 1.5; }
+.art-paper { fill: #20414a; stroke: #9fbbb2; stroke-width: 1.5; }
+.art-rule { stroke: #9ab6af; stroke-width: 1.5; }
+.art-line { stroke: var(--signal-light); stroke-width: 2; }
+.art-copper-rule { stroke: var(--amber); stroke-width: 2; }
+.art-curve { stroke: var(--signal-light); stroke-width: 3; }
+.art-comparison { stroke: #a8c3ba; stroke-width: 1.5; stroke-dasharray: 4 7; }
+.art-orbit { stroke: #658c87; stroke-width: 1; stroke-dasharray: 4 8; }
+.art-shield { fill: #204b48; stroke: var(--signal-light); stroke-width: 2; }
+.art-check { stroke: var(--amber); stroke-width: 3; }
+.art-answer { stroke: #9ab6af; stroke-width: 1.7; }
+.art-filled-answer { fill: var(--signal-light); stroke: var(--signal-light); }
+.art-scan { stroke: var(--amber); stroke-width: 2; }
+.art-rss { stroke: var(--amber); stroke-width: 7; stroke-linecap: round; }
+.art-barrier { fill: #234b49; stroke: #8fd9bb; stroke-width: 1.5; }
+.scene-flow { stroke: var(--amber); stroke-width: 2; stroke-dasharray: 7 9; stroke-linecap: round; }
+.plate-compact svg { max-height: clamp(10rem, 19dvh, 17rem); }
+.landing-screen .plate-compact { margin-top: var(--space-3); }
+@media (prefers-reduced-motion: no-preference) {
+  .engineering-plate[data-motion-ready="true"] :is(.scene-flow, .scene-draw, .scene-breathe, .scene-scan) { animation-duration: var(--duration-scene); animation-iteration-count: infinite; animation-play-state: paused; }
+  .engineering-plate[data-motion-ready="true"] .scene-flow { animation-name: scene-flow; animation-timing-function: linear; }
+  .engineering-plate[data-motion-ready="true"] .scene-draw { animation-name: scene-line; animation-timing-function: var(--ease-out); }
+  .engineering-plate[data-motion-ready="true"] .scene-breathe { animation-name: scene-breathe; animation-timing-function: ease-in-out; }
+  .engineering-plate[data-motion-ready="true"] .scene-scan { animation-name: scene-scan; animation-timing-function: ease-in-out; }
+  .engineering-plate[data-playing="true"] :is(.scene-flow, .scene-draw, .scene-breathe, .scene-scan) { animation-play-state: running; }
+}
+@keyframes scene-flow { to { stroke-dashoffset: -160; } }
+@keyframes scene-line { 0%, 8% { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: .5; } 32%, 90% { stroke-dasharray: 1; stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dasharray: 1; stroke-dashoffset: 0; opacity: .5; } }
+@keyframes scene-breathe { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+@keyframes scene-scan { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+@media (max-width: 47.99rem) {
+  .engineering-plate { padding: var(--space-2); }
+  .engineering-plate svg, .plate-compact svg { max-height: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-flow { stroke-dasharray: none; }
+  .scene-draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+  .scene-breathe { opacity: 1; }
+}

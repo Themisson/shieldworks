@@ -4,6 +4,9 @@ import type { Locale } from "@/i18n/translations";
 import { localizedPath } from "@/i18n/routing";
 import { EngineeringScene } from "@/components/illustrations/engineering-scene";
 import { SectionIndicator } from "@/components/landing/section-indicator";
+import { LandingSnap } from "@/components/landing/landing-snap";
+import { SectionAdvance } from "@/components/landing/section-advance";
+import { landingSections } from "@/components/landing/sections";
 import { ArticleList } from "@/components/editorial/article-list";
 import { getArticles } from "@/lib/editorial";
 import { projects } from "@/data/projects";
@@ -17,6 +20,18 @@ export function Landing({ locale }: { locale: Locale }) {
   const t = (pt: string, en: string) => (locale === "en" ? en : pt);
   const url = (path: string) => localizedPath(path, locale);
   const publication = featuredPublications[0];
+  const advance = (section: number) => {
+    const [to, pt, en] = landingSections[section % landingSections.length];
+    return (
+      <SectionAdvance
+        to={to}
+        pt={pt}
+        en={en}
+        locale={locale}
+        last={section === landingSections.length}
+      />
+    );
+  };
   const label = (number: string, pt: string, en: string) => (
     <p className="technical-label">
       <span>{number}</span> / {t(pt, en)}
@@ -35,6 +50,7 @@ export function Landing({ locale }: { locale: Locale }) {
   );
   return (
     <div className="landing-screens">
+      <LandingSnap />
       <SectionIndicator />
       <section
         id="inicio"
@@ -95,11 +111,8 @@ export function Landing({ locale }: { locale: Locale }) {
             SHIELDWORKS /{" "}
             {t("CONHECIMENTO EM APLICAÇÃO", "KNOWLEDGE IN APPLICATION")}
           </span>
-          <a href="#shieldworks">
-            {t("Explore a convergência", "Explore the convergence")}
-            <span aria-hidden="true">↓</span>
-          </a>
         </div>
+        {advance(1)}
       </section>
       <section
         id="shieldworks"
@@ -109,26 +122,29 @@ export function Landing({ locale }: { locale: Locale }) {
         <div className="section-shell">
           {label("02", "A ABORDAGEM", "THE APPROACH")}
           <div className="split-composition">
-            <h2 id="approach-title">
-              {t(
-                "O problema é o ponto de partida.",
-                "The problem is the starting point.",
-              )}
-            </h2>
-            <div className="reading-copy">
-              <p className="section-lead">
+            <div>
+              <h2 id="approach-title">
                 {t(
-                  "Engenharia para compreender. Pesquisa para aprofundar. Software para colocar em prática.",
-                  "Engineering to understand. Research to go deeper. Software to put knowledge into practice.",
+                  "O problema é o ponto de partida.",
+                  "The problem is the starting point.",
                 )}
-              </p>
-              <p>
-                {t(
-                  "A ShieldWorks reúne frentes complementares em uma atuação profissional independente. O escopo começa pelo contexto, pelas restrições e pelo resultado esperado.",
-                  "ShieldWorks brings complementary disciplines together in an independent professional practice. Scope begins with context, constraints and the expected outcome.",
-                )}
-              </p>
+              </h2>
+              <div className="reading-copy">
+                <p className="section-lead">
+                  {t(
+                    "Engenharia para compreender. Pesquisa para aprofundar. Software para colocar em prática.",
+                    "Engineering to understand. Research to go deeper. Software to put knowledge into practice.",
+                  )}
+                </p>
+                <p>
+                  {t(
+                    "A ShieldWorks reúne frentes complementares em uma atuação profissional independente. O escopo começa pelo contexto, pelas restrições e pelo resultado esperado.",
+                    "ShieldWorks brings complementary disciplines together in an independent professional practice. Scope begins with context, constraints and the expected outcome.",
+                  )}
+                </p>
+              </div>
             </div>
+            <EngineeringScene kind="approach" compact />
           </div>
           <ol className="approach-steps">
             {[
@@ -169,6 +185,7 @@ export function Landing({ locale }: { locale: Locale }) {
             ))}
           </ol>
         </div>
+        {advance(2)}
       </section>
       <section
         id="solucoes"
@@ -196,7 +213,7 @@ export function Landing({ locale }: { locale: Locale }) {
               "All solutions",
               true,
             )}
-            <EngineeringScene kind="safety" />
+            <EngineeringScene kind="solutions" compact />
           </div>
           <div className="solution-ledger">
             {featuredSolutions.map((solution, i) => (
@@ -221,6 +238,7 @@ export function Landing({ locale }: { locale: Locale }) {
             ))}
           </div>
         </div>
+        {advance(3)}
       </section>
       <section
         id="pesquisa"
@@ -258,6 +276,7 @@ export function Landing({ locale }: { locale: Locale }) {
           </div>
           <EngineeringScene kind="research" />
         </div>
+        {advance(4)}
       </section>
       <section
         id="publicacao"
@@ -292,7 +311,7 @@ export function Landing({ locale }: { locale: Locale }) {
               </div>
             </div>
             <aside className="publication-aside">
-              <span className="plate-number">LOT</span>
+              <EngineeringScene kind="publication" compact />
               <h3>
                 {t("Poço. Sal. Termomecânica.", "Well. Salt. Thermomechanics.")}
               </h3>
@@ -312,35 +331,39 @@ export function Landing({ locale }: { locale: Locale }) {
             </aside>
           </div>
         </div>
+        {advance(5)}
       </section>
       <section
         id="projetos"
         className="landing-screen projects-screen"
         aria-labelledby="projects-title"
       >
-        <div className="section-shell">
-          {label("06", "PROJETOS E PRODUTOS", "PROJECTS AND PRODUCTS")}
-          <div className="section-heading-row">
-            <div>
-              <h2 id="projects-title">
-                {t(
-                  "Conhecimento que se torna software.",
-                  "Knowledge becomes software.",
-                )}
-              </h2>
-              <p className="section-lead">
-                {t(
-                  "Ferramentas próprias, contextos diferentes, a mesma atenção ao problema.",
-                  "Our own tools, different contexts, the same attention to the problem.",
-                )}
-              </p>
+        <div className="section-shell split-composition">
+          <div>
+            {label("06", "PROJETOS E PRODUTOS", "PROJECTS AND PRODUCTS")}
+            <div className="section-heading-row">
+              <div>
+                <h2 id="projects-title">
+                  {t(
+                    "Conhecimento que se torna software.",
+                    "Knowledge becomes software.",
+                  )}
+                </h2>
+                <p className="section-lead">
+                  {t(
+                    "Ferramentas próprias, contextos diferentes, a mesma atenção ao problema.",
+                    "Our own tools, different contexts, the same attention to the problem.",
+                  )}
+                </p>
+              </div>
+              {button(
+                "/projetos",
+                "Explorar o portfólio",
+                "Explore the portfolio",
+                true,
+              )}
             </div>
-            {button(
-              "/projetos",
-              "Explorar o portfólio",
-              "Explore the portfolio",
-              true,
-            )}
+            <EngineeringScene kind="software" compact />
           </div>
           <div className="project-grid">
             {projects.map((project, i) => (
@@ -363,23 +386,30 @@ export function Landing({ locale }: { locale: Locale }) {
             ))}
           </div>
         </div>
+        {advance(6)}
       </section>
       <section
         id="cases"
         className="landing-screen cases-screen"
         aria-labelledby="cases-title"
       >
-        <div className="section-shell">
-          {label("07", "CASES DOCUMENTADOS", "DOCUMENTED CASE STUDIES")}
-          <h2 id="cases-title">
-            {t("Problema, método e entrega.", "Problem, method and delivery.")}
-          </h2>
-          <p className="section-lead">
-            {t(
-              "Exemplos reais da pesquisa e dos sistemas institucionais, com contexto e rastreabilidade.",
-              "Real examples from research and institutional systems, with context and traceability.",
-            )}
-          </p>
+        <div className="section-shell split-composition">
+          <div>
+            {label("07", "CASES DOCUMENTADOS", "DOCUMENTED CASE STUDIES")}
+            <h2 id="cases-title">
+              {t(
+                "Problema, método e entrega.",
+                "Problem, method and delivery.",
+              )}
+            </h2>
+            <p className="section-lead">
+              {t(
+                "Exemplos reais da pesquisa e dos sistemas institucionais, com contexto e rastreabilidade.",
+                "Real examples from research and institutional systems, with context and traceability.",
+              )}
+            </p>
+            <EngineeringScene kind="cases" compact />
+          </div>
           <div className="case-grid">
             {caseStudies.map((study, i) => (
               <article key={study.id}>
@@ -403,6 +433,7 @@ export function Landing({ locale }: { locale: Locale }) {
             ))}
           </div>
         </div>
+        {advance(7)}
       </section>
       <section
         id="conteudo"
@@ -425,9 +456,11 @@ export function Landing({ locale }: { locale: Locale }) {
               )}
             </p>
             {button("/conteudo", "Explorar conteúdo", "Explore content", true)}
+            <EngineeringScene kind="editorial" compact />
           </div>
           <ArticleList articles={getArticles(locale).slice(0, 3)} />
         </div>
+        {advance(8)}
       </section>
       <section
         id="conhecimento"
@@ -466,6 +499,7 @@ export function Landing({ locale }: { locale: Locale }) {
             </div>
           </div>
         </div>
+        {advance(9)}
       </section>
       <section
         id="sobre"
@@ -495,40 +529,44 @@ export function Landing({ locale }: { locale: Locale }) {
               true,
             )}
           </div>
-          <dl className="credential-ledger">
-            {[
-              [
-                "01",
-                "Engenharia e pesquisa",
-                "Engineering and research",
-                "Geomecânica, poços e métodos computacionais.",
-                "Geomechanics, wells and computational methods.",
-              ],
-              [
-                "02",
-                "Software e automação",
-                "Software and automation",
-                "C++, Python, ABAQUS e sistemas web.",
-                "C++, Python, ABAQUS and web systems.",
-              ],
-              [
-                "03",
-                "Ensino e metodologia",
-                "Teaching and methodology",
-                "Orientação consultiva, rigor e integridade acadêmica.",
-                "Consultative guidance, rigor and academic integrity.",
-              ],
-            ].map(([n, pt, en, dpt, den]) => (
-              <div key={n}>
-                <dt>
-                  <span>{n}</span>
-                  {t(pt, en)}
-                </dt>
-                <dd>{t(dpt, den)}</dd>
-              </div>
-            ))}
-          </dl>
+          <div>
+            <EngineeringScene kind="trajectory" compact />
+            <dl className="credential-ledger">
+              {[
+                [
+                  "01",
+                  "Engenharia e pesquisa",
+                  "Engineering and research",
+                  "Geomecânica, poços e métodos computacionais.",
+                  "Geomechanics, wells and computational methods.",
+                ],
+                [
+                  "02",
+                  "Software e automação",
+                  "Software and automation",
+                  "C++, Python, ABAQUS e sistemas web.",
+                  "C++, Python, ABAQUS and web systems.",
+                ],
+                [
+                  "03",
+                  "Ensino e metodologia",
+                  "Teaching and methodology",
+                  "Orientação consultiva, rigor e integridade acadêmica.",
+                  "Consultative guidance, rigor and academic integrity.",
+                ],
+              ].map(([n, pt, en, dpt, den]) => (
+                <div key={n}>
+                  <dt>
+                    <span>{n}</span>
+                    {t(pt, en)}
+                  </dt>
+                  <dd>{t(dpt, den)}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
+        {advance(10)}
       </section>
       <section
         id="atualizacoes"
@@ -555,61 +593,69 @@ export function Landing({ locale }: { locale: Locale }) {
               <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <aside className="newsletter-panel">
-            <h3>{t("Atualizações por e-mail", "Email updates")}</h3>
-            <p>
-              {t(
-                "O canal de assinatura por e-mail está em preparação. Por enquanto, acompanhe as publicações pelo RSS ou pela área de conteúdo.",
-                "Email subscriptions are being prepared. For now, follow publications through RSS or the content section.",
-              )}
-            </p>
-            <p className="technical-label">
-              {t(
-                "ASSINATURA AINDA INDISPONÍVEL",
-                "SUBSCRIPTIONS NOT YET AVAILABLE",
-              )}
-            </p>
-            <Link href={url("/conteudo")}>
-              {t("Ver conteúdo publicado", "Browse published content")} ↗
-            </Link>
-          </aside>
+          <div>
+            <EngineeringScene kind="updates" compact />
+            <aside className="newsletter-panel">
+              <h3>{t("Atualizações por e-mail", "Email updates")}</h3>
+              <p>
+                {t(
+                  "O canal de assinatura por e-mail está em preparação. Por enquanto, acompanhe as publicações pelo RSS ou pela área de conteúdo.",
+                  "Email subscriptions are being prepared. For now, follow publications through RSS or the content section.",
+                )}
+              </p>
+              <p className="technical-label">
+                {t(
+                  "ASSINATURA AINDA INDISPONÍVEL",
+                  "SUBSCRIPTIONS NOT YET AVAILABLE",
+                )}
+              </p>
+              <Link href={url("/conteudo")}>
+                {t("Ver conteúdo publicado", "Browse published content")} ↗
+              </Link>
+            </aside>
+          </div>
         </div>
+        {advance(11)}
       </section>
       <section
         id="contato"
         className="landing-screen contact-screen dark-section"
         aria-labelledby="contact-title"
       >
-        <div className="section-shell">
-          <p className="technical-label">
-            12 / {t("VAMOS CONVERSAR", "LET'S TALK")}
-          </p>
-          <h2 id="contact-title">
-            {t(
-              "Qual problema você quer resolver?",
-              "What problem do you want to solve?",
-            )}
-          </h2>
-          <p className="section-lead">
-            {t(
-              "Apresente o contexto, as restrições e o resultado esperado. A conversa inicial define a aderência e os próximos passos.",
-              "Share the context, constraints and expected outcome. An initial conversation establishes fit and next steps.",
-            )}
-          </p>
-          <div className="button-row">
-            {button(
-              "/contato",
-              "Apresentar minha demanda",
-              "Discuss my project",
-            )}
-            {button(
-              "/whatsapp",
-              "Conversar pelo WhatsApp",
-              "Talk on WhatsApp",
-              true,
-            )}
+        <div className="section-shell split-composition">
+          <div>
+            <p className="technical-label">
+              12 / {t("VAMOS CONVERSAR", "LET'S TALK")}
+            </p>
+            <h2 id="contact-title">
+              {t(
+                "Qual problema você quer resolver?",
+                "What problem do you want to solve?",
+              )}
+            </h2>
+            <p className="section-lead">
+              {t(
+                "Apresente o contexto, as restrições e o resultado esperado. A conversa inicial define a aderência e os próximos passos.",
+                "Share the context, constraints and expected outcome. An initial conversation establishes fit and next steps.",
+              )}
+            </p>
+            <div className="button-row">
+              {button(
+                "/contato",
+                "Apresentar minha demanda",
+                "Discuss my project",
+              )}
+              {button(
+                "/whatsapp",
+                "Conversar pelo WhatsApp",
+                "Talk on WhatsApp",
+                true,
+              )}
+            </div>
           </div>
+          <EngineeringScene kind="contact" />
         </div>
+        {advance(12)}
       </section>
     </div>
   );
