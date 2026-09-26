@@ -439,3 +439,26 @@ test("English pages retain responsive layout and localized metadata", async ({
     }
   }
 });
+
+test("landing contact preserves the analytics event without personal data", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const queue: [string, unknown?][] = [];
+    window.vaq = queue;
+    window.va = (event: string, data?: unknown) => queue.push([event, data]);
+  });
+  await page.goto("/");
+  await page.getByRole("link", { name: "Apresentar minha demanda" }).click();
+  await expect(page).toHaveURL(/\/contato$/);
+  const events = await page.evaluate(() =>
+    (window.vaq ?? []).filter((entry) => entry[0] === "event"),
+  );
+  expect(events).toContainEqual([
+    "event",
+    expect.objectContaining({
+      name: "cta_contact_click",
+      data: { source: "landing" },
+    }),
+  ]);
+});

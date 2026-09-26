@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrackedLink } from "@/components/tracked-link";
 import type { Locale } from "@/i18n/translations";
 import { localizedPath } from "@/i18n/routing";
 import { EngineeringScene } from "@/components/illustrations/engineering-scene";
@@ -22,13 +23,15 @@ export function Landing({ locale }: { locale: Locale }) {
     </p>
   );
   const button = (href: string, pt: string, en: string, secondary = false) => (
-    <Link
+    <TrackedLink
       href={url(href)}
+      eventName={href === "/contato" ? "cta_contact_click" : undefined}
+      source="landing"
       className={`sw-button ${secondary ? "sw-button-secondary" : ""}`}
     >
       {t(pt, en)}
       <span aria-hidden="true">↗</span>
-    </Link>
+    </TrackedLink>
   );
   return (
     <div className="landing-screens">
@@ -207,7 +210,11 @@ export function Landing({ locale }: { locale: Locale }) {
                 <div>
                   <h3>{translate(solution.title, locale)}</h3>
                   <p>{translate(solution.description, locale)}</p>
-                  <div className="tag-line">{solution.tags.map(tag => translate(tag,locale)).join(" / ")}</div>
+                  <div className="tag-line">
+                    {solution.tags
+                      .map((tag) => translate(tag, locale))
+                      .join(" / ")}
+                  </div>
                 </div>
                 <span aria-hidden="true">↗</span>
               </Link>

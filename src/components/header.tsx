@@ -132,7 +132,13 @@ export function Header() {
         </div>
         <nav aria-label={text("Navegação mobile", "Mobile navigation")}>
           {items}
-          <Link href="/contato" onClick={close}>
+          <Link
+            href="/contato"
+            onClick={() => {
+              trackEvent("nav_contact_click", { source: "header_mobile" });
+              close();
+            }}
+          >
             {text("Contato", "Contact")}
           </Link>
           <Link href="/sistemas" onClick={close}>
