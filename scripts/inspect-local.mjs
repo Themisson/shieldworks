@@ -82,6 +82,24 @@ try {
       }, width),
     );
     await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.screenshot({
+      path: `${directory}/home-${width}.png`,
+      fullPage: true,
+      animations: "disabled",
+    });
+    const sectionGeometry = await page
+      .locator(".landing-screen")
+      .evaluateAll((nodes) =>
+        nodes.map((node) => ({
+          id: node.id,
+          y: node.getBoundingClientRect().top + window.scrollY,
+          height: node.getBoundingClientRect().height,
+        })),
+      );
+    fs.writeFileSync(
+      `${directory}/sections-${width}.json`,
+      JSON.stringify(sectionGeometry, null, 2),
+    );
     for (const section of await page.locator(".landing-screen").all()) {
       const id = await section.getAttribute("id");
       await section.screenshot({
@@ -126,7 +144,11 @@ try {
   );
   console.log(
     JSON.stringify(
-      measurements.map(result => Object.fromEntries(Object.entries(result).filter(([key]) => key !== "resourcesByType"))),
+      measurements.map((result) =>
+        Object.fromEntries(
+          Object.entries(result).filter(([key]) => key !== "resourcesByType"),
+        ),
+      ),
       null,
       2,
     ),

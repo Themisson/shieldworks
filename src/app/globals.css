@@ -156,7 +156,7 @@ p {
   }
 
   .panel {
-    @apply rounded-2xl border border-graphite-100/80 bg-white shadow-card;
+    @apply rounded-2xl border border-graphite-100/80 bg-white;
   }
 
   .panel-muted {

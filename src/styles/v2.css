@@ -221,7 +221,7 @@
 @media (max-width: 79.99rem) { .desktop-navigation, .header-contact { display: none; } .menu-trigger { display: block; } .header-actions { margin-left: auto; } }
 @media (max-width: 63.99rem) { .hero-copy h1 { font-size: clamp(2.75rem,6.5vw,5.5rem); } .hero-visual { max-width: 48rem; } }
 @media (max-width: 47.99rem) {
-  .feedback-trigger { position: static; margin: var(--space-3) var(--page-gutter) var(--space-4) auto; }
+  body .feedback-trigger { display: flex; position: static; margin: var(--space-3) var(--page-gutter) var(--space-4) auto; }
   .hero-screen { min-height: calc(100dvh - var(--header-height)); }
   .hero-copy h1 { font-size: clamp(2.5rem,10vw,3.75rem); }
   .hero-description { font-size: 1rem; }
