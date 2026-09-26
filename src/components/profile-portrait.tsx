@@ -10,28 +10,22 @@ type ProfilePortraitProps = {
   priority?: boolean;
   className?: string;
   sizes?: string;
-  aspect?: "portrait" | "square";
 };
 
-/** Preserved portrait with restrained framing and a solid, readable caption. */
+/** Preserved portrait with restrained framing; the caller's class sets its width. */
 export function ProfilePortrait({
   src = "/image-themisson.jpeg",
   alt = "Themisson dos Santos Vasconcelos em retrato profissional",
   caption,
   priority = false,
   className = "",
-  sizes = "(max-width: 1023px) 100vw, 42vw",
-  aspect = "portrait",
+  sizes = "(max-width: 47.99rem) 6.5rem, 13rem",
 }: ProfilePortraitProps) {
   const { locale } = useLocale();
-  const minHeight =
-    aspect === "square"
-      ? "min-h-[320px] sm:min-h-[380px]"
-      : "min-h-[380px] sm:min-h-[460px] lg:min-h-[520px]";
 
   return (
     <figure className={`profile-portrait-shell ${className}`.trim()}>
-      <div className={`profile-portrait-frame relative ${minHeight} w-full`}>
+      <div className="profile-portrait-frame">
         <div className="profile-portrait-media absolute inset-0">
           <Image
             src={src}

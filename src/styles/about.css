@@ -1,0 +1,110 @@
+/* About page: full-width bands, one gutter, reading measures only where text runs. */
+.about-band { padding-block: var(--section-space); border-bottom: 1px solid var(--line); }
+.about-band.dark-section { border-color: #34525a; }
+.about-muted { background: var(--surface-muted); }
+.about-band h2 { font-size: var(--type-section); font-weight: 500; line-height: 1.08; letter-spacing: -.045em; max-width: 22ch; margin-block: var(--space-2) var(--space-3); }
+.about-band h3 { font-weight: 500; letter-spacing: -.02em; line-height: 1.25; }
+.about-lead { font-size: var(--type-lead); line-height: 1.7; max-width: 58ch; color: var(--ink-muted); }
+.dark-section .about-lead { color: var(--on-night-muted); }
+
+/* 1. Hero: statement and convergence drawing; no portrait in the first screen. */
+.about-hero .split-composition { align-items: center; }
+.about-hero h1 { font-size: clamp(2.5rem, min(4.6vw, 8dvh), 6.5rem); font-weight: 500; line-height: 1.04; letter-spacing: -.055em; max-width: 17ch; margin-block: var(--space-3); }
+.about-hero .about-lead { max-width: 54ch; }
+.about-anchors { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); margin-top: var(--space-4); font-family: var(--font-mono), monospace; font-size: .75rem; }
+.about-anchors a { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--ink-muted); border-bottom: 1px solid var(--line); }
+.about-anchors a:hover { color: var(--signal); border-color: var(--signal); }
+
+/* 2. The person: a restrained 4:5 portrait beside the biography. */
+.about-person-grid { display: grid; gap: var(--space-4) var(--composition-gap); align-items: start; }
+.about-portrait { width: min(100%, 11rem); justify-self: center; }
+.about-portrait .profile-portrait-shell, .about-portrait.profile-portrait-shell { border-radius: var(--radius-panel); }
+.about-person h2 { max-width: 24ch; }
+.about-roles { font-family: var(--font-mono), monospace; font-size: .75rem; letter-spacing: .04em; color: var(--signal); }
+.about-bio { max-width: var(--reading-measure); margin-top: var(--space-3); color: var(--ink-muted); line-height: 1.8; }
+.about-bio p + p { margin-top: var(--space-3); }
+.about-links { margin-top: var(--space-4); }
+.about-note { max-width: var(--reading-measure); margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--line); color: var(--ink-muted); font-size: .875rem; line-height: 1.7; }
+
+/* 3. Trajectory: map on wide screens; the same stations as a readable rail on phones. */
+.about-career .plate-career { margin-top: var(--space-4); }
+.career-lines { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin-top: var(--space-4); font-family: var(--font-mono), monospace; font-size: .7rem; color: var(--ink-muted); }
+.career-lines span { display: inline-flex; align-items: center; gap: .5rem; }
+.career-lines span::before { content: ""; width: 1.5rem; height: 3px; border-radius: 2px; background: var(--line-color); }
+.career-stations { display: grid; gap: 0 var(--space-4); margin-top: var(--space-3); }
+.career-stations li { position: relative; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: var(--space-2); padding-block: var(--space-2) var(--space-3); border-top: 1px solid var(--line); }
+.career-stations li > span { font-family: var(--font-mono), monospace; font-size: .75rem; color: var(--signal); padding-top: .2rem; }
+.career-stations h3 { font-size: 1.05rem; }
+.career-stations p { margin-top: .25rem; color: var(--ink-muted); font-size: .9rem; line-height: 1.6; max-width: 48ch; }
+.career-stations small { display: block; margin-top: .35rem; font-family: var(--font-mono), monospace; font-size: .65rem; letter-spacing: .03em; color: var(--ink-muted); }
+.career-stations small::before { content: ""; display: inline-block; width: .9rem; height: 3px; margin-right: .45rem; vertical-align: middle; border-radius: 2px; background: var(--line-color); }
+.line-operation { --line-color: #b7842c; }
+.line-engineering { --line-color: var(--signal); }
+.line-computing { --line-color: #2a5058; }
+.line-teaching { --line-color: #86a19c; }
+
+/* 4. Converging areas: a hub between four asymmetric blocks. */
+.areas-map { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
+.areas-map .plate-standard { --scene-height: min(44dvh, 22rem); max-width: 24rem; justify-self: center; }
+.area-block { border-top: 1px solid #34525a; padding-top: var(--space-3); max-width: 34ch; }
+.area-block > span { font-family: var(--font-mono), monospace; font-size: .75rem; color: var(--signal-light); }
+.area-block h3 { margin-block: var(--space-1) var(--space-2); font-size: clamp(1.4rem, 2vw, 2.1rem); }
+.area-block ul { display: grid; gap: .35rem; color: var(--on-night-muted); font-size: .92rem; line-height: 1.5; }
+.area-block li::before { content: "— "; color: var(--signal-light); }
+
+/* 5. Research: the process drawing, the lines and the published record. */
+.about-research .plate-wide { margin-block: var(--space-4) var(--space-2); }
+.plate-researchProcess { --scene-height: min(30dvh, 12rem); }
+.process-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2) var(--space-3); }
+.process-steps li { padding-top: var(--space-2); border-top: 1px solid var(--line); font-size: .9rem; }
+.process-steps li span { display: block; font-family: var(--font-mono), monospace; font-size: .7rem; color: var(--signal); }
+.research-record { display: grid; gap: var(--space-5) var(--composition-gap); margin-top: var(--space-5); }
+.research-record h3 { font-size: 1.35rem; margin-bottom: var(--space-2); }
+.research-record .research-line-links a { border-top-color: var(--line); }
+.research-record .research-line-links a span:first-child { color: var(--signal); }
+.publication-list li { padding-block: var(--space-2); border-top: 1px solid var(--line); }
+.publication-list a { display: block; padding-block: .25rem; }
+.publication-list a:hover .publication-title { text-decoration: underline; text-underline-offset: .2em; }
+.publication-title { font-weight: 500; line-height: 1.4; }
+.publication-meta { display: block; margin-top: .25rem; font-family: var(--font-mono), monospace; font-size: .7rem; color: var(--ink-muted); }
+
+/* 6. Principles: typography, not cards. */
+.principles { display: grid; margin-top: var(--space-4); }
+.principles li { display: grid; gap: var(--space-1) var(--space-4); align-items: baseline; padding-block: var(--space-3); border-top: 1px solid var(--line); }
+.principles li > span { font-family: var(--font-mono), monospace; font-size: .75rem; color: var(--signal); }
+.principles h3 { font-size: clamp(1.75rem, 3.2vw, 3.5rem); letter-spacing: -.045em; line-height: 1.05; }
+.principles p { color: var(--ink-muted); line-height: 1.7; max-width: 52ch; }
+
+/* 7. Closing statement. */
+.about-closing h2 { max-width: 26ch; font-size: clamp(2rem, min(4vw, 7dvh), 5rem); }
+
+@media (min-width: 48rem) {
+  .about-person-grid { grid-template-columns: 13rem minmax(0, 1fr); }
+  .about-portrait { width: 100%; justify-self: stretch; }
+  .career-stations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .process-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .principles li { grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 1.1fr); }
+}
+@media (min-width: 64rem) {
+  .about-person-grid { grid-template-columns: 15rem minmax(0, 1fr); }
+  .career-stations { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .areas-map { grid-template-columns: minmax(0, 1fr) minmax(16rem, 24rem) minmax(0, 1fr); grid-template-areas: ". a2 ." "a1 hub a3" ". a4 ."; align-items: center; column-gap: var(--composition-gap); }
+  .areas-map .engineering-plate { grid-area: hub; }
+  .area-block:nth-of-type(1) { grid-area: a1; justify-self: end; }
+  .area-block:nth-of-type(2) { grid-area: a2; }
+  .area-block:nth-of-type(3) { grid-area: a3; }
+  .area-block:nth-of-type(4) { grid-area: a4; }
+  .process-steps { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .research-record { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+}
+@media (min-width: 80rem) {
+  .about-person-grid { grid-template-columns: 17.5rem minmax(0, 1fr); }
+}
+/* Phones: the map becomes a vertical rail with the same stations and line colours. */
+@media (max-width: 47.99rem) {
+  .plate-career { display: none; }
+  .plate-researchProcess { --scene-height: 19rem; }
+  .career-stations { border-left: 2px solid var(--line); margin-left: .45rem; }
+  .career-stations li { border-top: 0; padding-left: var(--space-3); }
+  .career-stations li::before { content: ""; position: absolute; left: -.5rem; top: 1.05rem; width: .85rem; height: .85rem; border-radius: 50%; background: var(--paper); border: 3px solid var(--line-color); }
+}

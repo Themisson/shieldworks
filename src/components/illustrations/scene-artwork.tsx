@@ -1,1031 +1,722 @@
-import type { SceneKind } from "./engineering-scene";
+import type { CSSProperties, ReactNode } from "react";
+import {
+  AreasArtwork,
+  CareerArtwork,
+  ConvergenceArtwork,
+  ResearchProcessArtwork,
+} from "./about-artwork";
 
-type Label = (pt: string, en: string) => string;
-type ArtProps = { kind: SceneKind; label: Label; id: string };
+export type SceneKind =
+  | "integrated"
+  | "approach"
+  | "solutions"
+  | "research"
+  | "publication"
+  | "software"
+  | "cases"
+  | "editorial"
+  | "knowledge"
+  | "trajectory"
+  | "updates"
+  | "contact"
+  | "numerical"
+  | "aboutConvergence"
+  | "aboutAreas"
+  | "researchProcess"
+  | "career";
 
-function Arrow({ d }: { d: string }) {
+export type SceneVariant = "hero" | "standard" | "compact" | "wide";
+
+/** Geometry of each drawing. Compact scenes are wide strips that sit beside or under copy. */
+export const sceneFormat: Record<
+  SceneKind,
+  { variant: SceneVariant; viewBox: string; narrowViewBox?: string }
+> = {
+  integrated: { variant: "hero", viewBox: "0 0 600 400" },
+  approach: { variant: "compact", viewBox: "0 0 480 160" },
+  solutions: { variant: "compact", viewBox: "0 0 480 200" },
+  research: { variant: "standard", viewBox: "0 0 480 340" },
+  publication: { variant: "compact", viewBox: "0 0 480 190" },
+  software: { variant: "compact", viewBox: "0 0 480 164" },
+  cases: { variant: "compact", viewBox: "0 0 480 180" },
+  editorial: { variant: "compact", viewBox: "0 0 480 170" },
+  knowledge: { variant: "standard", viewBox: "0 0 480 360" },
+  trajectory: { variant: "compact", viewBox: "0 0 480 170" },
+  updates: { variant: "compact", viewBox: "0 0 480 170" },
+  contact: { variant: "standard", viewBox: "0 0 480 360" },
+  numerical: { variant: "standard", viewBox: "0 0 480 340" },
+  aboutConvergence: { variant: "hero", viewBox: "0 0 600 430" },
+  aboutAreas: { variant: "standard", viewBox: "0 0 360 360" },
+  researchProcess: {
+    variant: "wide",
+    viewBox: "0 0 960 150",
+    narrowViewBox: "0 0 360 290",
+  },
+  career: { variant: "wide", viewBox: "0 0 960 330" },
+};
+
+/**
+ * One numbered element of a scene. `n` matches the numbered copy around the drawing:
+ * pointing at that copy, or the timed sequence, brings this part forward.
+ */
+function Part({ n, children }: { n: number; children: ReactNode }) {
+  return (
+    <g data-part={n} style={{ "--d": n } as CSSProperties}>
+      {children}
+    </g>
+  );
+}
+
+function Num({
+  x,
+  y,
+  n,
+  anchor = "middle",
+}: {
+  x: number;
+  y: number;
+  n: number;
+  anchor?: "start" | "middle" | "end";
+}) {
+  return (
+    <text x={x} y={y} className="a-num" textAnchor={anchor}>
+      {String(n).padStart(2, "0")}
+    </text>
+  );
+}
+
+function Flow({ d }: { d: string }) {
   return <path d={d} className="scene-flow" />;
 }
 
-function Shield({ x = 0, y = 0 }: { x?: number; y?: number }) {
+/** Small pictograms drawn around the origin, sized for a 24-unit node. */
+const glyphs = {
+  doc: "M-10-15h13l8 8v22h-21ZM3-15v8h8M-5-2h11M-5 4h11M-5 10h7",
+  lens: "M-12-3a9 9 0 1 0 18 0a9 9 0 1 0-18 0M3 3l9 9",
+  mesh: "M-13 10 0-13l13 23ZM-6.5-1.5h13L0 10Z",
+  strata:
+    "M-14-8C-7-12 0-4 14-9M-14-1C-7-5 0 3 14-2M-14 6C-7 2 0 10 14 5M-14 13C-7 9 0 17 14 12",
+  panel: "M-14-11h28v22h-28ZM-14-5h28M-8 7V2M-3 7V-1M2 7V3M7 7V0",
+  shield: "M0-15 12-10v9C12 8 6 13 0 16-6 13-12 8-12-1v-9Z",
+  check: "m-5 0 3.5 3.5L6-4",
+  book: "M0-8C-5-11-10-11-14-9V9C-10 7-5 7 0 10 5 7 10 7 14 9V-9C10-11 5-11 0-8ZM0-8V10",
+  code: "M-7-8-15 0l8 8M7-8l8 8-8 8M3-11-3 11",
+  target: "M-12 0a12 12 0 1 0 24 0a12 12 0 1 0-24 0M-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0",
+  well: "M-14-4C-8-7-3-1 3-4s8-1 11 0M-14 6C-8 3-3 9 3 6s8-1 11 0M-3-14v28M3-14v28M-7-14h14",
+  alert: "M0-13 13 10h-26ZM0-4v6M0 6.5h0",
+};
+
+function Node({
+  x,
+  y,
+  r = 24,
+  glyph,
+  check = false,
+}: {
+  x: number;
+  y: number;
+  r?: number;
+  glyph: keyof typeof glyphs;
+  check?: boolean;
+}) {
   return (
     <g transform={`translate(${x} ${y})`}>
-      <path
-        d="M0-38 31-26v29C31 25 14 38 0 44-14 38-31 25-31 3v-29Z"
-        className="art-shield"
-      />
-      <path
-        d="m-15 0 11 12 22-28"
-        className="art-check scene-draw"
-        pathLength="1"
-      />
-    </g>
-  );
-}
-
-/** A readable geological cross-section, with well casing and a salt interval. */
-function Formation({ id }: { id: string }) {
-  return (
-    <g>
-      <path d="M0 40Q75 15 145 36T300 30V300H0Z" className="art-rock" />
-      <path
-        d="M0 92Q90 63 170 85T300 77V138Q200 163 120 143T0 160Z"
-        className="art-stratum"
-      />
-      <path
-        d="M0 160Q80 137 150 149T300 138V221Q235 245 152 225T0 239Z"
-        fill={`url(#${id}-salt)`}
-        className="art-salt"
-      />
-      <path
-        d="M0 239Q70 214 145 226T300 221V300H0Z"
-        className="art-rock-deep"
-      />
-      <g className="art-contours">
-        <path d="M0 60Q80 35 150 50T300 46M0 115Q100 90 170 110T300 103M0 268Q90 243 170 259T300 252" />
-        <path d="M22 192q35-19 60-6m160 8q25-11 45-9M40 207q22-8 36-2m174 6 21-4" />
-      </g>
-      <path d="M144-7V258m12-265V258" className="art-casing" />
-      <path d="M150-20V276" className="art-well" />
-      <path d="M127-13h46m-38-10h30m-22 298h14" className="art-well" />
-      <g className="art-stress scene-breathe">
-        <ellipse cx="150" cy="196" rx="31" ry="45" />
-        <ellipse cx="150" cy="196" rx="51" ry="66" />
-        <path d="M63 196h37m-8-6 8 6-8 6m145-6h-37m8-6-8 6 8 6" />
-      </g>
-    </g>
-  );
-}
-
-function Mesh() {
-  return (
-    <g className="art-mesh">
-      {Array.from({ length: 5 }, (_, row) =>
-        Array.from({ length: 5 }, (_, col) => {
-          const x = col * 42 + row * 9;
-          const y = row * 37 - col * 5;
-          return (
-            <g key={`${row}-${col}`}>
-              {col < 4 && <path d={`M${x} ${y}l42-5`} />}
-              {row < 4 && <path d={`M${x} ${y}l9 37`} />}
-              {row < 4 && col < 4 && <path d={`M${x} ${y}l51 32`} />}
-              <circle cx={x} cy={y} r="3" />
-            </g>
-          );
-        }),
+      <circle r={r} className="a-fill a-ink" />
+      <path d={glyphs[glyph]} className="a-ink" />
+      {check && (
+        <path d={glyphs.check} className="a-accent scene-draw" pathLength={1} />
       )}
-      <path
-        d="M-20 5h-20m20 44h-20m20 44h-20m20 44h-20"
-        className="art-boundary"
-      />
     </g>
   );
 }
 
-function Plot({ label }: { label: Label }) {
+/** Triangulated grid as two paths: one for edges, one for nodes (round caps). */
+function Mesh({ xs, ys }: { xs: number[]; ys: number[] }) {
+  let edges = "";
+  let nodes = "";
+  ys.forEach((y, j) =>
+    xs.forEach((x, i) => {
+      nodes += `M${x} ${y}h0`;
+      const right = xs[i + 1];
+      const below = ys[j + 1];
+      if (right !== undefined) edges += `M${x} ${y}H${right}`;
+      if (below !== undefined) edges += `M${x} ${y}V${below}`;
+      if (right !== undefined && below !== undefined)
+        edges +=
+          (i + j) % 2
+            ? `M${x} ${below}L${right} ${y}`
+            : `M${x} ${y}L${right} ${below}`;
+    }),
+  );
   return (
     <g>
-      <rect width="265" height="170" rx="10" className="art-panel" />
-      <path d="M0 30h265M24 52v91h218" className="art-rule" />
-      <circle cx="17" cy="15" r="3" className="art-node" />
-      <path d="M32 15h75" className="art-rule" />
-      <path
-        d="M25 120Q61 122 84 102T133 88T190 67L234 52"
-        className="art-curve scene-draw"
-        pathLength="1"
-      />
-      <path
-        d="M25 137Q72 135 107 111T168 102T234 75"
-        className="art-comparison"
-      />
-      <text x="34" y="163">
-        {label("ANÁLISE / RESULTADOS", "ANALYSIS / RESULTS")}
-      </text>
+      <path d={edges} className="a-mute" />
+      <path d={nodes} className="a-dots" />
     </g>
   );
 }
 
-function Document({ label, title }: { label: Label; title?: string }) {
+const graded = (origin: number, steps: number[]) =>
+  steps.map((step) => origin + step);
+
+/*
+ * Geological cross-section in a local 200 × 220 box: strata, a salt interval
+ * and a cased well. Salt and well can be separate numbered parts.
+ */
+function Strata() {
   return (
-    <g>
-      <path d="M0 0h141l39 39v194H0Z" className="art-paper" />
-      <path
-        d="M141 0v39h39M21 65h119M21 80h83M21 158h135M21 173h122M21 188h89"
-        className="art-rule"
-      />
-      <text x="21" y="31" className="art-label-strong">
-        {title ?? label("PESQUISA", "RESEARCH")}
-      </text>
-      <path
-        d="M21 143v-41m0 41h135M28 133q27 0 43-14t42-3 37-21"
-        className="art-curve scene-draw"
-        pathLength="1"
-      />
-      <path d="M20 215h61" className="art-copper-rule" />
-    </g>
+    <path
+      d="M0 20C60 10 130 30 200 16M0 66C70 56 120 76 200 62M0 216C60 206 140 226 200 212"
+      className="a-mute"
+    />
   );
 }
 
-function Code({ label }: { label: Label }) {
-  return (
-    <g>
-      <rect width="252" height="158" rx="10" className="art-panel" />
-      <path d="M0 30h252" className="art-rule" />
-      <circle cx="16" cy="15" r="3" className="art-node" />
-      <text x="32" y="19">
-        C++ / Python
-      </text>
-      <text x="18" y="60" className="art-code">
-        {label("dados → modelo", "data → model")}
-      </text>
-      <text x="32" y="86">
-        {label("discretizar()", "discretize()")}
-      </text>
-      <text x="32" y="109">
-        {label("resolver()", "solve()")}
-      </text>
-      <text x="18" y="136" className="art-code">
-        {label("validar → documentar", "validate → document")}
-      </text>
-    </g>
-  );
-}
-
-function Book({ label }: { label: Label }) {
+function Salt({ detail = false }: { detail?: boolean }) {
   return (
     <g>
       <path
-        d="M0 18Q52 0 100 18V180Q51 161 0 180ZM100 18Q149 0 200 18V180Q150 161 100 180Z"
-        className="art-paper"
+        d="M0 118C60 104 120 128 200 112V180C130 166 70 190 0 178Z"
+        className="a-tint a-ink"
       />
       <path
-        d="M100 18v162M16 47q30-10 67-2M16 64q30-10 67-2M16 81q30-10 67-2M116 47q30-10 67-2M116 64q30-10 67-2"
-        className="art-rule"
+        d="M12 136l7-7M22 164l7-7M172 132l7-7M182 160l7-7M58 172l7-7M140 170l7-7"
+        className="a-soft"
       />
-      <text x="117" y="107">
-        {label("MÉTODO", "METHOD")}
-      </text>
+      <ellipse cx="100" cy="147" rx="36" ry="40" className="a-mute a-dash" />
+      <ellipse cx="100" cy="147" rx="21" ry="25" className="a-accent" />
       <path
-        d="M117 141h65m-65-14h42"
-        className="art-copper-rule scene-draw"
-        pathLength="1"
+        d="M42 147h16m-5-4 5 4-5 4M158 147h-16m5-4-5 4 5 4"
+        className="a-accent"
+      />
+      {detail && (
+        <rect
+          x="110"
+          y="106"
+          width="90"
+          height="82"
+          className="a-soft a-dash"
+        />
+      )}
+    </g>
+  );
+}
+
+function Well() {
+  return (
+    <g>
+      <path d="M94 2V204M106 2V204M86 2H114M89 204h9m4 0h9" className="a-ink" />
+      <path d="M100-6V214" className="a-warm scene-draw" pathLength={1} />
+    </g>
+  );
+}
+
+function Chart({ x, y, w = 130, h = 100 }: Box) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <rect width={w} height={h} rx="8" className="a-fill a-ink" />
+      <path d={`M12 12V${h - 14}H${w - 10}`} className="a-mute" />
+      <path
+        d={`M16 ${h - 22}C${w * 0.3} ${h - 26} ${w * 0.42} ${h * 0.5} ${w * 0.56} ${h * 0.38}S${w * 0.8} ${h * 0.16} ${w - 14} ${h * 0.13}`}
+        className="a-accent scene-draw"
+        pathLength={1}
+      />
+      <path
+        d={`M16 ${h - 18}C${w * 0.38} ${h - 22} ${w * 0.55} ${h * 0.6} ${w * 0.68} ${h * 0.5}S${w * 0.86} ${h * 0.36} ${w - 14} ${h * 0.34}`}
+        className="a-mute a-dash"
       />
     </g>
   );
 }
 
-/** Wide compositions keep secondary scenes readable without adding a second screen. */
-export function CompactSceneArtwork({ kind, label, id }: ArtProps) {
+type Box = { x: number; y: number; w?: number; h?: number };
+
+function Doc({ x, y, s = 1 }: { x: number; y: number; s?: number }) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${s})`}>
+      <path d="M0 0h62l24 24v86H0Z" className="a-fill a-ink" />
+      <path d="M62 0v24h24" className="a-ink" />
+      <path d="M14 22h30" className="a-accent" />
+      <path d="M14 44h56M14 56h44M14 68h56M14 80h36" className="a-mute" />
+      <path d="M14 96h22" className="a-warm" />
+    </g>
+  );
+}
+
+function Window({ x, y, w, h }: Box & { w: number; h: number }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <rect width={w} height={h} rx="8" className="a-fill a-ink" />
+      <path d={`M0 18H${w}`} className="a-ink" />
+      <path d="M10 9h0M18 9h0M26 9h0" className="a-dots a-dots-small" />
+    </g>
+  );
+}
+
+const shieldPath = "M0-24 20-16v15C20 13 10 21 0 26-10 21-20 13-20-1v-15Z";
+
+function Shield({ x, y, s = 1 }: { x: number; y: number; s?: number }) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${s})`}>
+      <path d={shieldPath} className="a-fill a-ink" />
+      <path
+        d="m-8 1 6 6 11-13"
+        className="a-accent scene-draw"
+        pathLength={1}
+      />
+    </g>
+  );
+}
+
+export function SceneArtwork({
+  kind,
+  narrow = false,
+}: {
+  kind: SceneKind;
+  narrow?: boolean;
+}) {
   switch (kind) {
-    case "approach":
-      return (
-        <g>
-          <Arrow d="M150 126H755" />
-          {[
-            label("CONTEXTO", "CONTEXT"),
-            label("HIPÓTESE", "HYPOTHESIS"),
-            label("MODELO", "MODEL"),
-            label("ENTREGA", "DELIVERY"),
-          ].map((text, i) => (
-            <g key={text} transform={`translate(${140 + i * 205} 126)`}>
-              <circle r="55" className="art-orbit" />
-              <circle
-                r="42"
-                className="art-panel scene-breathe"
-                style={{ animationDelay: `${i * 2}s` }}
-              />
-              {i === 0 && (
-                <path
-                  d="M-19-21h38v42h-38Zm8 10h22m-22 10h16m-16 10h22"
-                  className="art-rule"
-                />
-              )}
-              {i === 1 && (
-                <g>
-                  <circle cy="-5" r="17" className="art-line" />
-                  <path
-                    d="M-7 21H7m-14 7H7M0-31v-10m-31 10-8-7m70 7 8-7"
-                    className="art-copper-rule"
-                  />
-                </g>
-              )}
-              {i === 2 && (
-                <path
-                  d="m-22-17 44-8-8 43-42 9Zm0 0 14 44m30-52-58 52m14-44 30 35"
-                  className="art-line"
-                />
-              )}
-              {i === 3 && (
-                <g transform="scale(.62)">
-                  <Shield />
-                </g>
-              )}
-              <text x="0" y="88" textAnchor="middle" className="art-heading">
-                {text}
-              </text>
-              <text x="0" y="119" textAnchor="middle">
-                0{i + 1}
-              </text>
-            </g>
-          ))}
-        </g>
-      );
-    case "solutions":
-      return (
-        <g>
-          <g transform="translate(76 82) scale(.73)">
-            <Mesh />
-          </g>
-          <g transform="translate(340 90) scale(.74)">
-            <Code label={label} />
-          </g>
-          <g transform="translate(630 147)">
-            <Shield />
-          </g>
-          <g transform="translate(730 77) scale(.76)">
-            <Book label={label} />
-          </g>
-          <Arrow d="M252 147h64m-9-7 9 7-9 7M535 147h44m-9-7 9 7-9 7M670 147h45m-9-7 9 7-9 7" />
-          <text x="61" y="268" className="art-label-strong">
-            {label("ENGENHARIA", "ENGINEERING")}
-          </text>
-          <text x="343" y="268" className="art-label-strong">
-            SOFTWARE
-          </text>
-          <text x="573" y="268" className="art-label-strong">
-            {label("SEGURANÇA", "SAFETY")}
-          </text>
-          <text x="725" y="268" className="art-label-strong">
-            {label("PESQUISA", "RESEARCH")}
-          </text>
-        </g>
-      );
-    case "publication":
-      return (
-        <g>
-          <g transform="translate(76 64) scale(.63)">
-            <Formation id={id} />
-          </g>
-          <g transform="translate(359 91) scale(.78)">
-            <Plot label={label} />
-          </g>
-          <g transform="translate(658 48) scale(.84)">
-            <Document label={label} title="LOT / 2025" />
-          </g>
-          <Arrow d="M280 156h62m-9-7 9 7-9 7M579 156h62m-9-7 9 7-9 7" />
-          <text x="78" y="284" className="art-label-strong">
-            {label("INVESTIGAÇÃO", "INVESTIGATION")}
-          </text>
-          <text x="390" y="284" className="art-label-strong">
-            {label("ANÁLISE", "ANALYSIS")}
-          </text>
-          <text x="661" y="284" className="art-label-strong">
-            {label("PUBLICAÇÃO", "PUBLICATION")}
-          </text>
-        </g>
-      );
-    case "software":
-      return (
-        <g>
-          {["MDFolio", "AcadImprove", "Sursum", "Gabarita"].map((name, i) => (
-            <g key={name} transform={`translate(${27 + i * 221} 53)`}>
-              <rect width="185" height="190" rx="9" className="art-panel" />
-              <text x="15" y="28" className="art-heading">
-                {name}
-              </text>
-              {i === 0 && (
-                <g>
-                  <path
-                    d="M20 55h62l17 17v94H20ZM82 55v17h17M33 91h49m-49 18h34m-34 18h49m-49 18h25"
-                    className="art-rule"
-                  />
-                  <path d="M120 89h42v57h-42" className="art-line" />
-                  <text x="128" y="120">
-                    PDF
-                  </text>
-                  <Arrow d="M103 115h14" />
-                </g>
-              )}
-              {i === 1 && (
-                <g>
-                  <path
-                    d="M19 160h148M34 147V107h20v40m20 0V91h20v56m20 0V77h20v70m20 0V65h20v82"
-                    className="art-line"
-                  />
-                  <path
-                    d="m24 88 42-16 39 5 49-23"
-                    className="art-curve scene-draw"
-                    pathLength="1"
-                  />
-                </g>
-              )}
-              {i === 2 && (
-                <g>
-                  <path
-                    d="M18 79h148M18 96h148M18 113h148M18 130h148M18 147h148"
-                    className="art-rule"
-                  />
-                  <text x="22" y="66">
-                    C
-                  </text>
-                  <text x="74" y="66">
-                    F
-                  </text>
-                  <text x="138" y="66">
-                    G
-                  </text>
-                  <path
-                    d="M57 87v48q-14-7-14 5t14 4m67-51v41q-14-7-14 5t14 4"
-                    className="art-copper-rule"
-                  />
-                </g>
-              )}
-              {i === 3 && (
-                <g>
-                  {[0, 1, 2].map((row) => (
-                    <g key={row}>
-                      {[0, 1, 2, 3].map((col) => (
-                        <circle
-                          key={col}
-                          cx={35 + col * 37}
-                          cy={79 + row * 33}
-                          r="7"
-                          className={
-                            col === row
-                              ? "art-filled-answer scene-breathe"
-                              : "art-answer"
-                          }
-                        />
-                      ))}
-                    </g>
-                  ))}
-                  <path d="M19 61h148v100H19" className="art-scan scene-scan" />
-                </g>
-              )}
-              <text x="92" y="222" textAnchor="middle">
-                {
-                  [
-                    label("DOCUMENTOS", "DOCUMENTS"),
-                    label("AVALIAÇÃO", "ASSESSMENT"),
-                    label("CIFRAS", "CHORD SHEETS"),
-                    label("LEITURA ÓPTICA", "OPTICAL READING"),
-                  ][i]
-                }
-              </text>
-            </g>
-          ))}
-        </g>
-      );
-    case "cases":
-      return (
-        <g>
-          <g transform="translate(60 53) scale(.59)">
-            <Formation id={id} />
-          </g>
-          <g transform="translate(342 107) scale(.86)">
-            <Mesh />
-          </g>
-          <g transform="translate(652 46) scale(.84)">
-            <Document label={label} title={label("CASE", "CASE STUDY")} />
-          </g>
-          <Arrow d="M249 145h70m-9-7 9 7-9 7M531 145h101m-9-7 9 7-9 7" />
-          <text x="68" y="277" className="art-label-strong">
-            {label("PROBLEMA", "PROBLEM")}
-          </text>
-          <text x="343" y="277" className="art-label-strong">
-            {label("MÉTODO", "METHOD")}
-          </text>
-          <text x="652" y="277" className="art-label-strong">
-            {label("EVIDÊNCIA", "EVIDENCE")}
-          </text>
-        </g>
-      );
-    case "editorial":
-      return (
-        <g>
-          <g transform="translate(60 74) scale(.85)">
-            <Book label={label} />
-          </g>
-          <g transform="translate(337 87) scale(.84)">
-            <Code label={label} />
-          </g>
-          <g transform="translate(663 44) scale(.86)">
-            <Document
-              label={label}
-              title={label("NOTA TÉCNICA", "TECHNICAL NOTE")}
-            />
-          </g>
-          <Arrow d="M249 153h69m-9-7 9 7-9 7M567 153h76m-9-7 9 7-9 7" />
-          <text x="67" y="285" className="art-label-strong">
-            {label("CONHECIMENTO", "KNOWLEDGE")}
-          </text>
-          <text x="385" y="285" className="art-label-strong">
-            {label("EXEMPLOS", "EXAMPLES")}
-          </text>
-          <text x="664" y="285" className="art-label-strong">
-            {label("REFERÊNCIAS", "REFERENCES")}
-          </text>
-        </g>
-      );
-    case "trajectory":
-      return (
-        <g>
-          <g transform="translate(67 62) scale(.94)">
-            <Book label={label} />
-          </g>
-          <g transform="translate(377 90) scale(.96)">
-            <Mesh />
-          </g>
-          <g transform="translate(756 149) scale(1.5)">
-            <Shield />
-          </g>
-          <Arrow d="M274 142h84m-9-7 9 7-9 7M602 142h80m-9-7 9 7-9 7" />
-          <text x="59" y="280" className="art-label-strong">
-            {label("ENSINO / PESQUISA", "TEACHING / RESEARCH")}
-          </text>
-          <text x="372" y="280" className="art-label-strong">
-            {label("ENGENHARIA / SOFTWARE", "ENGINEERING / SOFTWARE")}
-          </text>
-          <text x="700" y="280" className="art-label-strong">
-            {label("SEGURANÇA", "SAFETY")}
-          </text>
-        </g>
-      );
-    case "updates":
-      return (
-        <g>
-          <g transform="translate(86 44) scale(.84)">
-            <Document label={label} title={label("CONTEÚDO", "CONTENT")} />
-          </g>
-          <circle cx="416" cy="183" r="8" className="art-filled-answer" />
-          <path
-            d="M416 137a46 46 0 0 1 46 46M416 98a85 85 0 0 1 85 85M416 59a124 124 0 0 1 124 124"
-            className="art-rss scene-breathe"
-          />
-          <g transform="translate(668 49)">
-            <rect width="145" height="195" rx="12" className="art-panel" />
-            <text x="23" y="27">
-              RSS / XML
-            </text>
-            <path
-              d="M12 39h121m-112 29h100m-100 19h84m-84 31h100m-100 19h84m-84 31h71"
-              className="art-rule"
-            />
-          </g>
-          <Arrow d="M267 170h114m-9-7 9 7-9 7M560 170h91m-9-7 9 7-9 7" />
-          <text x="85" y="286" className="art-label-strong">
-            {label("PUBLICAR", "PUBLISH")}
-          </text>
-          <text x="403" y="286" className="art-label-strong">
-            {label("DISTRIBUIR", "DISTRIBUTE")}
-          </text>
-          <text x="667" y="286" className="art-label-strong">
-            {label("ACOMPANHAR", "FOLLOW")}
-          </text>
-        </g>
-      );
-    default:
-      return <SceneArtwork kind={kind} label={label} id={id} />;
-  }
-}
-
-export function SceneArtwork({ kind, label, id }: ArtProps) {
-  switch (kind) {
+    case "aboutConvergence":
+      return <ConvergenceArtwork />;
+    case "aboutAreas":
+      return <AreasArtwork />;
+    case "researchProcess":
+      return <ResearchProcessArtwork narrow={narrow} />;
+    case "career":
+      return <CareerArtwork />;
     case "integrated":
       return (
         <g>
-          <text x="38" y="64" className="art-heading">
-            {label("DO PROBLEMA À APLICAÇÃO", "FROM PROBLEM TO APPLICATION")}
-          </text>
-          <g transform="translate(42 150) scale(.95)">
-            <Formation id={id} />
-          </g>
-          <text x="40" y="474">
-            {label("01 / ENGENHARIA", "01 / ENGINEERING")}
-          </text>
-          <g transform="translate(409 190)">
-            <Mesh />
-          </g>
-          <text x="406" y="373">
-            {label("02 / MÉTODO NUMÉRICO", "02 / NUMERICAL METHOD")}
-          </text>
-          <g transform="translate(615 85) scale(.86)">
-            <Code label={label} />
-          </g>
-          <g transform="translate(599 344) scale(.94)">
-            <Plot label={label} />
-          </g>
-          <text x="607" y="526">
-            {label("03 / SOFTWARE E DECISÃO", "03 / SOFTWARE AND DECISIONS")}
-          </text>
-          <Arrow d="M315 222h65m-9-7 9 7-9 7M565 228h22v-65h27m-8-6 8 6-8 6M514 355v55h76m-9-7 9 7-9 7" />
-          <g transform="translate(438 462) scale(.72)">
-            <Shield />
-          </g>
-          <text x="470" y="467">
-            {label("INTEGRIDADE", "INTEGRITY")}
-          </text>
-        </g>
-      );
-    case "research":
-      return (
-        <g>
-          <text x="40" y="50" className="art-heading">
-            {label(
-              "GEOMECÂNICA / INTEGRIDADE DE POÇOS",
-              "GEOMECHANICS / WELL INTEGRITY",
-            )}
-          </text>
-          <g transform="translate(62 120) scale(1.2)">
-            <Formation id={id} />
-          </g>
-          <text x="64" y="511">
-            {label("FORMAÇÃO / SAL / POÇO", "FORMATION / SALT / WELL")}
-          </text>
-          <path d="M250 349h221v-140h59" className="art-rule" />
-          <text x="535" y="172" className="art-label-strong">
-            {label("MODELO TERMOMECÂNICO", "THERMOMECHANICAL MODEL")}
-          </text>
-          <g transform="translate(559 206) scale(.9)">
-            <Mesh />
-          </g>
-          <g transform="translate(528 372) scale(.85)">
-            <Plot label={label} />
-          </g>
-          <Arrow d="M636 353v18" />
-        </g>
-      );
-    case "numerical":
-      return (
-        <g>
-          <text x="44" y="70" className="art-heading">
-            {label(
-              "DISCRETIZAR / RESOLVER / VALIDAR",
-              "DISCRETIZE / SOLVE / VALIDATE",
-            )}
-          </text>
-          <g transform="translate(115 182) scale(1.65)">
-            <Mesh />
-          </g>
-          <g transform="translate(565 103)">
-            <Code label={label} />
-          </g>
-          <g transform="translate(557 328)">
-            <Plot label={label} />
-          </g>
-          <Arrow d="M440 263h90v-82h34m-9-7 9 7-9 7M687 267v53m-7-8 7 8 7-8" />
-          <text x="85" y="496">
-            {label(
-              "CONDIÇÕES DE CONTORNO / ELEMENTOS / NÓS",
-              "BOUNDARY CONDITIONS / ELEMENTS / NODES",
-            )}
-          </text>
+          <Part n={1}>
+            <g transform="translate(30 84) scale(1.1)">
+              <Strata />
+              <Salt detail />
+              <Well />
+            </g>
+            <Num x={140} y={58} n={1} />
+          </Part>
+          <path d="M250 202 300 190M250 291l50-1" className="a-soft a-dash" />
+          <Part n={2}>
+            <Mesh
+              xs={graded(302, [0, 10, 22, 36, 53, 74, 98, 124])}
+              ys={graded(190, [0, 20, 40, 60, 80, 100])}
+            />
+            <path
+              d="M284 200h10m-3-3 3 3-3 3M284 230h10m-3-3 3 3-3 3M284 260h10m-3-3 3 3-3 3"
+              className="a-warm"
+            />
+            <Num x={358} y={172} n={2} />
+          </Part>
+          <Part n={3}>
+            <Flow d="M422 240C442 240 432 146 450 146" />
+            <Chart x={450} y={96} />
+            <Flow d="M515 204V262" />
+            <Shield x={515} y={300} s={1.1} />
+            <Num x={515} y={80} n={3} />
+          </Part>
         </g>
       );
     case "approach":
       return (
         <g>
-          <text x="45" y="75" className="art-heading">
-            {label("UM MÉTODO, QUATRO MOVIMENTOS", "ONE METHOD, FOUR STEPS")}
-          </text>
-          <Arrow d="M145 270H746m-12-9 12 9-12 9" />
-          {[
-            label("CONTEXTO", "CONTEXT"),
-            label("HIPÓTESE", "HYPOTHESIS"),
-            label("MODELO", "MODEL"),
-            label("ENTREGA", "DELIVERY"),
-          ].map((text, i) => (
-            <g key={text} transform={`translate(${142 + i * 198} 263)`}>
-              <circle r="59" className="art-orbit" />
+          <Flow d="M100 66H140M220 66H260M340 66H380" />
+          {(["doc", "lens", "mesh", "shield"] as const).map((glyph, i) => (
+            <Part key={glyph} n={i + 1}>
               <circle
-                r="44"
-                className="art-panel scene-breathe"
-                style={{ animationDelay: `${i * 2}s` }}
+                cx={60 + i * 120}
+                cy={66}
+                r={38}
+                className="a-soft a-dash"
               />
-              {i === 0 && (
-                <path
-                  d="M-19-20h38v40h-38Zm8 11h22m-22 9h16m-16 9h22"
-                  className="art-rule"
-                />
-              )}
-              {i === 1 && (
-                <g>
-                  <circle cy="-5" r="17" className="art-line" />
-                  <path
-                    d="M-7 21H7m-14 7H7M0-31v-10m-31 10-8-7m70 7 8-7"
-                    className="art-copper-rule"
-                  />
-                </g>
-              )}
-              {i === 2 && (
-                <path
-                  d="m-22-17 44-8-8 43-42 9Zm0 0 14 44m30-52-58 52m14-44 30 35"
-                  className="art-line"
-                />
-              )}
-              {i === 3 && (
-                <g transform="scale(.62)">
-                  <Shield />
-                </g>
-              )}
-              <text
-                x="0"
-                y="96"
-                textAnchor="middle"
-                className="art-label-strong"
-              >
-                {text}
-              </text>
-              <text x="0" y="126" textAnchor="middle">
-                0{i + 1}
-              </text>
-            </g>
+              <Node
+                x={60 + i * 120}
+                y={66}
+                r={28}
+                glyph={glyph}
+                check={glyph === "shield"}
+              />
+              <Num x={60 + i * 120} y={134} n={i + 1} />
+            </Part>
           ))}
-          <path d="M141 433H734" className="art-rule" />
-          <text x="438" y="470" textAnchor="middle">
-            {label(
-              "EVIDÊNCIA / RASTREABILIDADE / PROPÓSITO",
-              "EVIDENCE / TRACEABILITY / PURPOSE",
-            )}
-          </text>
         </g>
       );
-    case "solutions":
+    case "solutions": {
+      const nodes = [
+        [118, 140, "mesh", 82, 128],
+        [165, 76, "strata", 143, 45],
+        [240, 52, "panel", 240, 17],
+        [315, 76, "shield", 337, 45],
+        [362, 140, "book", 398, 128],
+      ] as const;
       return (
         <g>
-          <g transform="translate(88 108) scale(.8)">
-            <Mesh />
+          <circle cx="240" cy="180" r="14" className="a-soft" />
+          <circle cx="240" cy="180" r="5" className="a-warm-fill" />
+          {nodes.map(([x, y, glyph, nx, ny], i) => {
+            const dx = 240 - x;
+            const dy = 180 - y;
+            const length = Math.hypot(dx, dy);
+            const [ux, uy] = [dx / length, dy / length];
+            return (
+              <Part key={glyph} n={i + 1}>
+                <Flow
+                  d={`M${(x + ux * 28).toFixed(1)} ${(y + uy * 28).toFixed(1)}L${(240 - ux * 18).toFixed(1)} ${(180 - uy * 18).toFixed(1)}`}
+                />
+                <Node x={x} y={y} glyph={glyph} />
+                <Num x={nx} y={ny + 4} n={i + 1} />
+              </Part>
+            );
+          })}
+        </g>
+      );
+    }
+    case "research":
+      return (
+        <g>
+          <g transform="translate(40 60) scale(1.2)">
+            <Strata />
+            <Part n={1}>
+              <Salt detail />
+            </Part>
+            <Part n={3}>
+              <Well />
+            </Part>
           </g>
-          <g transform="translate(558 82) scale(.9)">
-            <Code label={label} />
-          </g>
-          <g transform="translate(145 340) scale(.9)">
-            <Shield />
-          </g>
-          <g transform="translate(552 345) scale(.9)">
-            <Book label={label} />
-          </g>
-          <circle cx="431" cy="281" r="72" className="art-orbit" />
-          <circle cx="431" cy="281" r="55" className="art-panel" />
-          <text
-            x="431"
-            y="278"
-            textAnchor="middle"
-            className="art-label-strong"
-          >
-            {label("PROBLEMA", "PROBLEM")}
-          </text>
-          <text x="431" y="301" textAnchor="middle">
-            {label("REAL", "REAL-WORLD")}
-          </text>
-          <Arrow d="M284 182 378 240M556 180l-74 59M189 350l192-48M554 380l-74-66" />
-          <text x="70" y="277">
-            {label("ENGENHARIA", "ENGINEERING")}
-          </text>
-          <text x="555" y="265">
-            SOFTWARE
-          </text>
-          <text x="87" y="432">
-            {label("SEGURANÇA", "SAFETY")}
-          </text>
-          <text x="554" y="538">
-            {label("ASSESSORIA / PESQUISA", "ADVISORY / RESEARCH")}
-          </text>
+          <Part n={1}>
+            <Num x={20} y={241} n={1} />
+          </Part>
+          <Part n={3}>
+            <Num x={160} y={40} n={3} />
+          </Part>
+          <path d="M280 188 318 176M280 285l38 1" className="a-soft a-dash" />
+          <Part n={2}>
+            <Mesh
+              xs={graded(318, [0, 10, 22, 36, 53, 74, 98, 126])}
+              ys={graded(176, [0, 22, 44, 66, 88, 110])}
+            />
+            <path
+              d="M300 187h10m-3-3 3 3-3 3M300 231h10m-3-3 3 3-3 3M300 275h10m-3-3 3 3-3 3"
+              className="a-warm"
+            />
+            <Num x={378} y={158} n={2} />
+          </Part>
         </g>
       );
     case "publication":
       return (
         <g>
-          <text x="45" y="55" className="art-heading">
-            {label(
-              "DA INVESTIGAÇÃO AO REGISTRO CIENTÍFICO",
-              "FROM INVESTIGATION TO SCIENTIFIC RECORD",
-            )}
-          </text>
-          <g transform="translate(50 158) scale(.8)">
-            <Formation id={id} />
-          </g>
-          <g transform="translate(347 190) scale(.86)">
-            <Plot label={label} />
-          </g>
-          <g transform="translate(646 138) scale(1.16)">
-            <Document label={label} title="LOT / 2025" />
-          </g>
-          <Arrow d="M294 297h40m-9-7 9 7-9 7M581 296h59m-9-7 9 7-9 7" />
-          <text x="53" y="461">
-            {label("FORMAÇÃO SALINA", "SALT FORMATION")}
-          </text>
-          <text x="646" y="452">
-            {label("PUBLICAÇÃO / FONTE", "PUBLICATION / SOURCE")}
-          </text>
+          <Part n={1}>
+            <g transform="translate(20 18) scale(.62)">
+              <Strata />
+              <Salt />
+              <Well />
+            </g>
+            <Num x={82} y={180} n={1} />
+          </Part>
+          <Part n={2}>
+            <Flow d="M150 88h26" />
+            <g transform="translate(184 36)">
+              <rect width="124" height="104" rx="8" className="a-fill a-ink" />
+              <path d="M12 12v80h102" className="a-mute" />
+              <path
+                d="M16 88 62 34c6-7 12-12 18-13s10 3 14 11l6 14h12"
+                className="a-accent scene-draw"
+                pathLength={1}
+              />
+              <circle cx="62" cy="34" r="3.5" className="a-warm-fill" />
+            </g>
+            <Num x={246} y={180} n={2} />
+          </Part>
+          <Part n={3}>
+            <Flow d="M314 88h30" />
+            <Doc x={352} y={30} />
+            <Num x={395} y={180} n={3} />
+          </Part>
         </g>
       );
     case "software":
       return (
         <g>
-          <text x="45" y="65" className="art-heading">
-            {label(
-              "FERRAMENTAS, CADA UMA COM UM PROPÓSITO",
-              "TOOLS, EACH WITH A PURPOSE",
-            )}
-          </text>
-          {["MDFolio", "AcadImprove", "Sursum", "Gabarita"].map((name, i) => (
-            <g
-              key={name}
-              transform={`translate(${70 + (i % 2) * 405} ${120 + Math.floor(i / 2) * 210})`}
-            >
-              <rect width="315" height="171" rx="12" className="art-panel" />
-              <text x="20" y="31" className="art-label-strong">
-                {name}
-              </text>
-              {i === 0 && (
-                <g>
-                  <path
-                    d="M22 57h98v89H22Zm15 20h65M37 95h50M37 114h65M37 132h32"
-                    className="art-rule"
+          {[
+            <g key="mdfolio">
+              <path d="M22 18h34l12 12v44H22Z" className="a-tint a-mute" />
+              <path d="M40 30h34l12 12v44H40Z" className="a-fill a-ink" />
+              <path d="M74 30v12h12" className="a-ink" />
+              <path d="M50 56h24M50 66h18M50 76h24" className="a-mute" />
+            </g>,
+            <g key="acadimprove">
+              <path d="M18 84h68" className="a-mute" />
+              <path
+                d="M24 84V64h10v20M42 84V54h10v30M60 84V60h10v24M78 84V42h8v42"
+                className="a-ink"
+              />
+              <path
+                d="m22 46 20-10 18 4 24-20"
+                className="a-accent scene-draw"
+                pathLength={1}
+              />
+            </g>,
+            <g key="sursum">
+              <path
+                d="M16 34h72M16 44h72M16 54h72M16 64h72M16 74h72"
+                className="a-soft"
+              />
+              <path
+                d="M29 69c0-3 4-5 7-5s4 2 4 4-4 5-7 5-4-2-4-4ZM49 59c0-3 4-5 7-5s4 2 4 4-4 5-7 5-4-2-4-4ZM69 49c0-3 4-5 7-5s4 2 4 4-4 5-7 5-4-2-4-4Z"
+                className="a-accent-fill"
+              />
+              <path d="M40 68V40M60 58V30M80 48V20" className="a-ink" />
+            </g>,
+            <g key="gabarita">
+              {[0, 1, 2].map((row) =>
+                [0, 1, 2, 3].map((col) => (
+                  <circle
+                    key={`${row}-${col}`}
+                    cx={28 + col * 16}
+                    cy={40 + row * 18}
+                    r="5"
+                    className={
+                      col === [1, 3, 0][row] ? "a-accent-fill" : "a-mute"
+                    }
                   />
-                  <Arrow d="M146 100h34m-9-7 9 7-9 7" />
-                  <path
-                    d="M207 68h54l15 15v59h-69ZM261 68v15h15"
-                    className="art-line"
-                  />
-                  <text x="219" y="117">
-                    PDF
-                  </text>
-                </g>
+                )),
               )}
-              {i === 1 && (
-                <g>
-                  <path
-                    d="M22 141h260M40 126V92h29v34m23 0V77h29v49m23 0V100h29v26m23 0V62h29v64"
-                    className="art-line"
-                  />
-                  <path
-                    d="m40 72 59-18 60 16 65-25"
-                    className="art-curve scene-draw"
-                    pathLength="1"
-                  />
-                </g>
-              )}
-              {i === 2 && (
-                <g>
-                  <path
-                    d="M25 62h261M25 78h261M25 94h261M25 110h261M25 126h261"
-                    className="art-rule"
-                  />
-                  <text x="37" y="57">
-                    C
-                  </text>
-                  <text x="127" y="57">
-                    F
-                  </text>
-                  <text x="228" y="57">
-                    G
-                  </text>
-                  <path
-                    d="M79 68v53q-15-7-15 4t15 5V91m110-14v41q-15-7-15 4t15 5"
-                    className="art-copper-rule"
-                  />
-                </g>
-              )}
-              {i === 3 && (
-                <g>
-                  {[0, 1, 2].map((row) => (
-                    <g key={row}>
-                      {[0, 1, 2, 3, 4].map((col) => (
-                        <circle
-                          key={col}
-                          cx={45 + col * 47}
-                          cy={72 + row * 28}
-                          r="7"
-                          className={
-                            col === row + 1
-                              ? "art-filled-answer scene-breathe"
-                              : "art-answer"
-                          }
-                        />
-                      ))}
-                    </g>
-                  ))}
-                  <path d="M24 51h262v97H24" className="art-scan scene-scan" />
-                </g>
-              )}
-            </g>
+              <path d="M16 30h72" className="a-warm scene-scan" />
+            </g>,
+          ].map((glyph, i) => (
+            <Part key={i} n={i + 1}>
+              <g transform={`translate(${8 + i * 120} 12)`}>
+                <rect width="104" height="100" rx="10" className="a-fill a-ink" />
+                {glyph}
+              </g>
+              <Num x={60 + i * 120} y={142} n={i + 1} />
+            </Part>
           ))}
         </g>
       );
     case "cases":
       return (
         <g>
-          <text x="40" y="64" className="art-heading">
-            {label(
-              "MODELAR / IMPLEMENTAR / DOCUMENTAR",
-              "MODEL / IMPLEMENT / DOCUMENT",
-            )}
-          </text>
-          <g transform="translate(54 153) scale(.72)">
-            <Formation id={id} />
-          </g>
-          <g transform="translate(66 411) scale(.75)">
-            <Code label={label} />
-          </g>
-          <g transform="translate(369 172) scale(1.1)">
-            <Mesh />
-          </g>
-          <g transform="translate(647 151) scale(1.15)">
-            <Document label={label} title={label("CASE", "CASE STUDY")} />
-          </g>
-          <Arrow d="M277 270h74m-9-7 9 7-9 7M262 446h76V325h40M592 267h48m-9-7 9 7-9 7" />
-          <text x="375" y="439">
-            {label("MÉTODO / EVIDÊNCIA", "METHOD / EVIDENCE")}
-          </text>
+          <Part n={1}>
+            <path
+              d="M40 24l7-7M168 24l7-7M40 148l7-7M168 148l7-7M28 86l7-7M184 86l7-7"
+              className="a-soft"
+            />
+            <path
+              d="M88 82a22 22 0 1 0 44 0a22 22 0 1 0-44 0ZM98 82a12 12 0 1 0 24 0a12 12 0 1 0-24 0Z"
+              className="a-tint"
+              fillRule="evenodd"
+            />
+            <circle cx="110" cy="82" r="12" className="a-ink" />
+            <circle cx="110" cy="82" r="22" className="a-ink" />
+            <circle cx="110" cy="82" r="32" className="a-ink" />
+            <circle cx="110" cy="82" r="46" className="a-mute a-dash" />
+            <path
+              d="M162 82h12m-4-4 4 4-4 4M58 82H46m4-4-4 4 4 4M110 30V18m-4 4 4-4 4 4M110 134v12m-4-4 4 4 4-4"
+              className="a-warm"
+            />
+            <Num x={110} y={172} n={1} />
+          </Part>
+          <path d="M240 26v112" className="a-soft a-dash" />
+          <Part n={2}>
+            <Window x={290} y={22} w={170} h={118} />
+            <path d="M330 40v100" className="a-mute" />
+            <path d="M300 56h20M300 68h16M300 80h20" className="a-mute" />
+            <path d="M364 58h86M364 76h86M364 94h86M364 112h86" className="a-soft" />
+            <path
+              d="m344 55 4 4 8-8m-12 23 4 4 8-8m-12 23 4 4 8-8"
+              className="a-accent scene-draw"
+              pathLength={1}
+            />
+            <Num x={375} y={172} n={2} />
+          </Part>
         </g>
       );
     case "editorial":
       return (
         <g>
-          <g transform="translate(49 124) scale(1.3)">
-            <Book label={label} />
-          </g>
-          <g transform="translate(390 144)">
-            <Code label={label} />
-          </g>
-          <g transform="translate(677 131)">
-            <Document
-              label={label}
-              title={label("NOTA TÉCNICA", "TECHNICAL NOTE")}
+          <Part n={1}>
+            <g transform="translate(16 36)">
+              <path
+                d="M0 10C22 0 44 2 60 12 76 2 98 0 120 10V92C98 82 76 84 60 94 44 84 22 82 0 92Z"
+                className="a-fill a-ink"
+              />
+              <path d="M60 12v82" className="a-ink" />
+              <path
+                d="M12 32c14-5 28-5 38-1M12 46c14-5 28-5 38-1M12 60c14-5 28-5 38-1M72 32c14-5 28-5 38-1"
+                className="a-mute"
+              />
+              <path
+                d="M72 52h36M72 64h24"
+                className="a-accent scene-draw"
+                pathLength={1}
+              />
+            </g>
+            <Num x={76} y={160} n={1} />
+          </Part>
+          <Part n={2}>
+            <Flow d="M142 82h28" />
+            <Window x={178} y={34} w={124} h={96} />
+            <path d="M192 68h28M200 80h52M192 104h44" className="a-mute" />
+            <path
+              d="M200 92h36"
+              className="a-accent scene-draw"
+              pathLength={1}
             />
-          </g>
-          <Arrow d="M316 262h60m-9-7 9 7-9 7M648 262h22m-9-7 9 7-9 7" />
-          <path d="M97 415H781" className="art-rule" />
-          <text x="54" y="481">
-            {label(
-              "IDEIAS / EQUAÇÕES / CÓDIGO / REFERÊNCIAS",
-              "IDEAS / EQUATIONS / CODE / REFERENCES",
-            )}
-          </text>
+            <Num x={240} y={160} n={2} />
+          </Part>
+          <Part n={3}>
+            <Flow d="M308 82h30" />
+            <Doc x={346} y={22} />
+            <path d="M420 64h0M420 88h0" className="a-dots a-dots-warm" />
+            <Num x={389} y={160} n={3} />
+          </Part>
         </g>
       );
-    case "knowledge":
+    case "knowledge": {
+      const nodes = [
+        [240, 60, "strata", 240, 20],
+        [343.9, 120, "mesh", 384, 98],
+        [343.9, 240, "code", 384, 266],
+        [240, 300, "doc", 240, 350],
+        [136.1, 240, "alert", 96, 266],
+        [136.1, 120, "target", 96, 98],
+      ] as const;
       return (
         <g>
           <path
-            d="M450 280 193 131m257 149L709 131m-259 149L192 438m258-158 259 158m-259-158V69m0 211v231"
-            className="scene-flow"
+            d="M240 60 343.9 120V240L240 300 136.1 240V120Z"
+            className="a-soft"
           />
-          <circle cx="450" cy="280" r="84" className="art-orbit" />
-          <circle cx="450" cy="280" r="64" className="art-panel" />
-          <text x="450" y="284" textAnchor="middle" className="art-heading">
-            SW
-          </text>
-          {[
-            [193, 131, label("PESQUISA", "RESEARCH")],
-            [709, 131, label("MÉTODOS", "METHODS")],
-            [192, 438, "SOFTWARE"],
-            [709, 438, label("PUBLICAÇÕES", "PUBLICATIONS")],
-            [450, 69, label("SEGURANÇA", "SAFETY")],
-            [450, 511, label("DECISÃO", "DECISION")],
-          ].map(([x, y, text]) => (
-            <g key={text}>
-              <rect
-                x={Number(x) - 90}
-                y={Number(y) - 29}
-                width="180"
-                height="58"
-                rx="29"
-                className="art-panel scene-breathe"
-              />
-              <text
-                x={x}
-                y={Number(y) + 5}
-                textAnchor="middle"
-                className="art-label-strong"
-              >
-                {text}
-              </text>
-            </g>
-          ))}
+          {nodes.map(([x, y, glyph, nx, ny], i) => {
+            const [ux, uy] = [(x - 240) / 120, (y - 180) / 120];
+            return (
+              <Part key={glyph} n={i + 1}>
+                <Flow
+                  d={`M${(240 + ux * 40).toFixed(1)} ${(180 + uy * 40).toFixed(1)}L${(x - ux * 30).toFixed(1)} ${(y - uy * 30).toFixed(1)}`}
+                />
+                <Node x={x} y={y} r={26} glyph={glyph} />
+                <Num x={nx} y={ny} n={i + 1} />
+              </Part>
+            );
+          })}
+          <circle cx="240" cy="180" r="34" className="a-fill a-ink" />
+          <circle cx="240" cy="180" r="44" className="a-soft a-dash" />
+          <Shield x={240} y={180} s={0.78} />
         </g>
       );
+    }
     case "trajectory":
       return (
         <g>
-          <text x="45" y="65" className="art-heading">
-            {label(
-              "CONHECIMENTO QUE ATRAVESSA DISCIPLINAS",
-              "KNOWLEDGE ACROSS DISCIPLINES",
-            )}
-          </text>
-          <g transform="translate(85 163) scale(1.05)">
-            <Book label={label} />
-          </g>
-          <g transform="translate(374 198) scale(1.1)">
-            <Mesh />
-          </g>
-          <g transform="translate(758 264) scale(1.65)">
-            <Shield />
-          </g>
-          <Arrow d="M304 264h51m-9-7 9 7-9 7M612 264h84m-9-7 9 7-9 7" />
-          <text x="89" y="416">
-            {label("ENSINO / PESQUISA", "TEACHING / RESEARCH")}
-          </text>
-          <text x="375" y="416">
-            {label("ENGENHARIA / SOFTWARE", "ENGINEERING / SOFTWARE")}
-          </text>
-          <text x="682" y="416">
-            {label("SEGURANÇA", "SAFETY")}
-          </text>
+          <path
+            d="M10 150C40 146 44 122 70 118S190 90 240 82 360 58 410 46 454 30 470 26"
+            className="a-warm scene-draw"
+            pathLength={1}
+          />
+          {(["well", "code", "book"] as const).map((glyph, i) => (
+            <Part key={glyph} n={i + 1}>
+              <Node x={70 + i * 170} y={118 - i * 36} r={26} glyph={glyph} />
+              <Num x={70 + i * 170} y={162 - i * 36} n={i + 1} />
+            </Part>
+          ))}
         </g>
       );
     case "updates":
       return (
         <g>
-          <g transform="translate(75 136)">
-            <Document label={label} title={label("CONTEÚDO", "CONTENT")} />
-          </g>
-          <circle cx="424" cy="297" r="8" className="art-filled-answer" />
-          <path
-            d="M424 248a49 49 0 0 1 49 49M424 205a92 92 0 0 1 92 92M424 164a133 133 0 0 1 133 133"
-            className="art-rss scene-breathe"
-          />
-          <g transform="translate(637 166)">
-            <rect width="185" height="248" rx="14" className="art-panel" />
+          <Part n={1}>
+            <Doc x={40} y={22} />
+            <Num x={83} y={160} n={1} />
+          </Part>
+          <Part n={2}>
+            <Flow d="M134 77h52" />
+            <circle cx="214" cy="122" r="5" className="a-warm-fill" />
             <path
-              d="M13 37h159m-143 36h122m-122 20h104m-104 46h122m-122 20h104m-104 46h95"
-              className="art-rule"
+              d="M214 100a22 22 0 0 1 22 22M214 82a40 40 0 0 1 40 40M214 64a58 58 0 0 1 58 58"
+              className="a-warm a-bold scene-draw"
+              pathLength={1}
             />
-            <text x="26" y="27">
-              RSS / XML
-            </text>
-            <circle cx="93" cy="230" r="6" className="art-answer" />
-          </g>
-          <Arrow d="M261 296h117m-9-7 9 7-9 7M566 296h58m-9-7 9 7-9 7" />
-          <text x="78" y="473">
-            {label(
-              "PUBLICAR / DISTRIBUIR / ACOMPANHAR",
-              "PUBLISH / DISTRIBUTE / FOLLOW",
-            )}
-          </text>
+            <Num x={240} y={160} n={2} />
+          </Part>
+          <Part n={3}>
+            <Flow d="M290 77h52" />
+            <rect x="350" y="18" width="96" height="120" rx="12" className="a-fill a-ink" />
+            <path
+              d="M364 42h56M364 60h68M364 72h52M364 94h68M364 106h44M364 124h60"
+              className="a-mute"
+            />
+            <path d="M436 42h0" className="a-dots" />
+            <Num x={398} y={160} n={3} />
+          </Part>
         </g>
       );
     case "contact":
       return (
         <g>
-          <path d="M72 114h271v193H192l-54 46v-46H72Z" className="art-panel" />
-          <path
-            d="M102 155h200m-200 29h154m-154 29h184m-184 29h113"
-            className="art-rule"
-          />
-          <path
-            d="M565 193h271v193H716l-52 45v-45h-99Z"
-            className="art-panel"
-          />
-          <path
-            d="M596 235h205m-205 29h140m-140 29h188m-188 29h128"
-            className="art-rule"
-          />
-          <Arrow d="M359 226h93v56h95m-9-7 9 7-9 7" />
-          <g transform="translate(451 420) scale(.8)">
-            <Shield />
-          </g>
-          <text x="102" y="90" className="art-label-strong">
-            {label("SEU CONTEXTO", "YOUR CONTEXT")}
-          </text>
-          <text x="583" y="167" className="art-label-strong">
-            {label("PRÓXIMOS PASSOS", "NEXT STEPS")}
-          </text>
-          <text x="450" y="506" textAnchor="middle">
-            {label("ESCUTA / ESCOPO / ENTREGA", "LISTEN / SCOPE / DELIVER")}
-          </text>
+          <Part n={1}>
+            <path
+              d="M44 40H236Q250 40 250 54V146Q250 160 236 160H96L70 184V160H44Q30 160 30 146V54Q30 40 44 40Z"
+              className="a-fill a-ink"
+            />
+            <path d="M58 76h150M58 100h120M58 124h168" className="a-mute" />
+            <path d="M48 76h0M48 100h0M48 124h0" className="a-dots" />
+            <Num x={30} y={26} n={1} anchor="start" />
+          </Part>
+          <Part n={2}>
+            <path
+              d="M234 170H436Q450 170 450 184V266Q450 280 436 280H404V304L380 280H234Q220 280 220 266V184Q220 170 234 170Z"
+              className="a-fill a-ink"
+            />
+            <path
+              d="M244 194h12v12h-12ZM244 220h12v12h-12ZM244 246h12v12h-12Z"
+              className="a-ink"
+            />
+            <path
+              d="m246 200 3 3 6-6m-9 29 3 3 6-6m-9 29 3 3 6-6"
+              className="a-accent scene-draw"
+              pathLength={1}
+            />
+            <path d="M268 200h120M268 226h96M268 252h140" className="a-mute" />
+            <Num x={450} y={158} n={2} anchor="end" />
+          </Part>
+          <Part n={3}>
+            <Flow d="M300 280C300 318 230 322 170 322H118" />
+            <path d="M236 319h0M178 322h0" className="a-dots" />
+            <Shield x={88} y={318} s={0.8} />
+            <Num x={40} y={323} n={3} />
+          </Part>
         </g>
       );
-    case "safety":
+    case "numerical":
       return (
         <g>
-          <text x="45" y="65" className="art-heading">
-            {label(
-              "RISCO / CAMADAS DE PROTEÇÃO / DECISÃO",
-              "RISK / LAYERS OF PROTECTION / DECISION",
-            )}
-          </text>
-          <Arrow d="M75 282H820m-12-9 12 9-12 9" />
-          {[0, 1, 2, 3].map((i) => (
-            <g key={i} transform={`translate(${200 + i * 163} 251)`}>
-              <path d="M-32-84h64v184h-64Z" className="art-barrier" />
-              <g transform="scale(.7)">
-                <Shield />
-              </g>
-              <text x="0" y="153" textAnchor="middle">
-                0{i + 1}
-              </text>
-            </g>
-          ))}
-          <text x="75" y="472">
-            {label(
-              "PREVENÇÃO / REDUNDÂNCIA / INTEGRIDADE",
-              "PREVENTION / REDUNDANCY / INTEGRITY",
-            )}
-          </text>
+          <Part n={1}>
+            <path
+              d="M80 30v18m-4-5 4 5 4-5M120 30v18m-4-5 4 5 4-5M160 30v18m-4-5 4 5 4-5M200 30v18m-4-5 4 5 4-5"
+              className="a-warm"
+            />
+            <Mesh
+              xs={graded(40, [0, 12, 26, 42, 61, 84, 110, 140, 172, 206])}
+              ys={graded(58, [0, 26, 52, 78, 104, 130, 156, 182])}
+            />
+            <path
+              d="M60 252l8 12H52ZM140 252l8 12h-16ZM220 252l8 12h-16Z"
+              className="a-ink"
+            />
+            <Num x={140} y={292} n={1} />
+          </Part>
+          <Part n={2}>
+            <Flow d="M252 150C272 150 274 104 294 104" />
+            <Window x={296} y={50} w={150} h={100} />
+            <path d="M310 86h40M318 100h64M318 114h48M310 128h56" className="a-mute" />
+            <Num x={371} y={36} n={2} />
+          </Part>
+          <Part n={3}>
+            <Flow d="M371 154v28" />
+            <Chart x={296} y={186} w={150} h={110} />
+            <Num x={371} y={322} n={3} />
+          </Part>
         </g>
       );
   }

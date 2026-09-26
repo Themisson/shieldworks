@@ -126,7 +126,7 @@ export default async function PesquisaPage({
                 </Link>
               </div>
             </div>
-            <EngineeringScene kind="research" />
+            <EngineeringScene kind="research" locale={locale} />
           </div>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             {researchCards.map((card, index) => (

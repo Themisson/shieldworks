@@ -1,60 +1,120 @@
-/* Original SVG language: geological sections, meshes, documents and connected systems. */
-.engineering-plate { color: var(--on-night); background: var(--night-deep); border: 1px solid #36545a; border-radius: var(--radius-panel); padding: var(--space-3); width: 100%; }
-.engineering-plate svg { display: block; width: 100%; height: auto; max-height: min(45dvh, 33rem); }
-.engineering-plate text { fill: var(--on-night-muted); font-family: var(--font-mono), monospace; font-size: 14px; letter-spacing: .025em; }
-.engineering-plate .art-heading { fill: var(--on-night); font-size: 17px; letter-spacing: .065em; }
-.engineering-plate .art-label-strong { fill: var(--on-night); font-size: 15px; }
-.engineering-plate .art-code { fill: var(--signal-light); font-size: 16px; }
-.plate-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-1); font-family: var(--font-mono), monospace; font-size: .6rem; line-height: 1.6; color: var(--on-night-muted); }
-.plate-caption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-1); font-size: .65rem; line-height: 1.5; color: var(--on-night-muted); }
-.motion-control { padding: .5rem; min-height: 2.75rem; text-decoration: underline; text-underline-offset: .25em; }
-.art-rock { fill: #234852; stroke: #779e9c; stroke-width: 1.5; }
-.art-stratum { fill: #34575b; stroke: #91aaa0; }
-.art-salt { stroke: var(--signal-light); stroke-width: 1.5; }
-.art-rock-deep { fill: #1c3943; stroke: #779e9c; }
-.art-contours { stroke: #b9cfca; stroke-width: 1; opacity: .5; }
-.art-casing { stroke: var(--on-night); stroke-width: 4; }
-.art-well { stroke: var(--amber); stroke-width: 3; }
-.art-stress { stroke: var(--signal-light); stroke-width: 1.7; }
-.art-mesh { stroke: #8fd9bb; stroke-width: 1.5; }
-.art-mesh circle, .art-node { fill: var(--signal-light); stroke: none; }
-.art-mesh .art-boundary { stroke: var(--amber); stroke-width: 3; }
-.art-panel { fill: #173b45; stroke: #7da89f; stroke-width: 1.5; }
-.art-paper { fill: #20414a; stroke: #9fbbb2; stroke-width: 1.5; }
-.art-rule { stroke: #9ab6af; stroke-width: 1.5; }
-.art-line { stroke: var(--signal-light); stroke-width: 2; }
-.art-copper-rule { stroke: var(--amber); stroke-width: 2; }
-.art-curve { stroke: var(--signal-light); stroke-width: 3; }
-.art-comparison { stroke: #a8c3ba; stroke-width: 1.5; stroke-dasharray: 4 7; }
-.art-orbit { stroke: #658c87; stroke-width: 1; stroke-dasharray: 4 8; }
-.art-shield { fill: #204b48; stroke: var(--signal-light); stroke-width: 2; }
-.art-check { stroke: var(--amber); stroke-width: 3; }
-.art-answer { stroke: #9ab6af; stroke-width: 1.7; }
-.art-filled-answer { fill: var(--signal-light); stroke: var(--signal-light); }
-.art-scan { stroke: var(--amber); stroke-width: 2; }
-.art-rss { stroke: var(--amber); stroke-width: 7; stroke-linecap: round; }
-.art-barrier { fill: #234b49; stroke: #8fd9bb; stroke-width: 1.5; }
-.scene-flow { stroke: var(--amber); stroke-width: 2; stroke-dasharray: 7 9; stroke-linecap: round; }
-.plate-compact svg { max-height: clamp(10rem, 19dvh, 17rem); }
+/* Light line drawings on the section surface: the section sets the palette, no plate. */
+:root { --focus-accent: var(--signal); }
+.dark-section { --focus-accent: var(--signal-light); }
+.engineering-plate {
+  --art-ink: #2a5058; --art-mute: #86a19c; --art-soft: #c3d3ce; --art-text: var(--ink-muted);
+  --art-accent: var(--signal); --art-accent-mute: #6aa892; --art-warm: #b7842c;
+  --art-fill: var(--surface); --art-tint: #dcebe3;
+  width: 100%; min-width: 0;
+}
+.dark-section .engineering-plate {
+  --art-ink: #d8e7e2; --art-mute: #6e938e; --art-soft: #33575e; --art-text: var(--on-night-muted);
+  --art-accent: var(--signal-light); --art-accent-mute: #6fbf98; --art-warm: var(--amber);
+  --art-fill: #12343d; --art-tint: #1e4a47;
+}
+.engineering-plate svg { display: block; width: 100%; height: auto; max-height: var(--scene-height); overflow: visible; }
+.plate-hero { --scene-height: min(50dvh, 32rem); }
+.plate-standard { --scene-height: min(46dvh, 28rem); }
+.plate-compact { --scene-height: clamp(7rem, 21dvh, 13rem); }
 .landing-screen .plate-compact { margin-top: var(--space-3); }
-@media (prefers-reduced-motion: no-preference) {
-  .engineering-plate[data-motion-ready="true"] :is(.scene-flow, .scene-draw, .scene-breathe, .scene-scan) { animation-duration: var(--duration-scene); animation-iteration-count: infinite; animation-play-state: paused; }
-  .engineering-plate[data-motion-ready="true"] .scene-flow { animation-name: scene-flow; animation-timing-function: linear; }
-  .engineering-plate[data-motion-ready="true"] .scene-draw { animation-name: scene-line; animation-timing-function: var(--ease-out); }
-  .engineering-plate[data-motion-ready="true"] .scene-breathe { animation-name: scene-breathe; animation-timing-function: ease-in-out; }
-  .engineering-plate[data-motion-ready="true"] .scene-scan { animation-name: scene-scan; animation-timing-function: ease-in-out; }
-  .engineering-plate[data-playing="true"] :is(.scene-flow, .scene-draw, .scene-breathe, .scene-scan) { animation-play-state: running; }
-}
-@keyframes scene-flow { to { stroke-dashoffset: -160; } }
-@keyframes scene-line { 0%, 8% { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: .5; } 32%, 90% { stroke-dasharray: 1; stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dasharray: 1; stroke-dashoffset: 0; opacity: .5; } }
-@keyframes scene-breathe { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
-@keyframes scene-scan { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+.plate-wide { --scene-height: min(40dvh, 21rem); }
+.engineering-plate svg.scene-narrow { display: none; }
 @media (max-width: 47.99rem) {
-  .engineering-plate { padding: var(--space-2); }
-  .engineering-plate svg, .plate-compact svg { max-height: none; }
+  .engineering-plate svg.scene-narrow { display: block; }
+  .engineering-plate svg.scene-wide { display: none; }
 }
+.plate-hero svg { background: radial-gradient(circle, var(--art-soft) 1px, transparent 1.25px) 0 0 / 1.25rem 1.25rem; }
+.engineering-plate svg :is(path, circle, rect, ellipse) { vector-effect: non-scaling-stroke; }
+
+.a-ink { stroke: var(--art-ink); stroke-width: 1.5; }
+.a-mute { stroke: var(--art-mute); stroke-width: 1.2; }
+.a-soft { stroke: var(--art-soft); stroke-width: 1; }
+.a-accent { stroke: var(--art-accent); stroke-width: 2; }
+.a-warm { stroke: var(--art-warm); stroke-width: 2; }
+.a-bold { stroke-width: 3.5; }
+.a-dash { stroke-dasharray: 3 5; }
+.a-fill { fill: var(--art-fill); }
+.a-tint { fill: var(--art-tint); }
+.a-accent-fill { fill: var(--art-accent); }
+.a-warm-fill { fill: var(--art-warm); }
+.a-dots { stroke: var(--art-accent); stroke-width: 4.5; }
+.a-dots-small { stroke: var(--art-mute); stroke-width: 3.5; }
+.a-dots-warm { stroke: var(--art-warm); }
+.a-num { fill: var(--art-text); font-family: var(--font-mono), monospace; font-size: 12px; font-weight: 500; letter-spacing: .04em; }
+.scene-flow { stroke: var(--art-warm); stroke-width: 1.5; stroke-dasharray: 2 6; }
+.a-station { stroke: var(--art-ink); stroke-width: 2; }
+.a-line-operation, .a-line-engineering, .a-line-computing, .a-line-teaching { stroke-width: 5; }
+.a-line-operation { stroke: var(--art-warm); }
+.a-line-engineering { stroke: var(--art-accent); }
+.a-line-computing { stroke: var(--art-ink); }
+.a-line-teaching { stroke: var(--art-mute); }
+
+/* Legend and caption: real text at a readable size, outside the scaled drawing. */
+.plate-caption { display: grid; gap: .5rem; margin-top: .75rem; }
+.scene-legend { display: flex; flex-wrap: wrap; gap: .35rem 1rem; }
+.scene-legend li { display: flex; gap: .5rem; flex: 1 1 7rem; min-width: 0; padding-top: .45rem; border-top: 1px solid var(--line); font-family: var(--font-mono), monospace; font-size: .68rem; line-height: 1.4; letter-spacing: .02em; color: var(--ink-muted); }
+.scene-legend li span { color: var(--focus-accent); }
+.scene-legend[data-count="6"] li { flex-basis: calc(33.3% - 1rem); }
+.dark-section .scene-legend li { border-top-color: #34525a; color: var(--on-night-muted); }
+.plate-note { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 1rem; font-size: .65rem; line-height: 1.5; color: var(--ink-muted); }
+.dark-section .plate-note { color: var(--on-night-muted); }
+.motion-control { min-height: 2rem; padding: .25rem 0; color: inherit; text-decoration: underline; text-underline-offset: .25em; }
+@media (pointer: coarse) { .motion-control { min-height: 2.75rem; } }
+
+/*
+ * One numbered part at a time. The timed sequence (data-step: visible, playing scenes
+ * only) stops while the reader points at or focuses numbered copy in the same section;
+ * that copy then highlights its own part. The pointer link works without JavaScript.
+ */
+[data-focus] { transition: border-color .45s var(--ease-out); }
+.engineering-plate [data-part] { transition: opacity .45s var(--ease-out); }
+.engineering-plate [data-part] :is(path, circle, rect, ellipse, text) { transition: stroke .45s, fill .45s; }
+.engineering-plate[data-step] [data-part],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus]:is(:hover, :focus-within)) [data-part] { opacity: .36; }
+.engineering-plate[data-step="1"] [data-part="1"], .engineering-plate[data-step="2"] [data-part="2"],
+.engineering-plate[data-step="3"] [data-part="3"], .engineering-plate[data-step="4"] [data-part="4"],
+.engineering-plate[data-step="5"] [data-part="5"], .engineering-plate[data-step="6"] [data-part="6"],
+.engineering-plate[data-step="7"] [data-part="7"], .engineering-plate[data-step="8"] [data-part="8"],
+.engineering-plate[data-step="9"] [data-part="9"],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus="1"]:is(:hover, :focus-within)) [data-part="1"],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus="2"]:is(:hover, :focus-within)) [data-part="2"],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus="3"]:is(:hover, :focus-within)) [data-part="3"],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus="4"]:is(:hover, :focus-within)) [data-part="4"],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus="5"]:is(:hover, :focus-within)) [data-part="5"],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus="7"]:is(:hover, :focus-within)) [data-part="7"],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus="8"]:is(:hover, :focus-within)) [data-part="8"],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus="9"]:is(:hover, :focus-within)) [data-part="9"],
+:is(.landing-screen, .scene-scope, .engineering-plate):has([data-focus="6"]:is(:hover, :focus-within)) [data-part="6"] {
+  opacity: 1; --art-ink: var(--art-accent); --art-mute: var(--art-accent-mute); --art-soft: var(--art-accent-mute); --art-text: var(--art-accent);
+}
+main [data-focus]:is(:hover, :focus-within),
+:is(:is(.landing-screen, .scene-scope):has(.engineering-plate[data-step="1"]), .engineering-plate[data-step="1"]) [data-focus="1"],
+:is(:is(.landing-screen, .scene-scope):has(.engineering-plate[data-step="2"]), .engineering-plate[data-step="2"]) [data-focus="2"],
+:is(:is(.landing-screen, .scene-scope):has(.engineering-plate[data-step="3"]), .engineering-plate[data-step="3"]) [data-focus="3"],
+:is(:is(.landing-screen, .scene-scope):has(.engineering-plate[data-step="4"]), .engineering-plate[data-step="4"]) [data-focus="4"],
+:is(:is(.landing-screen, .scene-scope):has(.engineering-plate[data-step="5"]), .engineering-plate[data-step="5"]) [data-focus="5"],
+:is(:is(.landing-screen, .scene-scope):has(.engineering-plate[data-step="7"]), .engineering-plate[data-step="7"]) [data-focus="7"],
+:is(:is(.landing-screen, .scene-scope):has(.engineering-plate[data-step="8"]), .engineering-plate[data-step="8"]) [data-focus="8"],
+:is(:is(.landing-screen, .scene-scope):has(.engineering-plate[data-step="9"]), .engineering-plate[data-step="9"]) [data-focus="9"],
+:is(:is(.landing-screen, .scene-scope):has(.engineering-plate[data-step="6"]), .engineering-plate[data-step="6"]) [data-focus="6"] {
+  border-top-color: var(--focus-accent);
+}
+
+/* Motion is an enhancement: entrance only for scenes that start off-screen. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  .engineering-plate[data-entrance="armed"] [data-part] { opacity: 0; }
+  /* Gap of 2 path lengths: nothing peeks out when non-scaling strokes round the normalised length. */
+  .engineering-plate[data-entrance="armed"] .scene-draw { stroke-dasharray: 1 2; stroke-dashoffset: 1; }
+  .engineering-plate[data-entrance="run"] [data-part] { animation: scene-rise .8s var(--ease-out) backwards; animation-delay: calc(var(--d, 0) * 180ms); }
+  .engineering-plate[data-entrance="run"] .scene-draw { animation: scene-draw 1.1s var(--ease-out) backwards; animation-delay: calc(var(--d, 0) * 180ms + 250ms); }
+  .engineering-plate[data-motion-ready="true"] .scene-flow { animation: scene-flow 1.4s linear infinite paused; }
+  .engineering-plate[data-motion-ready="true"] .scene-scan { animation: scene-scan 3.2s ease-in-out infinite paused; }
+  .engineering-plate[data-playing="true"] :is(.scene-flow, .scene-scan) { animation-play-state: running; }
+}
+@keyframes scene-rise { from { opacity: 0; transform: translateY(6px); } }
+@keyframes scene-draw { from { stroke-dasharray: 1 2; stroke-dashoffset: 1; } to { stroke-dasharray: 1 2; stroke-dashoffset: 0; } }
+@keyframes scene-flow { to { stroke-dashoffset: -16; } }
+@keyframes scene-scan { 50% { transform: translateY(36px); } }
 @media (prefers-reduced-motion: reduce) {
-  .scene-flow { stroke-dasharray: none; }
   .scene-draw { stroke-dasharray: none; stroke-dashoffset: 0; }
-  .scene-breathe { opacity: 1; }
 }

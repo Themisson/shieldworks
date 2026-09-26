@@ -174,3 +174,132 @@ test("every scene pauses outside the viewport and keeps complete static geometry
     await page.locator("#pesquisa svg").getAttribute("aria-label"),
   ).toContain("intervalo salino");
 });
+
+test("each topic fills one screen on common laptop viewports without clipping", async ({
+  page,
+}) => {
+  // Browser chrome leaves roughly these inner sizes on 1366×768, 1280×800, 1440×900 and 1536×864 laptops.
+  for (const [width, height] of [
+    [1366, 650],
+    [1280, 720],
+    [1440, 790],
+    [1536, 730],
+  ]) {
+    await page.setViewportSize({ width, height });
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () => getComputedStyle(document.documentElement).scrollSnapType,
+        ),
+      )
+      .toBe("y mandatory");
+    for (const id of sections) {
+      const geometry = await page.locator(`#${id}`).evaluate((section) => {
+        const box = section.getBoundingClientRect();
+        const advance = section
+          .querySelector(".section-advance a")!
+          .getBoundingClientRect();
+        const content = [
+          ...section.querySelectorAll(
+            ":scope > .section-shell:not(.section-advance) *",
+          ),
+        ].reduce(
+          (bottom, node) => Math.max(bottom, node.getBoundingClientRect().bottom),
+          0,
+        );
+        return {
+          fill: Math.abs(box.height - (innerHeight - 72)),
+          overflow: section.scrollHeight - section.clientHeight,
+          contentInside: content <= box.bottom,
+          advanceClear: advance.top >= content - 1 && advance.bottom <= box.bottom,
+        };
+      });
+      expect(geometry, `${width}x${height} #${id}`).toEqual({
+        fill: expect.any(Number),
+        overflow: expect.any(Number),
+        contentInside: true,
+        advanceClear: true,
+      });
+      expect(geometry.fill, `${width}x${height} #${id}`).toBeLessThanOrEqual(3);
+      expect(geometry.overflow, `${width}x${height} #${id}`).toBeLessThanOrEqual(1);
+    }
+  }
+});
+
+test("numbered copy and drawings highlight together, with and without JavaScript", async ({
+  page,
+  browser,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  const opacity = (selector: string) =>
+    page.locator(selector).first().evaluate((node) => getComputedStyle(node).opacity);
+  // Only scenes that start off-screen draw themselves in.
+  await expect(page.locator("#inicio .engineering-plate")).not.toHaveAttribute(
+    "data-entrance",
+    /.+/,
+  );
+  await expect(page.locator("#contato .engineering-plate")).toHaveAttribute(
+    "data-entrance",
+    "armed",
+  );
+  // Drawings carry no words at a scaled-down size: labels live in HTML.
+  const labels = await page
+    .locator('svg[role="img"] text')
+    .evaluateAll((nodes) => nodes.map((node) => node.textContent));
+  expect(labels.length).toBeGreaterThan(0);
+  expect(labels.every((text) => /^\d{2}$/.test(text ?? ""))).toBe(true);
+  // The timed sequence walks the parts and lights the matching numbered item.
+  await page.locator("#inicio .section-advance a").click();
+  const approach = page.locator("#shieldworks .engineering-plate");
+  await expect(approach).toHaveAttribute("data-entrance", "run");
+  await expect(approach).toHaveAttribute("data-step", "1", { timeout: 6_000 });
+  await expect
+    .poll(() =>
+      page
+        .locator('#shieldworks [data-focus="1"]')
+        .evaluate((node) => getComputedStyle(node).borderTopColor),
+    )
+    .toBe("rgb(28, 107, 89)");
+  // Pointing at a numbered item takes over from the sequence.
+  await page.locator("#solucoes").evaluate((node) =>
+    node.scrollIntoView({ behavior: "instant" }),
+  );
+  await page.locator('#solucoes [data-focus="4"]').hover();
+  await expect(page.locator("#solucoes .engineering-plate")).not.toHaveAttribute(
+    "data-step",
+    /.+/,
+  );
+  await expect.poll(() => opacity('#solucoes [data-part="4"]')).toBe("1");
+  await expect.poll(() => opacity('#solucoes [data-part="1"]')).toBe("0.36");
+  // Keyboard focus does the same.
+  await page.mouse.move(2, 2);
+  await page.locator('#pesquisa [data-focus="2"]').focus();
+  await expect.poll(() => opacity('#pesquisa [data-part="2"]')).toBe("1");
+  await expect.poll(() => opacity('#pesquisa [data-part="3"]')).toBe("0.36");
+  // The pointer link is CSS only, so it survives without JavaScript.
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 1440, height: 900 },
+  });
+  const staticPage = await context.newPage();
+  await staticPage.goto("/");
+  await staticPage.locator('#projetos [data-focus="3"]').hover();
+  await expect
+    .poll(() =>
+      staticPage
+        .locator('#projetos [data-part="3"]')
+        .evaluate((node) => getComputedStyle(node).opacity),
+    )
+    .toBe("1");
+  await expect
+    .poll(() =>
+      staticPage
+        .locator('#projetos [data-part="1"]')
+        .evaluate((node) => getComputedStyle(node).opacity),
+    )
+    .toBe("0.36");
+  await context.close();
+});

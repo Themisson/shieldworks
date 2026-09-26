@@ -11,7 +11,7 @@ export function LandingSnap() {
     ];
     const header = document.querySelector<HTMLElement>(".site-header");
     const desktop = window.matchMedia(
-      "(min-width: 80rem) and (min-height: 50rem) and (hover: hover) and (pointer: fine)",
+      "(min-width: 64rem) and (min-height: 37.5rem) and (hover: hover) and (pointer: fine)",
     );
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;

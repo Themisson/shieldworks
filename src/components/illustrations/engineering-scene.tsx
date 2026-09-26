@@ -1,34 +1,25 @@
-"use client";
+import type { Locale } from "@/i18n/translations";
+import { SceneArtwork, sceneFormat, type SceneKind } from "./scene-artwork";
+import { SceneFrame } from "./scene-frame";
 
-import { useEffect, useId, useRef, useState } from "react";
-import { useLocale } from "@/i18n/locale-provider";
-import { CompactSceneArtwork, SceneArtwork } from "./scene-artwork";
+export type { SceneKind } from "./scene-artwork";
 
-export type SceneKind =
-  | "integrated"
-  | "approach"
-  | "solutions"
-  | "research"
-  | "publication"
-  | "software"
-  | "cases"
-  | "editorial"
-  | "knowledge"
-  | "trajectory"
-  | "updates"
-  | "contact"
-  | "numerical"
-  | "safety";
+type Pair = [string, string];
 
 const scenes: Record<
   SceneKind,
-  { title: [string, string]; description: [string, string] }
+  { title: Pair; description: Pair; legend: (Pair | string)[] }
 > = {
   integrated: {
     title: ["CONVERGÊNCIA", "CONVERGENCE"],
     description: [
-      "Poço em formação salina conectado a uma malha numérica, código, análise e integridade: engenharia, pesquisa, software e segurança aplicados ao mesmo problema.",
-      "A well in a salt formation connected to a numerical mesh, code, analysis and integrity: engineering, research, software and safety applied to the same problem.",
+      "Seção geológica com intervalo salino e poço revestido, ampliada em uma malha refinada junto à parede do poço e conectada a análise e integridade: modelo físico, método numérico e decisão.",
+      "Geological cross-section with a salt interval and a cased well, enlarged into a mesh refined near the wellbore and connected to analysis and integrity: physical model, numerical method and decision.",
+    ],
+    legend: [
+      ["Modelo físico", "Physical model"],
+      ["Método numérico", "Numerical method"],
+      ["Decisão", "Decision"],
     ],
   },
   approach: {
@@ -37,26 +28,49 @@ const scenes: Record<
       "Quatro etapas conectadas: compreender o contexto, investigar hipóteses, desenvolver modelos e documentar a entrega.",
       "Four connected stages: understand the context, investigate hypotheses, develop models and document delivery.",
     ],
+    legend: [
+      ["Contexto", "Context"],
+      ["Hipótese", "Hypothesis"],
+      ["Modelo", "Model"],
+      ["Entrega", "Delivery"],
+    ],
   },
   solutions: {
     title: ["CAPACIDADES CONECTADAS", "CONNECTED CAPABILITIES"],
     description: [
-      "Engenharia numérica, software, segurança, pesquisa e assessoria conectados para responder a um problema real.",
-      "Numerical engineering, software, safety, research and advisory work connected to address a real problem.",
+      "Cinco frentes convergindo para um problema real: engenharia computacional, pesquisa aplicada, sistemas institucionais, segurança operacional e assessoria acadêmica.",
+      "Five disciplines converging on a real problem: computational engineering, applied research, institutional systems, operational safety and academic advisory.",
+    ],
+    legend: [
+      ["Engenharia computacional", "Computational engineering"],
+      ["Pesquisa aplicada", "Applied research"],
+      ["Sistemas institucionais", "Institutional systems"],
+      ["Segurança operacional", "Operational safety"],
+      ["Assessoria acadêmica", "Academic advisory"],
     ],
   },
   research: {
     title: ["GEOMECÂNICA E POÇOS", "GEOMECHANICS AND WELLS"],
     description: [
-      "Seção geológica com intervalo salino, poço revestido e campo de tensões, conectada ao modelo termomecânico e à análise.",
-      "Geological cross-section with a salt interval, cased well and stress field, connected to a thermomechanical model and analysis.",
+      "Seção geológica com intervalo salino e campo de tensões ao redor de um poço revestido, detalhada em uma malha numérica refinada junto à parede do poço.",
+      "Geological cross-section with a salt interval and a stress field around a cased well, detailed in a numerical mesh refined near the wellbore.",
+    ],
+    legend: [
+      ["Intervalo salino", "Salt interval"],
+      ["Malha numérica", "Numerical mesh"],
+      ["Poço revestido", "Cased well"],
     ],
   },
   publication: {
     title: ["REGISTRO CIENTÍFICO", "SCIENTIFIC RECORD"],
     description: [
-      "Formação salina, análise do leak-off test e documento da publicação de 2025: da investigação ao registro científico.",
-      "Salt formation, leak-off test analysis and the 2025 publication document: from investigation to scientific record.",
+      "Formação salina com poço, forma conceitual de uma curva de leak-off test e documento da publicação: da investigação ao registro científico.",
+      "Salt formation with a well, the conceptual shape of a leak-off test curve and the publication document: from investigation to scientific record.",
+    ],
+    legend: [
+      ["Formação salina", "Salt formation"],
+      "Leak-off test",
+      ["Publicação", "Publication"],
     ],
   },
   software: {
@@ -65,19 +79,29 @@ const scenes: Record<
       "Quatro ferramentas do ecossistema: MDFolio para documentos, AcadImprove para avaliação educacional, Sursum para cifras e Gabarita para leitura de folhas de resposta.",
       "Four ecosystem tools: MDFolio for documents, AcadImprove for educational assessment, Sursum for chord sheets and Gabarita for answer-sheet reading.",
     ],
+    legend: ["MDFolio", "AcadImprove", "Sursum", "Gabarita"],
   },
   cases: {
     title: ["EVIDÊNCIA E ENTREGA", "EVIDENCE AND DELIVERY"],
     description: [
-      "Modelagem de poços e implementação de sistemas conectadas a método, validação e documentação dos cases.",
-      "Well modelling and systems implementation connected to method, validation and case documentation.",
+      "Dois cases: corte de um poço com revestimentos e anular confinado em evaporitos, e um sistema de gestão acadêmica com módulos e verificações.",
+      "Two case studies: a well section with casings and a trapped annulus in evaporites, and an academic management system with modules and checks.",
+    ],
+    legend: [
+      ["Poço e anulares", "Well and annuli"],
+      ["Sistema acadêmico", "Academic system"],
     ],
   },
   editorial: {
     title: ["CONHECIMENTO PUBLICADO", "PUBLISHED KNOWLEDGE"],
     description: [
-      "Livro, código e nota técnica conectados: ideias, equações, exemplos e referências tornam o conhecimento consultável.",
-      "A book, code and technical note connected: ideas, equations, examples and references make knowledge accessible.",
+      "Livro, exemplo em código e nota técnica com referências: ideias organizadas para consulta.",
+      "A book, a code example and a technical note with references: ideas organised for consultation.",
+    ],
+    legend: [
+      ["Ideias", "Ideas"],
+      ["Exemplos", "Examples"],
+      ["Referências", "References"],
     ],
   },
   knowledge: {
@@ -86,12 +110,25 @@ const scenes: Record<
       "Rede da ShieldWorks conectando pesquisa, métodos, software, publicações, segurança e decisão.",
       "The ShieldWorks network connects research, methods, software, publications, safety and decisions.",
     ],
+    legend: [
+      ["Pesquisa", "Research"],
+      ["Métodos", "Methods"],
+      "Software",
+      ["Publicações", "Publications"],
+      ["Segurança", "Safety"],
+      ["Decisão", "Decision"],
+    ],
   },
   trajectory: {
     title: ["TRAJETÓRIA MULTIDISCIPLINAR", "MULTIDISCIPLINARY BACKGROUND"],
     description: [
-      "Ensino e pesquisa, engenharia e software, segurança: disciplinas conectadas na trajetória profissional.",
-      "Teaching and research, engineering and software, safety: connected disciplines in a professional career.",
+      "Trajetória ascendente que conecta engenharia e pesquisa, software e automação, ensino e metodologia.",
+      "A rising path connecting engineering and research, software and automation, teaching and methodology.",
+    ],
+    legend: [
+      ["Engenharia e pesquisa", "Engineering and research"],
+      ["Software e automação", "Software and automation"],
+      ["Ensino e metodologia", "Teaching and methodology"],
     ],
   },
   updates: {
@@ -100,123 +137,152 @@ const scenes: Record<
       "Um conteúdo publicado se conecta, por RSS, ao leitor de atualizações. Não representa assinatura por e-mail.",
       "Published content connects to an updates reader through RSS. It does not represent email subscriptions.",
     ],
+    legend: [["Publicar", "Publish"], "RSS", ["Seu leitor", "Your reader"]],
   },
   contact: {
     title: ["CONVERSA E ESCOPO", "CONVERSATION AND SCOPE"],
     description: [
-      "Duas mensagens conectadas: o contexto apresentado orienta o escopo e os próximos passos de uma entrega.",
-      "Two connected messages: the shared context guides scope and the next steps of delivery.",
+      "Uma mensagem com o contexto recebe uma resposta com o escopo verificado e um caminho até a entrega.",
+      "A message with the context receives a reply with a checked scope and a path towards delivery.",
+    ],
+    legend: [
+      ["Seu contexto", "Your context"],
+      ["Escopo", "Scope"],
+      ["Próximos passos", "Next steps"],
     ],
   },
   numerical: {
     title: ["ENGENHARIA COMPUTACIONAL", "COMPUTATIONAL ENGINEERING"],
     description: [
-      "Malha triangular com nós e condições de contorno, processamento em código e análise conceitual de resultados.",
-      "Triangular mesh with nodes and boundary conditions, code processing and conceptual results analysis.",
+      "Malha triangular refinada com cargas e apoios, processamento em código e comparação conceitual de resultados.",
+      "Refined triangular mesh with loads and supports, code processing and a conceptual comparison of results.",
+    ],
+    legend: [
+      ["Discretizar", "Discretize"],
+      ["Resolver", "Solve"],
+      ["Validar", "Validate"],
+    ],
+  },  aboutConvergence: {
+    title: ["CONVERGÊNCIA", "CONVERGENCE"],
+    description: [
+      "Quatro frentes convergem para a ShieldWorks: malha discretizada com cargas e apoios, formação salina com poço e curva conceitual de fluência, código e dados, e barreiras entre um risco e a decisão.",
+      "Four fronts converge on ShieldWorks: a discretized mesh with loads and supports, a salt formation with a well and a conceptual creep curve, code and data, and barriers between a hazard and the decision.",
+    ],
+    legend: [
+      ["Engenharia", "Engineering"],
+      ["Pesquisa", "Research"],
+      ["Tecnologia", "Technology"],
+      ["Segurança", "Safety"],
     ],
   },
-  safety: {
-    title: ["BARREIRAS E INTEGRIDADE", "BARRIERS AND INTEGRITY"],
+  aboutAreas: {
+    title: ["QUATRO EIXOS", "FOUR AXES"],
     description: [
-      "Quatro barreiras redundantes no caminho entre um risco e a decisão, representando camadas de proteção.",
-      "Four redundant barriers along the path between a risk and a decision, representing layers of protection.",
+      "Rede com quatro eixos partindo da ShieldWorks: engenharia, pesquisa, tecnologia e segurança, cada um com três ramificações.",
+      "A network of four axes leaving ShieldWorks: engineering, research, technology and safety, each with three branches.",
+    ],
+    legend: [
+      ["Engenharia", "Engineering"],
+      ["Pesquisa", "Research"],
+      ["Tecnologia", "Technology"],
+      ["Segurança", "Safety"],
+    ],
+  },
+  researchProcess: {
+    title: ["DO PROBLEMA À PUBLICAÇÃO", "FROM PROBLEM TO PUBLICATION"],
+    description: [
+      "Pesquisa aplicada em seis etapas conectadas: problema físico, modelagem, discretização, simulação, validação e publicação.",
+      "Applied research in six connected stages: physical problem, modelling, discretization, simulation, validation and publication.",
+    ],
+    legend: [
+      ["Problema físico", "Physical problem"],
+      ["Modelagem", "Modelling"],
+      ["Discretização", "Discretization"],
+      ["Simulação", "Simulation"],
+      ["Validação", "Validation"],
+      ["Publicação", "Publication"],
+    ],
+  },
+  career: {
+    title: ["MAPA DE CONHECIMENTO", "KNOWLEDGE MAP"],
+    description: [
+      "Mapa com quatro linhas — operação e segurança, engenharia e pesquisa, computação e sistemas, ensino — cujas oito estações convergem para a ShieldWorks. A posição nas linhas não representa datas.",
+      "A map with four lines — operations and safety, engineering and research, computing and systems, teaching — whose eight stations converge on ShieldWorks. Position along the lines does not represent dates.",
+    ],
+    legend: [
+      ["Carreira institucional", "Institutional career"],
+      ["Segurança operacional", "Operational safety"],
+      ["Engenharia de petróleo", "Petroleum engineering"],
+      ["Mestrado e doutorado", "Master's and doctorate"],
+      ["Geomecânica salina e poços", "Salt geomechanics and wells"],
+      ["Computação científica", "Scientific computing"],
+      ["Sistemas e produtos digitais", "Systems and digital products"],
+      ["Ensino e metodologia", "Teaching and methodology"],
+      "ShieldWorks",
     ],
   },
 };
 
-/** Authored conceptual scenes: complete static artwork, optional viewport-aware motion. */
+/**
+ * Authored conceptual scenes, rendered on the server. Numbers in the drawing match
+ * the legend or, with `legend={false}`, the numbered copy of the surrounding section.
+ */
 export function EngineeringScene({
   kind = "integrated",
-  compact = false,
+  locale,
+  legend = true,
 }: {
   kind?: SceneKind;
-  compact?: boolean;
+  locale: Locale;
+  legend?: boolean;
 }) {
-  const ref = useRef<HTMLElement>(null);
-  const id = useId().replace(/:/g, "");
-  const [inView, setInView] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const { locale } = useLocale();
-  useEffect(() => {
-    const node = ref.current;
-    if (!node || !window.IntersectionObserver) return;
-    node.dataset.motionReady = "true";
-    const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.15 },
-    );
-    observer.observe(node);
-    const visibility = () => setHidden(document.hidden);
-    document.addEventListener("visibilitychange", visibility);
-    visibility();
-    return () => {
-      observer.disconnect();
-      delete node.dataset.motionReady;
-      document.removeEventListener("visibilitychange", visibility);
-    };
-  }, []);
-  const label = (pt: string, en: string) => (locale === "en" ? en : pt);
-  const index = locale === "en" ? 1 : 0;
-  const wide =
-    compact &&
-    [
-      "approach",
-      "solutions",
-      "publication",
-      "software",
-      "cases",
-      "editorial",
-      "trajectory",
-      "updates",
-    ].includes(kind);
+  const t = (value: Pair | string) =>
+    typeof value === "string" ? value : value[locale === "en" ? 1 : 0];
+  const scene = scenes[kind];
+  const { variant, viewBox, narrowViewBox } = sceneFormat[kind];
   return (
-    <figure
-      ref={ref}
-      className={`engineering-plate plate-${kind}${wide ? " plate-compact" : ""}`}
-      data-scene-kind={kind}
-      data-playing={inView && !paused && !hidden}
+    <SceneFrame
+      kind={kind}
+      variant={variant}
+      steps={scene.legend.length}
+      note={`SW / ${t(scene.title)} · ${t(["Esquema conceitual, sem dados de simulação.", "Conceptual diagram, without simulation data."])}`}
+      pause={t(["Pausar movimento", "Pause motion"])}
+      resume={t(["Retomar movimento", "Resume motion"])}
+      legend={
+        legend && (
+          <ol className="scene-legend" data-count={scene.legend.length}>
+            {scene.legend.map((item, i) => (
+              <li key={i} data-focus={i + 1}>
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                {t(item)}
+              </li>
+            ))}
+          </ol>
+        )
+      }
     >
-      <div className="plate-meta">
-        <span>SW / {scenes[kind].title[index]}</span>
-        <span>{label("ESTUDO CONCEITUAL", "CONCEPTUAL STUDY")}</span>
-      </div>
-      <svg
-        viewBox={wide ? "0 0 900 320" : "0 0 900 560"}
-        fill="none"
-        role="img"
-        aria-label={scenes[kind].description[index]}
-      >
-        <defs>
-          <linearGradient id={`${id}-salt`} x1="0" y1="0" x2="0" y2="1">
-            <stop stopColor="#6fae9b" stopOpacity=".42" />
-            <stop offset="1" stopColor="#bdcdad" stopOpacity=".23" />
-          </linearGradient>
-        </defs>
-        {wide ? (
-          <CompactSceneArtwork kind={kind} label={label} id={id} />
-        ) : (
-          <SceneArtwork kind={kind} label={label} id={id} />
-        )}
-      </svg>
-      <figcaption className="plate-caption">
-        <span>
-          {label(
-            "Esquema conceitual, sem dados de simulação.",
-            "Conceptual diagram, without simulation data.",
-          )}
-        </span>
-        <button
-          type="button"
-          className="motion-control"
-          aria-pressed={paused}
-          onClick={() => setPaused((value) => !value)}
+      {[false, ...(narrowViewBox ? [true] : [])].map((narrow) => (
+        // A narrow layout replaces the wide one on small screens; CSS shows one.
+        <svg
+          key={String(narrow)}
+          className={
+            narrowViewBox ? (narrow ? "scene-narrow" : "scene-wide") : undefined
+          }
+          viewBox={narrow ? narrowViewBox : viewBox}
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          preserveAspectRatio={
+            variant === "compact" || variant === "wide"
+              ? "xMinYMid meet"
+              : "xMidYMid meet"
+          }
+          role="img"
+          aria-label={t(scene.description)}
         >
-          {paused
-            ? label("Retomar movimento", "Resume motion")
-            : label("Pausar movimento", "Pause motion")}
-        </button>
-      </figcaption>
-    </figure>
+          <SceneArtwork kind={kind} narrow={narrow} />
+        </svg>
+      ))}
+    </SceneFrame>
   );
 }

@@ -144,6 +144,11 @@ for (const width of [390, 1440]) {
       "/pesquisa",
       "/projetos/mdfolio",
       "/en/sobre",
+      "/sobre",
+      "/sistemas",
+      "/cases/apb-evaporitos-termomecanica",
+      "/conteudo",
+      "/en/pesquisa/publicacoes",
     ]) {
       await page.goto(route);
       const results = await new AxeBuilder({ page })

@@ -148,7 +148,7 @@ export default async function SolucoesPage({
                 ))}
               </ol>
             </div>
-            <EngineeringScene kind="numerical" />
+            <EngineeringScene kind="numerical" locale={locale} />
           </div>
           <div className="mt-10 space-y-4">
             <Reveal>

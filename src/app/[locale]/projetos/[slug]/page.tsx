@@ -53,9 +53,10 @@ export default async function ProjectPage({ params }: Props) {
               "@type": "Person",
               name: "Themisson dos Santos Vasconcelos",
             },
-            sameAs: project.href
-              ? [project.repository, project.href]
-              : [project.repository],
+            sameAs: [
+              ...(project.href ? [project.href] : []),
+              ...(project.repositoryPublic ? [project.repository] : []),
+            ],
           }),
         }}
       />
@@ -68,7 +69,7 @@ export default async function ProjectPage({ params }: Props) {
       </header>
       <div className="internal-grid">
         <div>
-          <EngineeringScene kind="software" />
+          <EngineeringScene kind="software" locale={locale} />
           <section className="internal-section">
             <h2>{t("O problema", "The problem")}</h2>
             <p className="detail-description">{project.problem[locale]}</p>
@@ -101,19 +102,21 @@ export default async function ProjectPage({ params }: Props) {
           ) : (
             <p>
               {t(
-                "Consulte o repositório ou converse sobre uma demonstração.",
-                "View the repository or discuss a demonstration.",
+                "Converse sobre uma demonstração.",
+                "Ask about a demonstration.",
               )}
             </p>
           )}
-          <a
-            className="block"
-            href={project.repository}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t("Repositório", "Repository")} ↗
-          </a>
+          {project.repositoryPublic && (
+            <a
+              className="block"
+              href={project.repository}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t("Repositório", "Repository")} ↗
+            </a>
+          )}
           <Link className="sw-button" href={localizedPath("/contato", locale)}>
             {t("Conversar sobre uma solução", "Discuss a solution")}
           </Link>

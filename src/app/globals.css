@@ -170,5 +170,5 @@ p {
 
 /* Portrait uses the original asset with a solid caption and no filtering or feathering. */
 .profile-portrait-shell { border: 1px solid var(--line); border-radius: var(--radius-panel); overflow: hidden; background: var(--surface); }
-.profile-portrait-frame { position: relative; overflow: hidden; background: var(--surface-muted); }
+.profile-portrait-frame { position: relative; overflow: hidden; aspect-ratio: 4 / 5; background: var(--surface-muted); }
 .profile-portrait-caption { position: static; padding: var(--space-3); background: var(--night); color: var(--on-night); }

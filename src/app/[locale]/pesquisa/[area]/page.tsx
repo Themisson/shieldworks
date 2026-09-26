@@ -55,6 +55,7 @@ export default async function ResearchLine({ params }: Props) {
         <div>
           <EngineeringScene
             kind={area === "metodos-numericos" ? "numerical" : "research"}
+            locale={locale}
           />
           <section className="internal-section">
             <h2>{t("Temas e métodos", "Topics and methods")}</h2>

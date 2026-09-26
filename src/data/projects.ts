@@ -9,6 +9,8 @@ export type Project = {
   stage: { pt: string; en: string };
   href?: string;
   repository: string;
+  /** Checked 2026-09-26: the four repositories are private (public URL returns 404). */
+  repositoryPublic?: boolean;
   source: string;
 };
 

@@ -98,12 +98,7 @@ export function Landing({ locale }: { locale: Locale }) {
             </div>
           </div>
           <div className="hero-visual">
-            <EngineeringScene />
-            <div className="visual-index">
-              <span>01 / {t("Modelo físico", "Physical model")}</span>
-              <span>02 / {t("Método numérico", "Numerical method")}</span>
-              <span>03 / {t("Decisão", "Decision")}</span>
-            </div>
+            <EngineeringScene locale={locale} />
           </div>
         </div>
         <div className="section-shell hero-bottom">
@@ -144,7 +139,7 @@ export function Landing({ locale }: { locale: Locale }) {
                 </p>
               </div>
             </div>
-            <EngineeringScene kind="approach" compact />
+            <EngineeringScene kind="approach" locale={locale} legend={false} />
           </div>
           <ol className="approach-steps">
             {[
@@ -177,7 +172,7 @@ export function Landing({ locale }: { locale: Locale }) {
                 "Clear and traceable delivery.",
               ],
             ].map(([n, pt, en, dpt, den]) => (
-              <li key={n}>
+              <li key={n} data-focus={Number(n)}>
                 <span>{n}</span>
                 <h3>{t(pt, en)}</h3>
                 <p>{t(dpt, den)}</p>
@@ -213,13 +208,22 @@ export function Landing({ locale }: { locale: Locale }) {
               "All solutions",
               true,
             )}
-            <EngineeringScene kind="solutions" compact />
+            <EngineeringScene kind="solutions" locale={locale} legend={false} />
           </div>
           <div className="solution-ledger">
             {featuredSolutions.map((solution, i) => (
               <Link
                 key={solution.title}
-                href={url(i === 4 ? "/assessoria-academica" : "/solucoes")}
+                href={url(
+                  [
+                    "/solucoes",
+                    "/pesquisa",
+                    "/sistemas",
+                    "/solucoes",
+                    "/assessoria-academica",
+                  ][i] ?? "/solucoes",
+                )}
+                data-focus={i + 1}
               >
                 <span className="ledger-number">
                   {String(i + 1).padStart(2, "0")}
@@ -264,8 +268,12 @@ export function Landing({ locale }: { locale: Locale }) {
               className="research-line-links"
               aria-label={t("Linhas de pesquisa", "Research lines")}
             >
-              {researchLines.map((line) => (
-                <Link key={line.slug} href={url(`/pesquisa/${line.slug}`)}>
+              {researchLines.map((line, i) => (
+                <Link
+                  key={line.slug}
+                  href={url(`/pesquisa/${line.slug}`)}
+                  data-focus={i + 1}
+                >
                   <span>{line.number}</span>
                   {line.title[locale]}
                   <span aria-hidden="true">↗</span>
@@ -274,7 +282,7 @@ export function Landing({ locale }: { locale: Locale }) {
             </nav>
             {button("/pesquisa", "Explorar pesquisa", "Explore research")}
           </div>
-          <EngineeringScene kind="research" />
+          <EngineeringScene kind="research" locale={locale} legend={false} />
         </div>
         {advance(4)}
       </section>
@@ -311,7 +319,7 @@ export function Landing({ locale }: { locale: Locale }) {
               </div>
             </div>
             <aside className="publication-aside">
-              <EngineeringScene kind="publication" compact />
+              <EngineeringScene kind="publication" locale={locale} />
               <h3>
                 {t("Poço. Sal. Termomecânica.", "Well. Salt. Thermomechanics.")}
               </h3>
@@ -363,7 +371,7 @@ export function Landing({ locale }: { locale: Locale }) {
                 true,
               )}
             </div>
-            <EngineeringScene kind="software" compact />
+            <EngineeringScene kind="software" locale={locale} legend={false} />
           </div>
           <div className="project-grid">
             {projects.map((project, i) => (
@@ -371,6 +379,7 @@ export function Landing({ locale }: { locale: Locale }) {
                 key={project.slug}
                 href={url(`/projetos/${project.slug}`)}
                 className={`project-tile project-${project.slug}`}
+                data-focus={i + 1}
               >
                 <div className="project-tile-top">
                   <span>{String(i + 1).padStart(2, "0")}</span>
@@ -408,11 +417,11 @@ export function Landing({ locale }: { locale: Locale }) {
                 "Real examples from research and institutional systems, with context and traceability.",
               )}
             </p>
-            <EngineeringScene kind="cases" compact />
+            <EngineeringScene kind="cases" locale={locale} legend={false} />
           </div>
           <div className="case-grid">
             {caseStudies.map((study, i) => (
-              <article key={study.id}>
+              <article key={study.id} data-focus={i + 1}>
                 <p className="technical-label">
                   0{i + 1} / {study.year}
                 </p>
@@ -456,7 +465,7 @@ export function Landing({ locale }: { locale: Locale }) {
               )}
             </p>
             {button("/conteudo", "Explorar conteúdo", "Explore content", true)}
-            <EngineeringScene kind="editorial" compact />
+            <EngineeringScene kind="editorial" locale={locale} />
           </div>
           <ArticleList articles={getArticles(locale).slice(0, 3)} />
         </div>
@@ -468,7 +477,7 @@ export function Landing({ locale }: { locale: Locale }) {
         aria-labelledby="knowledge-title"
       >
         <div className="section-shell split-composition">
-          <EngineeringScene kind="knowledge" />
+          <EngineeringScene kind="knowledge" locale={locale} />
           <div>
             {label("09", "ECOSSISTEMA DE CONHECIMENTO", "KNOWLEDGE ECOSYSTEM")}
             <h2 id="knowledge-title">
@@ -484,16 +493,26 @@ export function Landing({ locale }: { locale: Locale }) {
               )}
             </p>
             <div className="knowledge-links">
-              <Link href={url("/pesquisa/publicacoes")}>
+              <Link href={url("/pesquisa/publicacoes")} data-focus={4}>
                 {t("Produção científica", "Scientific output")} ↗
               </Link>
-              <Link href={url("/projetos")}>
+              <Link href={url("/projetos")} data-focus={3}>
                 {t("Ferramentas digitais", "Digital tools")} ↗
               </Link>
-              <a href={brand.lattes} target="_blank" rel="noopener noreferrer">
+              <a
+                href={brand.lattes}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-focus={1}
+              >
                 {t("Currículo Lattes", "Lattes CV")} ↗
               </a>
-              <a href={brand.orcid} target="_blank" rel="noopener noreferrer">
+              <a
+                href={brand.orcid}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-focus={4}
+              >
                 ORCID ↗
               </a>
             </div>
@@ -530,7 +549,7 @@ export function Landing({ locale }: { locale: Locale }) {
             )}
           </div>
           <div>
-            <EngineeringScene kind="trajectory" compact />
+            <EngineeringScene kind="trajectory" locale={locale} legend={false} />
             <dl className="credential-ledger">
               {[
                 [
@@ -555,7 +574,7 @@ export function Landing({ locale }: { locale: Locale }) {
                   "Consultative guidance, rigor and academic integrity.",
                 ],
               ].map(([n, pt, en, dpt, den]) => (
-                <div key={n}>
+                <div key={n} data-focus={Number(n)}>
                   <dt>
                     <span>{n}</span>
                     {t(pt, en)}
@@ -585,7 +604,7 @@ export function Landing({ locale }: { locale: Locale }) {
             <p className="section-lead">
               {t(
                 "Receba novas notas no seu leitor de RSS. Um canal aberto para acompanhar o conhecimento publicado.",
-                "Receive new notes in your RSS reader. An open channel for following published knowledge.",
+                "Receive new notes in your RSS reader (the feed is currently in Portuguese). An open channel for following published knowledge.",
               )}
             </p>
             <a className="sw-button" href="/feed.xml">
@@ -594,7 +613,7 @@ export function Landing({ locale }: { locale: Locale }) {
             </a>
           </div>
           <div>
-            <EngineeringScene kind="updates" compact />
+            <EngineeringScene kind="updates" locale={locale} />
             <aside className="newsletter-panel">
               <h3>{t("Atualizações por e-mail", "Email updates")}</h3>
               <p>
@@ -653,7 +672,7 @@ export function Landing({ locale }: { locale: Locale }) {
               )}
             </div>
           </div>
-          <EngineeringScene kind="contact" />
+          <EngineeringScene kind="contact" locale={locale} />
         </div>
         {advance(12)}
       </section>
