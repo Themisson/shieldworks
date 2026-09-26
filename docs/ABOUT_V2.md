@@ -13,29 +13,34 @@ O retrato dominava porque a altura mínima fixa e a coluna larga não dependiam 
 
 ## Nova estrutura
 
-Faixas full-width com o gutter único; medida limitada só em textos corridos.
+Deck de oito telas, como a landing (`ScreenDeck`): cada tema ocupa uma tela, encaixa ao
+rolar ou ao clicar nas âncoras e entra como slide. Medido: todas cabem de 1280×590 a
+2560×1440 em PT e EN; no mobile as telas crescem com o conteúdo.
 
-| # | Bloco | Conteúdo | Visual |
+| # | Tela (id) | Conteúdo | Visual |
 |---|---|---|---|
-| 1 | Identidade e convergência | frase, contexto curto, âncoras internas | cena `aboutConvergence` |
+| 1 | Origem (`origem`) | frase, contexto curto, âncoras internas | cena `aboutConvergence` |
 | 2 | Quem sou | retrato 4:5, nome, papéis, biografia, perfis, ressalva institucional | — |
-| 3 | Trajetória | mapa de quatro linhas e nove estações | cena `career` / trilho mobile |
-| 4 | Áreas que convergem | engenharia, pesquisa, tecnologia, segurança com ramificações | cena `aboutAreas` |
-| 5 | Pesquisa aplicada | processo, linhas de pesquisa, três publicações, CTAs | cena `researchProcess` |
-| 6 | Princípios | método, rigor, documentação, validação, aplicação | tipografia |
-| 7 | Encerramento | frase de fechamento, projetos e contato | — |
+| 3 | Trajetória | mapa de quatro linhas e nove estações de uma linha | cena `career` / trilho mobile |
+| 4 | Áreas | engenharia, pesquisa, tecnologia, segurança com ramificações | cena `aboutAreas` |
+| 5 | Pesquisa aplicada | processo em seis etapas | cena `researchProcess` |
+| 6 | Produção científica | linhas de pesquisa, três publicações, CTAs | — |
+| 7 | Princípios | método, rigor, documentação, validação, aplicação | tipografia |
+| 8 | Hoje | frase de fechamento, projetos e contato | — |
 
 ## Fotografia
 
 Mesma imagem (`public/image-themisson.jpeg`), agora na seção 2. `aspect-ratio: 4/5`,
 sem legenda sobreposta nem sombra. Larguras: 176 px (<48rem, centralizada), 208 px
 (48–64rem), 240 px (64–80rem) e 280 px a partir de 80rem — nunca cresce além disso.
+Em desktops baixos, para a tela caber: 208 px até 800 px de altura e 176 px até 608 px.
 `sizes` acompanha essas larguras, então o navegador baixa uma variante pequena.
 
 ## Conteúdo e fatos
 
 Os textos vêm do conteúdo existente; o catálogo `src/data/profile.ts` registra a fonte de
-cada estação e eixo. Não há cronologia comprovada para formação e carreira, por isso a
+cada estação e eixo. Confirmado pelo proprietário em 26/09/2026: posto de Tenente-Coronel
+do CBMAL e "Mestrado e Doutorado em Engenharia Civil, área de concentração Estruturas". Não há cronologia comprovada para formação e carreira, por isso a
 trajetória é um mapa de conexões, não uma linha do tempo: só aparecem anos documentados
 (tese e docência em 2019, publicações de 2024 e 2025). Pendências do proprietário estão
 em [PAGE_REVIEW_V2.md](PAGE_REVIEW_V2.md).

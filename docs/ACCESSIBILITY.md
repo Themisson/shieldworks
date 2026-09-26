@@ -30,3 +30,8 @@ e viewport de 1024×500. A matriz geométrica cobre as 13 resoluções solicitad
 Limite: axe não substitui avaliação com leitor de tela ou pessoas com deficiência;
 não se declara certificação WCAG. A revisão local registrou e corrigiu contraste do
 ano editorial/CTA lateral, overflow do BibTeX e foco do menu. Evidências em TESTING.md.
+
+Tema: botão no header com nome de ação ("Ativar tema escuro"), alvo de 40–44 px, foco
+visível; preferência do sistema respeitada até haver escolha. axe (WCAG 2.2 AA) sem
+violações no tema escuro em oito rotas a 390 e 1440. Slides não ocultam conteúdo
+visível e não existem com reduced motion; âncoras enquadram a seção sob o header.

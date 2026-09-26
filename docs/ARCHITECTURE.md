@@ -15,6 +15,8 @@ por advisories concretos, descritos em SECURITY.md. Não há banco, CMS ou auten
 | Geometria | `src/styles/tokens.css`, `v2.css` | gutter único, medidas locais e grids fluidos |
 | Narrativa | `src/components/landing` | do problema físico à decisão documentada |
 | Ilustração | `src/components/illustrations` | 17 cenas server-side (12 na landing, 4 na Sobre), partes numeradas ligadas ao texto, movimento opcional |
+| Deck de telas | `src/components/layout/screen-deck.tsx` | encaixe medido e slides na landing e na Sobre |
+| Tema | `src/lib/theme.ts`, `src/components/theme-toggle.tsx` | claro/escuro sem flash ([ADR 0009](adr/0009-theme.md)) |
 | Perfil | `src/data/profile.ts` + `src/app/[locale]/sobre` | estações, eixos e princípios da Sobre com a fonte de cada fato ([ABOUT_V2](ABOUT_V2.md)) |
 | SEO | `src/lib/page-metadata.ts`, `src/app/{sitemap,robots,og,feed.xml}` | canonical, hreflang, imagens e distribuição |
 | Comunicação | `src/app/api`, `src/lib/{api-request,email,form-validation,rate-limit}` | contato/feedback, Resend e proteção |

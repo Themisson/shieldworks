@@ -55,3 +55,9 @@ Safari/Firefox e leitores de tela reais são uma expansão futura, sem falsa ale
 
 Docker foi validado em desenvolvimento e standalone de produção com smoke HTTP, PT/EN,
 Markdown em runtime e RSS. Comandos operacionais em DEPLOYMENT.md.
+
+Deck, Sobre em telas e tema (26/09/2026): 39 E2E e 33 unitários. `deck.spec` cobre
+mandatory e telas que cabem em 1280×590 (home, Sobre PT/EN), âncoras exatas a 1440×790,
+1280×590 e 390×740 e o ciclo armado→entrada→retorno por cima do slide. `theme.spec`
+cobre sistema, troca, persistência, limpeza da chave, rótulos EN, aplicação durante
+`loading` (sem flash) e axe no escuro. `theme.test.ts` executa o script de início.

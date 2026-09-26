@@ -46,9 +46,9 @@ a maior parte das classes V1 de várias rotas de uma vez.
 
 ## Decisões do proprietário
 
-1. Confirmar o posto "Tenente-Coronel" (aparece só na biografia; o resto diz "Oficial").
-2. Grau: "mestre e doutor na área de estruturas e geomecânica" (Sobre) ou "em Estruturas
-   e Geomecânica" (landing), que parece nome de programa.
+1. ~~Posto~~: Tenente-Coronel confirmado (26/09/2026).
+2. ~~Grau~~: "Mestrado e Doutorado em Engenharia Civil, área de concentração Estruturas"
+   (26/09/2026); aplicado na Sobre, na landing e no catálogo.
 3. Repositórios dos produtos: publicar ou manter privados (links seguem ocultos).
 4. Landing com 12 ou 9 seções; voz impessoal/singular em vez de "conectamos".
 5. Texto de privacidade: identificação do controlador e canal LGPD.

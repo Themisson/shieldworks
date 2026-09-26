@@ -46,3 +46,13 @@ Parte ativa: opacidade 1 e traço em verde; demais recuam para .36. Item numerad
 acende `border-top` com `--focus-accent`. Variante `wide` (`min(40dvh,21rem)`, alinhada à
 esquerda) para mapa e processo; `narrowViewBox` troca o layout abaixo de 48rem. Linhas do
 mapa: âmbar operação, verde engenharia/pesquisa, tinta computação, cinza-verde ensino.
+
+## Tema escuro
+
+Mesmos nomes de token, outros valores em `:root[data-theme="dark"]` (e sob
+`prefers-color-scheme` sem escolha): papel `#0d171a`, superfície `#111e22`, tinta
+`#e4ede9`, secundária `#a4b7b2`, linha `#2b4046`, seções escuras `#0b242b`, sinal
+`#6fcfa5`. Botões usam `--button-bg/-fg/-hover-*` (claro: petróleo; escuro: verde-claro
+com texto escuro). A paleta Tailwind V1 lê `--c-graphite-*`, `--c-petroleum-*`,
+`--c-safety-*` e `--c-white`, espelhadas no escuro. As cenas usam a paleta das seções
+escuras em todo o tema escuro.

@@ -22,7 +22,7 @@ esquemáticos, sem escala ou dados de solver. O destaque científico é a public
 - Em alturas ≤900px e ≤672px, listas e ilustrações ficam um pouco mais densas; telas
   altas mantêm o ritmo amplo. Nenhum texto é ocultado; só os símbolos decorativos dos
   cards de projeto (`aria-hidden`) somem em telas baixas, pois a cena já os representa.
-- `LandingSnap` mede via ResizeObserver, após fontes e resize; se conteúdo/zoom exceder
+- `ScreenDeck` mede via ResizeObserver, após fontes e resize; se conteúdo/zoom exceder
   a tela, volta a proximity. Não há listener de scroll/wheel/touch nem preventDefault.
 - Mobile, altura <600 ou reduced motion: sem snap. `scroll-snap-stop:normal` deixa
   saltar tópicos. Footer tem snap-align end; Home/End continuam alcançando os extremos.

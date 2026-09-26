@@ -32,3 +32,17 @@ fino somente se ResizeObserver confirmar que todas as seções cabem; proximity 
 sem snap no mobile, em altura <600px e em reduced motion. `min-height` continua mínimo,
 nunca altura fixa: zoom, fonte maior ou conteúdo novo fazem a seção crescer e retiram
 mandatory automaticamente.
+
+## Terceira revisão — deck de telas e slides (26/09/2026)
+
+`ScreenDeck` (`src/components/layout/screen-deck.tsx`) substitui `LandingSnap` e serve à
+landing e à Sobre (`.landing-screens` / `.landing-screen`). Âncoras param exatamente sob
+o header em todas as larguras (`scroll-padding-top` igual ao header, que agora mede
+exatamente `--header-height`). Encaixe: proximity a partir de 768×528; mandatory em
+desktop ≥1024×528 com ponteiro fino quando todas as telas cabem. Abaixo de 38rem de
+altura o header cai para 56 px e a densidade aumenta: as duas páginas cabem em 1280×590
+(notebooks com escala de 150%). A medição usa a altura de layout, não `scrollHeight`.
+
+Slides: uma tela totalmente fora da viewport fica "armada"; ao passar 15% para dentro,
+seu conteúdo entra deslizando a partir do lado de onde vem. Nada visível é ocultado;
+reduced motion e ausência de JavaScript não armam telas.
