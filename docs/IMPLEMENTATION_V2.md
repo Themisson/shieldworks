@@ -61,3 +61,11 @@ horizontais específicos e pausa/reduced motion. Sem remoção de dados/rotas/AP
 Check, 29 unitários, 27 E2E, inspeção visual e Docker production aprovados.
 Relatório com análise, motivo, arquivos, testes, limites e próxima fase:
 [SCROLL_SVG_REVISION.md](SCROLL_SVG_REVISION.md).
+
+## Segunda revisão — cenas leves, interativas e encaixe em laptops
+
+Pedido do proprietário: SVGs mais leves e iterativos e um tópico por tela. Cenas viram
+Server Components com traço fino, numerais ligados ao texto e sequência pausável; o
+encaixe mandatory passa a valer nas áreas úteis reais de laptops. Sem remoção de dados,
+rotas, APIs ou analytics. Check, 29 unitários, 29 E2E e inspeção visual aprovados.
+Detalhes e medições em [SCROLL_SVG_REVISION.md](SCROLL_SVG_REVISION.md#segunda-revisão).

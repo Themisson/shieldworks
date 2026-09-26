@@ -3,6 +3,9 @@
 Estrutura: html lang por rota, skip link traduzido, header/nav/main/footer, um h1 por
 página, links com aria-current e foco global visível. SVGs informativos têm alternativa
 conceitual; adornos são aria-hidden. Nenhuma informação depende do movimento.
+Cenas não têm palavras no SVG: numerais correspondem a legenda HTML ou lista numerada.
+O destaque parte↔item responde a hover e foco de teclado; não depende só de cor
+(a parte ativa também muda de opacidade) nem de JavaScript.
 
 Menu mobile: dialog nativo, fundo inerte, foco inicial, ciclo Tab/Shift+Tab, Escape e
 retorno ao acionador. Feedback: aria-modal, título/descrição, fundo inerte, foco cíclico,
@@ -14,7 +17,9 @@ Reduced motion: estado final das curvas, sem animações, transições, snap ou 
 suave. Sem JS: conteúdo SSR e SVG estático disponíveis, footer oferece rotas; formulários
 e modais interativos precisam de JS e não simulam envio.
 
-Targets principais de navegação/ações têm 44–48px. Indicador discreto tem 24×28px,
+Targets principais de navegação/ações têm 44–48px. Com ponteiro fino, o avanço de seção
+tem 36px e o controle de pausa 32px (acima dos 24px do WCAG 2.2 AA); em ponteiro grosso
+ambos voltam a 44px. Indicador discreto tem 24×28px,
 aparece apenas quando existe gutter suficiente. Medidas tipográficas e grids crescem
 sem cortar conteúdo. Código/tabelas/equações possuem rolagem local.
 

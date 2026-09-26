@@ -25,7 +25,13 @@ Artefatos gerados não entram no Git/lint. Não adicionar skip para contornar re
 Primeira entrega: 29 testes unitários em sete arquivos e 24 E2E. A revisão de snap/SVG
 adiciona três cenários de jornada: 12 cenas únicas, encaixe/avanço em cada tópico, roda
 do mouse/PageDown, mandatory condicionado à altura real, conteúdo alto, tablet/mobile,
-reduced motion, limpeza ao sair da landing e pausa das cenas. `inspect:local` usa
+reduced motion, limpeza ao sair da landing e pausa das cenas. A revisão de cenas leves
+adiciona dois (29 E2E): mandatory e uma seção por tela em 1366×650, 1280×720, 1440×790 e
+1536×730 sem conteúdo fora da seção nem sob o avanço; ligação item↔parte por hover, foco
+e sem JavaScript; sequência com régua do item; entrada só fora da tela; SVG só com
+numerais. `e2e/about.spec.ts` adiciona três (32 E2E): retrato controlado, cenas e trilho
+por largura, ligação estação↔parte, links e reduced motion. axe cobre também `/sobre`,
+`/sistemas`, detalhe de case, `/conteudo` e publicações em EN. `inspect:local` usa
 servidor próprio em 3400, captura 12 seções/dez internas e registra métricas sintéticas
 em docs/validation; encerra o servidor ao terminar. Execute após E2E, que recria test-results.
 

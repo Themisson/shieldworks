@@ -4,13 +4,12 @@
   "measurements": [
     {
       "width": 390,
-      "lcp": 192,
+      "lcp": null,
       "cls": 0,
-      "longTasks": 0,
-      "fcp": 192,
-      "resources": 26,
-      "jsTransferBytes": 196743,
-      "totalTransferBytes": 311998,
+      "longTasks": 14,
+      "resources": 17,
+      "jsTransferBytes": 177926,
+      "totalTransferBytes": 263488,
       "resourcesByType": [
         {
           "name": "/_next/static/media/1b99372b3eaef0c8-s.p.1gsd1jahc5dg_.woff2",
@@ -23,6 +22,11 @@
           "decodedBytes": 10120
         },
         {
+          "name": "/icon.svg",
+          "transferBytes": 737,
+          "decodedBytes": 437
+        },
+        {
           "name": "/_next/static/media/99e609270109b47d-s.p.40sczeszzbjw1.woff2",
           "transferBytes": 10352,
           "decodedBytes": 10052
@@ -33,19 +37,14 @@
           "decodedBytes": 10060
         },
         {
-          "name": "/icon.svg",
-          "transferBytes": 737,
-          "decodedBytes": 437
-        },
-        {
-          "name": "/_next/static/chunks/130gr4-1g9t26.css",
-          "transferBytes": 13694,
-          "decodedBytes": 66173
-        },
-        {
           "name": "/_next/static/chunks/3c4-ozf1dxam2.css",
           "transferBytes": 4431,
           "decodedBytes": 24383
+        },
+        {
+          "name": "/_next/static/chunks/1o9w4gvypim1i.css",
+          "transferBytes": 14405,
+          "decodedBytes": 70687
         },
         {
           "name": "/_next/static/chunks/3s6nzrbk-8mnv.js",
@@ -53,24 +52,14 @@
           "decodedBytes": 5598
         },
         {
-          "name": "/_next/static/chunks/turbopack-276eoluup34z0.js",
-          "transferBytes": 4601,
-          "decodedBytes": 10946
-        },
-        {
           "name": "/_next/static/chunks/1d8durn3f0db4.js",
           "transferBytes": 7913,
           "decodedBytes": 28907
         },
         {
-          "name": "/_next/static/chunks/2-rtuqsgzmno4.js",
-          "transferBytes": 45395,
-          "decodedBytes": 165743
-        },
-        {
-          "name": "/_next/static/chunks/2k_ahogzgc5xx.js",
-          "transferBytes": 71877,
-          "decodedBytes": 228922
+          "name": "/_next/static/chunks/turbopack-276eoluup34z0.js",
+          "transferBytes": 4601,
+          "decodedBytes": 10946
         },
         {
           "name": "/_next/static/chunks/3fntmmi971322.js",
@@ -83,64 +72,29 @@
           "decodedBytes": 30211
         },
         {
+          "name": "/_next/static/chunks/2-rtuqsgzmno4.js",
+          "transferBytes": 45395,
+          "decodedBytes": 165743
+        },
+        {
           "name": "/_next/static/chunks/3ubqdzlt537ky.js",
           "transferBytes": 19871,
           "decodedBytes": 68934
         },
         {
+          "name": "/_next/static/chunks/2k_ahogzgc5xx.js",
+          "transferBytes": 71877,
+          "decodedBytes": 228922
+        },
+        {
+          "name": "/_next/static/chunks/41c79ntw3lc70.js",
+          "transferBytes": 2317,
+          "decodedBytes": 4935
+        },
+        {
           "name": "/_next/static/chunks/3a2qo-dhaoxnp.js",
           "transferBytes": 11117,
           "decodedBytes": 31024
-        },
-        {
-          "name": "/_next/static/chunks/3b0yt5oy0_yjs.js",
-          "transferBytes": 10546,
-          "decodedBytes": 34226
-        },
-        {
-          "name": "/",
-          "transferBytes": 709,
-          "decodedBytes": 886
-        },
-        {
-          "name": "/en",
-          "transferBytes": 708,
-          "decodedBytes": 886
-        },
-        {
-          "name": "/solucoes",
-          "transferBytes": 719,
-          "decodedBytes": 961
-        },
-        {
-          "name": "/projetos",
-          "transferBytes": 720,
-          "decodedBytes": 961
-        },
-        {
-          "name": "/",
-          "transferBytes": 8951,
-          "decodedBytes": 40700
-        },
-        {
-          "name": "/en",
-          "transferBytes": 8817,
-          "decodedBytes": 40195
-        },
-        {
-          "name": "/solucoes",
-          "transferBytes": 5226,
-          "decodedBytes": 43137
-        },
-        {
-          "name": "/projetos",
-          "transferBytes": 4554,
-          "decodedBytes": 15296
-        },
-        {
-          "name": "/_next/static/chunks/2f7fecmlm2cgi.js",
-          "transferBytes": 10588,
-          "decodedBytes": 34183
         }
       ]
     },
@@ -148,11 +102,11 @@
       "width": 1440,
       "lcp": null,
       "cls": 0,
-      "longTasks": 33,
-      "fcp": 200,
+      "longTasks": 12,
+      "fcp": 160,
       "resources": 35,
-      "jsTransferBytes": 198712,
-      "totalTransferBytes": 335912,
+      "jsTransferBytes": 182252,
+      "totalTransferBytes": 338344,
       "resourcesByType": [
         {
           "name": "/_next/static/media/1b99372b3eaef0c8-s.p.1gsd1jahc5dg_.woff2",
@@ -170,16 +124,6 @@
           "decodedBytes": 10052
         },
         {
-          "name": "/icon.svg",
-          "transferBytes": 737,
-          "decodedBytes": 437
-        },
-        {
-          "name": "/_next/static/chunks/130gr4-1g9t26.css",
-          "transferBytes": 13694,
-          "decodedBytes": 66173
-        },
-        {
           "name": "/_next/static/media/effe91970fc4db64-s.p.0oace-s_gkfks.woff2",
           "transferBytes": 10360,
           "decodedBytes": 10060
@@ -188,6 +132,16 @@
           "name": "/_next/static/chunks/3c4-ozf1dxam2.css",
           "transferBytes": 4431,
           "decodedBytes": 24383
+        },
+        {
+          "name": "/icon.svg",
+          "transferBytes": 737,
+          "decodedBytes": 437
+        },
+        {
+          "name": "/_next/static/chunks/1o9w4gvypim1i.css",
+          "transferBytes": 14405,
+          "decodedBytes": 70687
         },
         {
           "name": "/_next/static/chunks/3s6nzrbk-8mnv.js",
@@ -200,9 +154,9 @@
           "decodedBytes": 28907
         },
         {
-          "name": "/_next/static/chunks/turbopack-276eoluup34z0.js",
-          "transferBytes": 4601,
-          "decodedBytes": 10946
+          "name": "/_next/static/chunks/2k_ahogzgc5xx.js",
+          "transferBytes": 71877,
+          "decodedBytes": 228922
         },
         {
           "name": "/_next/static/chunks/3fntmmi971322.js",
@@ -210,9 +164,9 @@
           "decodedBytes": 14377
         },
         {
-          "name": "/_next/static/chunks/154i5qb1_0wge.js",
-          "transferBytes": 10874,
-          "decodedBytes": 30211
+          "name": "/_next/static/chunks/turbopack-276eoluup34z0.js",
+          "transferBytes": 4601,
+          "decodedBytes": 10946
         },
         {
           "name": "/_next/static/chunks/2-rtuqsgzmno4.js",
@@ -220,14 +174,14 @@
           "decodedBytes": 165743
         },
         {
-          "name": "/_next/static/chunks/3ubqdzlt537ky.js",
-          "transferBytes": 19871,
-          "decodedBytes": 68934
+          "name": "/_next/static/chunks/154i5qb1_0wge.js",
+          "transferBytes": 10874,
+          "decodedBytes": 30211
         },
         {
-          "name": "/_next/static/chunks/2k_ahogzgc5xx.js",
-          "transferBytes": 71877,
-          "decodedBytes": 228922
+          "name": "/_next/static/chunks/41c79ntw3lc70.js",
+          "transferBytes": 2317,
+          "decodedBytes": 4935
         },
         {
           "name": "/_next/static/chunks/3a2qo-dhaoxnp.js",
@@ -235,9 +189,9 @@
           "decodedBytes": 31024
         },
         {
-          "name": "/_next/static/chunks/3b0yt5oy0_yjs.js",
-          "transferBytes": 10546,
-          "decodedBytes": 34226
+          "name": "/_next/static/chunks/3ubqdzlt537ky.js",
+          "transferBytes": 19871,
+          "decodedBytes": 68934
         },
         {
           "name": "/",
@@ -250,13 +204,13 @@
           "decodedBytes": 961
         },
         {
-          "name": "/projetos",
+          "name": "/pesquisa",
           "transferBytes": 720,
           "decodedBytes": 961
         },
         {
-          "name": "/pesquisa",
-          "transferBytes": 719,
+          "name": "/projetos",
+          "transferBytes": 720,
           "decodedBytes": 961
         },
         {
@@ -266,12 +220,12 @@
         },
         {
           "name": "/sobre",
-          "transferBytes": 717,
+          "transferBytes": 718,
           "decodedBytes": 958
         },
         {
           "name": "/en",
-          "transferBytes": 708,
+          "transferBytes": 709,
           "decodedBytes": 886
         },
         {
@@ -281,23 +235,23 @@
         },
         {
           "name": "/",
-          "transferBytes": 8951,
-          "decodedBytes": 40700
+          "transferBytes": 16337,
+          "decodedBytes": 80104
         },
         {
           "name": "/solucoes",
-          "transferBytes": 5226,
-          "decodedBytes": 43137
+          "transferBytes": 7073,
+          "decodedBytes": 49149
         },
         {
           "name": "/projetos",
-          "transferBytes": 4554,
+          "transferBytes": 4555,
           "decodedBytes": 15296
         },
         {
           "name": "/pesquisa",
-          "transferBytes": 8520,
-          "decodedBytes": 62919
+          "transferBytes": 10094,
+          "decodedBytes": 67888
         },
         {
           "name": "/conteudo",
@@ -305,23 +259,23 @@
           "decodedBytes": 3265
         },
         {
-          "name": "/_next/static/chunks/2f7fecmlm2cgi.js",
-          "transferBytes": 10588,
-          "decodedBytes": 34183
-        },
-        {
           "name": "/sobre",
-          "transferBytes": 4850,
+          "transferBytes": 4851,
           "decodedBytes": 23670
         },
         {
+          "name": "/_next/static/chunks/16id7zu1_jhr-.js",
+          "transferBytes": 2357,
+          "decodedBytes": 4890
+        },
+        {
           "name": "/en",
-          "transferBytes": 8817,
-          "decodedBytes": 40195
+          "transferBytes": 16184,
+          "decodedBytes": 79403
         },
         {
           "name": "/contato",
-          "transferBytes": 4434,
+          "transferBytes": 4436,
           "decodedBytes": 15985
         },
         {

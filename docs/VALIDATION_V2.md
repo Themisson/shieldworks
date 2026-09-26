@@ -121,12 +121,13 @@ pela aplicação e conteúdo principal SSR. Analytics Vercel monta somente em am
 
 | Viewport | LCP/FCP | CLS | JS transferido | Recursos transferidos |
 |---|---|---|---|---|
-| 390×844 | 192 / 192 ms | 0 | 196.743 bytes | 311.998 bytes |
-| 1440×900 | não observado / 200 ms | 0 | 198.712 bytes | 335.912 bytes |
+| 390×844 | não observado / não observado | 0 | 177.926 bytes | 263.488 bytes |
+| 1440×900 | não observado / 160 ms | 0 | 182.252 bytes | 338.344 bytes |
 
-LCP desktop não recebeu candidato nesta execução e aparece como `null` no JSON, nunca
-como zero milissegundos. Tempo bloqueante além de 50 ms em tarefas longas: 0/33 ms,
-respectivamente. Os valores
+Valores da revisão de cenas leves (26/09/2026). Antes dela: 196.743/311.998 bytes em 390
+e 198.712/335.912 bytes em 1440. LCP/FCP sem candidato aparecem como `null` ou ausentes
+no JSON, nunca como zero. Tempo bloqueante além de 50 ms em tarefas longas: 14/12 ms
+(antes 0/33 ms), variação típica de uma única execução sintética. Os valores
 não são promessa de desempenho em rede móvel, INP ou Core Web Vitals de produção.
 Não há listener de scroll por frame nem biblioteca pesada de animação.
 

@@ -20,7 +20,7 @@ em 2560. Header, footer e todas as páginas usam `.section-shell` sem max-width 
 | Informação | tinta `#142f36`, secundária `#4e6368`, sinal `#1c6b59`, verde claro `#9ee4b9`, âmbar `#e6bd60` |
 | Forma | raios .25rem/.75rem; sombra apenas para elementos flutuantes |
 | Tipo | display, seção e lead fluidos; altura da viewport também limita títulos grandes |
-| Movimento | 160ms para resposta; 12s para cenas; easing documentado no arquivo |
+| Movimento | 160ms para resposta; 450ms destaque de cena; passo de 2,6s; easing no arquivo |
 | Camadas | header 50, indicador 40, dialog 70; dialog nativo usa top layer |
 
 Composição larga, leitura com medida local. Grids usam `minmax(0,...)`; filhos têm
@@ -34,3 +34,15 @@ Evoluções devem convergir estilos de componente para tokens, sem alterar dados
 
 Foco global usa contorno visível; em superfícies escuras, âmbar. Contraste é coberto por
 axe nas páginas de entrada, pesquisa, projeto, artigo, contato e sobre em inglês.
+
+## Ilustrações
+
+`src/styles/scenes.css`: traço de 1–2px sem escala (`non-scaling-stroke`), preenchimento
+branco/petróleo conforme a seção, verde para método/sistema e âmbar para fluxo/atenção.
+Tokens `--art-ink|mute|soft|accent|warm|fill|tint|text`; `.dark-section` redefine todos.
+Sem texto no SVG além de numerais; legenda HTML em `.scene-legend`. Alturas por variante:
+hero `min(50dvh,32rem)`, standard `min(46dvh,28rem)`, compacta `clamp(7rem,21dvh,13rem)`.
+Parte ativa: opacidade 1 e traço em verde; demais recuam para .36. Item numerado ativo
+acende `border-top` com `--focus-accent`. Variante `wide` (`min(40dvh,21rem)`, alinhada à
+esquerda) para mapa e processo; `narrowViewBox` troca o layout abaixo de 48rem. Linhas do
+mapa: âmbar operação, verde engenharia/pesquisa, tinta computação, cinza-verde ensino.
