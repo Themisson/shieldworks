@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
   --background: var(--paper);
   --foreground: var(--ink);
   --border: var(--line);
@@ -151,8 +150,7 @@ p {
     pointer-events: none;
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(180deg, rgba(238, 245, 247, 0.92) 0%, rgba(247, 249, 250, 0.35) 50%, transparent 100%);
+    background: linear-gradient(180deg, var(--surface-muted) 0%, transparent 100%);
   }
 
   .panel {

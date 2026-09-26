@@ -2,7 +2,7 @@
 @import "./about.css";
 /* Shared geometry and ShieldWorks technical composition. */
 .section-shell > *, .split-composition > *, .hero-composition > *, .project-grid > *, .case-grid > * { min-width: 0; }
-.site-header { position: sticky; top: 0; z-index: var(--z-header); background: var(--surface); border-bottom: 1px solid var(--line); }
+.site-header { position: sticky; top: 0; z-index: var(--z-header); background: var(--surface); box-shadow: 0 1px 0 var(--line); }
 .header-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); min-height: var(--header-height); }
 .desktop-navigation { display: flex; align-items: center; gap: clamp(0.5rem, 1.6vw, 2rem); }
 .desktop-navigation a { color: var(--ink-muted); padding-block: var(--space-2); font-size: 0.875rem; }
@@ -11,7 +11,7 @@
 .header-contact { display: flex; align-items: center; gap: var(--space-2); font-size: 0.875rem; font-weight: 600; }
 .language-toggle { display: flex; gap: 0.25rem; font-family: var(--font-mono), monospace; font-size: 0.75rem; }
 .language-toggle a { display: grid; place-items: center; min-width: 2.5rem; min-height: 2.75rem; border-radius: var(--radius-small); }
-.language-toggle a[aria-current] { background: var(--night); color: var(--on-night); }
+.language-toggle a[aria-current] { background: var(--button-bg); color: var(--button-fg); }
 .menu-trigger { display: none; width: 2.75rem; height: 2.75rem; border: 1px solid var(--line); border-radius: var(--radius-small); flex-shrink: 0; }
 .menu-trigger svg { width: 1.5rem; height: 1.5rem; margin: auto; stroke: var(--ink); fill: none; stroke-width: 1.5; }
 .mobile-menu { margin: 0 0 0 auto; padding: var(--space-3); width: min(100%, 26rem); height: 100dvh; max-height: 100dvh; border: 0; background: var(--surface); color: var(--ink); box-shadow: var(--shadow-float); }
@@ -32,8 +32,8 @@
 .reading-copy + .sw-button { margin-top: var(--space-4); }
 .split-composition { display: grid; gap: var(--composition-gap); align-items: center; }
 .section-heading-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--space-4); margin-bottom: var(--space-4); }
-.sw-button { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 3rem; padding: 0.85rem 1.25rem; font-size: 0.875rem; font-weight: 500; background: var(--night); color: var(--on-night); border: 1px solid var(--night); border-radius: var(--radius-small); transition: background var(--duration-fast); }
-.sw-button:hover { background: var(--signal); border-color: var(--signal); }
+.sw-button { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 3rem; padding: 0.85rem 1.25rem; font-size: 0.875rem; font-weight: 500; background: var(--button-bg); color: var(--button-fg); border: 1px solid var(--button-bg); border-radius: var(--radius-small); transition: background var(--duration-fast); }
+.sw-button:hover { background: var(--button-hover-bg); border-color: var(--button-hover-bg); color: var(--button-hover-fg); }
 .sw-button-secondary { background: transparent; color: var(--ink); border-color: var(--line); }
 .sw-button-secondary:hover { background: var(--surface-muted); border-color: var(--ink-muted); }
 .button-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
@@ -60,7 +60,7 @@
 .solution-ledger a:hover h3 { text-decoration: underline; text-underline-offset: 0.2em; }
 .ledger-number { font-family: var(--font-mono), monospace; color: var(--signal); font-size: 0.75rem; }
 .tag-line { font-family: var(--font-mono), monospace; font-size: 0.65rem; color: var(--ink-muted); margin-top: var(--space-2); }
-.dark-section { background: var(--night); color: var(--on-night); border-color: #34525a; }
+.dark-section { background: var(--night); color: var(--on-night); border-color: var(--night-line); }
 .dark-section .technical-label, .dark-section .section-lead { color: var(--on-night-muted); }
 .dark-section .technical-label > span:first-child { color: var(--signal-light); }
 .dark-section .sw-button { background: var(--signal-light); color: var(--night-deep); border-color: var(--signal-light); }
@@ -69,7 +69,7 @@
 .dark-section .sw-button-secondary:hover { background: #23464e; }
 .dark-section :focus-visible, .engineering-plate :focus-visible { outline-color: var(--amber); }
 .research-line-links { display: grid; margin-block: var(--space-4); }
-.research-line-links a { display: flex; align-items: center; gap: var(--space-3); padding-block: var(--space-3); border-top: 1px solid #34525a; }
+.research-line-links a { display: flex; align-items: center; gap: var(--space-3); padding-block: var(--space-3); border-top: 1px solid var(--night-line); }
 .research-line-links a span:first-child { font-family: var(--font-mono), monospace; color: var(--signal-light); font-size: 0.75rem; }
 .research-line-links a span:last-child { margin-left: auto; }
 .publication-composition { display: grid; gap: var(--composition-gap); margin-top: var(--space-3); }
@@ -105,7 +105,7 @@
 .article-list p:not(.technical-label) { color: var(--ink-muted); line-height: 1.7; font-size: 0.95rem; max-width: var(--reading-measure); }
 .article-time { display: inline-block; color: var(--ink-muted); font-size: 0.7rem; padding-top: var(--space-2); }
 .knowledge-links { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-2); margin-top: var(--space-4); }
-.knowledge-links a { border-top: 1px solid #34525a; padding-block: var(--space-3); font-size: 0.9rem; }
+.knowledge-links a { border-top: 1px solid var(--night-line); padding-block: var(--space-3); font-size: 0.9rem; }
 .credential-ledger > div { border-top: 1px solid var(--line); padding-block: var(--space-4); }
 .credential-ledger dt { font-size: clamp(1.4rem,2.4vw,3rem); font-weight: 500; letter-spacing: -0.035em; display: flex; gap: var(--space-3); }
 .credential-ledger dt span { color: var(--signal); font-family: var(--font-mono), monospace; font-size: 0.8rem; }
@@ -138,7 +138,7 @@
 .detail-aside > * + * { margin-top: var(--space-3); }
 .detail-aside p { line-height: 1.8; color: var(--ink-muted); max-width: 48ch; }
 .detail-aside a { color: var(--signal); text-decoration: underline; text-underline-offset: 0.2em; }
-.detail-aside a.sw-button:not(.sw-button-secondary) { color: var(--on-night); text-decoration: none; }
+.detail-aside a.sw-button:not(.sw-button-secondary) { color: var(--button-fg); text-decoration: none; }
 .breadcrumbs { display: flex; flex-wrap: wrap; gap: var(--space-1); font-size: 0.8rem; color: var(--ink-muted); margin-bottom: var(--space-4); }
 .breadcrumbs a { text-decoration: underline; text-underline-offset: 0.25em; }
 .article-body { max-width: var(--reading-measure); font-size: 1.125rem; line-height: 1.9; color: var(--ink); overflow-wrap: break-word; }
@@ -183,11 +183,13 @@
 }
 @media (min-width: 80rem) { .project-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } }
 @media (min-width: 110rem) and (min-height: 44rem) and (hover: hover) and (pointer: fine) { .section-indicator { display: block; } }
-@media (prefers-reduced-motion: no-preference) and (min-width: 48rem) and (min-height: 37.5rem) {
-  html:has(.landing-screens) { scroll-snap-type: y proximity; scroll-padding-top: var(--header-height); }
+/* Topic pages: anchors land exactly below the header at every size. */
+html:has(.landing-screens) { scroll-padding-top: var(--header-height); }
+@media (prefers-reduced-motion: no-preference) and (min-width: 48rem) and (min-height: 33rem) {
+  html:has(.landing-screens) { scroll-snap-type: y proximity; }
   html:has(.landing-screens) footer { scroll-snap-align: end; }
 }
-@media (prefers-reduced-motion: no-preference) and (min-width: 64rem) and (min-height: 37.5rem) and (hover: hover) and (pointer: fine) {
+@media (prefers-reduced-motion: no-preference) and (min-width: 64rem) and (min-height: 33rem) and (hover: hover) and (pointer: fine) {
   html[data-landing-snap="mandatory"]:has(.landing-screens) { scroll-snap-type: y mandatory; }
 }
 @media (max-width: 79.99rem) { .desktop-navigation, .header-contact { display: none; } .menu-trigger { display: block; } .header-actions { margin-left: auto; } }
@@ -299,3 +301,66 @@
 }
 /* The floating trigger keeps an outline over dark sections of the same petroleum tone. */
 body .feedback-trigger { box-shadow: 0 0 0 1px #9ab6af, var(--shadow-float); }
+/* Laptops at 150% scaling (about 1280×590 usable): a shorter header and tighter rhythm. */
+@media (min-width: 64rem) and (max-height: 38rem) {
+  :root { --header-height: 3.5rem; }
+  .landing-screen { --landing-space: .75rem; --advance-size: 1.75rem; padding-bottom: calc(var(--advance-size) + .5rem); }
+  .landing-screen h2 { font-size: clamp(1.8rem, min(3vw, 6dvh), 3rem); }
+  .landing-screen .section-lead { font-size: 1rem; line-height: 1.55; }
+  .hero-copy h1 { font-size: clamp(2.2rem, 3.6vw, 3.3rem); }
+  .hero-description { font-size: .95rem; line-height: 1.55; }
+  .plate-compact { --scene-height: 5.5rem; }
+  .plate-hero { --scene-height: 40dvh; }
+  .plate-standard { --scene-height: 42dvh; }
+  .landing-screen .solution-ledger > a { padding-block: .3rem; }
+  .landing-screen .solution-ledger h3 { font-size: 1.05rem; }
+  .landing-screen .solution-ledger p { font-size: .8rem; line-height: 1.4; }
+  .landing-screen .solution-ledger .tag-line { display: none; }
+  .landing-screen .case-grid h3 { font-size: 1.1rem; }
+  .landing-screen .case-grid p:not(.technical-label) { font-size: .8rem; line-height: 1.5; }
+  .landing-screen .article-list > article { padding-block: .5rem; }
+  .landing-screen .article-list p:not(.technical-label) { font-size: .82rem; line-height: 1.45; }
+  .projects-screen .project-tile p { font-size: .8rem; line-height: 1.45; margin-block: .35rem; }
+  .research-line-links a { padding-block: .6rem; }
+  .engineering-plate .plate-note { font-size: .6rem; }
+}
+
+/*
+ * Slides: a topic arriving from off-screen brings its content in from the side it
+ * comes from. Only armed (fully off-screen) topics are hidden; see ScreenDeck.
+ */
+@media screen and (prefers-reduced-motion: no-preference) {
+  .landing-screen[data-slide] :is(.section-shell:not(.section-advance) > :not(.split-composition, .hero-composition), .split-composition > *, .hero-composition > *) {
+    transition: opacity .6s var(--ease-out), transform .75s var(--ease-out);
+    transition-delay: calc(var(--slide-i, 0) * 90ms);
+  }
+  .landing-screen[data-slide="armed"] :is(.section-shell:not(.section-advance) > :not(.split-composition, .hero-composition), .split-composition > *, .hero-composition > *) {
+    opacity: 0; transform: translate3d(0, var(--slide-shift, 3rem), 0); transition: none;
+  }
+  .landing-screen[data-slide-from="above"] { --slide-shift: -3rem; }
+  .landing-screen :is(.split-composition, .hero-composition, .section-shell) > :nth-child(2) { --slide-i: 1; }
+  .landing-screen :is(.split-composition, .hero-composition, .section-shell) > :nth-child(3) { --slide-i: 2; }
+  .landing-screen :is(.split-composition, .hero-composition, .section-shell) > :nth-child(n+4) { --slide-i: 3; }
+}
+
+/* Theme toggle: names the action; CSS shows the icon for the current theme. */
+.header-actions { gap: var(--space-2); }
+.theme-toggle { display: grid; place-items: center; flex-shrink: 0; width: 2.75rem; height: 2.75rem; color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius-small); background: transparent; transition: background var(--duration-fast), border-color var(--duration-fast); }
+.theme-toggle:hover { background: var(--surface-muted); border-color: var(--ink-muted); }
+.theme-toggle svg { width: 1.15rem; height: 1.15rem; stroke-width: 1.75; }
+.theme-icon-sun { display: none; }
+:root[data-theme="dark"] .theme-icon-sun { display: block; }
+:root[data-theme="dark"] .theme-icon-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-icon-sun { display: block; }
+  :root:not([data-theme]) .theme-icon-moon { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :root.theme-switching, :root.theme-switching *, :root.theme-switching *::before, :root.theme-switching *::after {
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, fill .35s ease, stroke .35s ease !important;
+  }
+  .theme-toggle svg { transition: transform .35s var(--ease-out); }
+  .theme-toggle:active svg { transform: rotate(-25deg) scale(.9); }
+}
+/* Narrow phones: the theme button joins the header without truncating the name at 360px. */
+@media (max-width: 24rem) { .header-row { gap: var(--space-1); } .header-actions { gap: .25rem; } .language-toggle a { min-width: 2.25rem; } .theme-toggle, .menu-trigger { width: 2.5rem; height: 2.5rem; } }

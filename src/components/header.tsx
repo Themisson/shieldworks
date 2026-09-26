@@ -7,6 +7,7 @@ import { Logo } from "@/components/logo";
 import { LanguageToggle, useLocale } from "@/i18n/locale-provider";
 import { stripLocale } from "@/i18n/routing";
 import { trackEvent } from "@/lib/analytics";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
   ["/", "Início", "Home"],
@@ -56,6 +57,7 @@ export function Header() {
           {items}
         </nav>
         <div className="header-actions">
+          <ThemeToggle />
           <LanguageToggle />
           <Link
             href="/contato"

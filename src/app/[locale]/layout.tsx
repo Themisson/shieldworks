@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/routing";
 import { Analytics } from "@vercel/analytics/react";
@@ -9,6 +9,7 @@ import { Header } from "@/components/header";
 import { brand, githubUrl } from "@/data/site";
 import { LocaleProvider, Text } from "@/i18n/locale-provider";
 import { SITE_URL, canonicalUrl } from "@/lib/seo";
+import { THEME_COLORS, THEME_INIT_SCRIPT } from "@/lib/theme";
 import "../globals.css";
 import "katex/dist/katex.min.css";
 
@@ -109,6 +110,14 @@ export function generateStaticParams() {
   return [{ locale: "pt" }, { locale: "en" }];
 }
 
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: THEME_COLORS.light },
+    { media: "(prefers-color-scheme: dark)", color: THEME_COLORS.dark },
+  ],
+};
+
 export default async function RootLayout({
   children,
   params,
@@ -122,7 +131,12 @@ export default async function RootLayout({
     <html
       lang={locale === "en" ? "en" : "pt-BR"}
       className={`${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* Theme before first paint; a constant script, no user input. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className="min-h-screen font-sans text-graphite-900 antialiased">
         <script
           type="application/ld+json"

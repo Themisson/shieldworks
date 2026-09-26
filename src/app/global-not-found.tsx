@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { IBM_Plex_Mono, Outfit } from "next/font/google";
+import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
 const sans = Outfit({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
@@ -18,7 +19,14 @@ export const metadata = {
 /** Unknown slugs of both locales end here, so the page speaks both languages. */
 export default function GlobalNotFound() {
   return (
-    <html lang="pt-BR" className={`${sans.variable} ${mono.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <main className="section-shell error-page">
           <p className="technical-label">SHIELDWORKS / 404</p>

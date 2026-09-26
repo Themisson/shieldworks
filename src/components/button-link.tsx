@@ -10,7 +10,7 @@ type ButtonLinkProps = {
 
 const variants = {
   primary:
-    "bg-safety-500 text-graphite-900 shadow-sm hover:bg-safety-600 hover:shadow-md focus-visible:ring-safety-200 active:scale-[0.98]",
+    "bg-safety-500 text-[#102f3b] shadow-sm hover:bg-safety-600 hover:shadow-md focus-visible:ring-safety-200 active:scale-[0.98]",
   secondary:
     "border border-petroleum-200 bg-white text-petroleum-900 shadow-sm hover:border-petroleum-400 hover:bg-petroleum-50 focus-visible:ring-petroleum-100 active:scale-[0.98]",
   ghost:

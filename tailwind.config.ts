@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: ["selector", '[data-theme="dark"]'],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,42 +13,28 @@ const config: Config = {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"]
       },
+      /* V1 palette read from CSS variables, so the dark theme remaps it (tokens.css). */
       colors: {
-        petroleum: {
-          50: "#eef5f7",
-          100: "#d9e7eb",
-          200: "#b5cfd8",
-          300: "#7eacbb",
-          400: "#4a8a9c",
-          500: "#2f7180",
-          600: "#275d6a",
-          700: "#1e5362",
-          800: "#173f4a",
-          900: "#102f3b",
-          950: "#0a1c24"
-        },
-        graphite: {
-          50: "#f5f7f8",
-          100: "#e5eaed",
-          200: "#cdd6db",
-          300: "#a8b5bd",
-          400: "#7a8a94",
-          500: "#68747d",
-          600: "#4f5b63",
-          700: "#39444c",
-          800: "#273037",
-          900: "#162027",
-          950: "#0d1318"
-        },
+        white: "rgb(var(--c-white) / <alpha-value>)",
+        petroleum: Object.fromEntries(
+          [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map((k) => [
+            k,
+            `rgb(var(--c-petroleum-${k}) / <alpha-value>)`,
+          ]),
+        ),
+        graphite: Object.fromEntries(
+          [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950].map((k) => [
+            k,
+            `rgb(var(--c-graphite-${k}) / <alpha-value>)`,
+          ]),
+        ),
         signal: "#2f8f83",
-        safety: {
-          50: "#fff8e8",
-          100: "#f7e5b5",
-          200: "#efd07a",
-          500: "#d39a2a",
-          600: "#b77b16",
-          700: "#8e5e0e"
-        }
+        safety: Object.fromEntries(
+          [50, 100, 200, 500, 600, 700].map((k) => [
+            k,
+            `rgb(var(--c-safety-${k}) / <alpha-value>)`,
+          ]),
+        ),
       },
       boxShadow: {
         soft: "0 18px 48px rgba(16, 47, 59, 0.08)",
