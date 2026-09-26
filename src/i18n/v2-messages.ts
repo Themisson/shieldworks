@@ -169,8 +169,8 @@ export const v2Messages: Record<string, string> = {
   "Conversar pelo WhatsApp": "Chat on WhatsApp",
   "Engenharia · Pesquisa · Segurança · Tecnologia":
     "Engineering · Research · Safety · Technology",
-  "Themisson dos Santos Vasconcelos é Tenente-Coronel do Corpo de Bombeiros Militar de Alagoas, engenheiro de petróleo, mestre e doutor na área de estruturas e geomecânica. Sua trajetória integra segurança operacional, pesquisa aplicada, engenharia computacional, gestão acadêmica e desenvolvimento de soluções digitais.":
-    "Themisson dos Santos Vasconcelos is a Lieutenant Colonel in the Alagoas Military Fire Department, a petroleum engineer, and holds master’s and doctoral degrees in structures and geomechanics. His career connects operational safety, applied research, computational engineering, academic management and digital solution development.",
+  "Themisson dos Santos Vasconcelos é Tenente-Coronel do Corpo de Bombeiros Militar de Alagoas, engenheiro de petróleo, mestre e doutor em Engenharia Civil na área de concentração em Estruturas. Sua trajetória integra segurança operacional, pesquisa aplicada, engenharia computacional, gestão acadêmica e desenvolvimento de soluções digitais.":
+    "Themisson dos Santos Vasconcelos is a Lieutenant Colonel in the Alagoas Military Fire Department and a petroleum engineer, with a master’s degree and a doctorate in Civil Engineering, concentration in Structures. His career connects operational safety, applied research, computational engineering, academic management and digital solution development.",
   "A apresentação neste site tem caráter profissional pessoal. Ela não configura promoção institucional nem declara que eventuais sistemas, demonstrações ou projetos digitais sejam produtos oficiais do CBMAL ou de qualquer órgão público.":
     "This site is a personal professional presentation. It does not constitute institutional promotion or claim that any systems, demonstrations or digital projects are official products of CBMAL or any public agency.",
   "Modelagem numérica computacional": "Computational numerical modeling",

@@ -54,7 +54,7 @@ const startingPoints = [
 
 const credentials = [
   "Engenheiro de Petróleo",
-  "Mestre e Doutor em Estruturas e Geomecânica",
+  "Mestre e Doutor em Engenharia Civil (Estruturas)",
   "Experiência em segurança operacional",
   "Desenvolvimento em C++, Python e ABAQUS"
 ];

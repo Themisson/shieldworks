@@ -133,7 +133,7 @@ export const messages = {
   "msg.carreira.institucional": { pt: "Carreira institucional", en: "Institutional career" },
   "msg.oficial.do.corpo.de.bombeiros.militar.de.alagoas": { pt: "Oficial do Corpo de Bombeiros Militar de Alagoas, com experiência operacional, administrativa e acadêmica.", en: "Officer of the Military Fire Department of Alagoas, with operational, administrative and academic experience." },
   "msg.formacao.em.engenharia": { pt: "Formação em engenharia", en: "Engineering background" },
-  "msg.engenheiro.de.petroleo.mestre.e.doutor.na.area.d": { pt: "Engenheiro de petróleo, mestre e doutor na área de estruturas e geomecânica.", en: "Petroleum engineer, with master's and doctoral degrees in structures and geomechanics." },
+  "msg.engenheiro.de.petroleo.mestre.e.doutor.na.area.d": { pt: "Engenheiro de petróleo, mestre e doutor em Engenharia Civil na área de concentração em Estruturas.", en: "Petroleum engineer, with a master's degree and a doctorate in Civil Engineering, concentration in Structures." },
   "msg.atuacao.em.geomecanica.salina.fluencia.de.rochas": { pt: "Atuação em geomecânica salina, fluência de rochas evaporíticas, engenharia de poços e simulação numérica.", en: "Work in salt geomechanics, creep of evaporitic rocks, well engineering and numerical simulation." },
   "msg.modelagem.computacional": { pt: "Modelagem computacional", en: "Computational modeling" },
   "msg.uso.de.c.python.abaqus.bem.fem.mpm.e.fvm.em.prob": { pt: "Uso de C++, Python, ABAQUS, BEM, FEM, MPM e FVM em problemas técnicos de engenharia.", en: "Use of C++, Python, ABAQUS, BEM, FEM, MPM and FVM in technical engineering problems." },

@@ -37,7 +37,7 @@ test("about scenes, knowledge map and links adapt from desktop to phone", async 
   await page.goto("/sobre");
   const visibleScenes = () =>
     page
-      .locator('.about-page svg[role="img"]')
+      .locator('.about-screens svg[role="img"]')
       .evaluateAll(
         (nodes) => nodes.filter((node) => node.checkVisibility()).length,
       );
@@ -58,6 +58,14 @@ test("about scenes, knowledge map and links adapt from desktop to phone", async 
   await page.locator("#trajetoria").evaluate((node) =>
     node.scrollIntoView({ behavior: "instant" }),
   );
+  // Let the topic finish sliding in before pointing at a station.
+  await expect
+    .poll(() =>
+      page
+        .locator(".career-stations")
+        .evaluate((node) => getComputedStyle(node).transform),
+    )
+    .toBe("none");
   await page.locator('.career-stations [data-focus="5"]').hover();
   const opacity = (n: number) =>
     page
@@ -88,7 +96,7 @@ test("about shows complete, still drawings with reduced motion", async ({
     node.scrollIntoView({ behavior: "instant" }),
   );
   const states = await page
-    .locator(".about-page .engineering-plate")
+    .locator(".about-screens .engineering-plate")
     .evaluateAll((figures) =>
       figures.map((figure) => ({
         entrance: figure.getAttribute("data-entrance"),
@@ -104,5 +112,5 @@ test("about shows complete, still drawings with reduced motion", async ({
   expect(states.length).toBe(4);
   for (const state of states)
     expect(state).toEqual({ entrance: null, step: null, animations: 0, hidden: 0 });
-  await expect(page.locator(".about-page .motion-control").first()).toBeHidden();
+  await expect(page.locator(".about-screens .motion-control").first()).toBeHidden();
 });

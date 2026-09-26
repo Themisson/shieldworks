@@ -4,7 +4,7 @@ import type { Locale } from "@/i18n/translations";
 import { localizedPath } from "@/i18n/routing";
 import { EngineeringScene } from "@/components/illustrations/engineering-scene";
 import { SectionIndicator } from "@/components/landing/section-indicator";
-import { LandingSnap } from "@/components/landing/landing-snap";
+import { ScreenDeck } from "@/components/layout/screen-deck";
 import { SectionAdvance } from "@/components/landing/section-advance";
 import { landingSections } from "@/components/landing/sections";
 import { ArticleList } from "@/components/editorial/article-list";
@@ -50,8 +50,8 @@ export function Landing({ locale }: { locale: Locale }) {
   );
   return (
     <div className="landing-screens">
-      <LandingSnap />
-      <SectionIndicator />
+      <ScreenDeck />
+      <SectionIndicator sections={landingSections} />
       <section
         id="inicio"
         className="landing-screen hero-screen"
@@ -537,8 +537,8 @@ export function Landing({ locale }: { locale: Locale }) {
             <p className="section-lead">{brand.owner}</p>
             <p className="reading-copy">
               {t(
-                "Engenheiro de Petróleo, Mestre e Doutor em Estruturas e Geomecânica. Pesquisa, experiência em segurança operacional e desenvolvimento computacional em uma trajetória multidisciplinar.",
-                "Petroleum Engineer, Master's and PhD in Structures and Geomechanics. Research, operational safety experience and computational development in a multidisciplinary career.",
+                "Engenheiro de Petróleo, Mestre e Doutor em Engenharia Civil, na área de concentração em Estruturas. Pesquisa, experiência em segurança operacional e desenvolvimento computacional em uma trajetória multidisciplinar.",
+                "Petroleum Engineer, with a Master's and PhD in Civil Engineering, concentration in Structures. Research, operational safety experience and computational development in a multidisciplinary career.",
               )}
             </p>
             {button(

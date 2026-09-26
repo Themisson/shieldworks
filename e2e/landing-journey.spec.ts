@@ -195,6 +195,12 @@ test("each topic fills one screen on common laptop viewports without clipping", 
         ),
       )
       .toBe("y mandatory");
+    // Geometry is about layout: clear pending slide offsets (transforms) first.
+    await page.evaluate(() =>
+      document
+        .querySelectorAll<HTMLElement>(".landing-screen")
+        .forEach((section) => delete section.dataset.slide),
+    );
     for (const id of sections) {
       const geometry = await page.locator(`#${id}`).evaluate((section) => {
         const box = section.getBoundingClientRect();

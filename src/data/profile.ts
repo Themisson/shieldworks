@@ -2,6 +2,7 @@
  * About-page catalogue. Every item restates facts already present in the project;
  * the `source` notes where each one comes from. The knowledge map is deliberately
  * not chronological: no dates or order are claimed beyond the sourced years.
+ * Station details are one line each, so the whole map fits one screen.
  */
 type Pair = { pt: string; en: string };
 
@@ -24,17 +25,17 @@ export const careerStations: {
     line: "operation",
     title: { pt: "Carreira institucional", en: "Institutional career" },
     detail: {
-      pt: "Oficial do Corpo de Bombeiros Militar de Alagoas, com experiência operacional, administrativa e acadêmica.",
-      en: "Officer of the Military Fire Department of Alagoas, with operational, administrative and academic experience.",
+      pt: "Tenente-Coronel do CBMAL, com experiência operacional, administrativa e acadêmica.",
+      en: "Lieutenant Colonel at CBMAL, with operational, administrative and academic experience.",
     },
-    source: "Síntese profissional (translations.ts)",
+    source: "Biografia; posto confirmado pelo proprietário em 26/09/2026",
   },
   {
     line: "operation",
     title: { pt: "Segurança operacional", en: "Operational safety" },
     detail: {
-      pt: "Prevenção, análise de risco, monitoramento e resposta operacional apoiados por tecnologia.",
-      en: "Prevention, risk analysis, monitoring and operational response supported by technology.",
+      pt: "Prevenção, análise de risco, monitoramento e resposta operacional.",
+      en: "Prevention, risk analysis, monitoring and operational response.",
     },
     source: "featuredSolutions / Segurança Operacional (site.ts)",
   },
@@ -51,17 +52,17 @@ export const careerStations: {
     line: "engineering",
     title: { pt: "Mestrado e doutorado", en: "Master's and doctorate" },
     detail: {
-      pt: "Na área de estruturas e geomecânica. Tese de doutorado de 2019 (UFAL) sobre pressão em anulares confinados na presença de evaporitos.",
-      en: "In structures and geomechanics. 2019 doctoral thesis (UFAL) on pressure in trapped annuli in the presence of evaporites.",
+      pt: "Engenharia Civil, área de concentração Estruturas; tese de doutorado de 2019 (UFAL).",
+      en: "Civil Engineering, concentration in Structures; 2019 doctoral thesis (UFAL).",
     },
-    source: "Biografia; publications.ts (tese-2019-apb); cases.ts",
+    source: "Formação confirmada pelo proprietário em 26/09/2026; publications.ts (tese-2019-apb)",
   },
   {
     line: "engineering",
     title: { pt: "Geomecânica salina e poços", en: "Salt geomechanics and wells" },
     detail: {
-      pt: "Fluência de rochas evaporíticas, crescimento de pressão em anulares e leak-off test, com publicações em 2024 e 2025.",
-      en: "Creep of evaporite rocks, annular pressure build-up and leak-off tests, with publications in 2024 and 2025.",
+      pt: "Evaporitos, anulares confinados e leak-off test; publicações em 2024 e 2025.",
+      en: "Evaporites, trapped annuli and leak-off tests; papers in 2024 and 2025.",
     },
     source: "research.ts; publications.ts (mrc-2024-apb, ijrmms-2025-lot)",
   },
@@ -69,8 +70,8 @@ export const careerStations: {
     line: "computing",
     title: { pt: "Computação científica", en: "Scientific computing" },
     detail: {
-      pt: "Códigos próprios em C++ e Python, ABAQUS e os métodos BEM, FEM, MPM e FVM.",
-      en: "In-house C++ and Python codes, ABAQUS and the BEM, FEM, MPM and FVM methods.",
+      pt: "Códigos próprios em C++ e Python, ABAQUS; BEM, FEM, MPM e FVM.",
+      en: "In-house C++ and Python codes, ABAQUS; BEM, FEM, MPM and FVM.",
     },
     source: "Síntese profissional; biografia",
   },
@@ -81,8 +82,8 @@ export const careerStations: {
       en: "Systems and digital products",
     },
     detail: {
-      pt: "Sistemas institucionais e automação documental; MDFolio, AcadImprove, Sursum e Gabarita.",
-      en: "Institutional systems and document automation; MDFolio, AcadImprove, Sursum and Gabarita.",
+      pt: "Sistemas institucionais; MDFolio, AcadImprove, Sursum e Gabarita.",
+      en: "Institutional systems; MDFolio, AcadImprove, Sursum and Gabarita.",
     },
     source: "Síntese profissional; projects.ts",
   },
@@ -90,8 +91,8 @@ export const careerStations: {
     line: "teaching",
     title: { pt: "Ensino e metodologia", en: "Teaching and methodology" },
     detail: {
-      pt: "Instrutor de TCC e Metodologia Científica nos cursos do CBMAL desde 2019.",
-      en: "Instructor of final projects and Scientific Methodology in CBMAL courses since 2019.",
+      pt: "TCC e Metodologia Científica nos cursos do CBMAL desde 2019.",
+      en: "Final projects and Scientific Methodology in CBMAL courses since 2019.",
     },
     source: "Frentes de atuação (translations.ts)",
   },
@@ -99,8 +100,8 @@ export const careerStations: {
     line: "shieldworks",
     title: { pt: "ShieldWorks", en: "ShieldWorks" },
     detail: {
-      pt: "A iniciativa que reúne essas linhas para aplicar engenharia, pesquisa, software e segurança a problemas reais.",
-      en: "The initiative that brings these lines together to apply engineering, research, software and safety to real problems.",
+      pt: "A iniciativa em que essas linhas se encontram e viram aplicação.",
+      en: "The initiative where these lines meet and become practice.",
     },
     source: "Landing (posicionamento da ShieldWorks)",
   },
