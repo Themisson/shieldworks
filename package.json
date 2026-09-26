@@ -8,12 +8,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node scripts/start.mjs",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
     "check:i18n": "node scripts/check-i18n.mjs",
-    "check": "npm run lint && npm run test && npm run check:i18n && npm run build"
+    "check": "npm run lint && npm run test && npm run check:i18n && npm run build",
+    "test:e2e": "playwright test",
+    "test:e2e:report": "playwright show-report",
+    "check:content": "vitest run src/lib/__tests__/editorial.test.ts",
+    "typecheck": "tsc --noEmit",
+    "inspect:local": "node scripts/inspect-local.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

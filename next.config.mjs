@@ -3,6 +3,8 @@ import { fileURLToPath } from "node:url";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: "standalone",
+  outputFileTracingIncludes: { "/*": ["./content/articles/**/*.md"] },
   experimental: { globalNotFound: true },
   turbopack: { root: fileURLToPath(new URL(".", import.meta.url)) },
   async redirects() {
@@ -11,6 +13,8 @@ const nextConfig = {
       { source: "/insights/:slug", destination: "/conteudo/:slug", permanent: true },
       { source: "/en/insights", destination: "/en/conteudo", permanent: true },
       { source: "/en/insights/:slug", destination: "/en/conteudo/:slug", permanent: true },
+      { source: "/pt/insights", destination: "/conteudo", permanent: true },
+      { source: "/pt/insights/:slug", destination: "/conteudo/:slug", permanent: true },
       {
         source: "/:path*",
         has: [

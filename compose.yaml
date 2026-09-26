@@ -1,0 +1,19 @@
+name: shieldworks-local
+services:
+  web:
+    build:
+      context: .
+      target: development
+    ports:
+      - "127.0.0.1:${SHIELDWORKS_PORT:-3000}:3000"
+    environment:
+      NEXT_TELEMETRY_DISABLED: "1"
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - .:/app
+      - dependencies:/app/node_modules
+      - next-cache:/app/.next
+    # Email credentials deliberately absent from the default development service.
+volumes:
+  dependencies:
+  next-cache:
