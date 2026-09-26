@@ -15,6 +15,18 @@ import { bibtex } from "@/lib/publication-format";
 import { featuredPublications } from "@/data/publications";
 
 describe("editorial content and retention", () => {
+  it("renders figure captions as semantic text without author HTML", () => {
+    const html = renderToStaticMarkup(
+      createElement(ArticleBody, {
+        body: '![Esquema conceitual](/icon.svg "Figura 1 — representação sem escala")',
+      }),
+    );
+    expect(html).toContain('<figure class="article-figure">');
+    expect(html).toContain(
+      "<figcaption>Figura 1 — representação sem escala</figcaption>",
+    );
+    expect(html).toContain('alt="Esquema conceitual"');
+  });
   it("preserves every original paragraph, slug, date and description", () => {
     const articles = getArticles("pt");
     expect(articles).toHaveLength(insights.length);

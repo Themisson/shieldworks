@@ -24,15 +24,33 @@ export async function generateMetadata({ params }: Props) {
   if (!article) return {};
   const metadata = pageMetadata(
     `/conteudo/${slug}`,
-    article.title,
-    article.description,
+    article.seo?.title ?? article.title,
+    article.seo?.description ?? article.description,
     locale,
     !!getArticle(slug, locale === "pt" ? "en" : "pt"),
   );
   return {
     ...metadata,
+    ...(article.seo?.image || article.cover
+      ? {
+          twitter: {
+            ...metadata.twitter,
+            images: [canonicalUrl(article.seo?.image ?? article.cover!)],
+          },
+        }
+      : {}),
     openGraph: {
       ...metadata.openGraph,
+      ...(article.seo?.image || article.cover
+        ? {
+            images: [
+              {
+                url: canonicalUrl(article.seo?.image ?? article.cover!),
+                alt: article.title,
+              },
+            ],
+          }
+        : {}),
       type: "article",
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,

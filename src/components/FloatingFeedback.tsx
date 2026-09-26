@@ -38,6 +38,16 @@ export function FloatingFeedback() {
     const previousOverflow = document.body.style.overflow;
     const triggerButton = buttonRef.current;
     const dialog = dialogRef.current;
+    const background = Array.from(document.body.children).filter(
+      (node): node is HTMLElement =>
+        node instanceof HTMLElement &&
+        !node.contains(dialog) &&
+        node.tagName !== "SCRIPT",
+    );
+    const inertBefore = background.map((node) => node.inert);
+    background.forEach((node) => {
+      node.inert = true;
+    });
     document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
 
@@ -52,8 +62,13 @@ export function FloatingFeedback() {
         return;
       }
 
-      const focusable = Array.from(dialog.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(
-        (el) => !el.hasAttribute("disabled") && el.tabIndex !== -1 && el.offsetParent !== null
+      const focusable = Array.from(
+        dialog.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+      ).filter(
+        (el) =>
+          !el.hasAttribute("disabled") &&
+          el.tabIndex !== -1 &&
+          el.offsetParent !== null,
       );
 
       if (focusable.length === 0) {
@@ -77,6 +92,9 @@ export function FloatingFeedback() {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      background.forEach((node, index) => {
+        node.inert = inertBefore[index];
+      });
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
       triggerButton?.focus();
@@ -96,7 +114,7 @@ export function FloatingFeedback() {
       <button
         ref={buttonRef}
         type="button"
-        className="group fixed bottom-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-petroleum-900 text-white shadow-lift transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-petroleum-800 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-petroleum-400 focus-visible:ring-offset-2 active:scale-[0.98] sm:bottom-6 sm:right-6"
+        className="feedback-trigger group fixed bottom-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-petroleum-900 text-white shadow-lift transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-petroleum-800 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-petroleum-400 focus-visible:ring-offset-2 active:scale-[0.98] sm:bottom-6 sm:right-6"
         aria-label={t("feedback.open")}
         aria-expanded={isOpen}
         aria-controls="feedback-modal"
@@ -126,10 +144,16 @@ export function FloatingFeedback() {
           >
             <div className="flex items-start justify-between gap-4 border-b border-graphite-100 pb-4">
               <div>
-                <h2 id="feedback-modal-title" className="text-lg font-semibold tracking-tight text-graphite-900">
+                <h2
+                  id="feedback-modal-title"
+                  className="text-lg font-semibold tracking-tight text-graphite-900"
+                >
                   <Text>{t("form.send_feedback")}</Text>
                 </h2>
-                <p id="feedback-modal-description" className="mt-2 text-sm leading-6 text-graphite-600">
+                <p
+                  id="feedback-modal-description"
+                  className="mt-2 text-sm leading-6 text-graphite-600"
+                >
                   <Text>{t("feedback.description")}</Text>
                 </p>
               </div>
@@ -143,7 +167,10 @@ export function FloatingFeedback() {
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
-            <FeedbackForm className="mt-5 border-0 bg-white p-0 shadow-none" onSuccess={handleSuccess} />
+            <FeedbackForm
+              className="mt-5 border-0 bg-white p-0 shadow-none"
+              onSuccess={handleSuccess}
+            />
           </section>
         </div>
       ) : null}

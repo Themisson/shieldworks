@@ -1,3 +1,5 @@
+"use client";
+import { useLocale } from "@/i18n/locale-provider";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
@@ -11,11 +13,7 @@ type ProfilePortraitProps = {
   aspect?: "portrait" | "square";
 };
 
-/**
- * Professional portrait with soft edge blending.
- * Uses feathered corner mask + ambient outer glow so the studio
- * background transitions gently into the page surface.
- */
+/** Preserved portrait with restrained framing and a solid, readable caption. */
 export function ProfilePortrait({
   src = "/image-themisson.jpeg",
   alt = "Themisson dos Santos Vasconcelos em retrato profissional",
@@ -23,8 +21,9 @@ export function ProfilePortrait({
   priority = false,
   className = "",
   sizes = "(max-width: 1023px) 100vw, 42vw",
-  aspect = "portrait"
+  aspect = "portrait",
 }: ProfilePortraitProps) {
+  const { locale } = useLocale();
   const minHeight =
     aspect === "square"
       ? "min-h-[320px] sm:min-h-[380px]"
@@ -36,24 +35,23 @@ export function ProfilePortrait({
         <div className="profile-portrait-media absolute inset-0">
           <Image
             src={src}
-            alt={alt}
+            alt={
+              alt ===
+                "Themisson dos Santos Vasconcelos em retrato profissional" &&
+              locale === "en"
+                ? "Professional portrait of Themisson dos Santos Vasconcelos"
+                : alt
+            }
             fill
             sizes={sizes}
             priority={priority}
             className="object-cover object-[center_18%]"
           />
         </div>
-
-        {/* Soft multi-axis edge fade into page tones */}
-        <div className="profile-portrait-veil" aria-hidden="true" />
-
-        {/* Inner light rim — soft, not a hard stroke */}
-        <div className="profile-portrait-rim" aria-hidden="true" />
-
-        {caption ? (
-          <figcaption className="profile-portrait-caption">{caption}</figcaption>
-        ) : null}
       </div>
+      {caption ? (
+        <figcaption className="profile-portrait-caption">{caption}</figcaption>
+      ) : null}
     </figure>
   );
 }

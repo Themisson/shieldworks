@@ -207,7 +207,7 @@ export function Landing({ locale }: { locale: Locale }) {
                 <div>
                   <h3>{translate(solution.title, locale)}</h3>
                   <p>{translate(solution.description, locale)}</p>
-                  <div className="tag-line">{solution.tags.join(" / ")}</div>
+                  <div className="tag-line">{solution.tags.map(tag => translate(tag,locale)).join(" / ")}</div>
                 </div>
                 <span aria-hidden="true">↗</span>
               </Link>

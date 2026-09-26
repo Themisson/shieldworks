@@ -74,7 +74,19 @@ export function EngineeringScene({
       data-playing={inView && !paused && !hidden}
     >
       <div className="plate-meta">
-        <span>SW / {kind.toUpperCase()}</span>
+        <span>
+          SW /{" "}
+          {
+            {
+              integrated: label("CONVERGÊNCIA", "CONVERGENCE"),
+              research: label("GEOMECÂNICA", "GEOMECHANICS"),
+              numerical: label("DISCRETIZAÇÃO", "DISCRETIZATION"),
+              software: label("SISTEMAS", "SYSTEMS"),
+              safety: label("BARREIRAS", "BARRIERS"),
+              knowledge: label("CONHECIMENTO", "KNOWLEDGE"),
+            }[kind]
+          }
+        </span>
         <span>{label("ESTUDO CONCEITUAL", "CONCEPTUAL STUDY")}</span>
       </div>
       <svg

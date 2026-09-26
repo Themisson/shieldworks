@@ -140,7 +140,7 @@ export default async function RootLayout({
           <Footer />
           <FloatingFeedback />
         </LocaleProvider>
-        <Analytics />
+        {process.env.VERCEL === "1" ? <Analytics /> : null}
       </body>
     </html>
   );

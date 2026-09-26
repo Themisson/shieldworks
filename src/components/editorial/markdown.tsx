@@ -19,6 +19,20 @@ export function ArticleBody({ body }: { body: string }) {
           [rehypeHighlight, { detect: false }],
         ]}
         components={{
+          p: ({ children, node }) => {
+            const image =
+              node?.children.length === 1 ? node.children[0] : undefined;
+            if (image?.type === "element" && image.tagName === "img")
+              return (
+                <figure className="article-figure">
+                  {children}
+                  {image.properties.title && (
+                    <figcaption>{String(image.properties.title)}</figcaption>
+                  )}
+                </figure>
+              );
+            return <p>{children}</p>;
+          },
           h1: ({ children }) => <h2>{children}</h2>,
           table: ({ children }) => (
             <div className="table-scroll" tabIndex={0}>

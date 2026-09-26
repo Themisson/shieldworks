@@ -31,6 +31,14 @@ export const articleSchema = z
     updatedAt: date,
     published: z.boolean(),
     type: z.enum(["article", "note", "update", "case"]),
+    seo: z
+      .object({
+        title: z.string().min(5).optional(),
+        description: z.string().min(10).optional(),
+        image: internalImage.optional(),
+      })
+      .strict()
+      .optional(),
     cover: internalImage.optional(),
     references: z
       .array(

@@ -27,6 +27,7 @@
 .section-lead { font-size: var(--type-lead); line-height: 1.7; max-width: 52ch; color: var(--ink-muted); margin-block: var(--space-3) var(--space-4); }
 .reading-copy { max-width: var(--reading-measure); color: var(--ink-muted); line-height: 1.8; }
 .reading-copy p + p { margin-top: var(--space-3); }
+.reading-copy + .sw-button { margin-top: var(--space-4); }
 .split-composition { display: grid; gap: var(--composition-gap); align-items: center; }
 .section-heading-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--space-4); margin-bottom: var(--space-4); }
 .sw-button { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 3rem; padding: 0.85rem 1.25rem; font-size: 0.875rem; font-weight: 500; background: var(--night); color: var(--on-night); border: 1px solid var(--night); border-radius: var(--radius-small); transition: background var(--duration-fast); }
@@ -187,6 +188,7 @@
 .article-body table { border-collapse: collapse; font-size: 0.9rem; }
 .article-body th, .article-body td { border: 1px solid var(--line); padding: var(--space-2); }
 .article-image { width: 100%; height: auto; border-radius: var(--radius-small); }
+.article-figure figcaption { color: var(--ink-muted); font-size: 0.875rem; line-height: 1.7; margin-top: var(--space-1); }
 .hljs-keyword, .hljs-selector-tag, .hljs-literal { color: var(--signal-light); }
 .hljs-string, .hljs-title { color: var(--amber); }
 .hljs-comment { color: var(--on-night-muted); }
@@ -219,6 +221,7 @@
 @media (max-width: 79.99rem) { .desktop-navigation, .header-contact { display: none; } .menu-trigger { display: block; } .header-actions { margin-left: auto; } }
 @media (max-width: 63.99rem) { .hero-copy h1 { font-size: clamp(2.75rem,6.5vw,5.5rem); } .hero-visual { max-width: 48rem; } }
 @media (max-width: 47.99rem) {
+  .feedback-trigger { position: static; margin: var(--space-3) var(--page-gutter) var(--space-4) auto; }
   .hero-screen { min-height: calc(100dvh - var(--header-height)); }
   .hero-copy h1 { font-size: clamp(2.5rem,10vw,3.75rem); }
   .hero-description { font-size: 1rem; }

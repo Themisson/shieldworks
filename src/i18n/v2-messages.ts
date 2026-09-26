@@ -250,5 +250,6 @@ export const v2Messages: Record<string, string> = {
   "Projetos e produtos digitais": "Digital projects and products",
   "Explore o catálogo de produtos do ecossistema ShieldWorks.":
     "Explore the ShieldWorks ecosystem product catalog.",
-  "Perfis acadêmicos e profissionais": "Academic and professional profiles",
+  "Perfis acadêmicos e profissionais": "Academic and professional profiles",,
+  "Gestão":"Management", "Riscos":"Risks", "Operações":"Operations", "Artigos":"Articles", "Metodologia":"Methodology"
 };
