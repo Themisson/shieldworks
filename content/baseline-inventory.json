@@ -1,0 +1,355 @@
+{
+  "commit": "c0fc08a",
+  "site": {
+    "brand": {
+      "name": "ShieldWorks",
+      "tagline": "Engenharia, Pesquisa, Segurança e Tecnologia Aplicada",
+      "owner": "Themisson dos Santos Vasconcelos",
+      "lattes": "http://lattes.cnpq.br/5757459332162874",
+      "lattesId": "5757459332162874",
+      "orcid": "https://orcid.org/0000-0002-1215-3691",
+      "orcidId": "0000-0002-1215-3691",
+      "scholar": "https://scholar.google.com/citations?user=qtuT18cAAAAJ&hl=pt-BR",
+      "linkedin": "https://www.linkedin.com/in/themisson-vasconcelos-8a5b05183"
+    },
+    "githubUrl": "https://github.com/Themisson",
+    "professionalLinks": [
+      {
+        "label": "WhatsApp",
+        "href": "/whatsapp",
+        "tooltip": "Conversar pelo WhatsApp",
+        "isInternal": true
+      },
+      {
+        "label": "Lattes",
+        "href": "http://lattes.cnpq.br/5757459332162874",
+        "tooltip": "Acessar Currículo Lattes"
+      },
+      {
+        "label": "ORCID",
+        "href": "https://orcid.org/0000-0002-1215-3691",
+        "tooltip": "Acessar perfil ORCID"
+      },
+      {
+        "label": "Google Acadêmico",
+        "href": "https://scholar.google.com/citations?user=qtuT18cAAAAJ&hl=pt-BR",
+        "tooltip": "Acessar Google Acadêmico"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/Themisson",
+        "tooltip": "Acessar GitHub"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/themisson-vasconcelos-8a5b05183",
+        "tooltip": "Acessar LinkedIn"
+      }
+    ],
+    "authorityAreas": [
+      "Engenharia",
+      "Pesquisa aplicada",
+      "Segurança operacional",
+      "Desenvolvimento tecnológico",
+      "Ensino e metodologia científica"
+    ],
+    "practiceAreas": [
+      {
+        "title": "Engenharia Computacional",
+        "description": "Modelagem numérica computacional aplicada à engenharia, com uso de C++, Python, ABAQUS e métodos numéricos para análise de tensões, deformações, comportamento geomecânico, validação de modelos e apoio à tomada de decisão técnica.",
+        "icon": {}
+      },
+      {
+        "title": "Geomecânica e Petróleo",
+        "description": "Estudos aplicados à geomecânica salina, engenharia de poços e comportamento de rochas.",
+        "icon": {}
+      },
+      {
+        "title": "Segurança Operacional",
+        "description": "Diagnóstico, prevenção, resposta operacional, gestão de riscos e apoio tecnológico.",
+        "icon": {}
+      },
+      {
+        "title": "Sistemas Institucionais",
+        "description": "Plataformas para gestão acadêmica, documentos, indicadores e rotinas administrativas.",
+        "icon": {}
+      },
+      {
+        "title": "Pesquisa Aplicada",
+        "description": "Conexão entre rigor científico, métodos computacionais e problemas técnicos reais.",
+        "icon": {}
+      },
+      {
+        "title": "Assessoria Acadêmica e Científica",
+        "description": "Apoio consultivo para projetos, TCCs, artigos, relatórios, dados e bancas.",
+        "icon": {}
+      }
+    ],
+    "featuredSolutions": [
+      {
+        "title": "Engenharia Computacional",
+        "description": "Modelagem numérica, simulações em C++, Python e ABAQUS, análise de tensões, deformações e validação de modelos aplicados à engenharia.",
+        "tags": [
+          "C++",
+          "Python",
+          "ABAQUS",
+          "Simulação"
+        ],
+        "icon": {}
+      },
+      {
+        "title": "Pesquisa Aplicada",
+        "description": "Estudos em geomecânica salina, engenharia de poços, estruturas e métodos computacionais aplicados a problemas técnicos complexos.",
+        "tags": [
+          "Geomecânica",
+          "BEM",
+          "FEM",
+          "MPM"
+        ],
+        "icon": {}
+      },
+      {
+        "title": "Sistemas Institucionais",
+        "description": "Desenvolvimento de plataformas digitais para gestão acadêmica, automação documental, indicadores e apoio à tomada de decisão.",
+        "tags": [
+          "Gestão",
+          "Dashboards",
+          "Documentos"
+        ],
+        "icon": {}
+      },
+      {
+        "title": "Segurança Operacional",
+        "description": "Aplicação de tecnologia, análise de risco, prevenção, monitoramento e soluções digitais voltadas à segurança e resposta operacional.",
+        "tags": [
+          "Riscos",
+          "Prevenção",
+          "Operações"
+        ],
+        "icon": {}
+      },
+      {
+        "title": "Assessoria Acadêmica",
+        "description": "Apoio metodológico para projetos, TCCs, artigos científicos, relatórios técnicos, normalização e preparação para bancas.",
+        "tags": [
+          "TCC",
+          "Artigos",
+          "Metodologia"
+        ],
+        "icon": {}
+      }
+    ],
+    "digitalProjects": [
+      {
+        "title": "Sistema de Gestão Acadêmica",
+        "description": "Plataforma para gestão de cursos, turmas, instrutores, discentes, matrículas, certificados, documentos e relatórios.",
+        "status": "Em desenvolvimento",
+        "statusDescription": "Plataforma em evolução para gestão de cursos, turmas, instrutores, discentes, documentos acadêmicos e certificados.",
+        "icon": {}
+      },
+      {
+        "title": "Painel de Avaliação de Usuários",
+        "description": "Ferramenta para coleta, análise e visualização de avaliações, feedbacks e indicadores de satisfação.",
+        "status": "Protótipo",
+        "statusDescription": "Modelo inicial para coleta, organização e análise de feedbacks, avaliações e percepções de usuários.",
+        "icon": {}
+      },
+      {
+        "title": "Gerador de Certificados e Documentos",
+        "description": "Solução para emissão padronizada de certificados, atas, declarações e relatórios.",
+        "status": "Protótipo",
+        "statusDescription": "Solução voltada à automação de documentos, certificados, declarações e registros acadêmicos padronizados.",
+        "icon": {}
+      },
+      {
+        "title": "Dashboard de Indicadores",
+        "description": "Painéis para acompanhamento de dados acadêmicos, administrativos ou operacionais.",
+        "status": "Planejado",
+        "statusDescription": "Painéis gerenciais para acompanhamento de dados, indicadores institucionais e apoio à tomada de decisão.",
+        "icon": {}
+      },
+      {
+        "title": "Plataforma de Treinamentos",
+        "description": "Ambiente futuro para cursos, trilhas de capacitação e conteúdos técnicos.",
+        "status": "Futuro módulo",
+        "statusDescription": "Ambiente previsto para organização de capacitações, trilhas de aprendizagem, materiais e acompanhamento de participação.",
+        "icon": {}
+      },
+      {
+        "title": "Sistemas personalizados para instituições",
+        "description": "Projetos digitais sob medida para instituições, ensino, automação documental e decisão.",
+        "status": "Sob demanda",
+        "statusDescription": "Desenvolvimento de soluções digitais específicas conforme necessidades operacionais, acadêmicas ou administrativas.",
+        "icon": {}
+      }
+    ],
+    "researchAreas": [
+      "Geomecânica Salina",
+      "Fluência de rochas evaporíticas",
+      "Engenharia de poços",
+      "Leak-off test",
+      "Métodos numéricos",
+      "BEM, FEM, MPM, FVM e ABAQUS",
+      "Simulação computacional",
+      "Segurança operacional",
+      "Tecnologia aplicada à gestão institucional"
+    ],
+    "academicServices": [
+      "Orientação metodológica",
+      "Estruturação de projetos de pesquisa",
+      "Apoio à elaboração de TCC",
+      "Organização de artigos científicos",
+      "Revisão técnica e metodológica",
+      "Adequação às normas ABNT",
+      "Análise e apresentação de dados",
+      "Preparação para bancas",
+      "Apoio à submissão de artigos"
+    ],
+    "interestOptions": [
+      "Engenharia computacional",
+      "Sistemas institucionais",
+      "Assessoria acadêmica",
+      "Pesquisa aplicada",
+      "Segurança operacional",
+      "Cursos e treinamentos",
+      "Outro"
+    ]
+  },
+  "cases": [
+    {
+      "id": "apb-evaporitos-termomecanica",
+      "title": "Modelagem termomecânica de pressão em anulares confinados com evaporitos",
+      "domain": "Engenharia de poços · Geomecânica salina",
+      "year": "2019–2025",
+      "type": "pesquisa",
+      "featured": true,
+      "summary": "Investigação aplicada do crescimento de pressão em anulares confinados (APB) em poços verticais com camadas de evaporitos, unindo modelagem termomecânica, validação e publicação científica.",
+      "context": "Em poços de petróleo que atravessam evaporitos, o confinamento de fluidos em anulares pode gerar aumentos de pressão associados a variações térmicas e ao comportamento das rochas salinas. Entender esse fenômeno é relevante para integridade de poço e segurança operacional.",
+      "problem": "Como representar, de forma confiável e documentada, o acoplamento termomecânico em anulares confinados na presença de evaporitos, de modo a apoiar análise técnica e decisão de engenharia?",
+      "method": [
+        {
+          "label": "Formulação",
+          "detail": "Modelo 1D axisimétrico multicamadas para descrever resposta termomecânica do sistema poço–anular–formação."
+        },
+        {
+          "label": "Simulação",
+          "detail": "Implementação e análise numérica com ferramentas de engenharia computacional, incluindo validação de hipóteses e consistência de resultados."
+        },
+        {
+          "label": "Validação e publicação",
+          "detail": "Consolidação em tese e artigos em periódicos e congressos, com rastreabilidade metodológica e revisão por pares."
+        }
+      ],
+      "delivery": [
+        "Modelo termomecânico documentado para análise de APB em poços verticais com evaporitos",
+        "Resultados e interpretações orientados à integridade de poço e comportamento de evaporitos",
+        "Produção científica associada (tese e artigos em periódicos indexados)"
+      ],
+      "impact": "A linha de trabalho resultou em tese de doutorado e publicações em veículos como Mechanics Research Communications e International Journal of Rock Mechanics and Mining Sciences, reforçando a base técnica da atuação em geomecânica e engenharia computacional.",
+      "tags": [
+        "APB",
+        "Evaporitos",
+        "Termomecânica",
+        "Poços",
+        "Simulação numérica"
+      ]
+    },
+    {
+      "id": "sistema-gestao-academica",
+      "title": "Sistema de gestão acadêmica sob demanda",
+      "domain": "Sistemas institucionais · Automação documental",
+      "year": "2024–2026",
+      "type": "sistema",
+      "featured": true,
+      "summary": "Desenvolvimento de plataforma digital para organizar cursos, turmas, instrutores, documentos e certificados, com escopo evolutivo e foco em rotinas reais de gestão acadêmica.",
+      "context": "Rotinas acadêmicas e de capacitação costumam depender de planilhas, e-mails e documentos manuais. Isso dificulta rastreabilidade, padronização de certificados e visão consolidada de turmas, instrutores e indicadores.",
+      "problem": "Como estruturar um sistema sob medida que reduza retrabalho documental, organize o ciclo acadêmico e permita evolução por módulos, sem pretender ser produto oficial de órgão público?",
+      "method": [
+        {
+          "label": "Mapeamento de processos",
+          "detail": "Levantamento de fluxos de cursos, matrículas, emissão documental e necessidades de indicadores para definir escopo por etapas."
+        },
+        {
+          "label": "Modelagem e protótipo",
+          "detail": "Definição de entidades (curso, turma, instrutor, discente, documento), protótipos de interface e critérios de aceitação por módulo."
+        },
+        {
+          "label": "Implementação evolutiva",
+          "detail": "Desenvolvimento incremental com ênfase em automação documental, consistência de dados e preparação para dashboards e certificados."
+        }
+      ],
+      "delivery": [
+        "Arquitetura modular para gestão acadêmica e documental",
+        "Fluxos para cursos, turmas, instrutores e emissão padronizada de documentos",
+        "Base para indicadores e evolução sob demanda (demonstrações não institucionais oficiais)"
+      ],
+      "impact": "O case consolida a frente de sistemas da ShieldWorks: transformar rotinas fragmentadas em plataforma documentada, com transparência de estágio (em desenvolvimento/protótipo) e caminho claro para pilotos sob demanda.",
+      "tags": [
+        "Gestão acadêmica",
+        "Documentos",
+        "Certificados",
+        "Dashboards",
+        "Sob demanda"
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "id": "ijrmms-2025-lot",
+      "title": "Thermomechanical analysis of leak-off test in salt formations: Axisymmetric multilayer modeling for vertical wells",
+      "year": 2025,
+      "venue": "International Journal of Rock Mechanics and Mining Sciences",
+      "kind": "artigo",
+      "authors": "T. dos Santos Vasconcelos, J.P.L. Santos, E.T.L. Junior",
+      "href": "https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=qtuT18cAAAAJ&citation_for_view=qtuT18cAAAAJ:Tyk-4Ss8FVUC",
+      "highlight": true
+    },
+    {
+      "id": "mrc-2024-apb",
+      "title": "Analysis of APB in vertical wells with evaporite layers: A 1D axisymmetric multilayer thermomechanical model",
+      "year": 2024,
+      "venue": "Mechanics Research Communications",
+      "kind": "artigo",
+      "authors": "T. dos Santos Vasconcelos, R. dos Santos Escarpini Filho, E.N. Lages",
+      "href": "https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=qtuT18cAAAAJ&citation_for_view=qtuT18cAAAAJ:2osOgNQ5qMEC",
+      "highlight": true
+    },
+    {
+      "id": "tese-2019-apb",
+      "title": "Modelagem termomecânica do crescimento de pressão em anulares confinados em poços de petróleo na presença de evaporitos",
+      "year": 2019,
+      "venue": "Universidade Federal de Alagoas",
+      "kind": "tese",
+      "authors": "T.S. Vasconcelos",
+      "href": "https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=qtuT18cAAAAJ&citation_for_view=qtuT18cAAAAJ:d1gkVwhDpl0C",
+      "highlight": true
+    },
+    {
+      "id": "cilamce-2024-reaming",
+      "title": "Local remesh procedure to model reaming in vertical oil wells drilled through salt rocks",
+      "year": 2024,
+      "venue": "CILAMCE — Ibero-Latin American Congress on Computational Methods in Engineering",
+      "kind": "congresso",
+      "authors": "L.P.R. Almeida, C.N. de Araújo Fernandes, J.P.L. Santos et al.",
+      "href": "https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=qtuT18cAAAAJ&citation_for_view=qtuT18cAAAAJ:zYLM7Y9cAGgC"
+    },
+    {
+      "id": "cilamce-2024-fracture",
+      "title": "Predictive characterization of fracture and absorption tests in halite formations: an integrated approach of numerical modeling and field data",
+      "year": 2024,
+      "venue": "CILAMCE — Ibero-Latin American Congress on Computational Methods in Engineering",
+      "kind": "congresso",
+      "authors": "T. dos Santos Vasconcelos, C.N. de Araújo Fernandes, J.P.L. Santos et al.",
+      "href": "https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=qtuT18cAAAAJ&citation_for_view=qtuT18cAAAAJ:IjCSPb-OGe4C"
+    },
+    {
+      "id": "cilamce-2024-creep",
+      "title": "Modeling of creep closure of salt rocks drilled by directional wells",
+      "year": 2024,
+      "venue": "CILAMCE — Ibero-Latin American Congress on Computational Methods in Engineering",
+      "kind": "congresso",
+      "authors": "C.M.A. Tenorio, C.N. de Araújo Fernandes, J.P.L. Santos et al.",
+      "href": "https://scholar.google.com/citations?view_op=view_citation&hl=pt-BR&user=qtuT18cAAAAJ&citation_for_view=qtuT18cAAAAJ:UeHWp8X0CEIC"
+    }
+  ]
+}

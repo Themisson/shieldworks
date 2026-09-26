@@ -9,6 +9,10 @@ export type Publication = {
   authors: string;
   href: string;
   highlight?: boolean;
+  doi?: string;
+  abstract?: string;
+  keywords?: string[];
+  researchLines?: string[];
 };
 
 /**
