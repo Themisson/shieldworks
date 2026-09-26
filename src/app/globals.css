@@ -1,3 +1,5 @@
+@import "../styles/tokens.css";
+@import "../styles/v2.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,6 +23,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -39,12 +42,8 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(1200px 500px at 10% -10%, rgba(47, 113, 128, 0.07), transparent 55%),
-    radial-gradient(900px 420px at 90% 0%, rgba(211, 154, 42, 0.05), transparent 50%),
-    var(--background);
+  background: var(--paper);
   color: var(--foreground);
-  overflow-x: hidden;
   font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -53,7 +52,7 @@ body {
 
 /* Subtle grain to break digital flatness without hurting performance */
 body::before {
-  content: "";
+  content: none;
   position: fixed;
   inset: 0;
   z-index: 80;
@@ -115,7 +114,9 @@ p {
   }
 
   .section-shell {
-    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+    width: 100%;
+    min-width: 0;
+    padding-inline: var(--page-gutter);
   }
 
   .eyebrow {
@@ -339,12 +340,12 @@ p {
 /* Scroll-reveal — GPU-friendly (opacity + transform only) */
 .reveal {
   --reveal-delay: 0ms;
-  opacity: 0;
-  transform: translate3d(0, 18px, 0);
+  opacity: 1;
+  transform: none;
   transition:
     opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay);
-  will-change: opacity, transform;
+  will-change: auto;
 }
 
 .reveal.is-visible {
