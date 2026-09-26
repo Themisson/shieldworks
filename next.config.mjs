@@ -1,8 +1,16 @@
+import { fileURLToPath } from "node:url";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: { globalNotFound: true },
+  turbopack: { root: fileURLToPath(new URL(".", import.meta.url)) },
   async redirects() {
     return [
+      { source: "/insights", destination: "/conteudo", permanent: true },
+      { source: "/insights/:slug", destination: "/conteudo/:slug", permanent: true },
+      { source: "/en/insights", destination: "/en/conteudo", permanent: true },
+      { source: "/en/insights/:slug", destination: "/en/conteudo/:slug", permanent: true },
       {
         source: "/:path*",
         has: [
@@ -33,7 +41,7 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com",
+              `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",

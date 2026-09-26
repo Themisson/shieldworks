@@ -9,8 +9,29 @@ export async function readJsonBody(request: Request) {
     return { error: NextResponse.json({ ok: false, message: "Payload muito grande." }, { status: 413 }) };
   }
 
-  const payload = await request.json().catch(() => null);
-  return { payload };
+  if (!request.body) return { payload: null };
+  const reader = request.body.getReader();
+  const decoder = new TextDecoder();
+  let bytes = 0;
+  let source = "";
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > MAX_BODY_BYTES) {
+        await reader.cancel();
+        return { error: NextResponse.json({ ok: false, message: "Payload muito grande." }, { status: 413 }) };
+      }
+      source += decoder.decode(value, { stream: true });
+    }
+    source += decoder.decode();
+    return { payload: JSON.parse(source) as unknown };
+  } catch {
+    return { payload: null };
+  } finally {
+    reader.releaseLock();
+  }
 }
 
 export function enforceRateLimit(request: Request, scope: string) {
