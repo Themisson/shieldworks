@@ -70,6 +70,7 @@ Português preserva URLs existentes; inglês usa `/en`. `/insights` redireciona 
 - [Pesquisa](docs/RESEARCH_ARCHITECTURE.md) e [projetos](docs/PROJECTS_ARCHITECTURE.md)
 - [SEO](docs/SEO.md), [acessibilidade](docs/ACCESSIBILITY.md), [segurança](docs/SECURITY.md)
 - [Testes](docs/TESTING.md), [registro de fases](docs/IMPLEMENTATION_V2.md), [validação](docs/VALIDATION_V2.md)
+- [Revisão de scroll snap e SVGs](docs/SCROLL_SVG_REVISION.md)
 - [Operação local e futuro](docs/DEPLOYMENT.md), [ADRs](docs/adr)
 
 Orientações de agentes em [AGENTS.md](AGENTS.md). Documentos V1 estão preservados

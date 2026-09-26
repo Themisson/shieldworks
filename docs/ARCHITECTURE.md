@@ -14,7 +14,7 @@ por advisories concretos, descritos em SECURITY.md. Não há banco, CMS ou auten
 | Editorial | `content/articles/{pt,en}` + `src/lib/editorial.ts` | Markdown validado, publicação, filtros e relacionados |
 | Geometria | `src/styles/tokens.css`, `v2.css` | gutter único, medidas locais e grids fluidos |
 | Narrativa | `src/components/landing` | do problema físico à decisão documentada |
-| Ilustração | `src/components/illustrations` | seis cenas SVG próprias, movimento opcional |
+| Ilustração | `src/components/illustrations` | 12 cenas próprias na landing, 14 variantes, movimento opcional |
 | SEO | `src/lib/page-metadata.ts`, `src/app/{sitemap,robots,og,feed.xml}` | canonical, hreflang, imagens e distribuição |
 | Comunicação | `src/app/api`, `src/lib/{api-request,email,form-validation,rate-limit}` | contato/feedback, Resend e proteção |
 

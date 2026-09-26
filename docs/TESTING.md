@@ -22,7 +22,10 @@ inicia seu próprio standalone em 127.0.0.1:3200, sem reusar servidor desconheci
 dois workers, retries só no CI. `npm run test:e2e:report` abre relatório local.
 Artefatos gerados não entram no Git/lint. Não adicionar skip para contornar regressões.
 
-Entrega validada: 29 testes unitários em sete arquivos e 24 E2E. `inspect:local` usa
+Primeira entrega: 29 testes unitários em sete arquivos e 24 E2E. A revisão de snap/SVG
+adiciona três cenários de jornada: 12 cenas únicas, encaixe/avanço em cada tópico, roda
+do mouse/PageDown, mandatory condicionado à altura real, conteúdo alto, tablet/mobile,
+reduced motion, limpeza ao sair da landing e pausa das cenas. `inspect:local` usa
 servidor próprio em 3400, captura 12 seções/dez internas e registra métricas sintéticas
 em docs/validation; encerra o servidor ao terminar. Execute após E2E, que recria test-results.
 

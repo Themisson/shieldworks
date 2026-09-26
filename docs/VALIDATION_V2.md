@@ -1,7 +1,8 @@
 # Entrega e validação local — ShieldWorks 2.0
 
 Data: 26/09/2026. Branch `feat/shieldworks-v2`. Commit inicial `c0fc08a`;
-código final validado em `a435d0a`, seguido pelo commit de documentação/evidências.
+primeira entrega `2e44565`; revisão de snap/SVG validada em `138f98e`, seguida pelo
+commit de documentação/evidências. Detalhes em [SCROLL_SVG_REVISION.md](SCROLL_SVG_REVISION.md).
 O SHA da entrega completa é o HEAD dessa branch (`git rev-parse HEAD`).
 `main` e `origin/main` continuam em `c0fc08a`. Nenhum push, merge, tag, release,
 deploy, configuração Vercel, DNS, migração ou envio real de e-mail foi realizado.
@@ -9,7 +10,7 @@ deploy, configuração Vercel, DNS, migração ou envio real de e-mail foi reali
 ## Resultado
 
 A base existente evoluiu para um hub com landing de 12 seções, composição full-width,
-gutter único, seis cenas SVG próprias, navegação compacta, projetos/produtos, linhas
+gutter único, 12 cenas SVG próprias na landing, navegação compacta, projetos/produtos, linhas
 de pesquisa, publicações, cases e plataforma editorial Markdown. PT/EN são renderizados
 no servidor, com URL determinística e metadata localizada. A identidade usa linguagem
 de instrumentação, modelos e documentação técnica; não foram copiados os visuais das referências.
@@ -71,10 +72,10 @@ e-mail não estão ativos: a interface oferece RSS e explica a disponibilidade r
 | `npm run check` | pipeline agregado aprovado |
 | `npm run typecheck` | aprovado |
 | `npm run check:content` | oito testes editoriais aprovados |
-| `npm run test:e2e` | 24 testes Chromium aprovados em 55,8 s; nenhum skip |
+| `npm run test:e2e` | 27 testes Chromium aprovados em 54,7 s; nenhum skip |
 | `npm audit` | zero vulnerabilidades reportadas em 26/09/2026 |
 | `npm run inspect:local` | capturas e medições locais concluídas; log do servidor sem erro |
-| Docker production | build Node 22 aprovado; usuário uid=1000; sete destinos HTTP 200, PT/EN, Markdown, publicação, RSS e OG |
+| Docker production | build Node 22 aprovado; usuário uid=1000; smoke HTTP 200 PT/EN, Markdown e RSS; publicação/OG também cobertos pelo E2E |
 | Docker Compose dev | build/up aprovados; home PT/EN, artigo e RSS HTTP 200; containers da tarefa encerrados |
 
 Baseline separado: `c0fc08a` passou lint/16 testes/i18n/build antes das mudanças.
@@ -120,10 +121,12 @@ pela aplicação e conteúdo principal SSR. Analytics Vercel monta somente em am
 
 | Viewport | LCP/FCP | CLS | JS transferido | Recursos transferidos |
 |---|---|---|---|---|
-| 390×844 | 136 ms | 0 | 184.135 bytes | 297.871 bytes |
-| 1440×900 | 180 ms | 0 | 186.104 bytes | 321.799 bytes |
+| 390×844 | 192 / 192 ms | 0 | 196.743 bytes | 311.998 bytes |
+| 1440×900 | não observado / 200 ms | 0 | 198.712 bytes | 335.912 bytes |
 
-Tempo bloqueante além de 50 ms em tarefas longas: 20/25 ms, respectivamente. Os valores
+LCP desktop não recebeu candidato nesta execução e aparece como `null` no JSON, nunca
+como zero milissegundos. Tempo bloqueante além de 50 ms em tarefas longas: 0/33 ms,
+respectivamente. Os valores
 não são promessa de desempenho em rede móvel, INP ou Core Web Vitals de produção.
 Não há listener de scroll por frame nem biblioteca pesada de animação.
 

@@ -15,6 +15,7 @@ em 2560. Header, footer e todas as páginas usam `.section-shell` sem max-width 
 |---|---|
 | Medida | `--reading-measure:65ch`, `--wide-reading-measure:72ch`, `--form-measure:48rem` |
 | Geometria | header 4.5rem; espaço de seção `clamp(3rem,7dvh,7rem)`; gap `clamp(1.5rem,4vw,5rem)` |
+| Landing | espaço próprio `clamp(1.5rem,4dvh,4rem)`; uma altura mínima útil por seção; avanço nativo |
 | Superfícies | papel `#f6f8f7`, branco e petróleo `#102e36`/`#09232b` |
 | Informação | tinta `#142f36`, secundária `#4e6368`, sinal `#1c6b59`, verde claro `#9ee4b9`, âmbar `#e6bd60` |
 | Forma | raios .25rem/.75rem; sombra apenas para elementos flutuantes |

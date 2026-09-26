@@ -51,3 +51,13 @@ Newsletter funcional, admin/CMS, banco, infraestrutura VPS e analytics próprio 
 documentados como futuro. A interface não coleta inscrições nem declara envio fictício.
 Próxima fase recomendada: revisão do proprietário em ambiente local e seleção de ajustes
 editoriais/visuais; qualquer publicação posterior exige aprovação explícita.
+
+## Revisão posterior — snap e cenas por seção
+
+Pedido do proprietário implementado em `138f98e`: altura mínima útil em todas as
+seções, avanço nativo, proximity em tablet e mandatory em desktop condicionado à
+geometria real. Doze SVGs próprios substituem a composição anterior, com formatos
+horizontais específicos e pausa/reduced motion. Sem remoção de dados/rotas/APIs.
+Check, 29 unitários, 27 E2E, inspeção visual e Docker production aprovados.
+Relatório com análise, motivo, arquivos, testes, limites e próxima fase:
+[SCROLL_SVG_REVISION.md](SCROLL_SVG_REVISION.md).

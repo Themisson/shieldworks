@@ -6,4 +6,16 @@ Decisão: seções semânticas com id e min-height: calc(100dvh - var(--header-h
 Conteúdo sempre pode crescer. Snap y proximity apenas em desktops altos, desligado
 no mobile, altura baixa e reduced motion. Nenhum interceptador de teclado/scroll.
 Indicador usa IntersectionObserver e aria-current; âncoras descontam header.
-Rejeitado: mandatory do MDFolio, porque o hub possui conteúdo de extensão variável.
+Decisão original: mandatory rejeitado inicialmente por conteúdo de extensão variável.
+
+## Revisão solicitada pelo proprietário — 26/09/2026
+
+Todas as seções passam a ter a altura mínima da área útil também em mobile, podendo
+crescer. Navegação sequencial usa âncoras nativas, sem capturar wheel, touch ou teclado.
+Tablet (>=768px, altura >=704px) usa proximity. Desktop com ponteiro fino (>=1280px,
+altura >=800px) pode usar mandatory somente quando ResizeObserver confirma que todas
+as seções cabem na área útil. Conteúdo maior, fontes/zoom ou resize retiram mandatory.
+Mobile/altura baixa/reduced motion usam rolagem natural, sem snap. Footer recebe alvo
+de snap para manter End acessível; scroll-snap-stop permanece normal, nunca always.
+O fallback sem JavaScript é proximity nos tamanhos elegíveis. A revisão substitui
+a rejeição geral de mandatory; o critério agora é a geometria real, não só a largura.
