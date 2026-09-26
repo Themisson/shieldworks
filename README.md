@@ -1,145 +1,77 @@
-# ShieldWorks
+# ShieldWorks 2.0
 
-Site profissional de Themisson dos Santos Vasconcelos, construído com Next.js, TypeScript e TailwindCSS.
+Engenharia, pesquisa e software aplicados a problemas reais. Hub profissional e
+científico de Themisson dos Santos Vasconcelos: soluções, produtos, publicações,
+cases e conteúdo técnico. Implementação local para revisão, sem publicação nesta tarefa.
 
-## Objetivo
+## Rodar no notebook
 
-O projeto funciona como portfólio profissional, vitrine de serviços, página de autoridade técnica e acadêmica, base futura para sistemas/SaaS/cursos/produtos digitais e ponto de contato para clientes, instituições, alunos, pesquisadores e interessados em consultoria.
-
-## Stack
-
-- Next.js App Router
-- TypeScript
-- TailwindCSS
-- Lucide React
-- SEO básico, sitemap, robots e manifest PWA inicial
-
-## Rodar localmente
+Node 22.12+ ou 24, npm e Git. Nenhuma variável de ambiente é necessária para visualizar.
 
 ```bash
-npm install
+npm ci
 npm run dev
+```
+
+Acesse http://localhost:3000. Para testar produção local, pare o dev e execute:
+
+```bash
 npm run build
 npm run start
 ```
 
-Após `npm run dev`, acesse `http://localhost:3000`.
+Se 3000 estiver ocupada, use `npm run dev -- --hostname 127.0.0.1 --port 3100`
+ou `npm run start -- --port 3100` e acesse http://127.0.0.1:3100.
 
-## Estrutura principal
+O servidor usa standalone. Pare-o antes de um novo build no Windows.
+Resend só envia mensagens se as três variáveis de `.env.example` forem configuradas.
+Deixe-as vazias durante a avaliação; nunca envie teste a terceiros.
+
+Docker é opcional: `docker compose up --build`. Porta padrão 3000; se ocupada, use
+`$env:SHIELDWORKS_PORT='3300'` no PowerShell antes do comando. Instruções completas,
+imagem de produção e ciclo dos volumes: [DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
+## Verificar
+
+```bash
+npm run check
+npm run typecheck
+npm run check:content
+npx playwright install chromium
+npm run test:e2e
+```
+
+E2E usa porta 3200, build de produção, 13 resoluções, axe, teclado, idiomas e formulários
+interceptados. `npm run test:e2e:report` abre o relatório. Não testa e-mail real.
+
+## Organização
 
 ```text
-src/app
-  page.tsx
-  sobre/page.tsx
-  solucoes/page.tsx
-  sistemas/page.tsx
-  pesquisa/page.tsx
-  assessoria-academica/page.tsx
-  contato/page.tsx
-src/components
-src/data
-docs
-public
+src/app/[locale]/     páginas e metadata PT/EN
+src/app/api/          contato e feedback preservados
+src/components/      layout, editorial, landing e SVGs próprios
+src/styles/          tokens e geometria full-width
+src/data/            fatos profissionais, soluções, projetos, cases e publicações
+content/articles/    notas Markdown PT/EN
+src/lib/editorial.ts  parsing validado e consultas
+e2e/                 Playwright e axe
+docs/                arquitetura, ADRs, auditoria e validação
 ```
 
-## Variáveis e links futuros
+Português preserva URLs existentes; inglês usa `/en`. `/insights` redireciona para
+`/conteudo`. Catálogos de projetos, cases e pesquisa têm detalhes próprios. RSS:
+`/feed.xml`. Não existem CMS/admin, banco editorial ou newsletter por e-mail ativos.
 
-Use `.env.example` como referência. Não versione `.env`.
+## Documentação
 
-Placeholders preparados:
+- [Auditoria inicial](docs/AUDIT_V2.md) e [arquitetura](docs/ARCHITECTURE.md)
+- [Sistema visual](docs/DESIGN_SYSTEM.md) e [landing](docs/LANDING_V2.md)
+- [Conteúdo](docs/CONTENT_ARCHITECTURE.md) e [edição](docs/EDITORIAL_SYSTEM.md)
+- [Pesquisa](docs/RESEARCH_ARCHITECTURE.md) e [projetos](docs/PROJECTS_ARCHITECTURE.md)
+- [SEO](docs/SEO.md), [acessibilidade](docs/ACCESSIBILITY.md), [segurança](docs/SECURITY.md)
+- [Testes](docs/TESTING.md), [registro de fases](docs/IMPLEMENTATION_V2.md), [validação](docs/VALIDATION_V2.md)
+- [Operação local e futuro](docs/DEPLOYMENT.md), [ADRs](docs/adr)
 
-- Currículo Lattes
-- ORCID
-- Google Scholar
-- LinkedIn
-- GitHub
-- URL pública do site
-
-## Formulários
-
-Os formulários de contato e feedback já enviam dados para rotas internas:
-
-- `POST /api/contact`
-- `POST /api/feedback`
-
-As rotas fazem validação básica e retornam resposta JSON. O formulário de contato está preparado para envio por e-mail via Resend quando `RESEND_API_KEY`, `CONTACT_TO_EMAIL` e `CONTACT_FROM_EMAIL` estiverem configuradas no ambiente. Não versionar `.env.local`.
-
-## Como adicionar um novo Insight
-
-Nesta fase, a seção Insights usa conteúdo local versionado no código. O site não possui CMS, painel administrativo, login ou banco de dados para publicações.
-
-Para adicionar uma nova publicação:
-
-1. Abra `src/data/insights.ts`.
-2. Adicione um novo objeto no array `insights` com:
-   - `slug`
-   - `title`
-   - `description`
-   - `date`
-   - `category`
-   - `tags`
-   - `published`
-   - `content`
-3. Use `published: true` para exibir o conteúdo no site e no sitemap.
-4. Rode:
-
-```bash
-npm run build
-```
-
-5. Publique um novo deploy.
-
-## Analytics
-
-O projeto está preparado com Vercel Analytics usando o pacote oficial `@vercel/analytics`. A coleta deve permanecer restrita a métricas de uso e desempenho, sem envio de dados sensíveis dos formulários.
-
-## GitHub
-
-Se a GitHub CLI estiver autenticada:
-
-```bash
-gh auth login
-gh repo create shieldworks --public --source=. --remote=origin --push
-```
-
-Fluxo manual alternativo:
-
-```bash
-git init
-git add .
-git commit -m "Initial ShieldWorks website"
-git branch -M main
-git remote add origin https://github.com/USUARIO_GITHUB/shieldworks.git
-git push -u origin main
-```
-
-O repositório pode ser público se não houver dados sensíveis. Caso sejam adicionados documentos pessoais, currículo detalhado, credenciais, chaves, bases de dados ou arquivos institucionais restritos, use repositório privado.
-
-## Deploy
-
-Documentação:
-
-- `docs/DEPLOY-VERCEL.md`
-- `docs/deploy-digitalocean.md`
-- `docs/dominio-e-publicacao.md`
-- `docs/estrutura-do-site.md`
-
-## Documentação interna
-
-- `docs/CONTINUIDADE-DESENVOLVIMENTO.md`
-- `docs/SETUP-LOCAL.md`
-- `docs/VARIAVEIS-AMBIENTE.md`
-- `docs/DEPLOY-VERCEL.md`
-- `docs/INSIGHTS.md`
-- `docs/ROADMAP.md`
-
-## Segurança
-
-- Não versionar `.env`.
-- Não incluir senhas, tokens, credenciais ou arquivos pessoais sem revisão.
-- Não publicar documentos institucionais restritos.
-- Manter links acadêmicos como placeholders até validação.
-
-## Observação institucional
-
-As soluções, sistemas e demonstrações apresentados neste site integram uma iniciativa profissional pessoal. Elas não devem ser interpretadas como sistemas oficiais do CBMAL ou de qualquer órgão público sem contratação, autorização ou publicação institucional específica.
+Orientações de agentes em [AGENTS.md](AGENTS.md). Documentos V1 estão preservados
+como histórico; prevalecem os documentos V2 acima. Não fazer merge/main, push, tag,
+release, deploy, DNS ou migração sem aprovação explícita do proprietário.

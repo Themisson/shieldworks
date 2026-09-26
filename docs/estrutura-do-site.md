@@ -1,3 +1,5 @@
+> Histórico V1: preservado como registro. Para instruções atuais, consulte [arquitetura](ARCHITECTURE.md), [operação](DEPLOYMENT.md) e [edição](EDITORIAL_SYSTEM.md). Não executar publicação/infraestrutura a partir deste documento.
+
 # Estrutura do Site
 
 ## Páginas

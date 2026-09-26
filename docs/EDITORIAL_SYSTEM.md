@@ -23,3 +23,18 @@ Os 6 insights originais são notas breves; não foram expandidos com resultados 
 Futuro CMS/admin: implementar um repository que devolve o mesmo Article validado,
 com autorização no servidor, revisão, versões, agendamento, uploads restritos e
 auditoria. Nenhuma rota admin ou banco foi criado nesta fase.
+
+## Figuras e SEO
+
+Uma imagem isolada vira figure, com título Markdown como figcaption:
+
+```markdown
+![Descrição acessível](/research-hero.webp "Figura 1 — legenda e fonte verificável")
+```
+
+Use somente assets existentes e autorizados; o exemplo ilustra a sintaxe e não cria
+uma figura científica. Overrides opcionais: seo.title, seo.description, seo.image.
+SEO recebe a descrição/título editorial por padrão. Capas e overrides são URLs locais.
+Não reexecutar scripts migrate-editorial/create-editorial-en após editar matérias: são
+registros da migração inicial, podem sobrescrever mudanças editoriais posteriores.
+Datas futuras exigem novo build para entrar em detalhes estáticos/RSS/sitemap.

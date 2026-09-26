@@ -1,0 +1,335 @@
+{
+  "date": "2026-09-26",
+  "method": "Chromium headless, local standalone, cold browser contexts, no CPU/network throttling; synthetic measurements, not field CWV or Lighthouse",
+  "measurements": [
+    {
+      "width": 390,
+      "lcp": 136,
+      "cls": 0,
+      "longTasks": 20,
+      "fcp": 136,
+      "resources": 26,
+      "jsTransferBytes": 184135,
+      "totalTransferBytes": 297871,
+      "resourcesByType": [
+        {
+          "name": "/_next/static/media/1b99372b3eaef0c8-s.p.1gsd1jahc5dg_.woff2",
+          "transferBytes": 32528,
+          "decodedBytes": 32228
+        },
+        {
+          "name": "/_next/static/media/23b7a97ae3b5c134-s.p.226pwps5o-gq_.woff2",
+          "transferBytes": 10420,
+          "decodedBytes": 10120
+        },
+        {
+          "name": "/_next/static/media/99e609270109b47d-s.p.40sczeszzbjw1.woff2",
+          "transferBytes": 10352,
+          "decodedBytes": 10052
+        },
+        {
+          "name": "/_next/static/media/effe91970fc4db64-s.p.0oace-s_gkfks.woff2",
+          "transferBytes": 10360,
+          "decodedBytes": 10060
+        },
+        {
+          "name": "/_next/static/chunks/3c4-ozf1dxam2.css",
+          "transferBytes": 4431,
+          "decodedBytes": 24383
+        },
+        {
+          "name": "/_next/static/chunks/2o6g6kq-z_e8h.css",
+          "transferBytes": 12849,
+          "decodedBytes": 60875
+        },
+        {
+          "name": "/icon.svg",
+          "transferBytes": 737,
+          "decodedBytes": 437
+        },
+        {
+          "name": "/_next/static/chunks/3s6nzrbk-8mnv.js",
+          "transferBytes": 2329,
+          "decodedBytes": 5598
+        },
+        {
+          "name": "/_next/static/chunks/turbopack-276eoluup34z0.js",
+          "transferBytes": 4601,
+          "decodedBytes": 10946
+        },
+        {
+          "name": "/_next/static/chunks/1d8durn3f0db4.js",
+          "transferBytes": 7913,
+          "decodedBytes": 28907
+        },
+        {
+          "name": "/_next/static/chunks/2-rtuqsgzmno4.js",
+          "transferBytes": 45395,
+          "decodedBytes": 165743
+        },
+        {
+          "name": "/_next/static/chunks/2k_ahogzgc5xx.js",
+          "transferBytes": 71877,
+          "decodedBytes": 228922
+        },
+        {
+          "name": "/_next/static/chunks/3fntmmi971322.js",
+          "transferBytes": 3961,
+          "decodedBytes": 14377
+        },
+        {
+          "name": "/_next/static/chunks/154i5qb1_0wge.js",
+          "transferBytes": 10874,
+          "decodedBytes": 30211
+        },
+        {
+          "name": "/_next/static/chunks/3ubqdzlt537ky.js",
+          "transferBytes": 19871,
+          "decodedBytes": 68934
+        },
+        {
+          "name": "/_next/static/chunks/3a2qo-dhaoxnp.js",
+          "transferBytes": 11117,
+          "decodedBytes": 31024
+        },
+        {
+          "name": "/_next/static/chunks/3139ea-4dr_f_.js",
+          "transferBytes": 4042,
+          "decodedBytes": 9300
+        },
+        {
+          "name": "/",
+          "transferBytes": 711,
+          "decodedBytes": 886
+        },
+        {
+          "name": "/en",
+          "transferBytes": 710,
+          "decodedBytes": 886
+        },
+        {
+          "name": "/solucoes",
+          "transferBytes": 721,
+          "decodedBytes": 961
+        },
+        {
+          "name": "/projetos",
+          "transferBytes": 722,
+          "decodedBytes": 961
+        },
+        {
+          "name": "/",
+          "transferBytes": 8598,
+          "decodedBytes": 36767
+        },
+        {
+          "name": "/en",
+          "transferBytes": 8483,
+          "decodedBytes": 36342
+        },
+        {
+          "name": "/projetos",
+          "transferBytes": 4558,
+          "decodedBytes": 15296
+        },
+        {
+          "name": "/solucoes",
+          "transferBytes": 5227,
+          "decodedBytes": 43137
+        },
+        {
+          "name": "/_next/static/chunks/18g36r_5e2tv2.js",
+          "transferBytes": 4484,
+          "decodedBytes": 10359
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "lcp": 180,
+      "cls": 0,
+      "longTasks": 25,
+      "fcp": 180,
+      "resources": 35,
+      "jsTransferBytes": 186104,
+      "totalTransferBytes": 321799,
+      "resourcesByType": [
+        {
+          "name": "/_next/static/media/1b99372b3eaef0c8-s.p.1gsd1jahc5dg_.woff2",
+          "transferBytes": 32528,
+          "decodedBytes": 32228
+        },
+        {
+          "name": "/icon.svg",
+          "transferBytes": 737,
+          "decodedBytes": 437
+        },
+        {
+          "name": "/_next/static/chunks/2o6g6kq-z_e8h.css",
+          "transferBytes": 12849,
+          "decodedBytes": 60875
+        },
+        {
+          "name": "/_next/static/media/23b7a97ae3b5c134-s.p.226pwps5o-gq_.woff2",
+          "transferBytes": 10420,
+          "decodedBytes": 10120
+        },
+        {
+          "name": "/_next/static/media/99e609270109b47d-s.p.40sczeszzbjw1.woff2",
+          "transferBytes": 10352,
+          "decodedBytes": 10052
+        },
+        {
+          "name": "/_next/static/media/effe91970fc4db64-s.p.0oace-s_gkfks.woff2",
+          "transferBytes": 10360,
+          "decodedBytes": 10060
+        },
+        {
+          "name": "/_next/static/chunks/3c4-ozf1dxam2.css",
+          "transferBytes": 4431,
+          "decodedBytes": 24383
+        },
+        {
+          "name": "/_next/static/chunks/3s6nzrbk-8mnv.js",
+          "transferBytes": 2329,
+          "decodedBytes": 5598
+        },
+        {
+          "name": "/_next/static/chunks/1d8durn3f0db4.js",
+          "transferBytes": 7913,
+          "decodedBytes": 28907
+        },
+        {
+          "name": "/_next/static/chunks/2-rtuqsgzmno4.js",
+          "transferBytes": 45395,
+          "decodedBytes": 165743
+        },
+        {
+          "name": "/_next/static/chunks/2k_ahogzgc5xx.js",
+          "transferBytes": 71877,
+          "decodedBytes": 228922
+        },
+        {
+          "name": "/_next/static/chunks/turbopack-276eoluup34z0.js",
+          "transferBytes": 4601,
+          "decodedBytes": 10946
+        },
+        {
+          "name": "/_next/static/chunks/3fntmmi971322.js",
+          "transferBytes": 3961,
+          "decodedBytes": 14377
+        },
+        {
+          "name": "/_next/static/chunks/154i5qb1_0wge.js",
+          "transferBytes": 10874,
+          "decodedBytes": 30211
+        },
+        {
+          "name": "/_next/static/chunks/3139ea-4dr_f_.js",
+          "transferBytes": 4042,
+          "decodedBytes": 9300
+        },
+        {
+          "name": "/_next/static/chunks/3a2qo-dhaoxnp.js",
+          "transferBytes": 11117,
+          "decodedBytes": 31024
+        },
+        {
+          "name": "/_next/static/chunks/3ubqdzlt537ky.js",
+          "transferBytes": 19871,
+          "decodedBytes": 68934
+        },
+        {
+          "name": "/",
+          "transferBytes": 711,
+          "decodedBytes": 886
+        },
+        {
+          "name": "/solucoes",
+          "transferBytes": 721,
+          "decodedBytes": 961
+        },
+        {
+          "name": "/projetos",
+          "transferBytes": 722,
+          "decodedBytes": 961
+        },
+        {
+          "name": "/pesquisa",
+          "transferBytes": 721,
+          "decodedBytes": 961
+        },
+        {
+          "name": "/conteudo",
+          "transferBytes": 501,
+          "decodedBytes": 358
+        },
+        {
+          "name": "/sobre",
+          "transferBytes": 719,
+          "decodedBytes": 958
+        },
+        {
+          "name": "/en",
+          "transferBytes": 710,
+          "decodedBytes": 886
+        },
+        {
+          "name": "/contato",
+          "transferBytes": 721,
+          "decodedBytes": 960
+        },
+        {
+          "name": "/",
+          "transferBytes": 8598,
+          "decodedBytes": 36767
+        },
+        {
+          "name": "/solucoes",
+          "transferBytes": 5227,
+          "decodedBytes": 43137
+        },
+        {
+          "name": "/projetos",
+          "transferBytes": 4558,
+          "decodedBytes": 15296
+        },
+        {
+          "name": "/pesquisa",
+          "transferBytes": 8520,
+          "decodedBytes": 62919
+        },
+        {
+          "name": "/conteudo",
+          "transferBytes": 1487,
+          "decodedBytes": 3265
+        },
+        {
+          "name": "/_next/static/chunks/18g36r_5e2tv2.js",
+          "transferBytes": 4484,
+          "decodedBytes": 10359
+        },
+        {
+          "name": "/sobre",
+          "transferBytes": 4851,
+          "decodedBytes": 23670
+        },
+        {
+          "name": "/en",
+          "transferBytes": 8483,
+          "decodedBytes": 36342
+        },
+        {
+          "name": "/contato",
+          "transferBytes": 4439,
+          "decodedBytes": 15985
+        },
+        {
+          "name": "/_next/static/chunks/0rsjhf14hijlu.js",
+          "transferBytes": 1969,
+          "decodedBytes": 3793
+        }
+      ]
+    }
+  ]
+}
