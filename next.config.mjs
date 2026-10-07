@@ -7,6 +7,11 @@ const nextConfig = {
   outputFileTracingIncludes: { "/*": ["./content/articles/**/*.md"] },
   experimental: { globalNotFound: true },
   turbopack: { root: fileURLToPath(new URL(".", import.meta.url)) },
+  async rewrites() {
+    // Browsers and crawlers still request this conventional icon path. Serve the
+    // authored SVG without creating a duplicate raster asset just for the alias.
+    return { beforeFiles: [{ source: "/favicon.ico", destination: "/favicon.svg" }] };
+  },
   async redirects() {
     return [
       { source: "/insights", destination: "/conteudo", permanent: true },

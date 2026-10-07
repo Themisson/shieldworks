@@ -19,7 +19,9 @@ pode substituir essa imagem. O asset OG original permanece como fallback do Arti
 
 `/feed.xml`: RSS 2.0, seis notas PT, título/link/data/descrição escapados, cache de uma
 hora e autodiscovery em metadata. Ainda não existe feed EN separado. RSS não exige cadastro.
-`robots.txt` e manifest preservados. 404 não é indexável.
+`robots.txt` e manifest preservados. O alias convencional `/favicon.ico` é reescrito
+para o ícone SVG autoral, evitando um 404 gerado por navegadores e rastreadores. 404
+reais não são indexáveis.
 
 Redirects 308 preservam `/insights` e `/insights/:slug`, inclusive `/en` e `/pt`.
 O redirecionamento do host sem www permanece. Nenhum redirect de idioma por navegador.

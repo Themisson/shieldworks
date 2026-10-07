@@ -232,6 +232,9 @@ test("locale SSR, canonical, redirects and English content", async ({
     "href",
     "https://www.shieldworks.com.br",
   );
+  const favicon = await request.get("/favicon.ico");
+  expect(favicon.status()).toBe(200);
+  expect(favicon.headers()["content-type"]).toContain("image/svg+xml");
 });
 
 test("sections, anchors, snap, motion and keyboard scroll", async ({
