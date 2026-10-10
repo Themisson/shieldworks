@@ -155,6 +155,14 @@ export default async function RootLayout({
           <FloatingFeedback />
         </LocaleProvider>
         {process.env.VERCEL === "1" ? <Analytics /> : null}
+        {/* Sentinela: ShieldWorks' own access measurement (sentinela.shieldworks.com.br).
+            Sends only the page, the referrer origin and the three utm_* parameters;
+            no name, e-mail or IP leaves the browser. */}
+        <script
+          defer
+          src="https://sentinela.shieldworks.com.br/t.js"
+          data-site="sw_2uqd3i4voiocup339eqdzwn9"
+        />
       </body>
     </html>
   );

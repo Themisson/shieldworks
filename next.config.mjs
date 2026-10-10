@@ -51,11 +51,14 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               // Cloudflare Web Analytics: the domain's proxy injects this beacon.
-              `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com https://static.cloudflareinsights.com`,
+              // Sentinela (sentinela.shieldworks.com.br): ShieldWorks' own access measurement,
+              // loaded by the root layout; the ping goes out through sendBeacon (connect-src)
+              // or, without it, a 1x1 GIF (img-src already allows https:).
+              `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com https://static.cloudflareinsights.com https://sentinela.shieldworks.com.br`,
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
-              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://cloudflareinsights.com",
+              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://cloudflareinsights.com https://sentinela.shieldworks.com.br",
               "frame-ancestors 'self'",
               "base-uri 'self'",
               "form-action 'self'"
