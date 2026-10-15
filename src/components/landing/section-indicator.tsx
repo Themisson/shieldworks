@@ -5,23 +5,35 @@ import { useLocale } from "@/i18n/locale-provider";
 
 type Sections = readonly (readonly [string, string, string])[];
 
-/** Screen-deck position: which topic is on screen, as native anchors. */
+/**
+ * Screen-deck position, as native anchors on the right edge. The current
+ * section is the first one (in page order) crossing a band at 40% of the
+ * viewport height; past the last section (footer) the last one stays marked.
+ * Without IntersectionObserver the first section is marked and the links
+ * still work.
+ */
 export function SectionIndicator({ sections }: { sections: Sections }) {
   const [active, setActive] = useState(sections[0]?.[0] ?? "");
   const { locale } = useLocale();
   useEffect(() => {
     if (!window.IntersectionObserver) return;
-    const nodes = sections
-      .map(([id]) => document.getElementById(id))
-      .filter((node): node is HTMLElement => !!node);
+    const order = sections.map(([id]) => id);
+    const inBand = new Set<string>();
     const observer = new IntersectionObserver(
       (entries) => {
-        const entry = entries.find((item) => item.isIntersecting);
-        if (entry) setActive(entry.target.id);
+        for (const entry of entries) {
+          if (entry.isIntersecting) inBand.add(entry.target.id);
+          else inBand.delete(entry.target.id);
+        }
+        const found = order.find((id) => inBand.has(id));
+        if (found) setActive(found);
       },
-      { rootMargin: "-35% 0px -55% 0px", threshold: 0 },
+      { rootMargin: "-40% 0px -59% 0px", threshold: 0 },
     );
-    nodes.forEach((node) => observer.observe(node));
+    for (const id of order) {
+      const node = document.getElementById(id);
+      if (node) observer.observe(node);
+    }
     return () => observer.disconnect();
   }, [sections]);
   return (

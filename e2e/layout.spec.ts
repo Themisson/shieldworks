@@ -240,9 +240,13 @@ test("locale SSR, canonical, redirects and English content", async ({
 test("sections, anchors, snap, motion and keyboard scroll", async ({
   page,
 }) => {
-  await page.setViewportSize({ width: 1920, height: 1080 });
+  // The section indicator shows from laptop widths with a pointer, not only on large monitors.
+  await page.setViewportSize({ width: 1366, height: 768 });
   await page.goto("/");
   const indicator = page.getByRole("navigation", { name: "Seções da página" });
+  await expect(indicator).toBeVisible();
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto("/");
   await expect(indicator).toBeVisible();
   await expect(page.locator(".engineering-plate").first()).toHaveAttribute(
     "data-playing",
