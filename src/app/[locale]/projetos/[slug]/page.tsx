@@ -7,6 +7,7 @@ import { canonicalUrl } from "@/lib/seo";
 import { localizedPath } from "@/i18n/routing";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { EngineeringScene } from "@/components/illustrations/engineering-scene";
+import { ProjectMark } from "@/components/illustrations/project-marks";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 export function generateStaticParams() {
@@ -64,7 +65,10 @@ export default async function ProjectPage({ params }: Props) {
         <p className="technical-label">
           {project.category[locale]} / {project.stage[locale]}
         </p>
-        <h1>{project.name}</h1>
+        <div className="project-identity project-identity-hero">
+          <ProjectMark slug={project.slug} />
+          <h1>{project.name}</h1>
+        </div>
         <p className="detail-description">{project.summary[locale]}</p>
       </header>
       <div className="internal-grid">

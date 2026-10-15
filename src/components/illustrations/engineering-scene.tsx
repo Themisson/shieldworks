@@ -6,6 +6,9 @@ export type { SceneKind } from "./scene-artwork";
 
 type Pair = [string, string];
 
+/** Products drawn in the software scene (legend order = catalog order). */
+export const softwareSceneParts = 4;
+
 const scenes: Record<
   SceneKind,
   { title: Pair; description: Pair; legend: (Pair | string)[] }
@@ -76,8 +79,8 @@ const scenes: Record<
   software: {
     title: ["PRODUTOS DIGITAIS", "DIGITAL PRODUCTS"],
     description: [
-      "Quatro ferramentas do ecossistema: MDFolio para documentos, AcadImprove para avaliação educacional, Sursum para cifras e Gabarita para leitura de folhas de resposta.",
-      "Four ecosystem tools: MDFolio for documents, AcadImprove for educational assessment, Sursum for chord sheets and Gabarita for answer-sheet reading.",
+      "Quatro das ferramentas do ecossistema: MDFolio para documentos, AcadImprove para avaliação educacional, Sursum para cifras e Gabarita para leitura de folhas de resposta. Sentinela, ObraVisão e NaEscala completam o catálogo ao lado.",
+      "Four of the ecosystem tools: MDFolio for documents, AcadImprove for educational assessment, Sursum for chord sheets and Gabarita for answer-sheet reading. Sentinela, ObraVisão and NaEscala complete the catalog alongside.",
     ],
     legend: ["MDFolio", "AcadImprove", "Sursum", "Gabarita"],
   },

@@ -10,7 +10,8 @@ export type AnalyticsEvent =
   | "feedback_form_submit"
   | "feedback_form_success"
   | "feedback_form_error"
-  | "nav_contact_click";
+  | "nav_contact_click"
+  | "project_open_click";
 
 export function trackEvent(event: AnalyticsEvent, data?: Record<string, string | number | boolean>) {
   try {
