@@ -1,0 +1,83 @@
+/* Product marks (favicons of the published applications, inlined by
+   src/components/illustrations/project-marks.tsx). Light values are the
+   favicons' own; dark values follow each favicon's own dark scheme where it
+   has one (AcadImprove, Sentinela, ObraVisão, NaEscala) and are lightened for
+   contrast where it does not (Sursum, Gabarita). Same three selectors as
+   tokens.css so the marks follow data-theme, not only the system scheme. */
+:root {
+  --mark-mdfolio-plate: #25312e;
+  --mark-mdfolio-page: #fffdf6;
+  --mark-mdfolio-letter: #aa452e;
+  --mark-acad-a: #0c4c92;
+  --mark-acad-f: #082a66;
+  --mark-acad-b: #18a99a;
+  --mark-acad-l1: #0b4f9e;
+  --mark-acad-l2: #0d7fa6;
+  --mark-acad-l3: #16b39c;
+  --mark-sursum: #9b1c31;
+  --mark-gabarita: #0f6b70;
+  --mark-gabarita-check: #ffffff;
+  --mark-sentinela-shield: #0c0e12;
+  --mark-sentinela-pulse: #7ea3a0;
+  --mark-obravisao-frame: #1b1d21;
+  --mark-obravisao-house: #1b1d21;
+  --mark-obravisao-check: #f5c518;
+  --mark-naescala: #1a1712;
+}
+:root[data-theme="dark"] {
+  --mark-acad-a: #5fa8ee;
+  --mark-acad-f: #2f63b8;
+  --mark-acad-b: #8fead2;
+  --mark-acad-l1: #4c8fe0;
+  --mark-acad-l2: #44bad6;
+  --mark-acad-l3: #56e0c4;
+  --mark-sursum: #e06a80;
+  --mark-gabarita: #4fc3c6;
+  --mark-gabarita-check: #0d171a;
+  --mark-sentinela-shield: #f3f0e8;
+  --mark-sentinela-pulse: #3f6763;
+  --mark-obravisao-frame: #f5c518;
+  --mark-obravisao-house: #f6f5f2;
+  --mark-obravisao-check: transparent;
+  --mark-naescala: #e7edf7;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --mark-acad-a: #5fa8ee;
+    --mark-acad-f: #2f63b8;
+    --mark-acad-b: #8fead2;
+    --mark-acad-l1: #4c8fe0;
+    --mark-acad-l2: #44bad6;
+    --mark-acad-l3: #56e0c4;
+    --mark-sursum: #e06a80;
+    --mark-gabarita: #4fc3c6;
+    --mark-gabarita-check: #0d171a;
+    --mark-sentinela-shield: #f3f0e8;
+    --mark-sentinela-pulse: #3f6763;
+    --mark-obravisao-frame: #f5c518;
+    --mark-obravisao-house: #f6f5f2;
+    --mark-obravisao-check: transparent;
+    --mark-naescala: #e7edf7;
+  }
+}
+
+.mark-mdfolio-plate { fill: var(--mark-mdfolio-plate); }
+.mark-mdfolio-page { fill: var(--mark-mdfolio-page); }
+.mark-mdfolio-letter { stroke: var(--mark-mdfolio-letter); }
+.mark-acad-a { fill: var(--mark-acad-a); }
+.mark-acad-f { fill: var(--mark-acad-f); }
+.mark-acad-b { fill: var(--mark-acad-b); }
+.mark-acad-l1 { fill: var(--mark-acad-l1); }
+.mark-acad-l2 { fill: var(--mark-acad-l2); }
+.mark-acad-l3 { fill: var(--mark-acad-l3); }
+.mark-sursum-stroke { stroke: var(--mark-sursum); }
+.mark-gabarita-ring { stroke: var(--mark-gabarita); }
+.mark-gabarita-disc { fill: var(--mark-gabarita); }
+.mark-gabarita-check { stroke: var(--mark-gabarita-check); }
+.mark-sentinela-shield { fill: var(--mark-sentinela-shield); }
+.mark-sentinela-pulse { stroke: var(--mark-sentinela-pulse); }
+.mark-obravisao-frame { fill: var(--mark-obravisao-frame); }
+.mark-obravisao-house { fill: var(--mark-obravisao-house); }
+.mark-obravisao-check { fill: var(--mark-obravisao-check); }
+.mark-naescala { stroke: var(--mark-naescala); }
+.mark-naescala-slot { fill: var(--mark-naescala); }

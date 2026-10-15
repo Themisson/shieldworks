@@ -2,7 +2,11 @@ import Link from "next/link";
 import { TrackedLink } from "@/components/tracked-link";
 import type { Locale } from "@/i18n/translations";
 import { localizedPath } from "@/i18n/routing";
-import { EngineeringScene } from "@/components/illustrations/engineering-scene";
+import {
+  EngineeringScene,
+  softwareSceneParts,
+} from "@/components/illustrations/engineering-scene";
+import { ProjectCard } from "@/components/project-card";
 import { SectionIndicator } from "@/components/landing/section-indicator";
 import { ScreenDeck } from "@/components/layout/screen-deck";
 import { SectionAdvance } from "@/components/landing/section-advance";
@@ -375,23 +379,16 @@ export function Landing({ locale }: { locale: Locale }) {
           </div>
           <div className="project-grid">
             {projects.map((project, i) => (
-              <Link
+              <ProjectCard
                 key={project.slug}
-                href={url(`/projetos/${project.slug}`)}
-                className={`project-tile project-${project.slug}`}
-                data-focus={i + 1}
-              >
-                <div className="project-tile-top">
-                  <span>{String(i + 1).padStart(2, "0")}</span>
-                  <span aria-hidden="true">↗</span>
-                </div>
-                <div className="project-symbol" aria-hidden="true">
-                  {["M↓", "A+", "S∿", "G▦"][i]}
-                </div>
-                <h3>{project.name}</h3>
-                <p>{project.summary[locale]}</p>
-                <span className="project-stage">{project.stage[locale]}</span>
-              </Link>
+                project={project}
+                locale={locale}
+                index={i}
+                heading="h3"
+                // The software scene draws the first four products.
+                focus={i < softwareSceneParts ? i + 1 : undefined}
+                source="landing"
+              />
             ))}
           </div>
         </div>

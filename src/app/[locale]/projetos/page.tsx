@@ -4,6 +4,7 @@ import { routeLocale } from "@/lib/route-locale";
 import { pageMetadata } from "@/lib/page-metadata";
 import { localizedPath } from "@/i18n/routing";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { ProjectCard } from "@/components/project-card";
 
 type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
@@ -12,8 +13,8 @@ export async function generateMetadata({ params }: Props) {
     "/projetos",
     locale === "en" ? "Projects and products" : "Projetos e produtos",
     locale === "en"
-      ? "ShieldWorks software portfolio: technical publishing, education, music and assessment."
-      : "Portfólio de software ShieldWorks: publicação técnica, ensino, música e avaliação.",
+      ? "ShieldWorks software portfolio: technical publishing, education, music, assessment, access measurement, construction tracking and duty rosters."
+      : "Portfólio de software ShieldWorks: publicação técnica, ensino, música, avaliação, medição de acessos, acompanhamento de obras e escalas de serviço.",
     locale,
   );
 }
@@ -41,26 +42,17 @@ export default async function ProjectsPage({ params }: Props) {
           )}
         </p>
       </header>
-      <div className="project-grid">
+      <div className="project-grid project-catalog">
         {projects.map((project, i) => (
-          <Link
+          <ProjectCard
             key={project.slug}
-            href={localizedPath(`/projetos/${project.slug}`, locale)}
-            className="project-tile"
-          >
-            <div className="project-tile-top">
-              <span>
-                0{i + 1} / {project.category[locale]}
-              </span>
-              <span aria-hidden="true">↗</span>
-            </div>
-            <div className="project-symbol" aria-hidden="true">
-              {["M↓", "A+", "S∿", "G▦"][i]}
-            </div>
-            <h2 className="text-3xl font-medium">{project.name}</h2>
-            <p>{project.summary[locale]}</p>
-            <span className="project-stage">{project.stage[locale]}</span>
-          </Link>
+            project={project}
+            locale={locale}
+            index={i}
+            heading="h2"
+            source="projects"
+            category
+          />
         ))}
       </div>
       <section className="internal-section">

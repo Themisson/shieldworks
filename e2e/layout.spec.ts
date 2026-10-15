@@ -421,13 +421,13 @@ test("all canonical sitemap destinations render and language links navigate", as
     .getByRole("link", { name: "EN", exact: true })
     .click();
   await expect(page).toHaveURL(/\/en\/projetos\/acadimprove$/);
-  await expect(page.locator("main")).toContainText("In development");
+  await expect(page.locator("main")).toContainText("Published application");
   await page
     .getByRole("navigation", { name: "Language" })
     .getByRole("link", { name: "PT", exact: true })
     .click();
   await expect(page).toHaveURL(/\/projetos\/acadimprove$/);
-  await expect(page.locator("main")).toContainText("Em desenvolvimento");
+  await expect(page.locator("main")).toContainText("Aplicação publicada");
 });
 
 test("English pages retain responsive layout and localized metadata", async ({
