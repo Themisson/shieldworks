@@ -20,21 +20,23 @@ const nextConfig = {
       { source: "/en/insights/:slug", destination: "/en/conteudo/:slug", permanent: true },
       { source: "/pt/insights", destination: "/conteudo", permanent: true },
       { source: "/pt/insights/:slug", destination: "/conteudo/:slug", permanent: true },
-      {
+      // Apex and the Vercel production alias serve the same site; only www is canonical.
+      // Preview deployments keep their own hostnames and Vercel already marks them noindex.
+      ...["shieldworks.com.br", "shieldworks.vercel.app"].map(host => ({
         source: "/:path*",
-        has: [
-          {
-            type: "host",
-            value: "shieldworks.com.br"
-          }
-        ],
+        has: [{ type: "host", value: host }],
         destination: "https://www.shieldworks.com.br/:path*",
         permanent: true
-      }
+      }))
     ];
   },
   async headers() {
     return [
+      {
+        // Generated social images are not pages; keep them out of the index.
+        source: "/og",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }]
+      },
       {
         source: "/:path*",
         headers: [
