@@ -27,7 +27,7 @@ export function PublicationsList({ items, showProfiles = true }: PublicationsLis
               href={pub.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col gap-3 px-5 py-5 transition duration-200 hover:bg-petroleum-50/40 focus:outline-none focus-visible:bg-petroleum-50/50 sm:flex-row sm:items-start sm:justify-between sm:gap-8 sm:px-6"
+              className="group flex flex-col gap-3 px-5 py-5 transition duration-200 hover:bg-petroleum-50/40 focus:outline-hidden focus-visible:bg-petroleum-50/50 sm:flex-row sm:items-start sm:justify-between sm:gap-8 sm:px-6"
             >
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">

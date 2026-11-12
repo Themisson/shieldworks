@@ -153,9 +153,9 @@ export function HomeStartingPoints() {
             <Reveal key={title} delay={index * 70} className={featured ? "lg:col-span-6" : "lg:col-span-3"}>
               <Link
                 href={href}
-                className={`group flex min-h-56 flex-col rounded-2xl border border-graphite-100/80 bg-white p-6 shadow-card transition duration-300 ease-out hover:-translate-y-0.5 hover:border-petroleum-200 hover:shadow-lift focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 ${
+                className={`group flex min-h-56 flex-col rounded-2xl border border-graphite-100/80 bg-white p-6 shadow-card transition duration-300 ease-out hover:-translate-y-0.5 hover:border-petroleum-200 hover:shadow-lift focus:outline-hidden focus-visible:ring-4 focus-visible:ring-petroleum-100 ${
                   featured ? "lg:min-h-72 lg:p-8" : ""
-                } ${index === 0 ? "bg-gradient-to-br from-white via-white to-petroleum-50/60" : ""}`}
+                } ${index === 0 ? "bg-linear-to-br from-white via-white to-petroleum-50/60" : ""}`}
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-petroleum-50 text-petroleum-700 ring-1 ring-petroleum-100 transition duration-300 group-hover:bg-petroleum-900 group-hover:text-safety-100 group-hover:ring-petroleum-800">
                   <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
@@ -290,7 +290,7 @@ export function HomeCredentials() {
             <Reveal key={credential} delay={index * 60}>
               <div
                 role="listitem"
-                className={`flex min-h-[7.5rem] items-start gap-3 rounded-2xl border border-graphite-100 bg-white p-5 text-sm leading-6 text-graphite-700 shadow-card ${
+                className={`flex min-h-30 items-start gap-3 rounded-2xl border border-graphite-100 bg-white p-5 text-sm leading-6 text-graphite-700 shadow-card ${
                   index % 2 === 1 ? "sm:mt-6" : ""
                 }`}
               >

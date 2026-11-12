@@ -102,7 +102,7 @@ export default function AssessoriaAcadêmicaPage() {
           <div className="mt-10 grid gap-4 lg:grid-cols-12">
             {primary ? (
               <Reveal className="lg:col-span-5">
-                <article className="flex h-full flex-col rounded-2xl border border-petroleum-100 bg-gradient-to-br from-white via-white to-petroleum-50/70 p-6 shadow-card sm:p-7">
+                <article className="flex h-full flex-col rounded-2xl border border-petroleum-100 bg-linear-to-br from-white via-white to-petroleum-50/70 p-6 shadow-card sm:p-7">
                   {PrimaryIcon ? (
                     <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-petroleum-50 text-petroleum-700 ring-1 ring-petroleum-100">
                       <PrimaryIcon

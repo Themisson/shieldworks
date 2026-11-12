@@ -1,6 +1,6 @@
 # ShieldWorks 2.0 — arquitetura implementada
 
-Next.js 16.3.3 App Router, React 19.2.6, TypeScript, Tailwind e CSS de domínio.
+Next.js 16.4.6 App Router, React 19.3, TypeScript 6, Tailwind 4 e CSS de domínio.
 Node 22.12+ ou 24; Node 22 é o ambiente do CI e Docker. Dependências foram corrigidas
 por advisories concretos, descritos em SECURITY.md. Não há banco, CMS ou autenticação.
 

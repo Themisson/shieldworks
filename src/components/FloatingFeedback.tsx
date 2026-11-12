@@ -114,21 +114,21 @@ export function FloatingFeedback() {
       <button
         ref={buttonRef}
         type="button"
-        className="feedback-trigger group fixed bottom-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-petroleum-900 text-white shadow-lift transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-petroleum-800 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-petroleum-400 focus-visible:ring-offset-2 active:scale-[0.98] sm:bottom-6 sm:right-6"
+        className="feedback-trigger group fixed bottom-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-petroleum-900 text-white shadow-lift transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-petroleum-800 hover:shadow-glow focus:outline-hidden focus-visible:ring-2 focus-visible:ring-petroleum-400 focus-visible:ring-offset-2 active:scale-[0.98] sm:bottom-6 sm:right-6"
         aria-label={t("feedback.open")}
         aria-expanded={isOpen}
         aria-controls="feedback-modal"
         onClick={() => setIsOpen(true)}
       >
         <MessageSquare className="h-5 w-5" aria-hidden="true" />
-        <span className="pointer-events-none absolute bottom-full right-0 mb-3 hidden whitespace-nowrap rounded-xl bg-graphite-900 px-3 py-1.5 text-xs font-medium text-white shadow-sm group-hover:block group-focus-visible:block">
+        <span className="pointer-events-none absolute bottom-full right-0 mb-3 hidden whitespace-nowrap rounded-xl bg-graphite-900 px-3 py-1.5 text-xs font-medium text-white shadow-xs group-hover:block group-focus-visible:block">
           <Text>{t("form.send_feedback")}</Text>
         </span>
       </button>
 
       {isOpen ? (
         <div
-          className="fixed inset-0 z-[60] flex items-end justify-center bg-graphite-950/45 px-4 py-4 backdrop-blur-sm sm:items-center sm:py-8"
+          className="fixed inset-0 z-60 flex items-end justify-center bg-graphite-950/45 px-4 py-4 backdrop-blur-xs sm:items-center sm:py-8"
           role="presentation"
           onMouseDown={closeModal}
         >
@@ -160,7 +160,7 @@ export function FloatingFeedback() {
               <button
                 ref={closeButtonRef}
                 type="button"
-                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-graphite-100 text-graphite-700 transition hover:bg-graphite-50 hover:text-graphite-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-petroleum-400 focus-visible:ring-offset-2"
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-graphite-100 text-graphite-700 transition hover:bg-graphite-50 hover:text-graphite-950 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-petroleum-400 focus-visible:ring-offset-2"
                 aria-label={t("feedback.close")}
                 onClick={closeModal}
               >
