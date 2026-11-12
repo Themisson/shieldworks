@@ -19,6 +19,7 @@ Não há armazenamento de mensagens no banco. Não usar credenciais reais em tes
 Vercel Analytics é montado na Vercel; eventos existentes estão em src/lib/analytics.ts.
 
 Comandos: npm ci; npm run dev; npm run check; npm run typecheck; npm run check:content;
+npm run sitemap:dates após mudar página ou catálogo (grava datas reais do Git para lastmod);
 npm run test:e2e após build. Docker opcional em DEPLOYMENT.md. Pare standalone antes de
 rebuild no Windows. Generated reports não são código e ficam fora do lint/Git.
 

@@ -35,7 +35,7 @@ export function InsightCard({ insight }: { insight: Insight }) {
       </div>
       <Link
         href={`/insights/${insight.slug}`}
-        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-petroleum-800 transition-colors hover:text-petroleum-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100"
+        className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-petroleum-800 transition-colors hover:text-petroleum-600 focus:outline-hidden focus-visible:ring-4 focus-visible:ring-petroleum-100"
       >
         Ler conteúdo
         <ArrowRight

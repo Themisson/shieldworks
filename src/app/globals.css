@@ -1,8 +1,93 @@
 @import "../styles/tokens.css";
 @import "../styles/v2.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind 4 is imported in parts and left unlayered (except the theme variables) so
+   the cascade keeps the Tailwind 3 order this site was authored against: tokens, v2,
+   preflight, component classes, utilities, then the rules below. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css";
+@import "../styles/components.css";
+@import "tailwindcss/utilities.css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* The font families come from next/font variables set on <html>; `inline` makes the
+   utilities read them directly instead of redefining the same variable name. */
+@theme inline {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+}
+
+@theme {
+  --color-white: rgb(var(--c-white));
+
+  --color-petroleum-50: rgb(var(--c-petroleum-50));
+  --color-petroleum-100: rgb(var(--c-petroleum-100));
+  --color-petroleum-200: rgb(var(--c-petroleum-200));
+  --color-petroleum-300: rgb(var(--c-petroleum-300));
+  --color-petroleum-400: rgb(var(--c-petroleum-400));
+  --color-petroleum-500: rgb(var(--c-petroleum-500));
+  --color-petroleum-600: rgb(var(--c-petroleum-600));
+  --color-petroleum-700: rgb(var(--c-petroleum-700));
+  --color-petroleum-800: rgb(var(--c-petroleum-800));
+  --color-petroleum-900: rgb(var(--c-petroleum-900));
+  --color-petroleum-950: rgb(var(--c-petroleum-950));
+
+  --color-graphite-50: rgb(var(--c-graphite-50));
+  --color-graphite-100: rgb(var(--c-graphite-100));
+  --color-graphite-200: rgb(var(--c-graphite-200));
+  --color-graphite-300: rgb(var(--c-graphite-300));
+  --color-graphite-400: rgb(var(--c-graphite-400));
+  --color-graphite-500: rgb(var(--c-graphite-500));
+  --color-graphite-600: rgb(var(--c-graphite-600));
+  --color-graphite-700: rgb(var(--c-graphite-700));
+  --color-graphite-800: rgb(var(--c-graphite-800));
+  --color-graphite-900: rgb(var(--c-graphite-900));
+  --color-graphite-950: rgb(var(--c-graphite-950));
+
+  --color-signal: #2f8f83;
+
+  --color-safety-50: rgb(var(--c-safety-50));
+  --color-safety-100: rgb(var(--c-safety-100));
+  --color-safety-200: rgb(var(--c-safety-200));
+  --color-safety-500: rgb(var(--c-safety-500));
+  --color-safety-600: rgb(var(--c-safety-600));
+  --color-safety-700: rgb(var(--c-safety-700));
+
+  --shadow-soft: 0 18px 48px rgba(16, 47, 59, 0.08);
+  --shadow-card:
+    0 1px 2px rgba(16, 47, 59, 0.04), 0 12px 32px rgba(16, 47, 59, 0.06);
+  --shadow-lift: 0 8px 28px rgba(16, 47, 59, 0.12);
+  --shadow-glow:
+    0 0 0 1px rgba(47, 113, 128, 0.12), 0 12px 40px rgba(16, 47, 59, 0.1);
+  --shadow-inset-edge: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.25rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+}
 
 :root {
   --background: var(--paper);
@@ -41,7 +126,16 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+  font-family:
+    var(--font-sans),
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    Helvetica,
+    sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -91,79 +185,6 @@ h3 {
 
 p {
   text-wrap: pretty;
-}
-
-@layer components {
-  .field {
-    @apply w-full rounded-xl border border-graphite-100 bg-white px-3.5 py-2.5 text-sm text-graphite-900 outline-none transition duration-200 ease-out placeholder:text-graphite-400 focus:border-petroleum-500 focus:ring-4 focus:ring-petroleum-100;
-  }
-
-  .label {
-    @apply text-sm font-medium text-graphite-700;
-  }
-
-  .surface-card {
-    @apply rounded-2xl border border-graphite-100/80 bg-white shadow-card transition duration-300 ease-out;
-  }
-
-  .surface-card:hover {
-    @apply border-petroleum-200 shadow-lift;
-  }
-
-  .section-shell {
-    width: 100%;
-    min-width: 0;
-    padding-inline: var(--page-gutter);
-  }
-
-  .eyebrow {
-    @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-petroleum-600;
-  }
-
-  .link-underline {
-    @apply relative inline-flex items-center gap-1.5 font-semibold text-petroleum-800 transition;
-  }
-
-  .link-underline::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .link-underline:hover::after,
-  .link-underline:focus-visible::after {
-    transform: scaleX(1);
-  }
-
-  .page-hero {
-    @apply relative overflow-hidden border-b border-graphite-100;
-  }
-
-  .page-hero-glow {
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, var(--surface-muted) 0%, transparent 100%);
-  }
-
-  .panel {
-    @apply rounded-2xl border border-graphite-100/80 bg-white;
-  }
-
-  .panel-muted {
-    @apply rounded-2xl border border-graphite-100/80 bg-graphite-50/80 shadow-sm;
-  }
-
-  .panel-accent {
-    @apply rounded-2xl border border-petroleum-100 bg-petroleum-50 shadow-sm;
-  }
 }
 
 /* Portrait uses the original asset with a solid caption and no filtering or feathering. */

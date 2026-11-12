@@ -140,7 +140,7 @@ export default async function ArticlePage({ params }: Props) {
             <p>{article.summary}</p>
             <ul className="flex flex-wrap gap-2 text-sm">
               {article.tags.map((tag) => (
-                <li key={tag} className="border border-[var(--line)] px-2 py-1">
+                <li key={tag} className="border border-(--line) px-2 py-1">
                   {tag}
                 </li>
               ))}

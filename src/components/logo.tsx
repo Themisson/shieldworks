@@ -15,7 +15,7 @@ export function Logo() {
         locale === "en" ? "ShieldWorks - home" : "ShieldWorks - início"
       }
     >
-      <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-petroleum-600/40 bg-petroleum-900 shadow-sm ring-1 ring-white/10 transition duration-300 group-hover:border-safety-500/60 group-hover:shadow-glow">
+      <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-petroleum-600/40 bg-petroleum-900 shadow-xs ring-1 ring-white/10 transition duration-300 group-hover:border-safety-500/60 group-hover:shadow-glow">
         <Image
           src="/icon.svg"
           alt=""

@@ -83,7 +83,7 @@ function HoneypotField({ id }: { id: string }) {
   return (
     <div
       aria-hidden="true"
-      className="absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
+      className="absolute left-[-9999px] h-0 w-0 overflow-hidden opacity-0"
       tabIndex={-1}
     >
       <label htmlFor={id}><Text>{"Website"}</Text></label>
@@ -241,7 +241,7 @@ export function ContactForm() {
       </p>
       <StatusMessage status={status} />
       <button
-        className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-petroleum-800 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-petroleum-900 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-petroleum-800 px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition duration-200 hover:bg-petroleum-900 hover:shadow-md focus:outline-hidden focus-visible:ring-4 focus-visible:ring-petroleum-100 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
         type="submit"
         disabled={status.type === "loading"}
         aria-busy={status.type === "loading"}
@@ -322,7 +322,7 @@ export function FeedbackForm({ className = "", onSuccess }: FeedbackFormProps) {
       </div>
       <StatusMessage status={status} />
       <button
-        className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl border border-petroleum-200 bg-white px-5 py-2.5 text-sm font-semibold text-petroleum-900 shadow-sm transition duration-200 hover:border-petroleum-400 hover:bg-petroleum-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-petroleum-100 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl border border-petroleum-200 bg-white px-5 py-2.5 text-sm font-semibold text-petroleum-900 shadow-xs transition duration-200 hover:border-petroleum-400 hover:bg-petroleum-50 focus:outline-hidden focus-visible:ring-4 focus-visible:ring-petroleum-100 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
         type="submit"
         disabled={status.type === "loading"}
         aria-busy={status.type === "loading"}

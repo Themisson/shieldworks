@@ -131,7 +131,7 @@ export default async function ProjectPage({ params }: Props) {
                 "Source of the presented features",
               )}
             </summary>
-            <p className="text-sm break-words">{project.source}</p>
+            <p className="text-sm wrap-break-word">{project.source}</p>
           </details>
         </aside>
       </div>
