@@ -17,6 +17,7 @@
     "test:e2e": "playwright test",
     "test:e2e:report": "playwright show-report",
     "check:content": "vitest run src/lib/__tests__/editorial.test.ts",
+    "sitemap:dates": "node scripts/update-sitemap-dates.mjs",
     "typecheck": "tsc --noEmit",
     "inspect:local": "node scripts/inspect-local.mjs"
   },
